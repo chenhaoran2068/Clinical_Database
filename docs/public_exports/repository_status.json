@@ -1,0 +1,63 @@
+{
+  "catalog_version": "2026-04-21",
+  "repository_scope": "public_method_repository",
+  "family_count": 2,
+  "database_count": 3,
+  "public_std_variable_card_count": 463,
+  "cross_database_public_card_count": 7,
+  "release_governance": {
+    "release_version": "0.1.0-dev",
+    "release_tag": "public-method-foundation-2026-04-21",
+    "release_status": "working_tree_snapshot",
+    "release_date": "2026-04-21"
+  },
+  "families": [
+    {
+      "family_id": "MIMIC-IV",
+      "display_name": "MIMIC-IV family",
+      "current_database_ids": [
+        "MIMIC-IV-3.1",
+        "MIMIC-IV-ECHO-1.0"
+      ]
+    },
+    {
+      "family_id": "AmsterdamUMCdb",
+      "display_name": "AmsterdamUMCdb family",
+      "current_database_ids": [
+        "AmsterdamUMCdb-1.0.2"
+      ]
+    }
+  ],
+  "databases": [
+    {
+      "database_id": "MIMIC-IV-3.1",
+      "family_id": "MIMIC-IV",
+      "version": "3.1",
+      "module_role": "core_database",
+      "public_layer1_support_status": "published_skeleton_and_public_scripts",
+      "public_layer4_support_status": "contract_and_registry_validator_published",
+      "public_layer5_public_status": "broad reviewed-approved local assets exist and public std-variable cards are published",
+      "public_card_count": 463
+    },
+    {
+      "database_id": "MIMIC-IV-ECHO-1.0",
+      "family_id": "MIMIC-IV",
+      "version": "1.0",
+      "module_role": "sibling_module",
+      "public_layer1_support_status": "published_skeleton_and_public_scripts",
+      "public_layer4_support_status": "global contracts available; no ECHO-specific policy registry published yet",
+      "public_layer5_public_status": "database-level local notes exist, but no reviewed-approved retained-variable family has been published yet",
+      "public_card_count": 0
+    },
+    {
+      "database_id": "AmsterdamUMCdb-1.0.2",
+      "family_id": "AmsterdamUMCdb",
+      "version": "1.0.2",
+      "module_role": "core_database",
+      "public_layer1_support_status": "published_skeleton_and_public_scripts",
+      "public_layer4_support_status": "database opening policy registry contract and validator path are published",
+      "public_layer5_public_status": "pilot reviewed-approved local assets exist and public std-variable cards are published for shared variables",
+      "public_card_count": 7
+    }
+  ]
+}

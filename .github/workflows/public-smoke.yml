@@ -1,0 +1,76 @@
+name: public-smoke
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compile public scripts
+        run: python -m compileall scripts
+
+      - name: Validate public repository structure
+        run: python scripts/check_public_repository.py
+
+      - name: Smoke-run public status entrypoint
+        run: python scripts/public_workflow.py status
+
+      - name: Smoke-run public family status entrypoint
+        run: python scripts/public_workflow.py status --family-id MIMIC-IV
+
+      - name: Smoke-run public repository wrapper check
+        run: python scripts/public_workflow.py check-public-repository
+
+      - name: Smoke-run metadata exports
+        run: |
+          python scripts/public_workflow.py export-public-artifacts --artifact database-catalog
+          python scripts/public_workflow.py export-public-artifacts --artifact repository-status
+          python scripts/public_workflow.py export-public-artifacts --artifact release-governance
+          python scripts/public_workflow.py export-public-artifacts --artifact release-safe-manifest
+          python scripts/public_workflow.py export-public-artifacts --artifact public-inventory
+          python scripts/public_workflow.py export-public-artifacts --artifact family-summary --family-id MIMIC-IV
+          python scripts/public_workflow.py export-public-artifacts --artifact database-variable-coverage
+          python scripts/public_workflow.py export-public-artifacts --artifact family-variable-coverage
+          python scripts/public_workflow.py export-public-artifacts --artifact variable-coverage-summary
+          python scripts/public_workflow.py export-public-artifacts --artifact release-note
+
+      - name: Smoke-run public workflow help
+        run: |
+          python scripts/public_workflow.py build-layer1 --help
+          python scripts/public_workflow.py validate-registry --help
+          python scripts/public_workflow.py export-public-artifacts --help
+          python scripts/public_workflow.py prepare-release --help
+          python scripts/public_workflow.py scaffold-public-database --help
+
+      - name: Smoke-run release preparation
+        run: python scripts/public_workflow.py prepare-release --dry-run
+
+      - name: Smoke-run scaffold entrypoint defaults
+        run: |
+          python scripts/public_workflow.py scaffold-public-database --database-id FIXTURE-DB-0.1 --family-id FIXTURE-FAMILY --version 0.1 --dry-run > scaffold_default.txt
+          ! grep -q "docs/onboarding/families/FIXTURE-FAMILY.md" scaffold_default.txt
+          ! grep -q "FIXTURE-DB-0.1_database_row.json" scaffold_default.txt
+          ! grep -q "FIXTURE-FAMILY_family_row.json" scaffold_default.txt
+
+      - name: Smoke-run scaffold entrypoint optional outputs
+        run: |
+          python scripts/public_workflow.py scaffold-public-database --database-id FIXTURE-DB-0.1 --family-id FIXTURE-FAMILY --version 0.1 --create-family-template-if-missing --emit-catalog-snippets-dir docs/tmp_catalog_snippets --dry-run > scaffold_optional.txt
+          grep -q "docs/onboarding/families/FIXTURE-FAMILY.md" scaffold_optional.txt
+          grep -q "FIXTURE-DB-0.1_database_row.json" scaffold_optional.txt
+          grep -q "FIXTURE-FAMILY_family_row.json" scaffold_optional.txt

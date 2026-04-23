@@ -1,0 +1,6 @@
+bucket_name,is_present,current_state,authoritative_for_downstream_etl,notes
+raw_original,yes,empty,no,"Reserved for official delivered packages"
+raw_unpacked,yes,empty,yes,"Reserved for official unpacked source tables"
+source_supplied_derived,yes,empty,no,"Reserved for official companion resources"
+local_converted_parquet,yes,empty,no,"Reserved for local format-conversion copies"
+docs_manifest,yes,populated,no,"Repository documentation and source contract"

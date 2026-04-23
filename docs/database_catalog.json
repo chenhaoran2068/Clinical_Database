@@ -1,0 +1,107 @@
+{
+  "catalog_version": "2026-04-21",
+  "repository_scope": "public_method_repository",
+  "families": [
+    {
+      "family_id": "MIMIC-IV",
+      "display_name": "MIMIC-IV family",
+      "description": "Critical-care database family containing versioned core database lines and stand-alone sibling modules such as ECHO.",
+      "public_family_playbook": "docs/onboarding/families/MIMIC-IV.md",
+      "current_database_ids": [
+        "MIMIC-IV-3.1",
+        "MIMIC-IV-ECHO-1.0"
+      ],
+      "future_member_rule": "Add future core versions as new database_id rows under the same family. Keep sibling modules separate from core-version rows.",
+      "alignment_rule": "Cross-member alignment should use explicit identifiers and documented time-alignment notes, not directory nesting."
+    },
+    {
+      "family_id": "AmsterdamUMCdb",
+      "display_name": "AmsterdamUMCdb family",
+      "description": "Standalone ICU database family whose versions must keep critical relative-time semantics explicit.",
+      "public_family_playbook": "docs/onboarding/families/AmsterdamUMCdb.md",
+      "current_database_ids": [
+        "AmsterdamUMCdb-1.0.2"
+      ],
+      "future_member_rule": "Add future Amsterdam releases as new versioned database_id rows. Re-review timing assumptions rather than inheriting them blindly.",
+      "alignment_rule": "Cross-version or companion-module alignment must explicitly preserve version-scoped time semantics."
+    }
+  ],
+  "databases": [
+    {
+      "database_id": "MIMIC-IV-3.1",
+      "display_name": "MIMIC-IV v3.1",
+      "family_id": "MIMIC-IV",
+      "module_role": "core_database",
+      "version": "3.1",
+      "relationship_note": "Primary MIMIC-IV critical-care database module covering core, ICU, ED, and note deliveries under the current Layer 1 conventions.",
+      "public_layer1_skeleton_path": "Data/Layer 1/MIMIC-IV-3.1",
+      "public_onboarding_playbook": "docs/onboarding/MIMIC-IV-3.1.md",
+      "public_script_entrypoints": [
+        "scripts/public_workflow.py",
+        "scripts/layer1/unpack_mimic_raw_original_to_raw_unpacked.py",
+        "scripts/layer1/convert_mimic_raw_unpacked_to_parquet.py",
+        "scripts/layer1/reconstruct_mimic_note_raw_unpacked_from_parquet.py"
+      ],
+      "special_semantics_contracts": [
+        "Framework_Guideline/MIMICIV_SourcePackageAndModuleBoundary_Contract.md"
+      ],
+      "public_layer1_support_status": "published_skeleton_and_public_scripts",
+      "public_layer4_support_status": "contract_and_registry_validator_published",
+      "public_layer5_public_status": "broad reviewed-approved local assets exist and public std-variable cards are published",
+      "current_local_stage": "mature retained-variable coverage with cross-database public-card export",
+      "public_tutorials": [
+        "docs/tutorials/std_heart_rate_cross_database_walkthrough.md",
+        "docs/tutorials/minimal_variable_validation_workflow.md"
+      ]
+    },
+    {
+      "database_id": "MIMIC-IV-ECHO-1.0",
+      "display_name": "MIMIC-IV-ECHO v1.0",
+      "family_id": "MIMIC-IV",
+      "module_role": "sibling_module",
+      "version": "1.0",
+      "relationship_note": "Stand-alone sibling module for echocardiography material. It should not be semantically version-owned by the MIMIC-IV-3.1 directory path.",
+      "public_layer1_skeleton_path": "Data/Layer 1/MIMIC-IV-ECHO-1.0",
+      "public_onboarding_playbook": "docs/onboarding/MIMIC-IV-ECHO-1.0.md",
+      "public_script_entrypoints": [
+        "scripts/public_workflow.py",
+        "scripts/layer1/unpack_mimic_echo_raw_original_to_raw_unpacked.py",
+        "scripts/layer1/convert_mimic_echo_raw_unpacked_to_parquet.py"
+      ],
+      "special_semantics_contracts": [],
+      "public_layer1_support_status": "published_skeleton_and_public_scripts",
+      "public_layer4_support_status": "global contracts available; no ECHO-specific policy registry published yet",
+      "public_layer5_public_status": "database-level local notes exist, but no reviewed-approved retained-variable family has been published yet",
+      "current_local_stage": "stand-alone Layer 1 module established; retained-variable design not yet started",
+      "public_tutorials": [
+        "docs/tutorials/variable_card_to_local_knowledge_package.md"
+      ]
+    },
+    {
+      "database_id": "AmsterdamUMCdb-1.0.2",
+      "display_name": "AmsterdamUMCdb v1.0.2",
+      "family_id": "AmsterdamUMCdb",
+      "module_role": "core_database",
+      "version": "1.0.2",
+      "relationship_note": "Standalone ICU database with critical relative-time semantics that must stay explicit from Layer 2 onward.",
+      "public_layer1_skeleton_path": "Data/Layer 1/AmsterdamUMCdb-1.0.2",
+      "public_onboarding_playbook": "docs/onboarding/AmsterdamUMCdb-1.0.2.md",
+      "public_script_entrypoints": [
+        "scripts/public_workflow.py",
+        "scripts/layer1/convert_amsterdam_raw_unpacked_to_parquet.py",
+        "scripts/layer4/validate_policy_registry.py"
+      ],
+      "special_semantics_contracts": [
+        "Framework_Guideline/AmsterdamUMCdb_TimeSemantics_Contract.md"
+      ],
+      "public_layer1_support_status": "published_skeleton_and_public_scripts",
+      "public_layer4_support_status": "database opening policy registry contract and validator path are published",
+      "public_layer5_public_status": "pilot reviewed-approved local assets exist and public std-variable cards are published for shared variables",
+      "current_local_stage": "active pilot retained-variable approvals with explicit opening and mortality contracts",
+      "public_tutorials": [
+        "docs/tutorials/std_heart_rate_cross_database_walkthrough.md",
+        "docs/tutorials/variable_card_to_local_knowledge_package.md"
+      ]
+    }
+  ]
+}

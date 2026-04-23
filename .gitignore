@@ -1,0 +1,58 @@
+# Python / local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local caches / temp
+.local_deps/
+.vendor_py/
+.pip_cache/
+.tmp/
+tmp/
+
+# Restricted source data and local converted copies
+Data/Layer 1/**/raw_original/**
+Data/Layer 1/**/raw_unpacked/**
+Data/Layer 1/**/local_converted_parquet/**
+Data/Layer 1/**/source_supplied_derived/**
+
+# Re-allow safe Layer 1 placeholders and docs
+!Data/Layer 1/**/raw_original/.gitkeep
+!Data/Layer 1/**/raw_unpacked/.gitkeep
+!Data/Layer 1/**/local_converted_parquet/.gitkeep
+!Data/Layer 1/**/source_supplied_derived/.gitkeep
+!Data/Layer 1/**/docs_manifest/
+!Data/Layer 1/**/docs_manifest/**
+
+# Local build outputs are not committed
+Data/Layer 2/**
+Data/Layer 3/**
+Data/Layer 4/**
+Data/Layer 5/**
+
+# Generic local data artifacts
+*.parquet
+*.feather
+*.duckdb
+*.db
+*.sqlite
+*.pkl
+*.pickle
+*.rds
+*.rdata
+*.log
+*.zip
+*.7z
+*.tar
+*.gz
+*.bz2
+*.xz
