@@ -1,0 +1,81 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_7_subject_hadm_id_map_mimic_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_id_map_subject_hadm/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_id_map_subject_hadm",
+    "variable_version": "v0_draft",
+    "semantic_intent": "patient-to-hospital-admission identifier bridge",
+    "semantic_grain": "one row per hospital admission identifier",
+    "source_value_class": "source_recorded_identifier_relationship",
+    "canonical_unit": "none",
+    "canonical_value_family": "identifier_map"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "approved_hospital_admissions_identifier_map",
+    "source_package": "reviewed_unsplit_hosp_admissions",
+    "source_table": "hosp.admissions",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_admissions.parquet",
+    "source_value_field": "subject_id + hadm_id + admittime + dischtime",
+    "source_time_field": "admittime + dischtime",
+    "source_grain": "one raw hosp.admissions row per hadm_id",
+    "target_grain": "one retained id-map row per hadm_id",
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier from hosp.admissions",
+      "hadm_id_role": "hospital-admission-level identifier from hosp.admissions",
+      "stay_id_role": "not applicable"
+    }
+  },
+  "admin_demographic_build_translation": {
+    "target_entity_grain": "hospital admission",
+    "identifier_translation": "retain subject_id and hadm_id directly from hosp.admissions; require hadm_id uniqueness",
+    "value_normalization_translation": "retain admittime and dischtime as the source hospital admission window after timestamp normalization",
+    "no_row_translation": "absence of a retained row means no approved admission identifier relationship under this mapping; it does not prove absence of hospitalization"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "mimic_hosp_admissions_subject_hadm_window_map_v1",
+    "primary_output_value_field": "hadm_id",
+    "subject_identifier_output_field": "subject_id",
+    "admission_start_output_field": "admittime",
+    "admission_end_output_field": "dischtime"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "admittime",
+      "dischtime"
+    ],
+    "duplicate_key": [
+      "hadm_id"
+    ],
+    "duplicate_action": "fail",
+    "no_row_policy_check": "absence of row is not a valid admission-level category and should not be treated as no hospitalization",
+    "notes": [
+      "subject_id can repeat across multiple hospital admissions.",
+      "This id map is hospital-admission grain and should not be treated as ICU-stay grain."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_id_map_subject_hadm/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/extract_code/Extract_Code_std_id_map_subject_hadm.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation.",
+    "non_bypassable_target_rule": "Formal std_id_map_subject_hadm outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_id_map_subject_hadm.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/extract_code/Extract_Code_std_id_map_subject_hadm.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm/std_id_map_subject_hadm_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/preview/std_id_map_subject_hadm_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/query_summary"
+  }
+}

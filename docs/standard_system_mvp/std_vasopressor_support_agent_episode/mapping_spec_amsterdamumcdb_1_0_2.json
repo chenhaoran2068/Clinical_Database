@@ -1,0 +1,131 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_candidate",
+  "artifact_status": "candidate_mapping_pending_owner_review",
+  "approval_status": "not_owner_approved",
+  "mvp_phase": "class_5_amsterdam_q2_build_first_candidate_mvp",
+  "created_at": "2026-05-04",
+  "updated_at": "2026-05-04",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_vasopressor_support_agent_episode",
+    "variable_version": "v0_draft",
+    "semantic_intent": "agent-specific vasopressor support episode",
+    "semantic_grain": "one row per retained ICU stay agent-specific support episode interval",
+    "source_value_class": "positive_agent_episode",
+    "canonical_unit": "none",
+    "canonical_value_family": "categorical_episode"
+  },
+  "candidate_boundary_notice": {
+    "status": "built_candidate_owner_approval_pending",
+    "owner_approval_status": "not_owner_approved",
+    "reason": "Amsterdam exposes continuous syringe-pump drugitems rows for vasopressor-capable agents and an approved parent std_vasopressor_support_active asset. Terlipressin is retained as its own agent label rather than silently mapped to vasopressin.",
+    "approval_gate": "candidate runtime evidence only until detailed review and owner approval close"
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_locator_mode": "child_agent_reconstruction_from_reviewed_drugitems_and_parent_vasopressor_support_active",
+    "source_package": "drugitems_event plus parent std_vasopressor_support_active",
+    "source_table": "drugitems_event + std_vasopressor_support_active",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/drugitems_event.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_vasopressor_support_active/std_vasopressor_support_active_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet"
+    ],
+    "source_status_field": "std_vasoactive_agent",
+    "source_status_codes": [
+      "dopamine",
+      "epinephrine",
+      "norepinephrine",
+      "phenylephrine",
+      "terlipressin"
+    ],
+    "source_itemid_labels": {
+      "6818": "Adrenaline (Epinefrine) -> epinephrine",
+      "7179": "Dopamine (Inotropin) -> dopamine",
+      "7229": "Noradrenaline (Norepinefrine) -> norepinephrine",
+      "12467": "Terlipressine (Glypressin) -> terlipressin",
+      "19929": "Fenylefrine -> phenylephrine"
+    },
+    "source_start_field": "agent_support_starttime",
+    "source_end_field": "agent_support_endtime",
+    "source_grain": "one reviewed Amsterdam vasoactive drug course before same-agent interval union",
+    "target_grain": "one retained positive agent-specific support episode row",
+    "identifier_normalization": {
+      "subject_id_role": "patientid joined from Amsterdam admissions_core by admissionid",
+      "hadm_id_role": "not separately available in the current Amsterdam opening mapping",
+      "stay_id_role": "admissionid normalized to ICU/MC stay_id",
+      "stay_link_status": "icu_mcu_local_admission_via_admissionid"
+    }
+  },
+  "episode_interval_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "episode_label_translation": "retain standardized vasoactive agent labels dopamine, epinephrine, norepinephrine, phenylephrine, and terlipressin",
+    "episode_start_translation": "use merged same-agent support interval start",
+    "episode_end_translation": "use merged same-agent support interval end",
+    "continuity_translation": "merge overlapping or exactly contiguous intervals only when stay_id and std_vasoactive_agent match",
+    "parent_link_translation": "link to the same-stay Amsterdam std_vasopressor_support_active parent episode by interval containment when available",
+    "no_row_translation": "absence of a retained child row means no positive agent-specific episode under this source rule"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "amsterdam_drugitems_agent_specific_vasopressor_episode_with_terlipressin_retained_v1",
+    "primary_output_value_field": "std_vasopressor_support_agent_episode",
+    "primary_episode_label_field": "std_vasoactive_agent",
+    "start_time_output_field": "agent_support_starttime",
+    "end_time_output_field": "agent_support_endtime",
+    "duration_output_field": "agent_support_duration_minutes",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_start_output_field": "relative_start_time_value",
+    "relative_end_output_field": "relative_end_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "stay_id",
+      "source_agent_support_episode_id",
+      "std_vasoactive_agent",
+      "agent_support_starttime",
+      "agent_support_endtime",
+      "agent_support_duration_minutes",
+      "std_vasopressor_support_agent_episode"
+    ],
+    "duplicate_key": [
+      "source_agent_support_episode_id"
+    ],
+    "duplicate_action": "fail",
+    "no_row_policy_check": "absence of row is not universal proof of no vasopressor support; use parent std_vasopressor_support_active for any-support timing",
+    "episode_time_order_action": "fail_when_end_not_after_start",
+    "label_domain_check": [
+      "dopamine",
+      "epinephrine",
+      "norepinephrine",
+      "phenylephrine",
+      "terlipressin"
+    ],
+    "notes": [
+      "Build-first candidate mapping; owner approval is explicitly pending.",
+      "Terlipressin is a source-retained Amsterdam label and is not silently collapsed to vasopressin."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py",
+    "formal_output_rule": "Candidate output should be generated through the governed execution.py path and reviewed before approval.",
+    "non_bypassable_target_rule": "Approval-facing outputs should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_vasopressor_support_agent_episode.md",
+    "candidate_evidence_review_path": "docs/standard_system_mvp/AMSTERDAM_Q2_DIRECT_BUILD_CANDIDATE_REVIEW.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_vasopressor_support_agent_episode/std_vasopressor_support_agent_episode_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/preview/std_vasopressor_support_agent_episode_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/query_summary"
+  }
+}

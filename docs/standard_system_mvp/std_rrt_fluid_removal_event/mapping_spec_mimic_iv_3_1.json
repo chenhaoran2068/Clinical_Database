@@ -1,0 +1,171 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_4_rrt_fluid_removal_event_mimic_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_rrt_fluid_removal_event/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_rrt_fluid_removal_event",
+    "variable_version": "v0_draft",
+    "semantic_intent": "source-recorded renal replacement therapy fluid-removal event",
+    "semantic_grain": "time-stamped treatment/device/IO event",
+    "source_value_class": "source_recorded_treatment_device_io_amount_event",
+    "canonical_unit": "mL",
+    "canonical_value_family": "numeric_event_with_context"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "approved_rrt_parent_context_plus_source_itemid_projection",
+    "source_package": "approved_local_layer3_and_split_chartevents",
+    "source_table": "std_crrt_device_parameter_event + icu_chartevents itemid split tables + std_non_crrt_rrt_active",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/device_support/std_crrt_device_parameter_event/std_crrt_device_parameter_event_long.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_rrt_active/std_rrt_active_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_non_crrt_rrt_active/std_non_crrt_rrt_active_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables/chartevents_itemid_226499_hemodialysis_output",
+      "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables/chartevents_itemid_225806_volume_in_pd",
+      "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables/chartevents_itemid_225807_volume_out_pd"
+    ],
+    "source_itemids": [
+      224191,
+      226457,
+      226499,
+      225806,
+      225807
+    ],
+    "source_time_field": "charttime",
+    "source_value_field": "parameter_value_numeric or chartevents.valuenum",
+    "source_unit_field": "source_valueuom or chartevents.valueuom",
+    "source_grain": "one source CRRT parameter row or one dialysis-related chartevents row before approved grouping and parent-context filtering",
+    "target_grain": "one retained source-faithful RRT fluid-removal event row after source grouping and bridge-role classification",
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier from approved parent assets or source rows",
+      "hadm_id_role": "hospital-admission-level identifier from approved parent assets or source rows",
+      "stay_id_role": "ICU-stay-level identifier from approved parent assets or source rows",
+      "stay_link_status": "direct_stay"
+    },
+    "official_source_references": [
+      "References/MIMIC/2026-03-20_snapshot_v2/raw/mimic_code/mimic-iv/concepts/treatment/rrt.sql",
+      "References/MIMIC/2026-03-20_snapshot_v2/raw/mimic_code/mimic-iv/concepts/treatment/crrt.sql"
+    ],
+    "adjacent_status_boundary": {
+      "included_scope": [
+        "CRRT hourly patient fluid-removal volume from approved std_crrt_device_parameter_event",
+        "CRRT ultrafiltrate output retained as context-only specialized evidence",
+        "hemodialysis output rows overlapping approved std_non_crrt_rrt_active episodes",
+        "peritoneal dialysis in/out rows retained as context-only evidence"
+      ],
+      "default_bridge_scope": [
+        "224191 / Hourly Patient Fluid Removal",
+        "226499 / Hemodialysis Output"
+      ],
+      "context_only_scope": [
+        "226457 / Ultrafiltrate Output",
+        "225806 / Volume In (PD)",
+        "225807 / Volume Out (PD)"
+      ],
+      "excluded_same_family_outputs": [
+        "std_rrt_active",
+        "std_crrt_family_active",
+        "std_non_crrt_rrt_active",
+        "std_rrt_modality_episode",
+        "std_icu_rrt_fluid_removal_bridge_hourly",
+        "std_first_day_urine_output_summary",
+        "std_icu_urine_output_event",
+        "std_icu_output_event",
+        "std_aki_kdigo"
+      ],
+      "mapping_specific_notes": [
+        "Opening v1 keeps hemodialysis output as default bridge evidence but does not smooth session totals across prior hours.",
+        "Opening v1 keeps ultrafiltrate output and peritoneal dialysis volume rows as context-only evidence and does not silently add them to the default balance numerator.",
+        "Negative and extreme raw source values are retained through caution fields rather than silently disappearing."
+      ],
+      "boundary_reason": "This same-name variable represents source-recorded RRT fluid-removal event evidence, not umbrella active-state truth, exact modality episode truth, urine output, generic total output, or hourly fluid-balance summary truth."
+    }
+  },
+  "event_stream_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "event_time_translation": "retain source charttime as the event time and compute relative minutes from ICU intime",
+    "event_value_translation": "standardize source-recorded values to fluid_removal_value_ml when the source unit is mL and retain source numeric raw sums",
+    "unit_translation": "retain source_valueuom_set and write standard_unit=mL for retained rows",
+    "context_translation": "retain source itemid set, source label set, source RRT family class, exact modality context, bridge_role_class, and default bridge eligibility flags",
+    "parent_link_translation": "CRRT rows retain parent std_crrt_family_active context from std_crrt_device_parameter_event; non-CRRT rows are retained only when overlapping approved std_non_crrt_rrt_active episodes",
+    "downstream_aggregation_translation": "do not smooth, back-shift, difference counters, or summarize; hourly augmentation remains a separate bridge variable",
+    "no_row_translation": "absence of a retained row means no source-recorded RRT fluid-removal event under this mapping, not absence of RRT support"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "mL",
+    "normalization_rule_id": "mimic_rrt_fluid_removal_source_items_to_standard_event_stream_v1",
+    "primary_output_value_field": "fluid_removal_value_ml",
+    "event_time_output_field": "charttime",
+    "standard_unit_output_field": "standard_unit",
+    "source_context_output_field": "fluid_removal_event_name_std",
+    "bridge_role_output_field": "bridge_role_class",
+    "parent_support_output_field": "parent_support_episode_id",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_time_output_field": "relative_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "rrt_fluid_removal_event_index",
+      "source_event_id",
+      "charttime",
+      "std_rrt_fluid_removal_event",
+      "fluid_removal_event_name_std",
+      "fluid_removal_value_ml",
+      "standard_unit",
+      "bridge_role_class"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "source_event_id"
+    ],
+    "duplicate_action": "fail",
+    "no_row_policy_check": "absence of row is not universal proof of no RRT support or no unrecorded extracorporeal removal",
+    "unit_check": "standard_unit must be mL for all retained rows",
+    "bridge_role_domain_check": [
+      "default_balance_bridge_include",
+      "context_only_not_default_bridge"
+    ],
+    "source_context_domain_check": [
+      "machine_hourly_patient_removal_volume",
+      "hemodialysis_output_volume",
+      "ultrafiltrate_output_volume_context",
+      "peritoneal_dialysis_volume_in_context",
+      "peritoneal_dialysis_volume_out_context"
+    ],
+    "caution_rules": {
+      "negative_value_caution": "retain raw negative-source caution rather than silently dropping rows",
+      "extreme_value_caution": "retain event-level extreme-value caution flags",
+      "context_only_default_numerator_caution": "context-only rows must not enter the opening default bridge numerator"
+    },
+    "notes": [
+      "The retained source is the reviewed local MIMIC RRT fluid-removal bridge event asset.",
+      "Opening v1 is an event stream and not a replacement for measured charted ICU balance.",
+      "The downstream hourly bridge remains a separate derived variable."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_rrt_fluid_removal_event/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/extract_code/Extract_Code_std_rrt_fluid_removal_event.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_rrt_fluid_removal_event outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_rrt_fluid_removal_event.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/extract_code/Extract_Code_std_rrt_fluid_removal_event.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/intake_output_balance/std_rrt_fluid_removal_event/std_rrt_fluid_removal_event_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/preview/std_rrt_fluid_removal_event_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/query_summary"
+  }
+}

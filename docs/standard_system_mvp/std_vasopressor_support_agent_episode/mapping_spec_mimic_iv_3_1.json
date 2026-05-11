@@ -1,0 +1,134 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_5_vasopressor_support_agent_episode_mimic_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_vasopressor_support_agent_episode",
+    "variable_version": "v0_draft",
+    "semantic_intent": "agent-specific vasopressor support episode",
+    "semantic_grain": "one row per retained ICU stay agent-specific support episode interval",
+    "source_value_class": "positive_agent_episode",
+    "canonical_unit": "none",
+    "canonical_value_family": "categorical_episode"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "local_child_reconstruction_from_reviewed_vasoactive_foundation_and_parent_support_episode",
+    "source_package": "reviewed_vasoactive_infusion_foundation_plus_parent_vasopressor_support_active",
+    "source_table": "std_icu_vasoactive_medication_infusion_event + std_vasopressor_support_active + std_id_map_subject_hadm_stay",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/medication/std_icu_vasoactive_medication_infusion_event/std_icu_vasoactive_medication_infusion_event_long.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_vasopressor_support_active/std_vasopressor_support_active_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm_stay/std_id_map_subject_hadm_stay_long.parquet"
+    ],
+    "source_status_field": "std_vasoactive_agent",
+    "source_status_codes": [
+      "dopamine",
+      "epinephrine",
+      "norepinephrine",
+      "phenylephrine",
+      "vasopressin"
+    ],
+    "source_start_field": "agent_support_starttime",
+    "source_end_field": "agent_support_endtime",
+    "source_grain": "one reviewed upstream vasoactive agent course before same-agent interval union",
+    "target_grain": "one retained positive agent-specific support episode row",
+    "identifier_normalization": {
+      "subject_id_role": "patient identifier from trusted stay map and parent support asset",
+      "hadm_id_role": "hospital admission identifier from trusted stay map and parent support asset",
+      "stay_id_role": "ICU stay identifier from upstream infusion, parent support, and trusted stay map",
+      "stay_link_status": "direct_stay"
+    },
+    "adjacent_status_boundary": {
+      "included_scope": [
+        "vasopressor role class",
+        "mixed_pressor_inotrope role class retained by opening v1",
+        "agent labels dopamine, epinephrine, norepinephrine, phenylephrine, and vasopressin"
+      ],
+      "excluded_same_family_outputs": [
+        "std_vasopressor_support_active",
+        "std_icu_vasoactive_medication_infusion_event",
+        "std_icu_vasopressin_infusion_event",
+        "norepinephrine-equivalent dose",
+        "vasopressor burden summary",
+        "shock phenotype"
+      ],
+      "boundary_reason": "This same-name variable represents child agent-specific support episodes, not parent any-support truth, raw infusion events, dose normalization, or phenotype truth."
+    }
+  },
+  "episode_interval_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "episode_label_translation": "retain standardized vasoactive agent labels dopamine, epinephrine, norepinephrine, phenylephrine, and vasopressin",
+    "episode_start_translation": "use merged agent_support_starttime after approved same-agent course union",
+    "episode_end_translation": "use merged agent_support_endtime after approved same-agent course union",
+    "continuity_translation": "merge overlapping or exactly contiguous intervals only when stay_id and std_vasoactive_agent match; any positive gap or agent-label change starts a new child episode",
+    "parent_link_translation": "require exactly one same-stay std_vasopressor_support_active parent episode containing the child interval",
+    "no_row_translation": "absence of a retained row means no positive agent-specific episode under this source rule, not proof of no broader vasopressor support"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "mimic_reviewed_vasoactive_foundation_to_agent_specific_vasopressor_episode_v1",
+    "primary_output_value_field": "std_vasopressor_support_agent_episode",
+    "primary_episode_label_field": "std_vasoactive_agent",
+    "start_time_output_field": "agent_support_starttime",
+    "end_time_output_field": "agent_support_endtime",
+    "duration_output_field": "agent_support_duration_minutes",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_start_output_field": "relative_start_time_value",
+    "relative_end_output_field": "relative_end_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "source_support_episode_id",
+      "source_agent_support_episode_id",
+      "std_vasoactive_agent",
+      "agent_support_starttime",
+      "agent_support_endtime",
+      "agent_support_duration_minutes",
+      "std_vasopressor_support_agent_episode"
+    ],
+    "duplicate_key": [
+      "source_agent_support_episode_id"
+    ],
+    "duplicate_action": "fail",
+    "no_row_policy_check": "absence of row is not universal proof of no vasopressor support; use parent std_vasopressor_support_active for any-support timing",
+    "episode_time_order_action": "fail_when_end_not_after_start",
+    "label_domain_check": [
+      "dopamine",
+      "epinephrine",
+      "norepinephrine",
+      "phenylephrine",
+      "vasopressin"
+    ],
+    "notes": [
+      "This is a child detail layer under std_vasopressor_support_active.",
+      "Strict concurrency means positive overlap with a distinct retained agent episode, not merely multi-agent membership inside a parent episode.",
+      "Opening v1 retains mixed_pressor_inotrope dopamine rows by design."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation.",
+    "non_bypassable_target_rule": "Formal std_vasopressor_support_agent_episode outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_vasopressor_support_agent_episode.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_vasopressor_support_agent_episode/std_vasopressor_support_agent_episode_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/preview/std_vasopressor_support_agent_episode_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/query_summary"
+  }
+}

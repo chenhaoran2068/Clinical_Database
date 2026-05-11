@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T23:05:15Z",
+  "variable_id": "std_total_bilirubin",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_total_bilirubin/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_total_bilirubin/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_total_bilirubin/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_bilirubin/extract_code/Extract_Code_std_total_bilirubin.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_bilirubin/extract_code/Extract_Code_std_total_bilirubin.py"
+  ],
+  "process_batch_id": "20260503T230510Z_AmsterdamUMCdb-1.0.2_std_total_bilirubin",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T23:05:09Z",
+  "finished_at": "2026-05-03T23:05:15Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "db127ead38577bae63292dfd9ac3159807585f44474acfd7873c99fe5b80ffc1",
+    "mapping_spec_sha256": "b2040e3a18316f6518afef05c279546a018b52718b85b7a24fc5bed1c4cf7f92"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_total_bilirubin/std_total_bilirubin_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_bilirubin/preview/std_total_bilirubin_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_bilirubin/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_bilirubin/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_total_bilirubin/runtime/amsterdamumcdb_1_0_2_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "1549c7b81a9ae63883f1ebde156dce0744220ff7aadb774181726b8b97fd1944",
+      "size_bytes": 763508
+    },
+    "preview_csv": {
+      "sha256": "960414c99d421d1cc0358df2e9f767dfdf9fbefad627cd2ff6360b2fb2cede9b",
+      "size_bytes": 89385
+    },
+    "asset_manifest": {
+      "sha256": "bf111c46010870ce08def4ee1b79e35cb739b0a67eeab8ce03b83965da9dd9c3",
+      "size_bytes": 4188
+    },
+    "knowledge_package": {
+      "sha256": "b08f1801857bf4c2bd0bbf1556d6f96228ce3cc2a4fa77f644ed709199e4fdf2",
+      "size_bytes": 25879
+    },
+    "build_log": {
+      "sha256": "8917b8d2c5337e3540c6f8d0939f8b66ca3844f7dce5db316281459ad888a304",
+      "size_bytes": 705
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T230510Z_AmsterdamUMCdb-1.0.2_std_total_bilirubin",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_total_bilirubin/std_total_bilirubin_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_bilirubin/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_bilirubin/log_archive/20260503T230510Z_AmsterdamUMCdb-1.0.2_std_total_bilirubin__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

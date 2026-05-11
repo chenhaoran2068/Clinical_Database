@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T23:05:09Z",
+  "variable_id": "std_oxygen_saturation_bg_arterial_specimen",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_oxygen_saturation_bg_arterial_specimen/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_oxygen_saturation_bg_arterial_specimen/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_oxygen_saturation_bg_arterial_specimen/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_arterial_specimen/extract_code/Extract_Code_std_oxygen_saturation_bg_arterial_specimen.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_arterial_specimen/extract_code/Extract_Code_std_oxygen_saturation_bg_arterial_specimen.py"
+  ],
+  "process_batch_id": "20260503T230459Z_AmsterdamUMCdb-1.0.2_std_so2_bg_art",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T23:04:58Z",
+  "finished_at": "2026-05-03T23:05:09Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "95df298aa495d8203fe1805962036bcf3c32e0cbe5e6e87705614c4ee74e32ad",
+    "mapping_spec_sha256": "11c2969a93459f9f7c2915d784f91dfdfb9b13dcc9bff73788527efcd34210f1"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_oxygen_saturation_bg_arterial_specimen/std_oxygen_saturation_bg_arterial_specimen_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_arterial_specimen/preview/std_oxygen_saturation_bg_arterial_specimen_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_arterial_specimen/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_arterial_specimen/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_oxygen_saturation_bg_arterial_specimen/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "054adec65ae0ef5177f8c3fd04d58aac46707bb580df5cc057f30b5177a16bb6",
+      "size_bytes": 6252055
+    },
+    "preview_csv": {
+      "sha256": "65c2af4ec5ebf4f3b1da4cfcb56a80604774c97cd1d2fbf5226264378798a250",
+      "size_bytes": 96748
+    },
+    "asset_manifest": {
+      "sha256": "696108f22438997e4184c0b021d0d7673d21591f6bd835f3159554e85bed0b7b",
+      "size_bytes": 4747
+    },
+    "knowledge_package": {
+      "sha256": "fb66b59958d2e7bbb0624b041d1a0907c356d58546c7511a26fd1472017872b4",
+      "size_bytes": 26010
+    },
+    "build_log": {
+      "sha256": "e86a946e80e81f0de162b735ae80142ae31ff95bc81a218ffb430385508592bf",
+      "size_bytes": 807
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T230459Z_AmsterdamUMCdb-1.0.2_std_so2_bg_art",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_oxygen_saturation_bg_arterial_specimen/std_oxygen_saturation_bg_arterial_specimen_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_arterial_specimen/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_arterial_specimen/log_archive/20260503T230459Z_AmsterdamUMCdb-1.0.2_std_so2_bg_art__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "built_pending_user_review"
+  }
+}

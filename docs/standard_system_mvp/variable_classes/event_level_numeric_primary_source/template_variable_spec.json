@@ -1,0 +1,112 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "__YYYY-MM-DD__",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "event_level_numeric_primary_source",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_EventLevelNumericPrimarySource_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "__VARIABLE_ID__",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "__STANDARDIZED_NAME_EN__",
+    "standardized_name_cn_publication_status": "draft_or_existing_public_card_name",
+    "semantic_folder": "__SEMANTIC_FOLDER__",
+    "category": "__CATEGORY__"
+  },
+  "immutable_core": {
+    "semantic_intent": "__SEMANTIC_INTENT__",
+    "semantic_definition": "__SEMANTIC_DEFINITION__",
+    "semantic_grain": "time-stamped measurement event",
+    "value_family": "numeric_measurement",
+    "source_value_class": "raw_measured_only",
+    "derived_values_allowed": false,
+    "aggregated_values_allowed": false,
+    "baseline_or_summary_interpretation_allowed": false,
+    "same_name_cross_database_rule": "__SAME_NAME_RULE__"
+  },
+  "canonical_representation": {
+    "canonical_unit": "__CANONICAL_UNIT__",
+    "canonical_ucum": "__CANONICAL_UCUM__",
+    "value_type": "numeric_measurement",
+    "storage_type": "__STORAGE_TYPE__",
+    "storage_precision_digits": "__STORAGE_PRECISION_DIGITS__",
+    "display_precision_digits": "__DISPLAY_PRECISION_DIGITS__",
+    "timestamp_required": true,
+    "time_precision_requirement": "__TIME_PRECISION_REQUIREMENT__",
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "cleaned_value_range_in_canonical_unit": [
+      "__RANGE_MIN__",
+      "__RANGE_MAX__"
+    ],
+    "range_role_note": "__RANGE_ROLE_NOTE__"
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "__MAPPING_TYPE__",
+    "public_anchor_status": "__PUBLIC_ANCHOR_STATUS__",
+    "preferred_anchor_families": [
+      "LOINC",
+      "SNOMED CT"
+    ],
+    "note": "__EXTERNAL_ALIGNMENT_NOTE__"
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "semantic_grain",
+      "value_family",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "cleaned_value_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "__NEW_VARIABLE_TRIGGER_EXAMPLE_1__",
+      "__NEW_VARIABLE_TRIGGER_EXAMPLE_2__"
+    ],
+    "version_bump_trigger_examples": [
+      "__VERSION_BUMP_TRIGGER_EXAMPLE_1__",
+      "__VERSION_BUMP_TRIGGER_EXAMPLE_2__"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "source code systems and source codes",
+      "raw unit labels before normalization",
+      "database-specific timing anchors and local structural keys"
+    ],
+    "disallowed_same_name_variation": [
+      "__DISALLOWED_VARIATION_EXAMPLE_1__",
+      "__DISALLOWED_VARIATION_EXAMPLE_2__"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal outputs for this variable should go through execution.py reading this variable_spec and an approved mapping_spec.",
+    "future_non_bypassable_rule": "Formal outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/__VARIABLE_ID__/mapping_spec___DATABASE_SLUG__.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/__VARIABLE_ID__/execution.py",
+    "public_card": "docs/std_variable_cards/__VARIABLE_ID__.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  }
+}

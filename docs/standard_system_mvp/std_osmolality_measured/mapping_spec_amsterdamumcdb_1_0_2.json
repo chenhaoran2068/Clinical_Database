@@ -1,0 +1,194 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "reviewed_approved_public_mapping_lock",
+  "approval_status": "reviewed_approved",
+  "mvp_phase": "amsterdam_q4_class1_wave1_owner_approved_mvp",
+  "created_at": "2026-05-04",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_osmolality_measured/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_osmolality_measured",
+    "variable_version": "v0_draft",
+    "semantic_intent": "blood measured osmolality observation",
+    "category": "laboratory",
+    "semantic_grain": "time-stamped measurement event",
+    "source_value_class": "primary_direct_measurement_with_specimen_scope_boundary",
+    "aggregation_status": "not_aggregated",
+    "canonical_unit": "mOsm/kg",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Int64",
+    "current_output_precision_digits": 0
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_package": "numericitems",
+    "source_table": "numericitems_event",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+    "source_code_system": "itemid",
+    "source_codes": [
+      11918
+    ],
+    "source_code_labels": {
+      "11918": "Osmolaliteit (bloed)"
+    },
+    "source_fields": {
+      "local_identifier_fields": [
+        "patientid",
+        "admissionid"
+      ],
+      "time_field": "event_time_primary_ms_raw",
+      "relative_time_field": "event_time_primary_minutes_relative",
+      "raw_value_numeric_field": "value",
+      "raw_unit_field": "unit",
+      "raw_comment_field": "comment",
+      "lab_flag_field": "islabresult",
+      "source_code_field": "itemid",
+      "source_label_field": "item"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "raw patientid should normalize to subject_id",
+      "stay_id_role": "raw admissionid is the Amsterdam ICU-semantic stay-equivalent identifier and should normalize to stay_id",
+      "hadm_id_role": "not separately available in the current opening Amsterdam public mapping",
+      "stay_link_status": "icu_semantic_stay_equivalent_via_admissionid"
+    },
+    "source_grain": "one row per Amsterdam numericitems event before exact duplicate collapse",
+    "target_grain": "one row per normalized standard measurement event",
+    "join_dependencies": [
+      {
+        "join_table": "admissions_core",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+        "join_key": "admissionid",
+        "join_cardinality": "many_to_one",
+        "required_fields": [
+          "patientid",
+          "admissioncount",
+          "admittedat",
+          "dischargedat"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "amsterdam_item_dictionary_legacy",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/amsterdam_item_dictionary_legacy.parquet",
+        "join_key": "itemid",
+        "required_fields": [
+          "item",
+          "item_en",
+          "unit",
+          "ucum_code",
+          "table"
+        ],
+        "dictionary_lock": {
+          "itemids": [
+            11918
+          ],
+          "table": "numericitems",
+          "labels": {
+            "11918": "Osmolaliteit (bloed)"
+          }
+        },
+        "failure_action": "fail"
+      }
+    ]
+  },
+  "representation_and_normalization": {
+    "anchor_type": "icu_admission_anchor",
+    "relative_time_unit": "minutes",
+    "measurement_time_precision": "milliseconds_offset",
+    "canonical_unit": "mOsm/kg",
+    "source_unit_expectations_by_itemid": {
+      "11918": "mosmol/kg"
+    },
+    "conversion_rules_by_itemid": {
+      "11918": {
+        "source_unit": "mosmol/kg",
+        "conversion_factor": 1.0,
+        "conversion_offset": 0.0,
+        "conversion_rule_id": "direct_value"
+      }
+    },
+    "normalization_rule_id": "amsterdam_numericitems_std_osmolality_measured_q4_class1_wave1_source_specific_conversion_round_0",
+    "rounding_rule": "nearest_integer_half_away_from_zero",
+    "cleaned_range_in_canonical_unit": [
+      100.0,
+      450.0
+    ],
+    "outlier_action": "retain_normalized_value_mark_is_outlier_and_null_cleaned_value",
+    "cleaned_value_field": "std_osmolality_measured_mosm_per_kg_cleaned",
+    "normalized_value_field": "std_osmolality_measured_mosm_per_kg_normalized",
+    "outlier_flag_field": "is_outlier_by_contract",
+    "cleaning_status_field": "cleaning_status"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "patientid",
+      "admissionid",
+      "measurement_time_offset_ms_raw",
+      "source_value_numeric_raw"
+    ],
+    "source_code_lock_rule": "all rows must originate from the approved Amsterdam source itemids in this mapping spec",
+    "dictionary_alignment_rule": "each source itemid must match the locked Amsterdam legacy dictionary label, unit, and numericitems table",
+    "duplicate_key": [
+      "source_measurement_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_timestamp_action": "fail",
+    "missing_numeric_value_action": "fail",
+    "join_failure_action": "fail",
+    "notes": [
+      "Amsterdam Osmolaliteit (bloed) rows are retained as measured blood osmolality; urine, stool, other-fluid, nutrition product, and no-unit legacy osmolality rows are excluded.",
+      "Owner approval recorded on 2026-05-08; approval_status=reviewed_approved; decision=reviewed_approved_with_caveat; review=docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_DETAILED_OWNER_REVIEW_PACKET.md; record=docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_OWNER_APPROVAL_RECORD.md."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_osmolality_measured/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/extract_code/Extract_Code_std_osmolality_measured.py",
+    "formal_output_rule": "The governed execution.py entrypoint reads this owner-approved mapping spec and delegates to the current local reviewed implementation for std_osmolality_measured.",
+    "non_bypassable_target_rule": "Formal std_osmolality_measured outputs for AmsterdamUMCdb-1.0.2 should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_osmolality_measured.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/extract_code/Extract_Code_std_osmolality_measured.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_osmolality_measured/std_osmolality_measured_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/preview/std_osmolality_measured_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/query_summary",
+    "candidate_evidence_review_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_RUNTIME_CANDIDATE_REVIEW.md",
+    "owner_review_packet_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_DETAILED_OWNER_REVIEW_PACKET.md",
+    "owner_approval_record_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_OWNER_APPROVAL_RECORD.md"
+  },
+  "candidate_boundary_notice": {
+    "status": "superseded_by_owner_approval",
+    "owner_approval_status": "reviewed_approved",
+    "owner_approval_date": "2026-05-08",
+    "owner_review_packet_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_DETAILED_OWNER_REVIEW_PACKET.md",
+    "owner_approval_record_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_OWNER_APPROVAL_RECORD.md"
+  },
+  "review_state": {
+    "current_stage": "formal_variable_review_closed_owner_approved",
+    "approval_gate": "owner_approved_on_2026-05-08",
+    "review_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_DETAILED_OWNER_REVIEW_PACKET.md",
+    "owner_approval_record_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_OWNER_APPROVAL_RECORD.md",
+    "technical_recommendation": "technical_review_recommend_approve_with_caveat",
+    "decision_label": "reviewed_approved_with_caveat"
+  },
+  "technical_review_recommendation": {
+    "review_date": "2026-05-05",
+    "owner_review_packet_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_DETAILED_OWNER_REVIEW_PACKET.md",
+    "recommendation": "technical_review_recommend_approve_with_caveat",
+    "owner_approval_status": "owner_approved",
+    "owner_approval_date": "2026-05-08"
+  },
+  "formal_approval": {
+    "owner_approval_date": "2026-05-08",
+    "owner_approval_record_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_OWNER_APPROVAL_RECORD.md",
+    "owner_review_packet_path": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_DETAILED_OWNER_REVIEW_PACKET.md",
+    "approval_status": "reviewed_approved",
+    "decision_label": "reviewed_approved_with_caveat",
+    "technical_recommendation": "technical_review_recommend_approve_with_caveat",
+    "decision_reason": "Measured blood osmolality source is specific and scale is correct; the Amsterdam set is sparse with a selected hyperosmolar tail, so keep a sparse-source caveat."
+  }
+}

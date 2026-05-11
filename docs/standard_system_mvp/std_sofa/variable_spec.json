@@ -1,0 +1,63 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_8_sofa_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "score_phenotype_composite_derived",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_ScorePhenotypeCompositeDerived_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_sofa",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Sequential Organ Failure Assessment",
+    "semantic_folder": "scores",
+    "category": "scores"
+  },
+  "immutable_core": {
+    "semantic_intent": "source-supplied hourly SOFA rolling 24-hour score time series",
+    "semantic_definition": "An ICU-stay hourly SOFA time-series asset preserving the source-supplied rolling 24-hour total SOFA score as the primary standardized value, together with same-row official component score context.",
+    "semantic_grain": "one row per ICU stay hour",
+    "value_family": "score_time_series",
+    "source_value_class": "source_supplied_composite_score",
+    "same_name_cross_database_rule": "Any database asset published as std_sofa must preserve SOFA score/composite time-series semantics, a governed time basis, component traceability, and score value meaning; it must not silently change into raw labs, raw vitals, treatment events, Sepsis-3 onset, AKI phenotype, or mortality risk prediction."
+  },
+  "score_phenotype_contract": {
+    "target_entity_grain": "ICU stay hour",
+    "time_basis_rule": "retain the approved source SOFA hourly grid and explicitly expose the hour index and one-hour score slice boundaries",
+    "component_trace_rule": "retain same-row current-hour and rolling 24-hour organ component scores when source supplied",
+    "score_value_rule": "use std_sofa_total_24hours as the primary standardized score value in score_points",
+    "no_row_interpretation": "no retained SOFA row means no approved source-supplied SOFA row under this mapping, not proof of zero organ dysfunction"
+  },
+  "canonical_representation": {
+    "canonical_unit": "score_points",
+    "value_type": "numeric_score_time_series",
+    "storage_type": "integer_score_plus_component_context",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "score_range": [
+      0,
+      24
+    ],
+    "time_anchor": "source_sofa_hour_index"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_sofa outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_sofa/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_sofa/execution.py",
+    "public_card": "docs/std_variable_cards/std_sofa.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_ScorePhenotypeCompositeDerived_Contract.md"
+  }
+}

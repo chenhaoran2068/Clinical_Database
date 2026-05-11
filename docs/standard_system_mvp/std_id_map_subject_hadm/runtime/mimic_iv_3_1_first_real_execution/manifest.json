@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T14:50:12Z",
+  "variable_id": "std_id_map_subject_hadm",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_id_map_subject_hadm/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_id_map_subject_hadm/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_id_map_subject_hadm/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/extract_code/Extract_Code_std_id_map_subject_hadm.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_admissions.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/extract_code/Extract_Code_std_id_map_subject_hadm.py"
+  ],
+  "process_batch_id": "20260502T145011Z_MIMIC-IV-3.1_std_id_map_subject_hadm",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T14:50:10Z",
+  "finished_at": "2026-05-02T14:50:12Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "6f4ffee96dfc07ee321ef84eaeedc4db788470354a6996a85510d0d3b1b860a8",
+    "mapping_spec_sha256": "0c64b22b9ead9f275a90a5e095f775f1e6979f10e3f307b6da73ee22aa6064cd"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm/std_id_map_subject_hadm_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/preview/std_id_map_subject_hadm_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_id_map_subject_hadm/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "3e7f5476f64a4734feea3e6ae36deebb3ff97687bd2b7700180fabd474655958",
+      "size_bytes": 13944253
+    },
+    "preview_csv": {
+      "sha256": "b1977b40398cf63ae42da27b7ac1cb07ee5e55d59101a6db9b0790a415aab1cc",
+      "size_bytes": 11840
+    },
+    "asset_manifest": {
+      "sha256": "bc90bf79247daa13f9daeae31c9a3ca08b0c265ebef6c043ef0e371d2fe956fb",
+      "size_bytes": 1627
+    },
+    "knowledge_package": {
+      "sha256": "518ce2f9f8577f1c9950e08b54fcb4b4d03f0bbd7cf8cdc7f0eccec46645ef10",
+      "size_bytes": 24427
+    },
+    "build_log": {
+      "sha256": "643074ec91b2f5adb5e1b0d5fa6de4bf97d96a40111290e8de380d4afa9312ab",
+      "size_bytes": 1204
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T145011Z_MIMIC-IV-3.1_std_id_map_subject_hadm",
+    "total_rows": 546028,
+    "unique_subject_id": 223452,
+    "unique_hadm_id": 546028,
+    "subjects_with_multiple_admissions": 100163
+  }
+}

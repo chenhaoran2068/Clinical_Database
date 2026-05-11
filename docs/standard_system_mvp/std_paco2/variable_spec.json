@@ -1,0 +1,111 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-05-03",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "event_level_numeric_primary_source",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_EventLevelNumericPrimarySource_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_paco2",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "arterial blood-gas carbon dioxide partial pressure event",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "laboratory",
+    "category": "laboratory"
+  },
+  "immutable_core": {
+    "semantic_intent": "arterial blood-gas carbon dioxide partial pressure observation",
+    "semantic_definition": "A time-stamped arterial blood-gas carbon dioxide partial-pressure measurement event. The variable is event-level and must not be reused for baseline, summary, score, or stay-level aggregate outputs.",
+    "semantic_grain": "time-stamped measurement event",
+    "value_family": "numeric_measurement",
+    "source_value_class": "raw_measured_only",
+    "derived_values_allowed": false,
+    "aggregated_values_allowed": false,
+    "baseline_or_summary_interpretation_allowed": false,
+    "same_name_cross_database_rule": "Any database asset published as std_paco2 must preserve this arterial blood-gas carbon dioxide partial pressure observation meaning."
+  },
+  "canonical_representation": {
+    "canonical_unit": "mmHg",
+    "canonical_ucum": "mm[Hg]",
+    "value_type": "numeric_measurement",
+    "storage_type": "Int64",
+    "storage_precision_digits": 0,
+    "display_precision_digits": 0,
+    "timestamp_required": true,
+    "time_precision_requirement": "datetime_or_equivalent_event_time",
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "cleaned_value_range_in_canonical_unit": [
+      1,
+      200
+    ],
+    "range_role_note": "This is the current cleaned retained-output range for the governed opening build, not a claim that every raw source row in every database is already valid."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "none",
+    "public_anchor_status": "not_yet_locked_for_this_draft",
+    "preferred_anchor_families": [
+      "LOINC",
+      "SNOMED CT"
+    ]
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "semantic_grain",
+      "value_family",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "cleaned_value_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "changing std_paco2 from an event-level measurement to a baseline or summary variable",
+      "changing std_paco2 to a different clinical concept or composite score"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving the same event-level meaning",
+      "locking a reviewed external semantic anchor without changing the variable meaning"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "source code systems and source codes",
+      "raw unit labels before normalization",
+      "database-specific timing anchors and local structural keys"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing a baseline or stay-level aggregate under the same variable id",
+      "publishing a neighboring but clinically distinct measurement under the same variable id"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_paco2 MVP execution should go through execution.py reading this variable_spec and an approved mapping_spec.",
+    "future_non_bypassable_rule": "Formal std_paco2 outputs should be generated only through the governed execution.py path."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_paco2/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_paco2/execution.py",
+    "public_card": "docs/std_variable_cards/std_paco2.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  }
+}

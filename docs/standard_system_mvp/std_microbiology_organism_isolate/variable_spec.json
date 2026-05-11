@@ -1,0 +1,61 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_9_microbiology_organism_isolate_governed_mvp",
+  "created_at": "2026-05-03",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "microbiology_multi_entity_family",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_MicrobiologyMultiEntityFamily_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_microbiology_organism_isolate",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Microbiology organism isolate",
+    "semantic_folder": "laboratory",
+    "category": "laboratory"
+  },
+  "immutable_core": {
+    "semantic_intent": "microbiology organism branch under a specimen-test event",
+    "semantic_definition": "A microbiology organism-branch asset at specimen-test-organism grain, preserving raw organism label, isolate number, branch role, positivity-analysis class, quantity text, and linkage to the parent microbiology test event.",
+    "semantic_grain": "one row per microbiology specimen-test-organism branch",
+    "value_family": "microbiology_multi_entity",
+    "source_value_class": "microbiology_organism_branch",
+    "same_name_cross_database_rule": "Any database asset published as std_microbiology_organism_isolate must preserve organism-branch semantics and must not silently become a parent test event, susceptibility leaf, organism ontology concept, infection phenotype, or simple positive-culture flag."
+  },
+  "microbiology_entity_contract": {
+    "family_role": "organism_branch",
+    "entity_grain": "one row per microbiology specimen-test-organism branch",
+    "source_hierarchy_rule": "retain organism branch rows beneath a parent specimen-test event and keep raw organism labels source-faithful",
+    "parent_child_rule": "link each organism branch to one parent microbiology_test_event_id and allow susceptibility leaf children through microbiology_organism_branch_id",
+    "raw_text_retention_rule": "retain raw organism name, isolate number, quantity text, and organism comments needed for source-faithful review",
+    "no_row_interpretation": "no retained organism branch means no approved organism branch under the source rule, not proof of negative culture or no organism"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "microbiology_organism_branch",
+    "storage_type": "organism_branch_plus_parent_child_context",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "microbiology_test_event_id",
+      "microbiology_organism_branch_id"
+    ],
+    "time_anchor": "parent_event_charttime_or_chartdate"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_microbiology_organism_isolate outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_microbiology_organism_isolate/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_microbiology_organism_isolate/execution.py",
+    "public_card": "docs/std_variable_cards/std_microbiology_organism_isolate.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_MicrobiologyMultiEntityFamily_Contract.md"
+  }
+}

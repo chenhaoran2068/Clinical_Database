@@ -1,0 +1,31 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T14:02:25Z",
+  "variable_id": "std_nitrite_urinalysis_result",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "validate_only",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_nitrite_urinalysis_result/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_nitrite_urinalysis_result/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_nitrite_urinalysis_result/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/extract_code/Extract_Code_std_nitrite_urinalysis_result.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_labevents.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/extract_code/Extract_Code_std_nitrite_urinalysis_result.py"
+  ],
+  "process_batch_id": null,
+  "subprocess_return_code": null,
+  "started_at": null,
+  "finished_at": null,
+  "spec_hashes": {
+    "variable_spec_sha256": "29d938c5f7e3c235b713929bcf406ef478dba4dd71c3f53187e1d4e76cf737d2",
+    "mapping_spec_sha256": "b21b36fc8b73abb127d7483cb6da1db4faf980bc65229b01354a4b1ce3f1b996"
+  },
+  "output_artifacts": {},
+  "output_signatures": {},
+  "build_summary": {}
+}

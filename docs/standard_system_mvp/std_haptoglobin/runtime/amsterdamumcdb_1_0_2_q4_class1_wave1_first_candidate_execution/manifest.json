@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:55:54Z",
+  "variable_id": "std_haptoglobin",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_haptoglobin/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_haptoglobin/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_haptoglobin/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_haptoglobin/extract_code/Extract_Code_std_haptoglobin.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_haptoglobin/extract_code/Extract_Code_std_haptoglobin.py"
+  ],
+  "process_batch_id": "20260507T225553Z_AmsterdamUMCdb-1.0.2_std_haptoglobin",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:55:52Z",
+  "finished_at": "2026-05-07T22:55:54Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "5119da05350004d2a13e5c9fba000c1ab84142fc581eb017c8f6b29338094a42",
+    "mapping_spec_sha256": "eafa9507d7d20051d15f35d132cb8300fbbcd73889b1f4c3d37da9bc36fdacd9"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_haptoglobin/std_haptoglobin_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_haptoglobin/preview/std_haptoglobin_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_haptoglobin/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_haptoglobin/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_haptoglobin/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "5762058624cc81ad518ee09ad2b5a05c4208db924d2cc67f5b5ceecc725adb20",
+      "size_bytes": 17538
+    },
+    "preview_csv": {
+      "sha256": "ba4aed19fd0962fda79558f5cb411f0c8ac3355a19efbef362867920aa1f2571",
+      "size_bytes": 96443
+    },
+    "asset_manifest": {
+      "sha256": "bf98e4fcfd0028fa2c3a1ae125654e464b4fb6e6a0033779f3eb1675c94ad9ff",
+      "size_bytes": 3860
+    },
+    "knowledge_package": {
+      "sha256": "b33ace1c3cc3559aa01d33feeb0e782aacae5c6ea25e9b313990dbfb4d673f2e",
+      "size_bytes": 26209
+    },
+    "build_log": {
+      "sha256": "2cb2154ced6556e8af3bc6d0be3c3c839b99581527ccd46a39bbbc8469f8da84",
+      "size_bytes": 700
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225553Z_AmsterdamUMCdb-1.0.2_std_haptoglobin",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_haptoglobin/std_haptoglobin_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_haptoglobin/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_haptoglobin/log_archive/20260507T225553Z_AmsterdamUMCdb-1.0.2_std_haptoglobin__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

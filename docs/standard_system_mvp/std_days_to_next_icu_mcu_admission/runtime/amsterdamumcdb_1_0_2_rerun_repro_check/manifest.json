@@ -1,0 +1,74 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T05:28:48Z",
+  "variable_id": "std_days_to_next_icu_mcu_admission",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_days_to_next_icu_mcu_admission/extract_code/Extract_Code_std_days_to_next_icu_mcu_admission.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_days_to_next_icu_mcu_admission/extract_code/Extract_Code_std_days_to_next_icu_mcu_admission.py"
+  ],
+  "process_batch_id": "20260502T052846Z_AmsterdamUMCdb-1.0.2_std_days_to_next_icu_mcu_admission",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T05:28:45Z",
+  "finished_at": "2026-05-02T05:28:47Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "309ec60c47f8e232216d2c27db1fc8325a751b08d6a984fcfdd47949c726cf94",
+    "mapping_spec_sha256": "143b18e84930d535badb628e01efef19a15fdfef264f1a0d23212525d6c1bf7b"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/outcomes/std_days_to_next_icu_mcu_admission/std_days_to_next_icu_mcu_admission_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_days_to_next_icu_mcu_admission/preview/std_days_to_next_icu_mcu_admission_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_days_to_next_icu_mcu_admission/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_days_to_next_icu_mcu_admission/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "3d5fd7f1897dca8991118c03c3a6629ea1abf040c8bda093cad4b1201ddafacd",
+      "size_bytes": 669582
+    },
+    "preview_csv": {
+      "sha256": "88c4a3eb259214672352c5cea8935f3b7d724d8d579e79a10c16cdef8b3be6b7",
+      "size_bytes": 18074
+    },
+    "asset_manifest": {
+      "sha256": "cd33a912b64c119e297f2dc6fc7f5898fc1de57899ae9904bab99aae9d97bb35",
+      "size_bytes": 4659
+    },
+    "knowledge_package": {
+      "sha256": "843009c21577419ec4577c87fc95c462400517b79961b300d9a58e9c61ac6585",
+      "size_bytes": 8340
+    },
+    "build_log": {
+      "sha256": "7320045f309605250b2f5a1e6f7e9b39da65ce02eaf228bef04dd68f65016be5",
+      "size_bytes": 1324
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T052846Z_AmsterdamUMCdb-1.0.2_std_days_to_next_icu_mcu_admission",
+    "total_rows": 23106,
+    "unique_subject_id": 20109,
+    "unique_stay_id": 23106,
+    "observed_rows": 2967,
+    "missing_rows": 20139,
+    "no_later_icu_mcu_admission_observed_rows": 20139,
+    "unresolved_missing_dischargedat_rows": 0,
+    "min_days": 0.001,
+    "p50_days": 12.838,
+    "p95_days": 1592.307,
+    "max_days": 4531.061,
+    "negative_or_zero_observed_duration_rows": 0,
+    "death_before_next_icu_mcu_admission_flag_rows": 31,
+    "no_next_death_after_discharge_flag_rows": 3974
+  }
+}

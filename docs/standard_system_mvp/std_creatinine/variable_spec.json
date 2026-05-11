@@ -1,0 +1,113 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-04-24",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "event_level_numeric_primary_source",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_EventLevelNumericPrimarySource_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_creatinine",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Creatinine event",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "laboratory",
+    "category": "laboratory"
+  },
+  "immutable_core": {
+    "semantic_intent": "routine chemistry creatinine observation",
+    "semantic_definition": "A time-stamped routine-chemistry creatinine measurement event representing an event-level creatinine observation rather than a baseline, summary, score, or stay-level aggregate.",
+    "semantic_grain": "time-stamped measurement event",
+    "value_family": "numeric_measurement",
+    "source_value_class": "raw_measured_only",
+    "derived_values_allowed": false,
+    "aggregated_values_allowed": false,
+    "baseline_or_summary_interpretation_allowed": false,
+    "same_name_cross_database_rule": "Any database asset published as std_creatinine must preserve this event-level routine-chemistry creatinine observation meaning."
+  },
+  "canonical_representation": {
+    "canonical_unit": "mg/dL",
+    "canonical_ucum": "mg/dL",
+    "value_type": "numeric_measurement",
+    "storage_type": "Float64",
+    "storage_precision_digits": 2,
+    "display_precision_digits": 2,
+    "timestamp_required": true,
+    "time_precision_requirement": "datetime_or_equivalent_event_time",
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "cleaned_value_range_in_canonical_unit": [
+      0.1,
+      20.0
+    ],
+    "range_role_note": "This is the current cleaned retained-output range for the governed MIMIC build, not a claim that every raw source row in every database is already valid."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "none",
+    "public_anchor_status": "not_yet_locked_for_this_draft",
+    "preferred_anchor_families": [
+      "LOINC",
+      "SNOMED CT"
+    ],
+    "note": "A later review may lock a laboratory semantic anchor after the cross-database creatinine event boundary is frozen more formally."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "semantic_grain",
+      "value_family",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "cleaned_value_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "changing std_creatinine from event-level routine-chemistry creatinine to first-day or admission baseline creatinine",
+      "changing std_creatinine from creatinine observation to a derived renal score or summary"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving the same event-level creatinine meaning",
+      "locking a reviewed external semantic anchor without changing the variable meaning"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "source code systems and source codes",
+      "raw unit labels before normalization",
+      "database-specific timing anchors and local structural keys"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing baseline creatinine as std_creatinine",
+      "publishing stay-level averaged creatinine as std_creatinine"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_creatinine MVP execution should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_creatinine outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_creatinine/mapping_spec_mimic_iv_3_1.json",
+      "docs/standard_system_mvp/std_creatinine/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_creatinine/execution.py",
+    "public_card": "docs/std_variable_cards/std_creatinine.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  }
+}

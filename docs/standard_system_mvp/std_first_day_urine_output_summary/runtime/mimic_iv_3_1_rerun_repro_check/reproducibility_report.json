@@ -1,0 +1,381 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:33Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_first_day_urine_output_summary",
+  "database_id": "MIMIC-IV-3.1",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_first_day_urine_output_summary/runtime/mimic_iv_3_1_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_first_day_urine_output_summary/runtime/mimic_iv_3_1_rerun_repro_check",
+  "baseline_process_batch_id": "20260425T110809Z_MIMIC-IV-3.1_std_first_day_urine_output_summary",
+  "candidate_process_batch_id": "20260425T110817Z_MIMIC-IV-3.1_std_first_day_urine_output_summary",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "complete_24h_rows",
+    "median_first_day_urine_output_ml",
+    "official_compare_compared_rows",
+    "official_compare_exact_match_rows",
+    "official_compare_local_only_rows",
+    "official_compare_official_only_rows",
+    "official_compare_subject_mismatch_rows",
+    "official_compare_value_mismatch_rows",
+    "official_reference_nonnull_rows",
+    "official_reference_row_count",
+    "official_reference_total_first_day_urine_output_ml",
+    "partial_window_rows",
+    "row_count",
+    "stays_with_first_day_urine",
+    "stays_without_first_day_urine",
+    "total_first_day_urine_output_ml"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_first_day_urine_output_summary/runtime/mimic_iv_3_1_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_first_day_urine_output_summary/runtime/mimic_iv_3_1_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_complete_24h_rows_match",
+      "status": "pass",
+      "message": "build_summary field complete_24h_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_median_first_day_urine_output_ml_match",
+      "status": "pass",
+      "message": "build_summary field median_first_day_urine_output_ml matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_compare_compared_rows_match",
+      "status": "pass",
+      "message": "build_summary field official_compare_compared_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_compare_exact_match_rows_match",
+      "status": "pass",
+      "message": "build_summary field official_compare_exact_match_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_compare_local_only_rows_match",
+      "status": "pass",
+      "message": "build_summary field official_compare_local_only_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_compare_official_only_rows_match",
+      "status": "pass",
+      "message": "build_summary field official_compare_official_only_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_compare_subject_mismatch_rows_match",
+      "status": "pass",
+      "message": "build_summary field official_compare_subject_mismatch_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_compare_value_mismatch_rows_match",
+      "status": "pass",
+      "message": "build_summary field official_compare_value_mismatch_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_reference_nonnull_rows_match",
+      "status": "pass",
+      "message": "build_summary field official_reference_nonnull_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_reference_row_count_match",
+      "status": "pass",
+      "message": "build_summary field official_reference_row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_official_reference_total_first_day_urine_output_ml_match",
+      "status": "pass",
+      "message": "build_summary field official_reference_total_first_day_urine_output_ml matches across reruns"
+    },
+    {
+      "check_id": "build_summary_partial_window_rows_match",
+      "status": "pass",
+      "message": "build_summary field partial_window_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_row_count_match",
+      "status": "pass",
+      "message": "build_summary field row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_stays_with_first_day_urine_match",
+      "status": "pass",
+      "message": "build_summary field stays_with_first_day_urine matches across reruns"
+    },
+    {
+      "check_id": "build_summary_stays_without_first_day_urine_match",
+      "status": "pass",
+      "message": "build_summary field stays_without_first_day_urine matches across reruns"
+    },
+    {
+      "check_id": "build_summary_total_first_day_urine_output_ml_match",
+      "status": "pass",
+      "message": "build_summary field total_first_day_urine_output_ml matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "68724b80cb3ba326b691dd9d8751807d23fae1c411c9426d787a1e4db66f7f81",
+        "size_bytes": 2467
+      },
+      "candidate_signature": {
+        "sha256": "68724b80cb3ba326b691dd9d8751807d23fae1c411c9426d787a1e4db66f7f81",
+        "size_bytes": 2467
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_first_day_urine_output_summary/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_first_day_urine_output_summary/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "adbf95efd91ed2dac7dc0ba246ff2546f20a94f99b78908d77d05152dee59f75",
+        "size_bytes": 2304
+      },
+      "candidate_signature": {
+        "sha256": "25eb7d09fb1606338be8a370b5aa3d7dffdfb085ccb025f9cce698cccc62ebe4",
+        "size_bytes": 2304
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "a410474cdc0de8bf4ada5399fba509b2e11ad9a042fdbef4adbc3db76c22462f",
+        "size_bytes": 26413
+      },
+      "candidate_signature": {
+        "sha256": "a410474cdc0de8bf4ada5399fba509b2e11ad9a042fdbef4adbc3db76c22462f",
+        "size_bytes": 26413
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/preview/std_first_day_urine_output_summary_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/preview/std_first_day_urine_output_summary_preview.csv",
+      "baseline_signature": {
+        "sha256": "006f9a4d0d59c5cfd2663dc65e88e4388decc0b80259713d59fd830de8d3a889",
+        "size_bytes": 42293
+      },
+      "candidate_signature": {
+        "sha256": "006f9a4d0d59c5cfd2663dc65e88e4388decc0b80259713d59fd830de8d3a889",
+        "size_bytes": 42293
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/supportive_therapy/std_first_day_urine_output_summary/std_first_day_urine_output_summary_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/supportive_therapy/std_first_day_urine_output_summary/std_first_day_urine_output_summary_long.parquet",
+      "baseline_signature": {
+        "sha256": "c5fea19be9e0bd8a38bbf4829368ebc01ad4d5c5ceed522fb4488206b8fd55f3",
+        "size_bytes": 3240732
+      },
+      "candidate_signature": {
+        "sha256": "c5fea19be9e0bd8a38bbf4829368ebc01ad4d5c5ceed522fb4488206b8fd55f3",
+        "size_bytes": 3240732
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "complete_24h_rows": {
+      "status": "pass",
+      "baseline_value": 74829,
+      "candidate_value": 74829
+    },
+    "median_first_day_urine_output_ml": {
+      "status": "pass",
+      "baseline_value": 1475.0,
+      "candidate_value": 1475.0
+    },
+    "official_compare_compared_rows": {
+      "status": "pass",
+      "baseline_value": 94458,
+      "candidate_value": 94458
+    },
+    "official_compare_exact_match_rows": {
+      "status": "pass",
+      "baseline_value": 94458,
+      "candidate_value": 94458
+    },
+    "official_compare_local_only_rows": {
+      "status": "pass",
+      "baseline_value": 0,
+      "candidate_value": 0
+    },
+    "official_compare_official_only_rows": {
+      "status": "pass",
+      "baseline_value": 0,
+      "candidate_value": 0
+    },
+    "official_compare_subject_mismatch_rows": {
+      "status": "pass",
+      "baseline_value": 0,
+      "candidate_value": 0
+    },
+    "official_compare_value_mismatch_rows": {
+      "status": "pass",
+      "baseline_value": 0,
+      "candidate_value": 0
+    },
+    "official_reference_nonnull_rows": {
+      "status": "pass",
+      "baseline_value": 89442,
+      "candidate_value": 89442
+    },
+    "official_reference_row_count": {
+      "status": "pass",
+      "baseline_value": 94458,
+      "candidate_value": 94458
+    },
+    "official_reference_total_first_day_urine_output_ml": {
+      "status": "pass",
+      "baseline_value": 152814080.4930113,
+      "candidate_value": 152814080.4930113
+    },
+    "partial_window_rows": {
+      "status": "pass",
+      "baseline_value": 19629,
+      "candidate_value": 19629
+    },
+    "row_count": {
+      "status": "pass",
+      "baseline_value": 94458,
+      "candidate_value": 94458
+    },
+    "stays_with_first_day_urine": {
+      "status": "pass",
+      "baseline_value": 89442,
+      "candidate_value": 89442
+    },
+    "stays_without_first_day_urine": {
+      "status": "pass",
+      "baseline_value": 5016,
+      "candidate_value": 5016
+    },
+    "total_first_day_urine_output_ml": {
+      "status": "pass",
+      "baseline_value": 152814080.4930113,
+      "candidate_value": 152814080.4930113
+    }
+  }
+}

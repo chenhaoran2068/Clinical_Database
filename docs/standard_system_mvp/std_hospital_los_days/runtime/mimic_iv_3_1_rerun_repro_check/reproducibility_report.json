@@ -1,0 +1,282 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:34Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_hospital_los_days",
+  "database_id": "MIMIC-IV-3.1",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_hospital_los_days/runtime/mimic_iv_3_1_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_hospital_los_days/runtime/mimic_iv_3_1_rerun_repro_check",
+  "baseline_process_batch_id": "20260428T124504Z_MIMIC-IV-3.1_std_hospital_los_days",
+  "candidate_process_batch_id": "20260428T124519Z_MIMIC-IV-3.1_std_hospital_los_days",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "max_days_raw",
+    "min_days_raw",
+    "negative_duration_rows",
+    "nonnegative_duration_rows",
+    "total_rows",
+    "unique_hadm_id",
+    "zero_duration_rows"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_hospital_los_days/runtime/mimic_iv_3_1_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_hospital_los_days/runtime/mimic_iv_3_1_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_max_days_raw_match",
+      "status": "pass",
+      "message": "build_summary field max_days_raw matches across reruns"
+    },
+    {
+      "check_id": "build_summary_min_days_raw_match",
+      "status": "pass",
+      "message": "build_summary field min_days_raw matches across reruns"
+    },
+    {
+      "check_id": "build_summary_negative_duration_rows_match",
+      "status": "pass",
+      "message": "build_summary field negative_duration_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_nonnegative_duration_rows_match",
+      "status": "pass",
+      "message": "build_summary field nonnegative_duration_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_total_rows_match",
+      "status": "pass",
+      "message": "build_summary field total_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_hadm_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_hadm_id matches across reruns"
+    },
+    {
+      "check_id": "build_summary_zero_duration_rows_match",
+      "status": "pass",
+      "message": "build_summary field zero_duration_rows matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "a4fa549724360ee6c27495f2f78e04402ddc8c95493aefbf640c853ff03ade3a",
+        "size_bytes": 2971
+      },
+      "candidate_signature": {
+        "sha256": "a4fa549724360ee6c27495f2f78e04402ddc8c95493aefbf640c853ff03ade3a",
+        "size_bytes": 2971
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_hospital_los_days/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_hospital_los_days/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "adc33cb96984ffc8c196684d3144490b3c5aee21dcca39cd67dbc4410c4a67cc",
+        "size_bytes": 1250
+      },
+      "candidate_signature": {
+        "sha256": "918e964183ba590d2c7bd40d0278dbe2997cb21c46af6fd827c5cae22ad3e49d",
+        "size_bytes": 1250
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "2859b4c14daf4adfe2366715f3634a96e11bb728f9cdb1f51538d7b8bf19732f",
+        "size_bytes": 25793
+      },
+      "candidate_signature": {
+        "sha256": "2859b4c14daf4adfe2366715f3634a96e11bb728f9cdb1f51538d7b8bf19732f",
+        "size_bytes": 25793
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/preview/std_hospital_los_days_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/preview/std_hospital_los_days_preview.csv",
+      "baseline_signature": {
+        "sha256": "28d93cb3f893afdff9a72c9a079232d6149d3b3a6266cce64c23bbfde87b3f6b",
+        "size_bytes": 9270
+      },
+      "candidate_signature": {
+        "sha256": "28d93cb3f893afdff9a72c9a079232d6149d3b3a6266cce64c23bbfde87b3f6b",
+        "size_bytes": 9270
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/outcomes/std_hospital_los_days/std_hospital_los_days_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/outcomes/std_hospital_los_days/std_hospital_los_days_long.parquet",
+      "baseline_signature": {
+        "sha256": "7820c70043e1ccdef01e2e3a62f4781a9285d6c46ebead5b6922ea5bdff8fec8",
+        "size_bytes": 6463757
+      },
+      "candidate_signature": {
+        "sha256": "7820c70043e1ccdef01e2e3a62f4781a9285d6c46ebead5b6922ea5bdff8fec8",
+        "size_bytes": 6463757
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "max_days_raw": {
+      "status": "pass",
+      "baseline_value": 515.5625,
+      "candidate_value": 515.5625
+    },
+    "min_days_raw": {
+      "status": "pass",
+      "baseline_value": -0.9451388888888889,
+      "candidate_value": -0.9451388888888889
+    },
+    "negative_duration_rows": {
+      "status": "pass",
+      "baseline_value": 175,
+      "candidate_value": 175
+    },
+    "nonnegative_duration_rows": {
+      "status": "pass",
+      "baseline_value": 545853,
+      "candidate_value": 545853
+    },
+    "total_rows": {
+      "status": "pass",
+      "baseline_value": 546028,
+      "candidate_value": 546028
+    },
+    "unique_hadm_id": {
+      "status": "pass",
+      "baseline_value": 546028,
+      "candidate_value": 546028
+    },
+    "zero_duration_rows": {
+      "status": "pass",
+      "baseline_value": 5,
+      "candidate_value": 5
+    }
+  }
+}

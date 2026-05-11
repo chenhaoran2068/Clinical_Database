@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:16:08Z",
+  "variable_id": "std_lactate_bg",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_lactate_bg/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_lactate_bg/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_lactate_bg/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_lactate_bg/extract_code/Extract_Code_std_lactate_bg.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_lactate_bg/extract_code/Extract_Code_std_lactate_bg.py"
+  ],
+  "process_batch_id": "20260503T091606Z_AmsterdamUMCdb-1.0.2_std_lactate_bg",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:16:06Z",
+  "finished_at": "2026-05-03T09:16:08Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "3947810751062e505446a8371e2cf5805f31a8d172b73c739e84d59f6f20366e",
+    "mapping_spec_sha256": "3d2067c06a13bc1cb605f7e61cf7b4160fd06541bb781e439db4e90cec907ae3"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_lactate_bg/std_lactate_bg_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_lactate_bg/preview/std_lactate_bg_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_lactate_bg/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_lactate_bg/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_lactate_bg/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "0f64c9a6c8e42ff4c06f48cf2fe38790723e4d9822043d021a0e728a9bc8d830",
+      "size_bytes": 22166
+    },
+    "preview_csv": {
+      "sha256": "c84e7be74bbab8b6b763a7a0cb76508f7d3dbe2ea9505f9e05cabea44fa13a4e",
+      "size_bytes": 82654
+    },
+    "asset_manifest": {
+      "sha256": "1082a3b1107356373858d38452a5c5925cb50c0879fc9d303a344bf1c3c61c8a",
+      "size_bytes": 3819
+    },
+    "knowledge_package": {
+      "sha256": "7d0b6359c37fd58463ba2278706783b0b98d56b99b903ffb5e145690bb818d1f",
+      "size_bytes": 25825
+    },
+    "build_log": {
+      "sha256": "4e8ccedbc011519d3fc9ef7b235c6a3d5d399acc6ce73b9869f50a72a7d83853",
+      "size_bytes": 684
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T091606Z_AmsterdamUMCdb-1.0.2_std_lactate_bg",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_lactate_bg/std_lactate_bg_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_lactate_bg/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_lactate_bg/log_archive/20260503T091606Z_AmsterdamUMCdb-1.0.2_std_lactate_bg__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_6_protein_urinalysis_result_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "ordinal_text_semiquantitative_result",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_OrdinalTextSemiquantitativeResult_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_protein_urinalysis_result",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Urinalysis protein ordinal result event",
+    "semantic_folder": "laboratory",
+    "category": "laboratory"
+  },
+  "immutable_core": {
+    "semantic_intent": "source-recorded urinalysis protein ordinal result event",
+    "semantic_definition": "An event-level urinalysis protein result retaining a normalized ordinal dipstick-result domain with raw source result provenance and best-available encounter/stay linkage.",
+    "semantic_grain": "one retained source-recorded urinalysis protein result event",
+    "value_family": "categorical_ordinal_result",
+    "source_value_class": "source_recorded_ordinal_text_result",
+    "same_name_cross_database_rule": "Any database asset published as std_protein_urinalysis_result must preserve source-recorded urinalysis protein ordinal result semantics and must not collapse into quantitative urine protein measurement, protein/creatinine ratio, kidney phenotype, diagnosis code truth, or absence-of-row-as-negative logic."
+  },
+  "ordinal_result_contract": {
+    "target_entity_grain": "laboratory result event with best-available admission and ICU-stay linkage",
+    "anchor_family": "laboratory charttime anchor",
+    "result_domain_rule": "retain only normalized urinalysis dipstick protein ordinal states: negative, trace, mild_positive, moderate_positive, marked_positive, severe_positive",
+    "raw_result_retention_rule": "retain raw value, numeric value, itemid, label, specimen, unit, and abnormal flag provenance for audit",
+    "normalization_rule": "map approved negative, trace, and semiquantitative mg/dL source variants to the governed ordinal dipstick domain; exclude blank placeholders and artifact numeric variants rather than treating them as negative",
+    "no_row_interpretation": "no retained interpretable protein urinalysis result under the approved source rule; this does not prove protein negativity or absence of kidney disease"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "ordinal_result_event",
+    "storage_type": "string_result_plus_context",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "result_domain": [
+      "negative",
+      "trace",
+      "mild_positive",
+      "moderate_positive",
+      "marked_positive",
+      "severe_positive"
+    ],
+    "time_anchor": "charttime"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_protein_urinalysis_result outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_protein_urinalysis_result/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_protein_urinalysis_result/execution.py",
+    "public_card": "docs/std_variable_cards/std_protein_urinalysis_result.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_OrdinalTextSemiquantitativeResult_Contract.md"
+  }
+}

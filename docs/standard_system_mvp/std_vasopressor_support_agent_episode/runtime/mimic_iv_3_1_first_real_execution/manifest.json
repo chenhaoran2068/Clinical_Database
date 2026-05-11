@@ -1,0 +1,66 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-04T02:31:47Z",
+  "variable_id": "std_vasopressor_support_agent_episode",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/medication/std_icu_vasoactive_medication_infusion_event/std_icu_vasoactive_medication_infusion_event_long.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py"
+  ],
+  "process_batch_id": "20260504T022746Z_MIMIC-IV-3.1_std_vasopressor_support_agent_episode",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-04T02:27:46Z",
+  "finished_at": "2026-05-04T02:31:47Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "0a34ed86bd39e8a8062419d47e7d716f02c21f4b63d0cd85ad485a579920a733",
+    "mapping_spec_sha256": "ef497123e477fae3c93918f0930887c44658cc0d2dd0ffec63c02633babba557"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_vasopressor_support_agent_episode/std_vasopressor_support_agent_episode_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/preview/std_vasopressor_support_agent_episode_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_vasopressor_support_agent_episode/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "26b210fc194f36f00ce8bdca570b0aee3c47ee854cf9b891d9ca8756f1be003d",
+      "size_bytes": 5124132
+    },
+    "preview_csv": {
+      "sha256": "eb386da45e1041f54d4ea72c3fd3b6dd811037fdd06d220766d7c0bfe9dde748",
+      "size_bytes": 170152
+    },
+    "asset_manifest": {
+      "sha256": "09426dea1c08a91e7a6878c404f0fc06b3b553b058ade546f3f3b5c31f1c3c9e",
+      "size_bytes": 3679
+    },
+    "knowledge_package": {
+      "sha256": "7fe043bd846636f664415df80dda9610f2ec7dea584575e8cf9103adff73fa65",
+      "size_bytes": 28701
+    },
+    "build_log": {
+      "sha256": "5c5ea3aee9edd893658f457ff7de375e313c79767ebe15cd3860b16c6ef224e0",
+      "size_bytes": 2802
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260504T022746Z_MIMIC-IV-3.1_std_vasopressor_support_agent_episode",
+    "prolonged_agent_episode_ge_7d_count": 638,
+    "row_count": 96606,
+    "short_agent_episode_le_15m_count": 3879,
+    "strict_concurrent_other_agent_episode_count": 35786,
+    "unique_parent_support_episode_id": 71270,
+    "unique_stay_id": 26886
+  }
+}

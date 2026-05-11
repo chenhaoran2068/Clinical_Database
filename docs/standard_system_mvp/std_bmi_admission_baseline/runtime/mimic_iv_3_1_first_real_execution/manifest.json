@@ -1,0 +1,76 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-28T13:46:13Z",
+  "variable_id": "std_bmi_admission_baseline",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_bmi_admission_baseline/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_bmi_admission_baseline/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_bmi_admission_baseline/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_admission_baseline/extract_code/Extract_Code_std_bmi_admission_baseline.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_weight_admission_baseline/std_weight_admission_baseline_long.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_admission_baseline/extract_code/Extract_Code_std_bmi_admission_baseline.py"
+  ],
+  "process_batch_id": "20260428T134612Z_MIMIC-IV-3.1_std_bmi_admission_baseline",
+  "subprocess_return_code": 0,
+  "started_at": "2026-04-28T13:46:11Z",
+  "finished_at": "2026-04-28T13:46:13Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "8bfbe2c4b379f16f454f056fe0274e2be0a175b6ac1d683e779996b26c0be22c",
+    "mapping_spec_sha256": "6841687a065f19a0b29839ab671c1af16749163cef773f8559700348df79277b"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_bmi_admission_baseline/std_bmi_admission_baseline_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_admission_baseline/preview/std_bmi_admission_baseline_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_admission_baseline/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_admission_baseline/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_bmi_admission_baseline/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "523f1c7190388fa2ec0aa1579ae32b3d782490d60a09bf21055e90e66b3df6f2",
+      "size_bytes": 1202788
+    },
+    "preview_csv": {
+      "sha256": "84d6399ced6bf1b7cc237fc373d41623302e1b808d707892be1db34e199394c4",
+      "size_bytes": 14985
+    },
+    "asset_manifest": {
+      "sha256": "d95ab61f1595d87376e4e9fe924c0c465f5d8ac7446133e9c4c98e1badc83cbb",
+      "size_bytes": 2390
+    },
+    "knowledge_package": {
+      "sha256": "21fc1fe030abd1d27c6bcd4cd97388862a51d26fa67aa9e749539ba5a8be5f7c",
+      "size_bytes": 26452
+    },
+    "build_log": {
+      "sha256": "78ac378eace49578d87befcca9f5e4d9e48c965b783f1175b5d77f002708ca37",
+      "size_bytes": 1150
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260428T134612Z_MIMIC-IV-3.1_std_bmi_admission_baseline",
+    "total_rows": 55501,
+    "unique_subject_id": 41655,
+    "unique_hadm_id": 55501,
+    "upstream_weight_rows_total": 69312,
+    "missing_height_rows": 13811,
+    "height_join_coverage_rows": 55501,
+    "height_join_coverage_rate_vs_weight": 0.800742,
+    "bmi_outlier_rows": 38,
+    "bmi_min": 7.54,
+    "bmi_max": 170.99,
+    "weight_source_admission_weight_kg_rows": 54370,
+    "weight_source_admission_weight_lbs_rows": 263,
+    "weight_source_daily_weight_kg_rows": 868,
+    "height_source_hosp_omr_rows": 37153,
+    "height_source_icu_rows": 18348,
+    "top_source_pair": "admission_weight_kg + hosp_omr = 36343"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:55:46Z",
+  "variable_id": "std_ferritin",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_ferritin/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_ferritin/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_ferritin/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_ferritin/extract_code/Extract_Code_std_ferritin.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_ferritin/extract_code/Extract_Code_std_ferritin.py"
+  ],
+  "process_batch_id": "20260507T225541Z_AmsterdamUMCdb-1.0.2_std_ferritin",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:55:40Z",
+  "finished_at": "2026-05-07T22:55:46Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "b85be66079dff6fd016130d09f367cf7fac8ab082077dc3b4eb16f4bc46e53f5",
+    "mapping_spec_sha256": "1fa5b235e96fc62f6a74239e7cdd8b95f8e5af98b6d25e76f503eac5f001e182"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_ferritin/std_ferritin_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_ferritin/preview/std_ferritin_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_ferritin/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_ferritin/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_ferritin/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "9a53d2f43c3348d8d9ccb4238d290e4af8d9d38039178bdcebad1ce2f9dcfe9f",
+      "size_bytes": 30999
+    },
+    "preview_csv": {
+      "sha256": "3b98bccc8714aadb3fe576a1f7273a1f86fbd002d902d05126b844447e13bd48",
+      "size_bytes": 98109
+    },
+    "asset_manifest": {
+      "sha256": "7a0fdd03951149aae4f709fc1982d99659bcac8dec7efda4c9e286de2490b5e1",
+      "size_bytes": 3868
+    },
+    "knowledge_package": {
+      "sha256": "386b82b58ce1b459ee6901c5c03fd2e721155e57b4e078d624bd555190f4fa67",
+      "size_bytes": 26215
+    },
+    "build_log": {
+      "sha256": "4a70343a2b3da16b5e7860e86b61a3289368b55c20874abf5f28f84c9866d022",
+      "size_bytes": 679
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225541Z_AmsterdamUMCdb-1.0.2_std_ferritin",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_ferritin/std_ferritin_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_ferritin/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_ferritin/log_archive/20260507T225541Z_AmsterdamUMCdb-1.0.2_std_ferritin__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

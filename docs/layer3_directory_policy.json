@@ -1,0 +1,29 @@
+{
+  "artifact_type": "layer3_directory_policy",
+  "artifact_version": "2026-05-09",
+  "contract_ref": "Framework_Guideline/Layer3_Directory_Contract.md",
+  "canonical_layer3_asset_pattern": "Methods/Clinical_Database/local_work/Layer 3/{database_id}/{semantic_folder}/{std_variable_id}/{std_variable_id}_long.parquet",
+  "database_id_source": "docs/database_catalog.json",
+  "database_scoped_required_for_new_assets": true,
+  "legacy_root_level_exception": {
+    "allowed": true,
+    "allowed_database_ids": [
+      "MIMIC-IV-3.1"
+    ],
+    "path_pattern": "Methods/Clinical_Database/local_work/Layer 3/{semantic_folder}/{std_variable_id}/{std_variable_id}_long.parquet",
+    "status": "legacy_do_not_extend",
+    "migration_required_before_cleanup": true,
+    "migration_requirements": [
+      "inventory_current_layer3_paths",
+      "write_old_to_new_path_migration_manifest",
+      "update_builder_scripts",
+      "update_mapping_specs",
+      "update_runtime_evidence",
+      "update_layer5_asset_manifests",
+      "update_public_variable_cards",
+      "rerun_public_repository_checks"
+    ]
+  },
+  "public_validator": "scripts/validate_layer3_layout_policy.py",
+  "public_workflow_entrypoint": "python scripts/public_workflow.py validate-layer3-layout"
+}

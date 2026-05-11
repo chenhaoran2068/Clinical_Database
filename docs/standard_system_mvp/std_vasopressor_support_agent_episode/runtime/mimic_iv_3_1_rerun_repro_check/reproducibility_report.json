@@ -1,0 +1,271 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:38Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_vasopressor_support_agent_episode",
+  "database_id": "MIMIC-IV-3.1",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/runtime/mimic_iv_3_1_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/runtime/mimic_iv_3_1_rerun_repro_check",
+  "baseline_process_batch_id": "20260504T022746Z_MIMIC-IV-3.1_std_vasopressor_support_agent_episode",
+  "candidate_process_batch_id": "20260504T023152Z_MIMIC-IV-3.1_std_vasopressor_support_agent_episode",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "prolonged_agent_episode_ge_7d_count",
+    "row_count",
+    "short_agent_episode_le_15m_count",
+    "strict_concurrent_other_agent_episode_count",
+    "unique_parent_support_episode_id",
+    "unique_stay_id"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_vasopressor_support_agent_episode/runtime/mimic_iv_3_1_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_vasopressor_support_agent_episode/runtime/mimic_iv_3_1_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_prolonged_agent_episode_ge_7d_count_match",
+      "status": "pass",
+      "message": "build_summary field prolonged_agent_episode_ge_7d_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_row_count_match",
+      "status": "pass",
+      "message": "build_summary field row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_short_agent_episode_le_15m_count_match",
+      "status": "pass",
+      "message": "build_summary field short_agent_episode_le_15m_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_strict_concurrent_other_agent_episode_count_match",
+      "status": "pass",
+      "message": "build_summary field strict_concurrent_other_agent_episode_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_parent_support_episode_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_parent_support_episode_id matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_stay_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_stay_id matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "09426dea1c08a91e7a6878c404f0fc06b3b553b058ade546f3f3b5c31f1c3c9e",
+        "size_bytes": 3679
+      },
+      "candidate_signature": {
+        "sha256": "09426dea1c08a91e7a6878c404f0fc06b3b553b058ade546f3f3b5c31f1c3c9e",
+        "size_bytes": 3679
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_vasopressor_support_agent_episode/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_vasopressor_support_agent_episode/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "5c5ea3aee9edd893658f457ff7de375e313c79767ebe15cd3860b16c6ef224e0",
+        "size_bytes": 2802
+      },
+      "candidate_signature": {
+        "sha256": "04ad3678cddb21f1060d6b4d1a9985916dcc0c7b737284fff597d3ed49a44a34",
+        "size_bytes": 2802
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "7fe043bd846636f664415df80dda9610f2ec7dea584575e8cf9103adff73fa65",
+        "size_bytes": 28701
+      },
+      "candidate_signature": {
+        "sha256": "7fe043bd846636f664415df80dda9610f2ec7dea584575e8cf9103adff73fa65",
+        "size_bytes": 28701
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/preview/std_vasopressor_support_agent_episode_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/preview/std_vasopressor_support_agent_episode_preview.csv",
+      "baseline_signature": {
+        "sha256": "eb386da45e1041f54d4ea72c3fd3b6dd811037fdd06d220766d7c0bfe9dde748",
+        "size_bytes": 170152
+      },
+      "candidate_signature": {
+        "sha256": "eb386da45e1041f54d4ea72c3fd3b6dd811037fdd06d220766d7c0bfe9dde748",
+        "size_bytes": 170152
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_vasopressor_support_agent_episode/std_vasopressor_support_agent_episode_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_vasopressor_support_agent_episode/std_vasopressor_support_agent_episode_long.parquet",
+      "baseline_signature": {
+        "sha256": "26b210fc194f36f00ce8bdca570b0aee3c47ee854cf9b891d9ca8756f1be003d",
+        "size_bytes": 5124132
+      },
+      "candidate_signature": {
+        "sha256": "26b210fc194f36f00ce8bdca570b0aee3c47ee854cf9b891d9ca8756f1be003d",
+        "size_bytes": 5124132
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "prolonged_agent_episode_ge_7d_count": {
+      "status": "pass",
+      "baseline_value": 638,
+      "candidate_value": 638
+    },
+    "row_count": {
+      "status": "pass",
+      "baseline_value": 96606,
+      "candidate_value": 96606
+    },
+    "short_agent_episode_le_15m_count": {
+      "status": "pass",
+      "baseline_value": 3879,
+      "candidate_value": 3879
+    },
+    "strict_concurrent_other_agent_episode_count": {
+      "status": "pass",
+      "baseline_value": 35786,
+      "candidate_value": 35786
+    },
+    "unique_parent_support_episode_id": {
+      "status": "pass",
+      "baseline_value": 71270,
+      "candidate_value": 71270
+    },
+    "unique_stay_id": {
+      "status": "pass",
+      "baseline_value": 26886,
+      "candidate_value": 26886
+    }
+  }
+}

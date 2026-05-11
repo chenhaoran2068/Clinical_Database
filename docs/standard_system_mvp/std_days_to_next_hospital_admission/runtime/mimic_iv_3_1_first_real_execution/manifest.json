@@ -1,0 +1,68 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-01T17:05:42Z",
+  "variable_id": "std_days_to_next_hospital_admission",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_days_to_next_hospital_admission/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_days_to_next_hospital_admission/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_days_to_next_hospital_admission/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/extract_code/Extract_Code_std_days_to_next_hospital_admission.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_admissions.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/extract_code/Extract_Code_std_days_to_next_hospital_admission.py"
+  ],
+  "process_batch_id": "20260501T170538Z_MIMIC-IV-3.1_std_days_to_next_hospital_admission",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-01T17:05:38Z",
+  "finished_at": "2026-05-01T17:05:42Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "a389830627cb2ff1e0af26895cd688ac71880b8f9ec6978c57cf5bb74d8661d6",
+    "mapping_spec_sha256": "a9f2f9795b119b2176100be94b193ee6746c6adda649f16c7a7d4130a7ceb90e"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/outcomes/std_days_to_next_hospital_admission/std_days_to_next_hospital_admission_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/preview/std_days_to_next_hospital_admission_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_days_to_next_hospital_admission/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "21f4ea91d71c930b3c63b9bd9db73cfa855838b86a41a4c6d7ab2ab53886bfb4",
+      "size_bytes": 7219659
+    },
+    "preview_csv": {
+      "sha256": "171309050e89d364d6bce955713c1166980a2a2e4d28db1cda610ab01b491b6b",
+      "size_bytes": 4820
+    },
+    "asset_manifest": {
+      "sha256": "83088367e4ad8ea6f43fbb1ac92d8e4c5aea4c85ace79ce4e91fdee7efa7693f",
+      "size_bytes": 3250
+    },
+    "knowledge_package": {
+      "sha256": "9161138afa7c0d11f8d4a4d6ad7dbdb1df3c6dd771b7c93f44de2df5b285fbd8",
+      "size_bytes": 25946
+    },
+    "build_log": {
+      "sha256": "822426eb1e717e77cc5297b51b1e71ac7759b736d706821f3399237bac809f88",
+      "size_bytes": 1743
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260501T170538Z_MIMIC-IV-3.1_std_days_to_next_hospital_admission",
+    "total_rows": 546028,
+    "unique_hadm_id": 546028,
+    "observed_rows": 321561,
+    "missing_rows": 224467,
+    "min_days": 0.001,
+    "p50_days": 85.111,
+    "p95_days": 1774.269,
+    "max_days": 5340.54
+  }
+}

@@ -1,0 +1,585 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:35Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_microbiology_organism_isolate",
+  "database_id": "MIMIC-IV-3.1",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_microbiology_organism_isolate/runtime/mimic_iv_3_1_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_microbiology_organism_isolate/runtime/mimic_iv_3_1_rerun_repro_check",
+  "baseline_process_batch_id": "20260502T155017Z_MIMIC-IV-3.1_std_microbiology_organism_isolate",
+  "candidate_process_batch_id": "20260502T155225Z_MIMIC-IV-3.1_std_microbiology_organism_isolate",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "encounter_anchor_status_counts",
+    "max_susceptibility_row_count",
+    "null_hadm_rows",
+    "opening_test_class_counts",
+    "organism_branch_role_class_counts",
+    "organism_positive_analysis_class_counts",
+    "retained_rows",
+    "rows_with_comment_text",
+    "rows_with_quantity_text",
+    "rows_with_susceptibility_child",
+    "source_opening_scope_rows",
+    "specimen_class_counts",
+    "specimen_site_class_counts",
+    "specimen_subtype_std_counts",
+    "unique_hadm_id_nonnull",
+    "unique_subject_id"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_microbiology_organism_isolate/runtime/mimic_iv_3_1_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_microbiology_organism_isolate/runtime/mimic_iv_3_1_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_encounter_anchor_status_counts_match",
+      "status": "pass",
+      "message": "build_summary field encounter_anchor_status_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_max_susceptibility_row_count_match",
+      "status": "pass",
+      "message": "build_summary field max_susceptibility_row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_null_hadm_rows_match",
+      "status": "pass",
+      "message": "build_summary field null_hadm_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_opening_test_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field opening_test_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_organism_branch_role_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field organism_branch_role_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_organism_positive_analysis_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field organism_positive_analysis_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_retained_rows_match",
+      "status": "pass",
+      "message": "build_summary field retained_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_rows_with_comment_text_match",
+      "status": "pass",
+      "message": "build_summary field rows_with_comment_text matches across reruns"
+    },
+    {
+      "check_id": "build_summary_rows_with_quantity_text_match",
+      "status": "pass",
+      "message": "build_summary field rows_with_quantity_text matches across reruns"
+    },
+    {
+      "check_id": "build_summary_rows_with_susceptibility_child_match",
+      "status": "pass",
+      "message": "build_summary field rows_with_susceptibility_child matches across reruns"
+    },
+    {
+      "check_id": "build_summary_source_opening_scope_rows_match",
+      "status": "pass",
+      "message": "build_summary field source_opening_scope_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_specimen_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field specimen_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_specimen_site_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field specimen_site_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_specimen_subtype_std_counts_match",
+      "status": "pass",
+      "message": "build_summary field specimen_subtype_std_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_hadm_id_nonnull_match",
+      "status": "pass",
+      "message": "build_summary field unique_hadm_id_nonnull matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_subject_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_subject_id matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "e39e3a540dda3fddc1fcc0391f33ee6554aeee5fd6fd7d4a93ea72482bd96805",
+        "size_bytes": 3083
+      },
+      "candidate_signature": {
+        "sha256": "e39e3a540dda3fddc1fcc0391f33ee6554aeee5fd6fd7d4a93ea72482bd96805",
+        "size_bytes": 3083
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_microbiology_organism_isolate/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_microbiology_organism_isolate/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "af61f6810c0db825896178486bd1dbf3857b5f1eb5441affcd8d2c65e2ce319f",
+        "size_bytes": 1772
+      },
+      "candidate_signature": {
+        "sha256": "a6500f956dfc6b81b86fc0d1eb3b7020d62adaaf2821a1a4a73e38c82137f0d2",
+        "size_bytes": 1772
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "53ff4c0b4bba22d3c89c39f6478eb5af91680a75c26ad46f34c690d74f7b0344",
+        "size_bytes": 27874
+      },
+      "candidate_signature": {
+        "sha256": "53ff4c0b4bba22d3c89c39f6478eb5af91680a75c26ad46f34c690d74f7b0344",
+        "size_bytes": 27874
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/preview/std_microbiology_organism_isolate_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/preview/std_microbiology_organism_isolate_preview.csv",
+      "baseline_signature": {
+        "sha256": "43af1ed8c15afcc729c9e3e348fbbd3a1ebeebc2b92f2538e08eb8ab4e084da1",
+        "size_bytes": 66212
+      },
+      "candidate_signature": {
+        "sha256": "43af1ed8c15afcc729c9e3e348fbbd3a1ebeebc2b92f2538e08eb8ab4e084da1",
+        "size_bytes": 66212
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_microbiology_organism_isolate/std_microbiology_organism_isolate_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_microbiology_organism_isolate/std_microbiology_organism_isolate_long.parquet",
+      "baseline_signature": {
+        "sha256": "5488de4dd307638627b9302a4d7c4e0b1f21d4bc8087cde3b727d11f3f0aafc4",
+        "size_bytes": 16219374
+      },
+      "candidate_signature": {
+        "sha256": "5488de4dd307638627b9302a4d7c4e0b1f21d4bc8087cde3b727d11f3f0aafc4",
+        "size_bytes": 16219374
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "encounter_anchor_status_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "subject_only_no_hadm": 180039,
+        "hospital_admission": 126574
+      },
+      "candidate_value": {
+        "subject_only_no_hadm": 180039,
+        "hospital_admission": 126574
+      }
+    },
+    "max_susceptibility_row_count": {
+      "status": "pass",
+      "baseline_value": 23,
+      "candidate_value": 23
+    },
+    "null_hadm_rows": {
+      "status": "pass",
+      "baseline_value": 180039,
+      "candidate_value": 180039
+    },
+    "opening_test_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "urine_culture": 127455,
+        "blood_culture": 76757,
+        "wound_culture": 40589,
+        "respiratory_culture": 35099,
+        "body_fluid_culture": 17056,
+        "fungal_culture": 8073,
+        "acid_fast_culture": 1584
+      },
+      "candidate_value": {
+        "urine_culture": 127455,
+        "blood_culture": 76757,
+        "wound_culture": 40589,
+        "respiratory_culture": 35099,
+        "body_fluid_culture": 17056,
+        "fungal_culture": 8073,
+        "acid_fast_culture": 1584
+      }
+    },
+    "organism_branch_role_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "named_isolate_or_group": 208744,
+        "generic_morphology_or_unspecified_microbe": 53301,
+        "cancelled_placeholder": 37140,
+        "summary_flora_or_mixed": 7428
+      },
+      "candidate_value": {
+        "named_isolate_or_group": 208744,
+        "generic_morphology_or_unspecified_microbe": 53301,
+        "cancelled_placeholder": 37140,
+        "summary_flora_or_mixed": 7428
+      }
+    },
+    "organism_positive_analysis_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "count_as_positive_isolate": 262045,
+        "exclude_cancelled_placeholder": 37140,
+        "exclude_flora_or_mixed_summary": 7428
+      },
+      "candidate_value": {
+        "count_as_positive_isolate": 262045,
+        "exclude_cancelled_placeholder": 37140,
+        "exclude_flora_or_mixed_summary": 7428
+      }
+    },
+    "retained_rows": {
+      "status": "pass",
+      "baseline_value": 306613,
+      "candidate_value": 306613
+    },
+    "rows_with_comment_text": {
+      "status": "pass",
+      "baseline_value": 49019,
+      "candidate_value": 49019
+    },
+    "rows_with_quantity_text": {
+      "status": "pass",
+      "baseline_value": 27,
+      "candidate_value": 27
+    },
+    "rows_with_susceptibility_child": {
+      "status": "pass",
+      "baseline_value": 139153,
+      "candidate_value": 139153
+    },
+    "source_opening_scope_rows": {
+      "status": "pass",
+      "baseline_value": 2791324,
+      "candidate_value": 2791324
+    },
+    "specimen_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "urine": 128180,
+        "blood": 77063,
+        "wound_swab_abscess": 49454,
+        "respiratory": 39109,
+        "body_fluid": 10573,
+        "other": 1451,
+        "tissue": 756,
+        "stool": 27
+      },
+      "candidate_value": {
+        "urine": 128180,
+        "blood": 77063,
+        "wound_swab_abscess": 49454,
+        "respiratory": 39109,
+        "body_fluid": 10573,
+        "other": 1451,
+        "tissue": 756,
+        "stool": 27
+      }
+    },
+    "specimen_site_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "urinary_tract": 128180,
+        "bloodstream": 77039,
+        "lower_respiratory": 38781,
+        "swab_or_superficial": 36657,
+        "skin_soft_tissue": 10383,
+        "peritoneal_space": 2700,
+        "device_related": 2387,
+        "other_body_fluid": 2381,
+        "biliary": 2297,
+        "pleural_space": 1366,
+        "joint_space": 1302,
+        "tissue_or_biopsy": 768,
+        "hair_or_skin_appendage": 674,
+        "ear": 482,
+        "central_nervous_system": 443,
+        "other_or_unspecified": 315,
+        "eye": 203,
+        "upper_airway_or_oral": 108,
+        "dialysis_related_fluid": 108,
+        "gastrointestinal": 27,
+        "bone_marrow": 6,
+        "post_mortem": 5,
+        "respiratory_other": 1
+      },
+      "candidate_value": {
+        "urinary_tract": 128180,
+        "bloodstream": 77039,
+        "lower_respiratory": 38781,
+        "swab_or_superficial": 36657,
+        "skin_soft_tissue": 10383,
+        "peritoneal_space": 2700,
+        "device_related": 2387,
+        "other_body_fluid": 2381,
+        "biliary": 2297,
+        "pleural_space": 1366,
+        "joint_space": 1302,
+        "tissue_or_biopsy": 768,
+        "hair_or_skin_appendage": 674,
+        "ear": 482,
+        "central_nervous_system": 443,
+        "other_or_unspecified": 315,
+        "eye": 203,
+        "upper_airway_or_oral": 108,
+        "dialysis_related_fluid": 108,
+        "gastrointestinal": 27,
+        "bone_marrow": 6,
+        "post_mortem": 5,
+        "respiratory_other": 1
+      }
+    },
+    "specimen_subtype_std_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "urine": 127650,
+        "blood_culture_bottle": 76185,
+        "swab": 36624,
+        "sputum": 25993,
+        "abscess": 9574,
+        "bronchoalveolar_lavage": 7316,
+        "bronchial_washings": 3510,
+        "peritoneal_fluid": 2700,
+        "other_body_fluid": 2357,
+        "bile": 2297,
+        "mini_bal": 1849,
+        "pleural_fluid": 1366,
+        "joint_fluid": 1231,
+        "catheter_tip": 1230,
+        "foreign_body": 1157,
+        "foot_wound": 773,
+        "tissue": 756,
+        "nail_scrapings": 591,
+        "blood_culture_post_mortem": 578,
+        "urine_kidney": 489,
+        "ear": 482,
+        "cerebrospinal_fluid": 443,
+        "aspirate": 312,
+        "blood_fungal_culture_bottle": 276,
+        "eye": 143,
+        "dialysis_fluid": 108,
+        "throat_culture": 84,
+        "skin_scrapings": 80,
+        "prosthetic_joint_fluid": 71,
+        "corneal_scraping": 60,
+        "tracheal_aspirate": 52,
+        "bronchial_brush": 45,
+        "urine_suprapubic_aspirate": 41,
+        "wound_fluid": 36,
+        "staph_aureus_swab": 32,
+        "stool": 27,
+        "fluid_in_blood_culture_bottles": 24,
+        "throat_for_strep": 23,
+        "protected_bronchial_brush": 16,
+        "biopsy": 12,
+        "bone_marrow": 6,
+        "post_mortem_other": 5,
+        "hair": 3,
+        "other_unresolved": 2,
+        "respiratory_viral_test": 1,
+        "throat": 1,
+        "viral_culture_hsv_ruleout": 1,
+        "swab_ruleout_gc": 1
+      },
+      "candidate_value": {
+        "urine": 127650,
+        "blood_culture_bottle": 76185,
+        "swab": 36624,
+        "sputum": 25993,
+        "abscess": 9574,
+        "bronchoalveolar_lavage": 7316,
+        "bronchial_washings": 3510,
+        "peritoneal_fluid": 2700,
+        "other_body_fluid": 2357,
+        "bile": 2297,
+        "mini_bal": 1849,
+        "pleural_fluid": 1366,
+        "joint_fluid": 1231,
+        "catheter_tip": 1230,
+        "foreign_body": 1157,
+        "foot_wound": 773,
+        "tissue": 756,
+        "nail_scrapings": 591,
+        "blood_culture_post_mortem": 578,
+        "urine_kidney": 489,
+        "ear": 482,
+        "cerebrospinal_fluid": 443,
+        "aspirate": 312,
+        "blood_fungal_culture_bottle": 276,
+        "eye": 143,
+        "dialysis_fluid": 108,
+        "throat_culture": 84,
+        "skin_scrapings": 80,
+        "prosthetic_joint_fluid": 71,
+        "corneal_scraping": 60,
+        "tracheal_aspirate": 52,
+        "bronchial_brush": 45,
+        "urine_suprapubic_aspirate": 41,
+        "wound_fluid": 36,
+        "staph_aureus_swab": 32,
+        "stool": 27,
+        "fluid_in_blood_culture_bottles": 24,
+        "throat_for_strep": 23,
+        "protected_bronchial_brush": 16,
+        "biopsy": 12,
+        "bone_marrow": 6,
+        "post_mortem_other": 5,
+        "hair": 3,
+        "other_unresolved": 2,
+        "respiratory_viral_test": 1,
+        "throat": 1,
+        "viral_culture_hsv_ruleout": 1,
+        "swab_ruleout_gc": 1
+      }
+    },
+    "unique_hadm_id_nonnull": {
+      "status": "pass",
+      "baseline_value": 51516,
+      "candidate_value": 51516
+    },
+    "unique_subject_id": {
+      "status": "pass",
+      "baseline_value": 89352,
+      "candidate_value": 89352
+    }
+  }
+}

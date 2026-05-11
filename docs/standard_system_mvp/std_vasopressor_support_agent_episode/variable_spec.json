@@ -1,0 +1,78 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_5_vasopressor_support_agent_episode_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "episode_interval_bridge",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_EpisodeIntervalBridge_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_vasopressor_support_agent_episode",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Vasopressor support agent episode",
+    "semantic_folder": "treatment_state",
+    "category": "treatment_state"
+  },
+  "immutable_core": {
+    "semantic_intent": "agent-specific vasopressor support episode",
+    "semantic_definition": "A positive labeled child episode retaining one row for each continuous ICU-stay interval during which an approved vasoactive agent contributes to vasopressor support, with parent linkage to the broader vasopressor support active episode.",
+    "semantic_grain": "one row per retained ICU stay agent-specific support episode interval",
+    "value_family": "categorical_episode",
+    "source_value_class": "positive_agent_episode",
+    "same_name_cross_database_rule": "Any database asset published as std_vasopressor_support_agent_episode must preserve positive agent-specific vasopressor support interval semantics, retain agent identity, keep parent any-support linkage explicit, and must not collapse into any vasopressor support active, raw medication infusion event, dose burden, norepinephrine-equivalent dose, shock phenotype, or mortality-risk score."
+  },
+  "episode_interval_contract": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "episode_label_meaning": "standardized vasoactive agent label",
+    "episode_start_rule": "start at the approved agent-specific support interval start after source-faithful course merging",
+    "episode_end_rule": "end at the approved agent-specific support interval end after source-faithful course merging",
+    "continuity_rule": "merge overlapping or exactly contiguous approved source courses only within the same ICU stay and same standardized vasoactive agent; any positive gap or agent change starts a new child episode",
+    "parent_link_rule": "link every retained child agent episode to exactly one broader std_vasopressor_support_active parent episode by same-stay interval containment",
+    "no_row_interpretation": "no retained positive agent episode under the approved agent-inclusion rule; this does not prove absence of any vasopressor support or uncaptured agent evidence"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "categorical_interval_episode",
+    "storage_type": "string_label_plus_interval",
+    "timestamp_start_required": true,
+    "timestamp_end_required": true,
+    "duration_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "retained_label_domain": [
+      "dopamine",
+      "epinephrine",
+      "norepinephrine",
+      "phenylephrine",
+      "terlipressin",
+      "vasopressin"
+    ],
+    "duration_unit": "minutes",
+    "time_anchor": "icu_intime"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_vasopressor_support_agent_episode outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_vasopressor_support_agent_episode/mapping_spec_mimic_iv_3_1.json",
+      "docs/standard_system_mvp/std_vasopressor_support_agent_episode/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/execution.py",
+    "public_card": "docs/std_variable_cards/std_vasopressor_support_agent_episode.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_EpisodeIntervalBridge_Contract.md"
+  },
+  "versioning_contract": {
+    "version_bump_trigger_examples": [
+      "adding Amsterdam candidate mapping that retains terlipressin as a source-faithful agent label pending owner review"
+    ]
+  }
+}

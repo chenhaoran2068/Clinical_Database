@@ -1,0 +1,79 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-24T10:38:33Z",
+  "variable_id": "std_heart_rate",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_heart_rate/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_heart_rate/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_heart_rate/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_heart_rate/extract_code/Extract_Code_std_heart_rate.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables/chartevents_itemid_220045_heart_rate",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_heart_rate/extract_code/Extract_Code_std_heart_rate.py"
+  ],
+  "process_batch_id": "20260424T103651Z_MIMIC-IV-3.1_std_heart_rate",
+  "subprocess_return_code": 0,
+  "started_at": "2026-04-24T10:36:50Z",
+  "finished_at": "2026-04-24T10:38:33Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "0eb00398138df24856739084414df7a00d066e46b574c4e22734253e861140f4",
+    "mapping_spec_sha256": "30e1c086eb18a8c9b56018f7f0e5f3c51f6647ccdb840247c057f9bbcc6583f7"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/vital_signs/std_heart_rate/std_heart_rate_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_heart_rate/preview/std_heart_rate_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_heart_rate/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_heart_rate/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_heart_rate/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "37430b26af3f65d3323b1278b127ffd08a1ede5b914997cd4ab8ac727c550c59",
+      "size_bytes": 213003601
+    },
+    "preview_csv": {
+      "sha256": "048d7c350a2f872c211e55703fce31ddd317ca3d1c4393b0a1f69dba16f69cdc",
+      "size_bytes": 66399
+    },
+    "asset_manifest": {
+      "sha256": "79063a8f692d903b284de4f759d7fe772170ba391ab8a375fea325b07eca7177",
+      "size_bytes": 2313
+    },
+    "knowledge_package": {
+      "sha256": "8561304db4274bc1d2004c2744db96db3117bb22cfe84503b36aa8830e25d2a4",
+      "size_bytes": 28783
+    },
+    "build_log": {
+      "sha256": "59c2b73a396d7fc68a706a77d0fb71f0cf329b759999a84dbbe0e02263359f63",
+      "size_bytes": 2248
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260424T103651Z_MIMIC-IV-3.1_std_heart_rate",
+    "total_rows": 8752069,
+    "unique_subject_id": 65365,
+    "unique_hadm_id": 85240,
+    "unique_stay_id": 94437,
+    "kept_rows": 8752005,
+    "excluded_outlier_rows": 64,
+    "warning_true_rows": 37514,
+    "warning_true_outlier_rows": 16,
+    "non_integer_raw_rows": 68,
+    "normalized_min": -241395,
+    "normalized_max": 10000000,
+    "before_intime_rows": 30494,
+    "after_outtime_rows": 2961,
+    "relative_time_min": -525596,
+    "relative_time_max": 531096,
+    "p01": 50.0,
+    "p50": 85.0,
+    "p99": 136.0,
+    "p999": 160.0
+  }
+}

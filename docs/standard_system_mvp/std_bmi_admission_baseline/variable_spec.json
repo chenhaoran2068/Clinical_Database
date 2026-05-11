@@ -1,0 +1,163 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_2_mimic_bmi_derived_baseline_governed_mvp",
+  "created_at": "2026-04-28",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "baseline_summary_window_numeric",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BaselineSummaryWindowNumeric_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_bmi_admission_baseline",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "admission baseline BMI",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "anthropometrics",
+    "category": "anthropometric_derived_measurement"
+  },
+  "immutable_core": {
+    "semantic_intent": "admission baseline body mass index snapshot",
+    "semantic_definition": "A one-row-per-hospital-admission encounter baseline BMI snapshot derived only from approved retained admission-baseline weight in kilograms and approved retained subject-level height in centimeters, using weight_kg / (height_m ^ 2), rather than a raw BMI source value, a patient-level stable BMI, an ICU-start BMI, or a first-day average BMI.",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "value_family": "numeric_derived",
+    "source_value_class": "derived_baseline_snapshot_from_approved_weight_and_height_assets",
+    "derived_values_allowed": true,
+    "aggregated_values_allowed": false,
+    "baseline_or_summary_interpretation_allowed": true,
+    "same_name_cross_database_rule": "Any database asset published as std_bmi_admission_baseline must preserve hospital-admission baseline encounter meaning, kg/m^2 representation, formula, upstream weight/height dependency, and explicit no-source-row behavior. It must not silently shift to ICU baseline BMI, subject-level BMI, raw source BMI, or averaged BMI."
+  },
+  "summary_contract": {
+    "summary_subclass": "baseline_snapshot",
+    "target_entity_grain": "hospital admission encounter",
+    "anchor_family": "hospital admission start inherited from std_weight_admission_baseline",
+    "window_label": "admission_baseline_weight_window_inherited_plus_subject_height_join",
+    "window_start_rule": "inherit the selected baseline weight window from std_weight_admission_baseline",
+    "window_end_rule": "inherit the selected baseline weight window from std_weight_admission_baseline",
+    "qualifying_row_rule": "a qualifying row is a retained std_weight_admission_baseline row with a non-null approved std_height row for the same subject_id",
+    "selection_rule": "selection is inherited from std_weight_admission_baseline; no new BMI-specific source-row selection is introduced",
+    "aggregation_rule": "no numeric aggregation; compute BMI from the selected baseline weight and subject-level height",
+    "tie_break_rule": "tie-break behavior is inherited from std_weight_admission_baseline for weight selection; std_height provides one retained height row per subject under its own approved logic",
+    "no_source_row_action": "do not retain a hospital admission row when either the approved admission-baseline weight or approved subject-level height is unavailable",
+    "partial_window_action": "partial window behavior is inherited from std_weight_admission_baseline"
+  },
+  "canonical_representation": {
+    "canonical_unit": "kg/m^2",
+    "canonical_ucum": "kg/m2",
+    "value_type": "numeric_derived",
+    "storage_type": "Float64",
+    "storage_precision_digits": 2,
+    "display_precision_digits": 2,
+    "anchor_timestamp_required": false,
+    "window_bounds_required": false,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "selected_stay_id"
+    ],
+    "hard_valid_range_in_canonical_unit": [
+      1.0,
+      250.0
+    ],
+    "plausible_range_in_canonical_unit": [
+      10.0,
+      60.0
+    ],
+    "outlier_flag_range_in_canonical_unit": [
+      1.0,
+      80.0
+    ],
+    "range_role_note": "Values outside the outlier flag range are retained with is_bmi_outlier_by_contract rather than silently dropped. The hard range is intentionally wider than the review-flag range so retained flagged rows do not contradict the machine-readable representation."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external references as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "derived",
+    "public_anchor_status": "BMI is a derived body-size metric; external BMI concepts and CDC formula references are useful anchors, but the admission-baseline encounter snapshot semantics are governed by this internal upstream-dependency and anchor contract.",
+    "preferred_anchor_families": [
+      "CDC public BMI formula guidance",
+      "LOINC",
+      "SNOMED CT"
+    ],
+    "candidate_external_refs": [
+      {
+        "system": "CDC",
+        "code": "public_bmi_formula_guidance",
+        "label": "BMI = weight / height squared using metric units",
+        "mapping_type": "broader_formula_reference"
+      }
+    ],
+    "note": "No single external code is treated as an exact replacement for this admission-baseline derived variable because the standard identity includes target grain, upstream dependencies, no-source-row behavior, and retained outlier-flag behavior."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "summary_subclass",
+      "target_entity_grain",
+      "anchor_family",
+      "window_label",
+      "qualifying_row_rule",
+      "selection_rule",
+      "aggregation_rule",
+      "no_source_row_action",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "hard_valid_range_in_canonical_unit",
+      "plausible_range_in_canonical_unit",
+      "outlier_flag_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "changing std_bmi_admission_baseline from hospital-admission baseline BMI to ICU-baseline BMI",
+      "changing from derived BMI using approved upstream assets to raw source BMI",
+      "turning the variable into first-day mean BMI or patient-level stable BMI"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving the same admission-baseline meaning",
+      "changing the display precision or review range after explicit review without changing the formula or target grain"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "local upstream weight and height source tables used before approved retained assets are created",
+      "local identifiers carried as provenance fields",
+      "local height and weight source-priority rules when explicitly reviewed in upstream assets"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing ICU-baseline BMI as std_bmi_admission_baseline",
+      "publishing raw database BMI as std_bmi_admission_baseline without deriving from approved weight and height assets",
+      "silently dropping outlier-flagged BMI rows instead of retaining the explicit flag",
+      "using grouped/proxy weight or height as if it were exact measured BMI without a distinct reviewed identity"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_for_mimic_only",
+    "formal_output_rule": "Formal std_bmi_admission_baseline outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_bmi_admission_baseline outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_bmi_admission_baseline/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_bmi_admission_baseline/execution.py",
+    "public_card": "docs/std_variable_cards/std_bmi_admission_baseline.md",
+    "candidate_review": "docs/standard_system_mvp/STD_BMI_ADMISSION_BASELINE_CANDIDATE_REVIEW.md",
+    "class_readme": "docs/standard_system_mvp/variable_classes/baseline_summary_window_numeric/README.md"
+  },
+  "current_scope_boundary": {
+    "approved_public_databases": [
+      "MIMIC-IV-3.1"
+    ],
+    "not_yet_approved_database_notes": [
+      "AmsterdamUMCdb-1.0.2 is not approved for this exact admission-baseline BMI identity in the current public MVP surface."
+    ]
+  }
+}

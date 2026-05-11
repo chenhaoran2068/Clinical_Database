@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:22:39Z",
+  "variable_id": "std_chloride",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_chloride/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_chloride/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_chloride/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_chloride/extract_code/Extract_Code_std_chloride.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_chloride/extract_code/Extract_Code_std_chloride.py"
+  ],
+  "process_batch_id": "20260503T092233Z_AmsterdamUMCdb-1.0.2_std_chloride",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:22:33Z",
+  "finished_at": "2026-05-03T09:22:39Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "3c149c5a0cab79e0add2e9ed5bcb00b9478de835a1904642cdf48925c2172451",
+    "mapping_spec_sha256": "c23608554fe1318ef7a5f10b7f9f6f0ae7de97a420b26ba47bc7ca9d1500e824"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_chloride/std_chloride_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_chloride/preview/std_chloride_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_chloride/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_chloride/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_chloride/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "f31995219ed41a3eb71f348aac3af5d373bb9011ca28c8c2735d08cf93f7d4dd",
+      "size_bytes": 1872479
+    },
+    "preview_csv": {
+      "sha256": "4a56f5a61a1ad9feb90e11a47041c5dfc8e236c1a2bfc702ad7cd42d5ef09e55",
+      "size_bytes": 81721
+    },
+    "asset_manifest": {
+      "sha256": "99de93b708dcc6954fd465641f858f5c25c209868c0708bac72aa5b6d1e46877",
+      "size_bytes": 3912
+    },
+    "knowledge_package": {
+      "sha256": "7b145906830ebf755a73bdb2f55d81bc6e60a667996563bccf465a263635ddf1",
+      "size_bytes": 25832
+    },
+    "build_log": {
+      "sha256": "872a6e8ca4a08d0c04b0886aef51a9c25e6ecbbd9f8d0843c591e5944b36782c",
+      "size_bytes": 689
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T092233Z_AmsterdamUMCdb-1.0.2_std_chloride",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_chloride/std_chloride_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_chloride/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_chloride/log_archive/20260503T092233Z_AmsterdamUMCdb-1.0.2_std_chloride__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

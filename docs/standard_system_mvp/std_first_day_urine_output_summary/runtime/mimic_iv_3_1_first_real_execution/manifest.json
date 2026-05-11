@@ -1,0 +1,76 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-25T11:08:10Z",
+  "variable_id": "std_first_day_urine_output_summary",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_first_day_urine_output_summary/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_first_day_urine_output_summary/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_first_day_urine_output_summary/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/extract_code/Extract_Code_std_first_day_urine_output_summary.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/extract_code/Extract_Code_std_first_day_urine_output_summary.py"
+  ],
+  "process_batch_id": "20260425T110809Z_MIMIC-IV-3.1_std_first_day_urine_output_summary",
+  "subprocess_return_code": 0,
+  "started_at": "2026-04-25T11:08:09Z",
+  "finished_at": "2026-04-25T11:08:10Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "5ded1cf2908f9edf6072761ce39829ca0ed365a39a1e63b99339553e4e660423",
+    "mapping_spec_sha256": "7f03e5910c4cf35ea480a436b84977771f2d763c8c79078d0452dca58eddcea0"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/supportive_therapy/std_first_day_urine_output_summary/std_first_day_urine_output_summary_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/preview/std_first_day_urine_output_summary_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_first_day_urine_output_summary/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_first_day_urine_output_summary/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "c5fea19be9e0bd8a38bbf4829368ebc01ad4d5c5ceed522fb4488206b8fd55f3",
+      "size_bytes": 3240732
+    },
+    "preview_csv": {
+      "sha256": "006f9a4d0d59c5cfd2663dc65e88e4388decc0b80259713d59fd830de8d3a889",
+      "size_bytes": 42293
+    },
+    "asset_manifest": {
+      "sha256": "68724b80cb3ba326b691dd9d8751807d23fae1c411c9426d787a1e4db66f7f81",
+      "size_bytes": 2467
+    },
+    "knowledge_package": {
+      "sha256": "a410474cdc0de8bf4ada5399fba509b2e11ad9a042fdbef4adbc3db76c22462f",
+      "size_bytes": 26413
+    },
+    "build_log": {
+      "sha256": "adbf95efd91ed2dac7dc0ba246ff2546f20a94f99b78908d77d05152dee59f75",
+      "size_bytes": 2304
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260425T110809Z_MIMIC-IV-3.1_std_first_day_urine_output_summary",
+    "row_count": 94458,
+    "stays_with_first_day_urine": 89442,
+    "stays_without_first_day_urine": 5016,
+    "complete_24h_rows": 74829,
+    "partial_window_rows": 19629,
+    "total_first_day_urine_output_ml": 152814080.4930113,
+    "median_first_day_urine_output_ml": 1475.0,
+    "official_reference_row_count": 94458,
+    "official_reference_nonnull_rows": 89442,
+    "official_reference_total_first_day_urine_output_ml": 152814080.4930113,
+    "official_compare_compared_rows": 94458,
+    "official_compare_official_only_rows": 0,
+    "official_compare_local_only_rows": 0,
+    "official_compare_subject_mismatch_rows": 0,
+    "official_compare_exact_match_rows": 94458,
+    "official_compare_value_mismatch_rows": 0
+  }
+}

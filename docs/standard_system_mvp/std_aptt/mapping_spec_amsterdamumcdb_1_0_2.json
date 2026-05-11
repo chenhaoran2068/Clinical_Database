@@ -1,0 +1,179 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "reviewed_approved_public_mapping_lock",
+  "approval_status": "reviewed_approved",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-05-04",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_aptt/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_aptt",
+    "variable_version": "v0_draft",
+    "semantic_intent": "activated partial thromboplastin time coagulation observation",
+    "category": "laboratory",
+    "semantic_grain": "time-stamped measurement event",
+    "source_value_class": "primary_direct_measurement",
+    "aggregation_status": "not_aggregated",
+    "canonical_unit": "sec",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Float64",
+    "current_output_precision_digits": 1
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_package": "numericitems",
+    "source_table": "numericitems_event",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+    "source_code_system": "itemid",
+    "source_codes": [
+      11944,
+      17982
+    ],
+    "source_code_labels": {
+      "11944": "APTT  (bloed)",
+      "17982": "APTT (bloed)"
+    },
+    "source_fields": {
+      "local_identifier_fields": [
+        "patientid",
+        "admissionid"
+      ],
+      "time_field": "event_time_primary_ms_raw",
+      "relative_time_field": "event_time_primary_minutes_relative",
+      "raw_value_numeric_field": "value",
+      "raw_unit_field": "unit",
+      "raw_comment_field": "comment",
+      "lab_flag_field": "islabresult",
+      "source_code_field": "itemid",
+      "source_label_field": "item"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "raw patientid should normalize to subject_id",
+      "stay_id_role": "raw admissionid is the Amsterdam ICU-semantic stay-equivalent identifier and should normalize to stay_id",
+      "hadm_id_role": "not separately available in the current opening Amsterdam public mapping",
+      "stay_link_status": "icu_semantic_stay_equivalent_via_admissionid"
+    },
+    "source_grain": "one row per Amsterdam numericitems event before exact duplicate collapse",
+    "target_grain": "one row per normalized standard measurement event",
+    "join_dependencies": [
+      {
+        "join_table": "admissions_core",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+        "join_key": "admissionid",
+        "join_cardinality": "many_to_one",
+        "required_fields": [
+          "patientid",
+          "admissioncount",
+          "admittedat",
+          "dischargedat"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "amsterdam_item_dictionary_legacy",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/amsterdam_item_dictionary_legacy.parquet",
+        "join_key": "itemid",
+        "required_fields": [
+          "item",
+          "item_en",
+          "unit",
+          "ucum_code",
+          "table"
+        ],
+        "dictionary_lock": {
+          "itemids": [
+            11944,
+            17982
+          ],
+          "table": "numericitems",
+          "labels": {
+            "11944": "APTT  (bloed)",
+            "17982": "APTT (bloed)"
+          }
+        },
+        "failure_action": "fail"
+      }
+    ]
+  },
+  "representation_and_normalization": {
+    "anchor_type": "icu_admission_anchor",
+    "relative_time_unit": "minutes",
+    "measurement_time_precision": "milliseconds_offset",
+    "canonical_unit": "sec",
+    "source_unit_expectations_by_itemid": {
+      "11944": "sec",
+      "17982": "sec"
+    },
+    "conversion_rules_by_itemid": {
+      "11944": {
+        "source_unit": "sec",
+        "conversion_factor": 1.0,
+        "conversion_offset": 0.0,
+        "conversion_rule_id": "direct_value"
+      },
+      "17982": {
+        "source_unit": "sec",
+        "conversion_factor": 1.0,
+        "conversion_offset": 0.0,
+        "conversion_rule_id": "direct_value"
+      }
+    },
+    "normalization_rule_id": "amsterdam_numericitems_std_aptt_batch2_source_specific_conversion_round_1",
+    "rounding_rule": "round_1_half_away_from_zero",
+    "cleaned_range_in_canonical_unit": [
+      1.0,
+      200.0
+    ],
+    "outlier_action": "retain_normalized_value_mark_is_outlier_and_null_cleaned_value",
+    "cleaned_value_field": "std_aptt_seconds_cleaned",
+    "normalized_value_field": "std_aptt_seconds_normalized",
+    "outlier_flag_field": "is_outlier_by_contract",
+    "cleaning_status_field": "cleaning_status"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "patientid",
+      "admissionid",
+      "measurement_time_offset_ms_raw",
+      "source_value_numeric_raw"
+    ],
+    "source_code_lock_rule": "all rows must originate from the approved Amsterdam source itemids in this mapping spec",
+    "dictionary_alignment_rule": "each source itemid must match the locked Amsterdam legacy dictionary label, unit, and numericitems table",
+    "duplicate_key": [
+      "source_measurement_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_timestamp_action": "fail",
+    "missing_numeric_value_action": "fail",
+    "join_failure_action": "fail",
+    "notes": [
+      "Amsterdam retained absolute time is a raw milliseconds offset and should not be interpreted as a wall-clock datetime.",
+      "admissionid is treated as the local ICU-semantic stay-equivalent identifier for standard stay_id normalization.",
+      "Amsterdam direct APTT blood seconds rows are retained; corrected APTT, target APTT, CVVH treatment targets, procedure orders, and free-text inhibitor comments are excluded."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_aptt/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_aptt/extract_code/Extract_Code_std_aptt.py",
+    "formal_output_rule": "The governed execution.py entrypoint reads this mapping spec and delegates to the current local reviewed implementation.",
+    "non_bypassable_target_rule": "Formal std_aptt outputs for AmsterdamUMCdb-1.0.2 should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_aptt.md",
+    "formal_approval_review_path": "docs/standard_system_mvp/AMSTERDAM_CLASS1_BATCH2_FORMAL_APPROVAL_REVIEW.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_aptt/extract_code/Extract_Code_std_aptt.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_aptt/std_aptt_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_aptt/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_aptt/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_aptt/preview/std_aptt_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_aptt/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_aptt/query_summary",
+    "candidate_evidence_review_path": "docs/standard_system_mvp/AMSTERDAM_CLASS1_BATCH2_CANDIDATE_EVIDENCE_REVIEW.md"
+  },
+  "review_state": {
+    "current_stage": "formal_variable_review_closed_approved",
+    "approval_gate": "approved_by_amsterdam_class1_batch2_formal_review_2026_05_04",
+    "planned_review_path": "docs/standard_system_mvp/AMSTERDAM_CLASS1_BATCH2_FORMAL_APPROVAL_REVIEW.md"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T23:04:40Z",
+  "variable_id": "std_oxygen_saturation_bg_allspecimen",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_oxygen_saturation_bg_allspecimen/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_oxygen_saturation_bg_allspecimen/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_oxygen_saturation_bg_allspecimen/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_allspecimen/extract_code/Extract_Code_std_oxygen_saturation_bg_allspecimen.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_allspecimen/extract_code/Extract_Code_std_oxygen_saturation_bg_allspecimen.py"
+  ],
+  "process_batch_id": "20260503T230434Z_AmsterdamUMCdb-1.0.2_std_so2_bg_all",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T23:04:33Z",
+  "finished_at": "2026-05-03T23:04:40Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "7966fbd3a76d983aa35ca8400e26aac4ebdcba63d72f631882583ad98f3a58a9",
+    "mapping_spec_sha256": "d7818fcff8ba537818438923007cd025caae8f5b5efe0bef6c3282b4719d2aa0"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_oxygen_saturation_bg_allspecimen/std_oxygen_saturation_bg_allspecimen_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_allspecimen/preview/std_oxygen_saturation_bg_allspecimen_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_allspecimen/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_allspecimen/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_oxygen_saturation_bg_allspecimen/runtime/amsterdamumcdb_1_0_2_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "f470fccb943d1c369ed20be7471879940585a41feebeb90ba2b8e6b7908c9289",
+      "size_bytes": 6266816
+    },
+    "preview_csv": {
+      "sha256": "9950805db20c6b9d61c96a6298bc5408c9a81444df9d5998bc3204e0aa3ef1bd",
+      "size_bytes": 95536
+    },
+    "asset_manifest": {
+      "sha256": "8559a1fa000c8c69bf2a4f8c09aebecff804ef31808a1d0d89fee20e1b06bc9e",
+      "size_bytes": 4579
+    },
+    "knowledge_package": {
+      "sha256": "225ae165e651f0f56d8299c9b764c879ec5183a3e24e8234fc53dba32599c91b",
+      "size_bytes": 25982
+    },
+    "build_log": {
+      "sha256": "cd405fde4a69d53e6eac863ceef8fdaad62dfc5f1e5155a3d5913939e5cb16ac",
+      "size_bytes": 780
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T230434Z_AmsterdamUMCdb-1.0.2_std_so2_bg_all",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_oxygen_saturation_bg_allspecimen/std_oxygen_saturation_bg_allspecimen_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_allspecimen/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_saturation_bg_allspecimen/log_archive/20260503T230434Z_AmsterdamUMCdb-1.0.2_std_so2_bg_all__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

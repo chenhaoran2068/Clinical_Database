@@ -1,0 +1,52 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "template",
+  "variable_class": {
+    "variable_class_id": "episode_interval_bridge",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_EpisodeIntervalBridge_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_example_modality_episode",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Example modality episode",
+    "semantic_folder": "treatment_state",
+    "category": "treatment_state"
+  },
+  "immutable_core": {
+    "semantic_intent": "example exact modality episode",
+    "semantic_definition": "One positive interval row per retained exact modality episode under the approved source-label inclusion rule.",
+    "semantic_grain": "one row per retained labeled episode interval",
+    "value_family": "categorical_episode",
+    "source_value_class": "positive_modality_episode",
+    "same_name_cross_database_rule": "Same-name assets must preserve the exact modality episode scope, label meaning, parent-link interpretation, and positive-only no-row rule."
+  },
+  "episode_interval_contract": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "episode_label_meaning": "exact modality label",
+    "episode_start_rule": "start at approved labeled source interval start",
+    "episode_end_rule": "end at approved labeled source interval end",
+    "continuity_rule": "merge only overlapping or exactly contiguous intervals with the same retained label unless a mapping-specific rule is explicitly approved",
+    "parent_link_rule": "optional mapping-specific largest-positive-overlap parent bridge",
+    "no_row_interpretation": "no retained positive labeled episode under the approved source-label inclusion rule"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "categorical_interval_episode",
+    "storage_type": "string_label_plus_interval",
+    "timestamp_start_required": true,
+    "timestamp_end_required": true,
+    "duration_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "retained_label_domain": [
+      "example_label"
+    ],
+    "duration_unit": "minutes",
+    "time_anchor": "icu_intime"
+  }
+}

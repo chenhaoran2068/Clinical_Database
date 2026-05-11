@@ -68,6 +68,7 @@ These relative examples assume the current shell is at the repository root.
 - MIMIC source-package boundary contract in [`Framework_Guideline/MIMICIV_SourcePackageAndModuleBoundary_Contract.md`](../../Framework_Guideline/MIMICIV_SourcePackageAndModuleBoundary_Contract.md)
 - Layer 4 registry validator
 - broad public std-variable card coverage in [`docs/std_variable_cards`](../std_variable_cards)
+- local Layer 4 opening registry: `PolicyRegistry_MIMIC-IV-3.1_opening.json`, built pending owner review
 
 ## Local-only execution surface
 

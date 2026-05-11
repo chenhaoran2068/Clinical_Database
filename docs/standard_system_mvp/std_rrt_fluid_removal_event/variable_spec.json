@@ -1,0 +1,147 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_4_rrt_fluid_removal_event_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "treatment_device_io_event_stream",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_TreatmentDeviceIOEventStream_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_rrt_fluid_removal_event",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Renal replacement therapy fluid removal event",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "intake_output_balance",
+    "category": "intake_output_balance"
+  },
+  "immutable_core": {
+    "semantic_intent": "source-recorded renal replacement therapy fluid-removal event",
+    "semantic_definition": "A time-stamped event stream retaining source-recorded extracorporeal RRT fluid-removal amount records with source context, standard unit, default-bridge eligibility, and parent support context where available.",
+    "semantic_grain": "time-stamped treatment/device/IO event",
+    "value_family": "numeric_event_with_context",
+    "source_value_class": "source_recorded_treatment_device_io_amount_event",
+    "derived_values_allowed": false,
+    "aggregated_values_allowed": false,
+    "active_state_interpretation_allowed": false,
+    "modality_episode_interpretation_allowed": false,
+    "same_name_cross_database_rule": "Any database asset published as std_rrt_fluid_removal_event must preserve event-level RRT extracorporeal fluid-removal amount semantics with source context and must not silently collapse into RRT active state, exact modality episodes, urine output, total output, rate settings, cumulative counters, or fluid-balance summaries."
+  },
+  "event_stream_contract": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "event_time_rule": "retain source-faithful charttime or equivalent source event time; no hour smoothing, back-shifting, or episode redistribution in the opening event stream",
+    "event_value_meaning": "source-recorded extracorporeal fluid-removal amount after approved unit normalization, with raw source value and context retained when available",
+    "unit_rule": "retain raw source unit and standardize to mL only when deterministic; rate settings and cumulative counters are outside the opening same-name event numerator",
+    "context_role_rule": "retain source item labels, source unit set, RRT family class, exact modality context, bridge role, and default-balance eligibility so downstream users can distinguish default bridge rows from context-only evidence",
+    "parent_link_rule": "link to approved parent RRT support episodes when available; parent links provide support context but do not replace source fluid-removal event evidence",
+    "downstream_aggregation_rule": "hourly balance augmentation, smoothing, counter differencing, session redistribution, and first-day summaries are separate governed transformations",
+    "no_row_interpretation": "no retained source-recorded RRT fluid-removal event under the approved source rule; this does not prove absence of RRT support or absence of unrecorded fluid removal"
+  },
+  "canonical_representation": {
+    "canonical_unit": "mL",
+    "canonical_ucum": "mL",
+    "value_type": "numeric_event_with_metadata",
+    "storage_type": "Float64_plus_context",
+    "storage_precision_digits": 3,
+    "display_precision_digits": 1,
+    "timestamp_required": true,
+    "time_precision_requirement": "datetime_or_equivalent_event_time",
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "standard_unit_field": "standard_unit",
+    "primary_standard_value_field": "fluid_removal_value_ml",
+    "raw_unit_retention_required": true,
+    "hard_valid_range_in_canonical_unit": [
+      0,
+      10000
+    ],
+    "plausible_range_in_canonical_unit": [
+      0,
+      5000
+    ],
+    "range_role_note": "Opening ranges are event-level caution guardrails; raw source values and caution flags should remain visible rather than being silently discarded."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but keep RRT device and dialysis source-context inclusion governed by internal mapping specs.",
+    "mapping_type": "derived_treatment_device_io_event_stream_from_rrt_fluid_removal_evidence",
+    "public_anchor_status": "no_single_external_anchor_locked_for_this_event_stream",
+    "preferred_anchor_families": [
+      "SNOMED CT",
+      "LOINC"
+    ],
+    "note": "The current MVP identity is governed primarily by database-specific RRT fluid-removal source rows and default/context bridge-role semantics."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "semantic_grain",
+      "value_family",
+      "source_value_class",
+      "event_time_rule",
+      "event_value_meaning",
+      "same_name_cross_database_rule"
+    ],
+    "versionable_fields": [
+      "database_mapping_specs",
+      "source item inclusion policy",
+      "default bridge eligibility policy",
+      "context-only retention policy",
+      "caution thresholds",
+      "external_alignment",
+      "public-card wording"
+    ],
+    "new_variable_trigger_examples": [
+      "changing the concept to RRT active state",
+      "changing the concept to exact RRT modality episode",
+      "changing the concept to hourly fluid-balance summary",
+      "mixing urine output or total ICU output into the same event stream",
+      "publishing cumulative device counters as source-faithful removal events without a new derived identity"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a reviewed database mapping while preserving event-level RRT fluid-removal meaning",
+      "adding a source item with equivalent source-recorded removal amount semantics",
+      "tightening caution thresholds while preserving raw source retention"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "local RRT device and dialysis item identifiers",
+      "local source labels and unit spellings",
+      "local availability of CRRT, hemodialysis, or peritoneal-dialysis context rows",
+      "local parent support episode linkage completeness",
+      "database-specific default versus context-only bridge eligibility after review"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing any-RRT active episodes as std_rrt_fluid_removal_event",
+      "publishing exact RRT modality episodes as std_rrt_fluid_removal_event",
+      "including urine output, total output, generic IO balance, or access-line rows",
+      "including rate settings or cumulative machine counters as default source-faithful removal amounts without a governed derived rule",
+      "silently converting context-only rows into default balance bridge numerator"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_for_mimic_and_amsterdam_approved_mappings",
+    "formal_output_rule": "Formal std_rrt_fluid_removal_event outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_rrt_fluid_removal_event outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_rrt_fluid_removal_event/mapping_spec_mimic_iv_3_1.json",
+      "docs/standard_system_mvp/std_rrt_fluid_removal_event/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "candidate_mapping_specs_not_approved": [],
+    "execution_entrypoint": "docs/standard_system_mvp/std_rrt_fluid_removal_event/execution.py",
+    "public_card": "docs/std_variable_cards/std_rrt_fluid_removal_event.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_TreatmentDeviceIOEventStream_Contract.md",
+    "feasibility_review": "docs/standard_system_mvp/STD_RRT_FLUID_REMOVAL_EVENT_FEASIBILITY_REVIEW.md"
+  }
+}

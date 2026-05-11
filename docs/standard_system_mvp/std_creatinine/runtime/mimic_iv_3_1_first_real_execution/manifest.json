@@ -1,0 +1,93 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:26:28Z",
+  "variable_id": "std_creatinine",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_creatinine/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_creatinine/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_creatinine/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_creatinine/extract_code/Extract_Code_std_creatinine.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/chemistry.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_creatinine/extract_code/Extract_Code_std_creatinine.py"
+  ],
+  "process_batch_id": "20260503T092454Z_MIMIC-IV-3.1_std_creatinine",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:24:53Z",
+  "finished_at": "2026-05-03T09:26:27Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "9c10fd73c281a7ba8a2d456b10fd3e19e1332b8973a852ea00bb3fd80c27ef35",
+    "mapping_spec_sha256": "f34daac3ff7bfc8b0dd8fe519dbc5afa2a690d313b0b9a1f6bc735d36894f4ca"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_creatinine/std_creatinine_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_creatinine/preview/std_creatinine_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_creatinine/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_creatinine/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_creatinine/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "4930f222553ce771e395be8022f77479a66975cf69a84ce55bd7654fde6e895d",
+      "size_bytes": 149958443
+    },
+    "preview_csv": {
+      "sha256": "7adb393890d53f6dcee7a925e9ad2051ceae01a6560d528c6802bd07ec766451",
+      "size_bytes": 67779
+    },
+    "asset_manifest": {
+      "sha256": "4c96f0433674de01681cc01387af5fea5a0cb990d18177137fd144fcc9e6d3cd",
+      "size_bytes": 4446
+    },
+    "knowledge_package": {
+      "sha256": "cf00a5388c3000d540665aab7316f797249cf3429edccb5ae0741e793e7a02e4",
+      "size_bytes": 30117
+    },
+    "build_log": {
+      "sha256": "5c85ef7fef558301d3e24057da7f762c9622ec6df57e966c2740b68c48218f29",
+      "size_bytes": 3824
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T092454Z_MIMIC-IV-3.1_std_creatinine",
+    "total_rows": 4317389,
+    "unique_subject_id": 295011,
+    "unique_hadm_id": 424398,
+    "unique_stay_id": 90888,
+    "kept_rows": 4316838,
+    "excluded_outlier_rows": 551,
+    "source_abnormal_true_rows": 1364091,
+    "source_abnormal_true_outlier_rows": 551,
+    "source_hadm_direct_rows": 2585719,
+    "source_hadm_null_rows": 1731670,
+    "hadm_recovered_rows": 23329,
+    "hadm_unresolved_rows": 1708341,
+    "inferred_unique_stay_rows": 574734,
+    "hospital_only_no_icu_overlap_rows": 2034314,
+    "ambiguous_multi_stay_rows": 8,
+    "insufficient_linkage_info_rows": 1708333,
+    "exact_event_key_duplicate_rows": 6043,
+    "raw_match_duplicate_resolved_rows": 0,
+    "normalized_min": 0.07,
+    "normalized_max": 80.0,
+    "raw_lt_0_rows": 0,
+    "raw_eq_0_rows": 0,
+    "raw_lt_cleaned_min_rows": 2,
+    "raw_gt_cleaned_max_rows": 549,
+    "relative_time_min": 0,
+    "relative_time_max": 323870,
+    "p01": 0.4,
+    "p50": 0.9,
+    "p99": 7.7,
+    "p999": 13.9,
+    "source_unit_counts": {
+      "mg/dL": 4317389
+    }
+  }
+}

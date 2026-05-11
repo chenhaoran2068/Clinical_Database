@@ -18,6 +18,12 @@ from export_public_metadata import (
     render_artifact,
 )
 from layer5.public_card_safety import find_local_only_match_labels
+from validate_standard_system_reproducibility import (
+    find_reproducibility_reports,
+    validate_reproducibility_report,
+)
+from validate_standard_system_runtime import find_runtime_dirs, validate_runtime_dir
+from validate_layer3_layout_policy import validate_layer3_layout_policy
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -27,12 +33,18 @@ FIXTURE_PUBLIC_CARD_PATH = REPO_ROOT / "tests" / "fixtures" / "public_cards" / "
 REQUIRED_TOP_LEVEL_FILES = (
     "README.md",
     "requirements.txt",
+    "docs/CURRENT_STAGE_COMPLETION_STANDARD.md",
     "docs/GETTING_STARTED.md",
     "docs/DATABASE_LINEAGE_AND_VERSION_MATRIX.md",
     "docs/RELEASE_CHANGELOG.md",
     "docs/release_safe_manifest.json",
+    "docs/layer3_directory_policy.json",
     "docs/PUBLIC_INVENTORY.md",
     "docs/PUBLIC_REPOSITORY_DETAILED_REVIEW_CHECKLIST.md",
+    "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md",
+    "docs/standard_system_mvp/README.md",
+    "docs/standard_system_mvp/VARIABLE_CLASS_LANDSCAPE_AND_ROLLOUT.md",
+    "docs/standard_system_mvp/variable_classes/event_level_numeric_primary_source/README.md",
     "docs/public_exports/README.md",
     "docs/releases/README.md",
     "docs/onboarding/README.md",
@@ -40,6 +52,7 @@ REQUIRED_TOP_LEVEL_FILES = (
     "docs/tutorials/README.md",
     "docs/std_variable_cards/README.md",
     "Framework_Guideline/Layer1_Directory_Contract.md",
+    "Framework_Guideline/Layer3_Directory_Contract.md",
     "Framework_Guideline/CrossDatabase_Variable_Harmonization_Contract.md",
     "Framework_Guideline/Database_Critical_Semantics_Contract.md",
     "Framework_Guideline/Database_Family_NewVersion_Admission_Contract.md",
@@ -47,11 +60,17 @@ REQUIRED_TOP_LEVEL_FILES = (
     "Framework_Guideline/PolicyRegistry_Contract.md",
     "Framework_Guideline/ReleaseSafe_Manifest_ReleaseGovernance_Contract.md",
     "Framework_Guideline/Script_Placement_Contract.md",
+    "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+    "Framework_Guideline/StandardVariableClass_EventLevelNumericPrimarySource_Contract.md",
     "scripts/public_workflow.py",
     "scripts/check_public_repository.py",
     "scripts/export_public_metadata.py",
     "scripts/prepare_public_release.py",
     "scripts/scaffold_public_database.py",
+    "scripts/standard_system_mvp_engine.py",
+    "scripts/validate_layer3_layout_policy.py",
+    "scripts/validate_standard_system_reproducibility.py",
+    "scripts/validate_standard_system_runtime.py",
     ".github/workflows/public-smoke.yml",
     "tests/README.md",
     "tests/fixtures/public_cards/std_fixture_demo.md",
@@ -59,21 +78,42 @@ REQUIRED_TOP_LEVEL_FILES = (
 
 REQUIRED_REFERENCE_STRINGS: dict[str, tuple[str, ...]] = {
     "README.md": (
+        "docs/CURRENT_STAGE_COMPLETION_STANDARD.md",
         "docs/GETTING_STARTED.md",
         "docs/release_safe_manifest.json",
         "docs/PUBLIC_REPOSITORY_DETAILED_REVIEW_CHECKLIST.md",
+        "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md",
+        "docs/standard_system_mvp/README.md",
+        "docs/standard_system_mvp/VARIABLE_CLASS_LANDSCAPE_AND_ROLLOUT.md",
+        "Framework_Guideline/StandardVariableClass_EventLevelNumericPrimarySource_Contract.md",
+        "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+        "Framework_Guideline/Layer3_Directory_Contract.md",
+        "docs/layer3_directory_policy.json",
         "scripts/public_workflow.py",
     ),
     "docs/GETTING_STARTED.md": (
+        "docs/CURRENT_STAGE_COMPLETION_STANDARD.md",
         "Framework_Guideline/Database_Family_NewVersion_Admission_Contract.md",
+        "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md",
+        "docs/standard_system_mvp/README.md",
+        "docs/standard_system_mvp/VARIABLE_CLASS_LANDSCAPE_AND_ROLLOUT.md",
         "python scripts/public_workflow.py prepare-release",
+        "python scripts/public_workflow.py check-standard-rerun",
         "python scripts/public_workflow.py scaffold-public-database",
+        "python scripts/public_workflow.py validate-standard-runtime",
         "docs/public_exports/README.md",
+        "Framework_Guideline/Layer3_Directory_Contract.md",
+        "python scripts/public_workflow.py validate-layer3-layout",
     ),
     "scripts/README.md": (
         "prepare_public_release.py",
+        "validate_layer3_layout_policy.py",
+        "validate_standard_system_reproducibility.py",
         "scaffold_public_database.py",
+        "standard_system_mvp_engine.py",
         "public_workflow.py prepare-release",
+        "public_workflow.py validate-layer3-layout",
+        "validate_standard_system_runtime.py",
     ),
     "docs/tutorials/README.md": (
         "database_family_and_version_admission_walkthrough.md",
@@ -233,6 +273,25 @@ def validate_tutorial_readme() -> list[str]:
         if tutorial_name not in readme_text:
             errors.append(f"docs/tutorials/README.md does not mention {tutorial_name}")
     return errors
+
+
+def validate_standard_system_runtime_artifacts() -> list[str]:
+    errors: list[str] = []
+    for runtime_dir in find_runtime_dirs():
+        errors.extend(validate_runtime_dir(runtime_dir))
+    return errors
+
+
+def validate_standard_system_reproducibility_artifacts() -> list[str]:
+    errors: list[str] = []
+    for report_path in find_reproducibility_reports():
+        errors.extend(validate_reproducibility_report(report_path))
+    return errors
+
+
+def validate_layer3_layout_policy_artifacts() -> list[str]:
+    result = validate_layer3_layout_policy(REPO_ROOT)
+    return list(result["errors"])
 
 
 def validate_layer1_skeleton(path: Path, database_id: str) -> list[str]:
@@ -513,6 +572,9 @@ def main() -> int:
     errors.extend(validate_public_cards())
     errors.extend(validate_fixture_card())
     errors.extend(validate_release_governance_sync())
+    errors.extend(validate_standard_system_runtime_artifacts())
+    errors.extend(validate_standard_system_reproducibility_artifacts())
+    errors.extend(validate_layer3_layout_policy_artifacts())
     if not errors:
         errors.extend(validate_generated_snapshots(catalog_data))
 

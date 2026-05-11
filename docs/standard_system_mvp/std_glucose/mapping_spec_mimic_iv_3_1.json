@@ -1,0 +1,187 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-04-24",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_glucose/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_glucose",
+    "variable_version": "v0_draft",
+    "semantic_intent": "routine chemistry glucose observation",
+    "category": "laboratory",
+    "semantic_grain": "time-stamped measurement event",
+    "source_value_class": "raw_measured_only",
+    "aggregation_status": "not_aggregated",
+    "canonical_unit": "mg/dL",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Int64",
+    "current_output_precision_digits": 0
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_package": "source_supplied_derived",
+    "source_table": "source_supplied_derived.chemistry",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/chemistry.parquet",
+    "source_code_system": "itemid",
+    "source_codes": [
+      50931
+    ],
+    "source_code_labels": {
+      "50931": "Glucose"
+    },
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "hadm_id",
+        "stay_id"
+      ],
+      "time_field": "charttime",
+      "primary_value_numeric_field": "glucose",
+      "raw_audit_value_numeric_field": "valuenum",
+      "raw_audit_unit_field": "valueuom",
+      "raw_audit_source_code_field": "itemid",
+      "raw_audit_specimen_field": "specimen_id"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier",
+      "hadm_id_role": "hospital-admission-level identifier when directly present or recoverable",
+      "stay_id_role": "ICU-stay-level identifier when uniquely linkable from admission and ICU overlap",
+      "stay_link_status": "direct_or_inferred_unique_stay_when_available"
+    },
+    "source_grain": "one row per official chemistry glucose event",
+    "target_grain": "one row per normalized standard glucose event",
+    "join_dependencies": [
+      {
+        "join_table": "hosp.labevents_raw_audit_subset",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_labevents.parquet",
+        "join_keys": [
+          "subject_id",
+          "hadm_id",
+          "charttime",
+          "specimen_id",
+          "valuenum"
+        ],
+        "join_cardinality": "one_to_one_after_audit_key_dedup",
+        "required_fields": [
+          "labevent_id",
+          "itemid",
+          "value",
+          "valuenum",
+          "valueuom",
+          "flag"
+        ],
+        "dictionary_lock": {
+          "itemid": 50931
+        },
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "hosp.d_labitems",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_d_labitems.parquet",
+        "join_key": "itemid",
+        "required_fields": [
+          "label",
+          "fluid",
+          "category"
+        ],
+        "dictionary_lock": {
+          "itemid": 50931,
+          "label": "Glucose"
+        },
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "std_id_map_subject_hadm",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm/std_id_map_subject_hadm_long.parquet",
+        "join_keys": [
+          "subject_id",
+          "hadm_id"
+        ],
+        "join_cardinality": "many_to_one_or_recovery_lookup",
+        "required_fields": [
+          "subject_id",
+          "hadm_id",
+          "admittime",
+          "dischtime"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "std_id_map_subject_hadm_stay",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm_stay/std_id_map_subject_hadm_stay_long.parquet",
+        "join_keys": [
+          "subject_id",
+          "hadm_id",
+          "stay_id"
+        ],
+        "join_cardinality": "many_to_one_or_unique_stay_overlap_lookup",
+        "required_fields": [
+          "subject_id",
+          "hadm_id",
+          "stay_id",
+          "icu_intime",
+          "icu_outtime"
+        ],
+        "failure_action": "fail"
+      }
+    ]
+  },
+  "representation_and_normalization": {
+    "anchor_type": "icu_intime_if_uniquely_linked",
+    "relative_time_unit": "minutes",
+    "measurement_time_precision": "datetime",
+    "canonical_unit": "mg/dL",
+    "source_unit_expectation": "mg/dL",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "glucose_mg_per_dl_identity_integer_half_away_from_zero",
+    "rounding_rule": "nearest_integer_half_away_from_zero",
+    "cleaned_range_in_canonical_unit": [
+      1,
+      2000
+    ],
+    "outlier_action": "retain_normalized_value_mark_is_outlier_and_null_cleaned_value",
+    "cleaned_value_field": "std_glucose_mg_per_dl_cleaned",
+    "normalized_value_field": "std_glucose_mg_per_dl_normalized",
+    "outlier_flag_field": "is_outlier_by_contract",
+    "cleaning_status_field": "cleaning_status"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "measurement_time",
+      "source_labevent_id_raw",
+      "source_value_numeric_raw"
+    ],
+    "source_code_lock_rule": "all_rows_must_audit_back_to_itemid_50931",
+    "duplicate_key": [
+      "source_measurement_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_timestamp_action": "fail",
+    "missing_numeric_value_action": "fail",
+    "join_failure_action": "fail",
+    "notes": [
+      "Hospital-only rows and insufficient-linkage rows are retained for audit rather than silently dropped.",
+      "stay_id is populated only when uniquely inferable from admission and ICU overlap.",
+      "Outlier rows remain in the event asset for audit, but the cleaned glucose column is set null."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_glucose/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_glucose/extract_code/Extract_Code_std_glucose.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_glucose outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_glucose.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_glucose/extract_code/Extract_Code_std_glucose.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_glucose/std_glucose_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_glucose/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_glucose/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_glucose/preview/std_glucose_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_glucose/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_glucose/query_summary"
+  }
+}

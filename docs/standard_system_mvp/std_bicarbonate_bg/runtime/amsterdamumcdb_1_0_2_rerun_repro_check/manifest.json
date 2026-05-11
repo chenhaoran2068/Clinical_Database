@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:23:17Z",
+  "variable_id": "std_bicarbonate_bg",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_bicarbonate_bg/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_bicarbonate_bg/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_bicarbonate_bg/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_bicarbonate_bg/extract_code/Extract_Code_std_bicarbonate_bg.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_bicarbonate_bg/extract_code/Extract_Code_std_bicarbonate_bg.py"
+  ],
+  "process_batch_id": "20260503T092311Z_AmsterdamUMCdb-1.0.2_std_bicarbonate_bg",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:23:10Z",
+  "finished_at": "2026-05-03T09:23:17Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "253ded1be5f780fdea249895180af4ee23603c91e066041e1ed2c072ea99d8db",
+    "mapping_spec_sha256": "7f5bf43e520763d721dcbb2e77df94ae1b22b83f70784eec53f940b3944ec84a"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_bicarbonate_bg/std_bicarbonate_bg_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_bicarbonate_bg/preview/std_bicarbonate_bg_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_bicarbonate_bg/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_bicarbonate_bg/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_bicarbonate_bg/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "894e17f0b1912769785a37bb563da29ebd1e4cced226d1ab49786163d9814c34",
+      "size_bytes": 7180152
+    },
+    "preview_csv": {
+      "sha256": "4693d808aa3d61a1c753feb0d2251a593c6f8530d59343e5f47c304c197960f5",
+      "size_bytes": 83982
+    },
+    "asset_manifest": {
+      "sha256": "698659e39144cb965263574abfa72725267ca8426b2a4cce7968f36a153b10e9",
+      "size_bytes": 3971
+    },
+    "knowledge_package": {
+      "sha256": "ff65f3808bc433be2e7e9904825fafd4138180c9bc0fd13109d7da0bb0b3e50a",
+      "size_bytes": 25855
+    },
+    "build_log": {
+      "sha256": "265387a6bd1cf36352859e2b93b34353121b919cb31e4d38a191a8e912ff011f",
+      "size_bytes": 717
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T092311Z_AmsterdamUMCdb-1.0.2_std_bicarbonate_bg",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_bicarbonate_bg/std_bicarbonate_bg_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_bicarbonate_bg/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_bicarbonate_bg/log_archive/20260503T092311Z_AmsterdamUMCdb-1.0.2_std_bicarbonate_bg__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:32Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_anion_gap",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_anion_gap/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_anion_gap/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_rerun_repro_check",
+  "baseline_process_batch_id": "20260507T225348Z_AmsterdamUMCdb-1.0.2_std_anion_gap",
+  "candidate_process_batch_id": "20260507T225450Z_AmsterdamUMCdb-1.0.2_std_anion_gap",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "asset_path",
+    "effective_status",
+    "manifest_path"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_anion_gap/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_anion_gap/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_asset_path_match",
+      "status": "pass",
+      "message": "build_summary field asset_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_effective_status_match",
+      "status": "pass",
+      "message": "build_summary field effective_status matches across reruns"
+    },
+    {
+      "check_id": "build_summary_manifest_path_match",
+      "status": "pass",
+      "message": "build_summary field manifest_path matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "61e4066ac8a20618273d172dd82fc4bc14cfdfb3fc89f534734ba883b057ce34",
+        "size_bytes": 3866
+      },
+      "candidate_signature": {
+        "sha256": "61e4066ac8a20618273d172dd82fc4bc14cfdfb3fc89f534734ba883b057ce34",
+        "size_bytes": 3866
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_anion_gap/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_anion_gap/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "0aa2d923b754247f4de2b5f82261e6f40aec6d491de1b5533706ca5729f92b4d",
+        "size_bytes": 679
+      },
+      "candidate_signature": {
+        "sha256": "98243ee6760bbe578f5add685e2b8b3c5a225dc8da3e3b8b2047a309d65b5f49",
+        "size_bytes": 679
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "6bc7b3b5e0f014fe6ca3e19c5ee931f4c649a0578d897211f61230303517470b",
+        "size_bytes": 26211
+      },
+      "candidate_signature": {
+        "sha256": "6bc7b3b5e0f014fe6ca3e19c5ee931f4c649a0578d897211f61230303517470b",
+        "size_bytes": 26211
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/preview/std_anion_gap_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/preview/std_anion_gap_preview.csv",
+      "baseline_signature": {
+        "sha256": "bcbdb995e7cdd7357c3a6449c115f29eda540e2c99484d5f1940c468953cc484",
+        "size_bytes": 84469
+      },
+      "candidate_signature": {
+        "sha256": "bcbdb995e7cdd7357c3a6449c115f29eda540e2c99484d5f1940c468953cc484",
+        "size_bytes": 84469
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_anion_gap/std_anion_gap_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_anion_gap/std_anion_gap_long.parquet",
+      "baseline_signature": {
+        "sha256": "d60cf2de63a5e59efcbadaa679d6cc583eecc5a751a6592c8c7a6b56f46706d4",
+        "size_bytes": 4606353
+      },
+      "candidate_signature": {
+        "sha256": "d60cf2de63a5e59efcbadaa679d6cc583eecc5a751a6592c8c7a6b56f46706d4",
+        "size_bytes": 4606353
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "asset_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_anion_gap/std_anion_gap_long.parquet",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_anion_gap/std_anion_gap_long.parquet"
+    },
+    "effective_status": {
+      "status": "pass",
+      "baseline_value": "reviewed_approved",
+      "candidate_value": "reviewed_approved"
+    },
+    "manifest_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/asset_manifest.md",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/asset_manifest.md"
+    }
+  }
+}

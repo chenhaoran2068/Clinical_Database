@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T23:29:50Z",
+  "variable_id": "std_icu_urine_output_event",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_icu_urine_output_event/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_icu_urine_output_event/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_icu_urine_output_event/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/extract_code/Extract_Code_std_icu_urine_output_event.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/source_access_index/numericitems_hotsets/urine_output_candidate_itemids_8794_8796_8798_8800_8803_10743_10745_19921_19922.csv",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/extract_code/Extract_Code_std_icu_urine_output_event.py"
+  ],
+  "process_batch_id": "20260503T232337Z_AmsterdamUMCdb-1.0.2_std_icu_urine_output_event",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T23:23:36Z",
+  "finished_at": "2026-05-03T23:29:50Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "86927701acfe4c5b5a854eafe638b6431c3c7cd07be3dfe87f1a1b03e3696404",
+    "mapping_spec_sha256": "ddc7e113e971cfabf4fe41282964227cd526ba09d95c4dea844205485f9ffb72"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/preview/std_icu_urine_output_event_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_icu_urine_output_event/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "dd87ecb8cc3c1fbb98dc93beb30f4c70ae480a246b70a2e67f99ae4d6315d382",
+      "size_bytes": 42889797
+    },
+    "preview_csv": {
+      "sha256": "083ded195b51486508b846e6ab99d07d893a2a1eb5374f44ba5ed1d4c4f8d549",
+      "size_bytes": 73158
+    },
+    "asset_manifest": {
+      "sha256": "409ae320f09a984b0d7e1271d0188726b5d02d3cb000715c2c4444b52233f997",
+      "size_bytes": 5096
+    },
+    "knowledge_package": {
+      "sha256": "8c9efeb0d87a135501ae782d20bc86a87826843227ea8dd6d2ad6209d6e9d8be",
+      "size_bytes": 24961
+    },
+    "build_log": {
+      "sha256": "50ac49a482dec4275daf7a6acead8aafb3fe48e8ea2aa6efcbee6ab31b3f609a",
+      "size_bytes": 569
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T232337Z_AmsterdamUMCdb-1.0.2_std_icu_urine_output_event",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/asset_manifest.md",
+    "registry_name": "PolicyRegistry_AmsterdamUMCdb-1.0.2_opening",
+    "effective_status": "reviewed_approved"
+  }
+}

@@ -1,0 +1,579 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:34Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_heart_rate",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_heart_rate/runtime/amsterdamumcdb_1_0_2_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_heart_rate/runtime/amsterdamumcdb_1_0_2_rerun_repro_check",
+  "baseline_process_batch_id": "20260424T103842Z_AmsterdamUMCdb-1.0.2_std_heart_rate",
+  "candidate_process_batch_id": "20260424T103952Z_AmsterdamUMCdb-1.0.2_std_heart_rate",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "asset_path",
+    "dictionary_count",
+    "dictionary_count_validated",
+    "dictionary_expected_max_value",
+    "dictionary_expected_min_value",
+    "dictionary_ucum_code",
+    "dictionary_unit",
+    "effective_status",
+    "excluded_outlier_rows",
+    "gt_cleaned_max_raw_rows",
+    "kept_max",
+    "kept_mean",
+    "kept_min",
+    "kept_p01",
+    "kept_p05",
+    "kept_p50",
+    "kept_p95",
+    "kept_p99",
+    "kept_rows",
+    "manifest_path",
+    "negative_raw_rows",
+    "post_icu_rows",
+    "pre_icu_rows",
+    "raw_max",
+    "raw_min",
+    "raw_p01",
+    "raw_p50",
+    "raw_p99",
+    "registry_name",
+    "source_row_count_matches_dictionary_count",
+    "total_rows",
+    "unique_admissions",
+    "unique_patients",
+    "zero_kept_rows"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_heart_rate/runtime/amsterdamumcdb_1_0_2_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_heart_rate/runtime/amsterdamumcdb_1_0_2_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_asset_path_match",
+      "status": "pass",
+      "message": "build_summary field asset_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_dictionary_count_match",
+      "status": "pass",
+      "message": "build_summary field dictionary_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_dictionary_count_validated_match",
+      "status": "pass",
+      "message": "build_summary field dictionary_count_validated matches across reruns"
+    },
+    {
+      "check_id": "build_summary_dictionary_expected_max_value_match",
+      "status": "pass",
+      "message": "build_summary field dictionary_expected_max_value matches across reruns"
+    },
+    {
+      "check_id": "build_summary_dictionary_expected_min_value_match",
+      "status": "pass",
+      "message": "build_summary field dictionary_expected_min_value matches across reruns"
+    },
+    {
+      "check_id": "build_summary_dictionary_ucum_code_match",
+      "status": "pass",
+      "message": "build_summary field dictionary_ucum_code matches across reruns"
+    },
+    {
+      "check_id": "build_summary_dictionary_unit_match",
+      "status": "pass",
+      "message": "build_summary field dictionary_unit matches across reruns"
+    },
+    {
+      "check_id": "build_summary_effective_status_match",
+      "status": "pass",
+      "message": "build_summary field effective_status matches across reruns"
+    },
+    {
+      "check_id": "build_summary_excluded_outlier_rows_match",
+      "status": "pass",
+      "message": "build_summary field excluded_outlier_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_gt_cleaned_max_raw_rows_match",
+      "status": "pass",
+      "message": "build_summary field gt_cleaned_max_raw_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_max_match",
+      "status": "pass",
+      "message": "build_summary field kept_max matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_mean_match",
+      "status": "pass",
+      "message": "build_summary field kept_mean matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_min_match",
+      "status": "pass",
+      "message": "build_summary field kept_min matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_p01_match",
+      "status": "pass",
+      "message": "build_summary field kept_p01 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_p05_match",
+      "status": "pass",
+      "message": "build_summary field kept_p05 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_p50_match",
+      "status": "pass",
+      "message": "build_summary field kept_p50 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_p95_match",
+      "status": "pass",
+      "message": "build_summary field kept_p95 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_p99_match",
+      "status": "pass",
+      "message": "build_summary field kept_p99 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_rows_match",
+      "status": "pass",
+      "message": "build_summary field kept_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_manifest_path_match",
+      "status": "pass",
+      "message": "build_summary field manifest_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_negative_raw_rows_match",
+      "status": "pass",
+      "message": "build_summary field negative_raw_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_post_icu_rows_match",
+      "status": "pass",
+      "message": "build_summary field post_icu_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_pre_icu_rows_match",
+      "status": "pass",
+      "message": "build_summary field pre_icu_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_raw_max_match",
+      "status": "pass",
+      "message": "build_summary field raw_max matches across reruns"
+    },
+    {
+      "check_id": "build_summary_raw_min_match",
+      "status": "pass",
+      "message": "build_summary field raw_min matches across reruns"
+    },
+    {
+      "check_id": "build_summary_raw_p01_match",
+      "status": "pass",
+      "message": "build_summary field raw_p01 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_raw_p50_match",
+      "status": "pass",
+      "message": "build_summary field raw_p50 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_raw_p99_match",
+      "status": "pass",
+      "message": "build_summary field raw_p99 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_registry_name_match",
+      "status": "pass",
+      "message": "build_summary field registry_name matches across reruns"
+    },
+    {
+      "check_id": "build_summary_source_row_count_matches_dictionary_count_match",
+      "status": "pass",
+      "message": "build_summary field source_row_count_matches_dictionary_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_total_rows_match",
+      "status": "pass",
+      "message": "build_summary field total_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_admissions_match",
+      "status": "pass",
+      "message": "build_summary field unique_admissions matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_patients_match",
+      "status": "pass",
+      "message": "build_summary field unique_patients matches across reruns"
+    },
+    {
+      "check_id": "build_summary_zero_kept_rows_match",
+      "status": "pass",
+      "message": "build_summary field zero_kept_rows matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "66a8184ed0d0d16e73ead41a6f45c3abe6b1aa17a107f7d857c22d864250623f",
+        "size_bytes": 3539
+      },
+      "candidate_signature": {
+        "sha256": "66a8184ed0d0d16e73ead41a6f45c3abe6b1aa17a107f7d857c22d864250623f",
+        "size_bytes": 3539
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_heart_rate/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_heart_rate/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "45eb78fbfc313eaa3e57b3dfcd1d39aa21be0f18f6bff0592e6f629e6d4181e7",
+        "size_bytes": 593
+      },
+      "candidate_signature": {
+        "sha256": "596d5cdb369cb9585e37f3975a18f3aa1971274dc435ab6564b26793965783a6",
+        "size_bytes": 593
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "f782f9c7eb57914c80198ed863c95286187aeb3f6d7fb77f2fe22b3299b60231",
+        "size_bytes": 25211
+      },
+      "candidate_signature": {
+        "sha256": "f782f9c7eb57914c80198ed863c95286187aeb3f6d7fb77f2fe22b3299b60231",
+        "size_bytes": 25211
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/preview/std_heart_rate_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/preview/std_heart_rate_preview.csv",
+      "baseline_signature": {
+        "sha256": "9ce27e97e2a5b51c2888a4c877afcf1a84d85758b40031208b5af1d84f4ecf33",
+        "size_bytes": 72228
+      },
+      "candidate_signature": {
+        "sha256": "9ce27e97e2a5b51c2888a4c877afcf1a84d85758b40031208b5af1d84f4ecf33",
+        "size_bytes": 72228
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_heart_rate/std_heart_rate_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_heart_rate/std_heart_rate_long.parquet",
+      "baseline_signature": {
+        "sha256": "adbc55dc69af531d4a881601183eaa4d7f3d3e7f4cdc80caef31d6088d37eb13",
+        "size_bytes": 211621262
+      },
+      "candidate_signature": {
+        "sha256": "adbc55dc69af531d4a881601183eaa4d7f3d3e7f4cdc80caef31d6088d37eb13",
+        "size_bytes": 211621262
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "asset_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_heart_rate/std_heart_rate_long.parquet",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_heart_rate/std_heart_rate_long.parquet"
+    },
+    "dictionary_count": {
+      "status": "pass",
+      "baseline_value": 37732398,
+      "candidate_value": 37732398
+    },
+    "dictionary_count_validated": {
+      "status": "pass",
+      "baseline_value": 2218626,
+      "candidate_value": 2218626
+    },
+    "dictionary_expected_max_value": {
+      "status": "pass",
+      "baseline_value": 250.0,
+      "candidate_value": 250.0
+    },
+    "dictionary_expected_min_value": {
+      "status": "pass",
+      "baseline_value": 1.0,
+      "candidate_value": 1.0
+    },
+    "dictionary_ucum_code": {
+      "status": "pass",
+      "baseline_value": "/min",
+      "candidate_value": "/min"
+    },
+    "dictionary_unit": {
+      "status": "pass",
+      "baseline_value": "/min",
+      "candidate_value": "/min"
+    },
+    "effective_status": {
+      "status": "pass",
+      "baseline_value": "reviewed_approved",
+      "candidate_value": "reviewed_approved"
+    },
+    "excluded_outlier_rows": {
+      "status": "pass",
+      "baseline_value": 112.0,
+      "candidate_value": 112.0
+    },
+    "gt_cleaned_max_raw_rows": {
+      "status": "pass",
+      "baseline_value": 109.0,
+      "candidate_value": 109.0
+    },
+    "kept_max": {
+      "status": "pass",
+      "baseline_value": 250.0,
+      "candidate_value": 250.0
+    },
+    "kept_mean": {
+      "status": "pass",
+      "baseline_value": 87.07636799424239,
+      "candidate_value": 87.07636799424239
+    },
+    "kept_min": {
+      "status": "pass",
+      "baseline_value": 0.0,
+      "candidate_value": 0.0
+    },
+    "kept_p01": {
+      "status": "pass",
+      "baseline_value": 49.0,
+      "candidate_value": 49.0
+    },
+    "kept_p05": {
+      "status": "pass",
+      "baseline_value": 59.0,
+      "candidate_value": 59.0
+    },
+    "kept_p50": {
+      "status": "pass",
+      "baseline_value": 86.0,
+      "candidate_value": 86.0
+    },
+    "kept_p95": {
+      "status": "pass",
+      "baseline_value": 120.0,
+      "candidate_value": 120.0
+    },
+    "kept_p99": {
+      "status": "pass",
+      "baseline_value": 135.0,
+      "candidate_value": 135.0
+    },
+    "kept_rows": {
+      "status": "pass",
+      "baseline_value": 37732286.0,
+      "candidate_value": 37732286.0
+    },
+    "manifest_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/asset_manifest.md",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/asset_manifest.md"
+    },
+    "negative_raw_rows": {
+      "status": "pass",
+      "baseline_value": 3.0,
+      "candidate_value": 3.0
+    },
+    "post_icu_rows": {
+      "status": "pass",
+      "baseline_value": 3340.0,
+      "candidate_value": 3340.0
+    },
+    "pre_icu_rows": {
+      "status": "pass",
+      "baseline_value": 420.0,
+      "candidate_value": 420.0
+    },
+    "raw_max": {
+      "status": "pass",
+      "baseline_value": 96160.0,
+      "candidate_value": 96160.0
+    },
+    "raw_min": {
+      "status": "pass",
+      "baseline_value": -23421.0,
+      "candidate_value": -23421.0
+    },
+    "raw_p01": {
+      "status": "pass",
+      "baseline_value": 49.0,
+      "candidate_value": 49.0
+    },
+    "raw_p50": {
+      "status": "pass",
+      "baseline_value": 86.0,
+      "candidate_value": 86.0
+    },
+    "raw_p99": {
+      "status": "pass",
+      "baseline_value": 135.0,
+      "candidate_value": 135.0
+    },
+    "registry_name": {
+      "status": "pass",
+      "baseline_value": "PolicyRegistry_AmsterdamUMCdb-1.0.2_opening",
+      "candidate_value": "PolicyRegistry_AmsterdamUMCdb-1.0.2_opening"
+    },
+    "source_row_count_matches_dictionary_count": {
+      "status": "pass",
+      "baseline_value": true,
+      "candidate_value": true
+    },
+    "total_rows": {
+      "status": "pass",
+      "baseline_value": 37732398.0,
+      "candidate_value": 37732398.0
+    },
+    "unique_admissions": {
+      "status": "pass",
+      "baseline_value": 23105.0,
+      "candidate_value": 23105.0
+    },
+    "unique_patients": {
+      "status": "pass",
+      "baseline_value": 20109.0,
+      "candidate_value": 20109.0
+    },
+    "zero_kept_rows": {
+      "status": "pass",
+      "baseline_value": 6237.0,
+      "candidate_value": 6237.0
+    }
+  }
+}

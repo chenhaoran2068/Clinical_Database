@@ -1,0 +1,249 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:34Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_icu_urine_output_event",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_icu_urine_output_event/runtime/amsterdamumcdb_1_0_2_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_icu_urine_output_event/runtime/amsterdamumcdb_1_0_2_rerun_repro_check",
+  "baseline_process_batch_id": "20260503T232337Z_AmsterdamUMCdb-1.0.2_std_icu_urine_output_event",
+  "candidate_process_batch_id": "20260503T232951Z_AmsterdamUMCdb-1.0.2_std_icu_urine_output_event",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "asset_path",
+    "effective_status",
+    "manifest_path",
+    "registry_name"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_icu_urine_output_event/runtime/amsterdamumcdb_1_0_2_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_icu_urine_output_event/runtime/amsterdamumcdb_1_0_2_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_asset_path_match",
+      "status": "pass",
+      "message": "build_summary field asset_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_effective_status_match",
+      "status": "pass",
+      "message": "build_summary field effective_status matches across reruns"
+    },
+    {
+      "check_id": "build_summary_manifest_path_match",
+      "status": "pass",
+      "message": "build_summary field manifest_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_registry_name_match",
+      "status": "pass",
+      "message": "build_summary field registry_name matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "409ae320f09a984b0d7e1271d0188726b5d02d3cb000715c2c4444b52233f997",
+        "size_bytes": 5096
+      },
+      "candidate_signature": {
+        "sha256": "409ae320f09a984b0d7e1271d0188726b5d02d3cb000715c2c4444b52233f997",
+        "size_bytes": 5096
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_icu_urine_output_event/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_icu_urine_output_event/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "50ac49a482dec4275daf7a6acead8aafb3fe48e8ea2aa6efcbee6ab31b3f609a",
+        "size_bytes": 569
+      },
+      "candidate_signature": {
+        "sha256": "6c1379c6f7587a492a35f9bd67ffb667081015e8d7dba2c196864c5d5976820b",
+        "size_bytes": 569
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "8c9efeb0d87a135501ae782d20bc86a87826843227ea8dd6d2ad6209d6e9d8be",
+        "size_bytes": 24961
+      },
+      "candidate_signature": {
+        "sha256": "8c9efeb0d87a135501ae782d20bc86a87826843227ea8dd6d2ad6209d6e9d8be",
+        "size_bytes": 24961
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/preview/std_icu_urine_output_event_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/preview/std_icu_urine_output_event_preview.csv",
+      "baseline_signature": {
+        "sha256": "083ded195b51486508b846e6ab99d07d893a2a1eb5374f44ba5ed1d4c4f8d549",
+        "size_bytes": 73158
+      },
+      "candidate_signature": {
+        "sha256": "083ded195b51486508b846e6ab99d07d893a2a1eb5374f44ba5ed1d4c4f8d549",
+        "size_bytes": 73158
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+      "baseline_signature": {
+        "sha256": "dd87ecb8cc3c1fbb98dc93beb30f4c70ae480a246b70a2e67f99ae4d6315d382",
+        "size_bytes": 42889797
+      },
+      "candidate_signature": {
+        "sha256": "dd87ecb8cc3c1fbb98dc93beb30f4c70ae480a246b70a2e67f99ae4d6315d382",
+        "size_bytes": 42889797
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "asset_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet"
+    },
+    "effective_status": {
+      "status": "pass",
+      "baseline_value": "reviewed_approved",
+      "candidate_value": "reviewed_approved"
+    },
+    "manifest_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/asset_manifest.md",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/asset_manifest.md"
+    },
+    "registry_name": {
+      "status": "pass",
+      "baseline_value": "PolicyRegistry_AmsterdamUMCdb-1.0.2_opening",
+      "candidate_value": "PolicyRegistry_AmsterdamUMCdb-1.0.2_opening"
+    }
+  }
+}

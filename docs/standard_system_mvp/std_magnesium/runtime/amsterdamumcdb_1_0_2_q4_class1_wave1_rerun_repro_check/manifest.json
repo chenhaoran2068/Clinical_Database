@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:56:10Z",
+  "variable_id": "std_magnesium",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_magnesium/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_magnesium/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_magnesium/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_magnesium/extract_code/Extract_Code_std_magnesium.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_magnesium/extract_code/Extract_Code_std_magnesium.py"
+  ],
+  "process_batch_id": "20260507T225605Z_AmsterdamUMCdb-1.0.2_std_magnesium",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:56:04Z",
+  "finished_at": "2026-05-07T22:56:10Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "df6bf958ff1881306d928ee6f5fb3dc9c01655dc3e679037a2e6ba56fe114859",
+    "mapping_spec_sha256": "44ee6b6229ab304ed7a2d552f71f1ae02194d9a187f6b075148f8b9aa0faeaa4"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_magnesium/std_magnesium_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_magnesium/preview/std_magnesium_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_magnesium/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_magnesium/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_magnesium/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "c886585df2b5079ca4380fbcbc5783a2620a1214f5555a53c0669c9f02ef26c4",
+      "size_bytes": 1767109
+    },
+    "preview_csv": {
+      "sha256": "8aa428c33ca1b2a666060267b329e169fdfccbdf6d44157aef441a4c69dfc90f",
+      "size_bytes": 89378
+    },
+    "asset_manifest": {
+      "sha256": "22d6f69496df6f3db2add0e9abe29dc39271dbced34247fbd69f1af974acd82a",
+      "size_bytes": 4056
+    },
+    "knowledge_package": {
+      "sha256": "3a8859aabacffa0b613ef383369c43c6e81e1fb750c9b39d835774c328123ece",
+      "size_bytes": 26227
+    },
+    "build_log": {
+      "sha256": "784eb7ea718fa92d8b393fca52e50fd8ea1f45c762815fd48dfad510c1426baa",
+      "size_bytes": 691
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225605Z_AmsterdamUMCdb-1.0.2_std_magnesium",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_magnesium/std_magnesium_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_magnesium/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_magnesium/log_archive/20260507T225605Z_AmsterdamUMCdb-1.0.2_std_magnesium__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

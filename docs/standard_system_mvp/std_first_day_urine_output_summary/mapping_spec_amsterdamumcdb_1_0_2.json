@@ -1,0 +1,224 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_2_window_summary_governed_mvp",
+  "created_at": "2026-04-25",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_first_day_urine_output_summary/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_first_day_urine_output_summary",
+    "variable_version": "v0_draft",
+    "semantic_intent": "first-day ICU urine-output window summary",
+    "category": "supportive_therapy_summary",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "source_value_class": "window_summary_from_approved_urine_output_event_stream",
+    "summary_subclass": "window_summary",
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "canonical_unit": "mL",
+    "canonical_value_family": "numeric_window_summary",
+    "current_output_storage_type": "Float64",
+    "current_output_precision_digits": 3
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_locator_mode": "approved_upstream_event_asset_with_admissions_core_first_day_window",
+    "source_package": "approved_amsterdam_urine_output_event_asset_plus_admissions_core",
+    "primary_source_tables": [
+      "std_icu_urine_output_event",
+      "admissions_core"
+    ],
+    "local_prepared_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet"
+    ],
+    "source_code_system": "Amsterdam numericitems itemid via upstream std_icu_urine_output_event",
+    "source_codes": [
+      8794,
+      8796,
+      8798,
+      8800,
+      8803,
+      10743,
+      10745,
+      19921,
+      19922
+    ],
+    "source_code_labels": {
+      "8794": "UrineCAD",
+      "8796": "UrineSupraPubis",
+      "8798": "UrineSpontaan",
+      "8800": "UrineIncontinentie",
+      "8803": "UrineUP",
+      "10743": "Nefrodrain li Uit",
+      "10745": "Nefrodrain re Uit",
+      "19921": "UrineSplint Li",
+      "19922": "UrineSplint Re"
+    },
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "stay_id"
+      ],
+      "local_identifier_fields": [
+        "patientid",
+        "admissionid",
+        "admissioncount"
+      ],
+      "anchor_start_field": "admissions_core.admittedat",
+      "anchor_end_field": "admissions_core.dischargedat",
+      "source_time_field": "std_icu_urine_output_event.event_time_offset_ms_raw",
+      "source_numeric_field": "std_icu_urine_output_event.urine_output_ml",
+      "source_raw_numeric_field": "std_icu_urine_output_event.urine_output_ml_raw",
+      "source_profile_field": "std_icu_urine_output_event.official_definition_profile_class",
+      "source_location_field": "admissions_core.location"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier normalized from admissions_core.patientid",
+      "hadm_id_role": "not separately available in the current Amsterdam public mapping and retained as nullable context",
+      "stay_id_role": "raw admissionid is the Amsterdam ICU/MC local admission identifier and normalizes to stay_id for ICU-semantic same-name outputs",
+      "stay_link_status": "icu_semantic_local_admission_via_admissionid"
+    },
+    "source_grain": "one row per approved Amsterdam ICU urine-output event from std_icu_urine_output_event before first-day stay-level reduction",
+    "target_grain": "one retained row per Amsterdam ICU-semantic stay-equivalent admission",
+    "target_scope": {
+      "included_locations": [
+        "IC",
+        "IC&MC",
+        "MC&IC"
+      ],
+      "excluded_same_name_locations": [
+        "MC"
+      ],
+      "scope_note": "MC-only Amsterdam admissions are intentionally excluded from this same-name ICU first-day urine-output summary."
+    },
+    "join_dependencies": [
+      {
+        "join_table": "admissions_core",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+        "join_key": "admissionid",
+        "join_cardinality": "many_urine_events_to_one_admission",
+        "required_fields": [
+          "patientid",
+          "admissionid",
+          "admissioncount",
+          "location",
+          "admittedat",
+          "dischargedat"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "std_icu_urine_output_event",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+        "join_key": "stay_id",
+        "join_cardinality": "many_urine_events_to_one_summary_target",
+        "required_fields": [
+          "stay_id",
+          "event_time_offset_ms_raw",
+          "urine_output_ml",
+          "urine_output_ml_raw",
+          "is_outlier_by_contract",
+          "cleaning_status"
+        ],
+        "failure_action": "fail_for_missing_approved_upstream_event_asset"
+      }
+    ]
+  },
+  "summary_build_translation": {
+    "window_label": "official_first_day_window_intime_to_plus_24h",
+    "anchor_family": "ICU admission anchor",
+    "window_start_translation": "start at admissions_core.admittedat for ICU-semantic Amsterdam admissions",
+    "window_end_translation": "end at admissions_core.admittedat + 24 hours for the aggregation numerator",
+    "qualifying_row_translation": "keep approved upstream std_icu_urine_output_event rows where event_time_offset_ms_raw >= admittedat and event_time_offset_ms_raw <= admittedat + 86400000 ms",
+    "selection_translation": "include all qualifying first-day urine-output event rows for each normalized stay_id",
+    "aggregation_translation": "sum urine_output_ml per stay_id as first_day_urine_output_ml and retain raw-sum audit context from urine_output_ml_raw",
+    "tie_break_translation": "not applicable because all qualifying rows are summed",
+    "no_source_row_translation": "retain every ICU-semantic target stay and set first_day_urine_output_ml to NULL when no qualifying first-day approved urine value exists",
+    "partial_window_translation": "retain observed-window context and partial-window caution flags, but do not clip the first-day aggregation numerator by dischargedat"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "mL",
+    "source_unit_expectation": "upstream std_icu_urine_output_event has already normalized retained Amsterdam source rows to mL",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "amsterdam_first_day_urine_output_from_approved_event_window_sum_ml_preserve_null_v1",
+    "output_rounding_rule": "retain current float precision from upstream approved event values",
+    "hard_valid_range_in_canonical_unit": [
+      0,
+      100000
+    ],
+    "plausible_range_in_canonical_unit": [
+      0,
+      15000
+    ],
+    "primary_output_value_field": "first_day_urine_output_ml",
+    "anchor_output_field": "first_day_window_start_offset_ms_raw",
+    "window_start_output_field": "first_day_window_start_offset_ms_raw",
+    "window_end_output_field": "first_day_window_nominal_end_offset_ms_raw"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "stay_id",
+      "admissioncount",
+      "source_location_raw",
+      "icu_semantic_scope_class",
+      "first_day_window_start_offset_ms_raw",
+      "first_day_window_nominal_end_offset_ms_raw",
+      "first_day_observed_window_end_offset_ms_raw",
+      "anchor_type",
+      "relative_start_time_value",
+      "relative_end_time_value",
+      "relative_time_unit",
+      "observed_window_minutes",
+      "first_day_complete_24h_observed_flag",
+      "first_day_partial_window_caution_flag",
+      "icu_outtime_missing_source_flag",
+      "has_any_first_day_urine_row_flag",
+      "has_any_approved_first_day_urine_value_flag",
+      "source_uo_row_count",
+      "source_approved_value_row_count",
+      "source_excluded_outlier_row_count",
+      "official_definition_profile_class"
+    ],
+    "nullable_value_fields": [
+      "first_day_urine_output_ml",
+      "first_day_urine_output_ml_raw",
+      "hadm_id"
+    ],
+    "duplicate_key": [
+      "stay_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_anchor_action": "fail",
+    "missing_window_bound_action": "fail_for_missing_admittedat_or_nominal_first_day_window",
+    "no_source_row_policy_check": "first_day_urine_output_ml may be NULL only when has_any_approved_first_day_urine_value_flag is false and source_approved_value_row_count is zero",
+    "window_consistency_action": "fail",
+    "join_failure_action": "fail_for_required_admissions_core_join_or_missing_approved_upstream_event_asset",
+    "same_name_scope_action": "fail_if_MC_only_admissions_are_included_in_the_same_name_ICU_summary",
+    "notes": [
+      "Amsterdam retained absolute time is a raw milliseconds offset and should not be interpreted as a wall-clock datetime.",
+      "The Amsterdam denominator is ICU-semantic admissions only: IC, IC&MC, and MC&IC.",
+      "MC-only admissions remain outside this same-name ICU summary and require a separate variable or explicit scope decision if needed.",
+      "Rows without approved first-day urine values are retained as NULL, not converted to zero.",
+      "The aggregation uses the approved upstream urine-output event asset and should not rescan raw numericitems for this summary."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_first_day_urine_output_summary/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_first_day_urine_output_summary/extract_code/Extract_Code_std_first_day_urine_output_summary.py",
+    "formal_output_rule": "The governed execution.py entrypoint reads this mapping spec and delegates to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_first_day_urine_output_summary outputs for AmsterdamUMCdb-1.0.2 should be produced only through the governed execution.py path rather than side scripts or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_first_day_urine_output_summary.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_first_day_urine_output_summary/extract_code/Extract_Code_std_first_day_urine_output_summary.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_first_day_urine_output_summary/std_first_day_urine_output_summary_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_first_day_urine_output_summary/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_first_day_urine_output_summary/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_first_day_urine_output_summary/preview/std_first_day_urine_output_summary_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_first_day_urine_output_summary/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_first_day_urine_output_summary/query_summary"
+  }
+}

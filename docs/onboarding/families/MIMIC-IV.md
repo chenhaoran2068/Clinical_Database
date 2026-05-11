@@ -25,10 +25,12 @@ Without a family-level rulebook, future versions such as `MIMIC-IV-2.2` or futur
 MIMIC-IV family
 |- MIMIC-IV-3.1
 |  |- current public Layer 1 covers core/hosp, icu, ed, note staging expectations
+|  |- local Layer 4 opening registry built pending owner review
 |  `- current public Layer 5 coverage is the most mature in the repository
 `- MIMIC-IV-ECHO-1.0
    |- sibling module
    |- separate Layer 1 root
+   |- local Layer 4 opening registry built pending owner review
    `- retained-variable design has not started yet
 ```
 

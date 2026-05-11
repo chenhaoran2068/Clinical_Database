@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:55:26Z",
+  "variable_id": "std_amylase",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_amylase/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_amylase/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_amylase/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_amylase/extract_code/Extract_Code_std_amylase.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_amylase/extract_code/Extract_Code_std_amylase.py"
+  ],
+  "process_batch_id": "20260507T225455Z_AmsterdamUMCdb-1.0.2_std_amylase",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:54:55Z",
+  "finished_at": "2026-05-07T22:55:26Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "92281449acd59af8590305054d1e222db3e838a69d64aac967ede9486c5dafbc",
+    "mapping_spec_sha256": "f7caf44a771e603401ae7c5fa7f1d7611b5c1ee226ed4de5c5cc18dbeecc42f1"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_amylase/std_amylase_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_amylase/preview/std_amylase_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_amylase/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_amylase/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_amylase/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "49f9cd809067a337b1e7a3dd3a43b5d93281193abf4f6fb3a99999b8eb19ee16",
+      "size_bytes": 537513
+    },
+    "preview_csv": {
+      "sha256": "c5c655c3ae29a32b36671f8981aabd123ccca456d3bba27c894ec83d9a936e7c",
+      "size_bytes": 84597
+    },
+    "asset_manifest": {
+      "sha256": "85c9a63a2fde77d6e53c94574efcac75289e05e0ed06c73560814b9bf641379f",
+      "size_bytes": 3959
+    },
+    "knowledge_package": {
+      "sha256": "dc2fc74b7169bee8bb889f43a6ec5af1149c2f3e34a4522c2962dc647f5739c2",
+      "size_bytes": 26224
+    },
+    "build_log": {
+      "sha256": "b50a136ea3051fb3e99821e7159b06f4817bcc0bcad7a17ede0bd01be7b2a3ab",
+      "size_bytes": 692
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225455Z_AmsterdamUMCdb-1.0.2_std_amylase",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_amylase/std_amylase_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_amylase/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_amylase/log_archive/20260507T225455Z_AmsterdamUMCdb-1.0.2_std_amylase__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

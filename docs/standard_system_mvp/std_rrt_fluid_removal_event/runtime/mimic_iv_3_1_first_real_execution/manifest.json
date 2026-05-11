@@ -1,0 +1,96 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T13:15:35Z",
+  "variable_id": "std_rrt_fluid_removal_event",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_rrt_fluid_removal_event/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_rrt_fluid_removal_event/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_rrt_fluid_removal_event/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/extract_code/Extract_Code_std_rrt_fluid_removal_event.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/device_support/std_crrt_device_parameter_event/std_crrt_device_parameter_event_long.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/extract_code/Extract_Code_std_rrt_fluid_removal_event.py"
+  ],
+  "process_batch_id": "20260502T131530Z_MIMIC-IV-3.1_std_rrt_fluid_removal_event",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T13:15:29Z",
+  "finished_at": "2026-05-02T13:15:35Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "cbb9067d82744d47406c0a70c0d7efd60c0dda4d92714dd5126b250f76e1abad",
+    "mapping_spec_sha256": "7661a54e4a97b3aaeec3216c1555992d995d5b1c8ebf94c02324eb825e3537ac"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/intake_output_balance/std_rrt_fluid_removal_event/std_rrt_fluid_removal_event_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/preview/std_rrt_fluid_removal_event_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_rrt_fluid_removal_event/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "72928670f2a2e1c57135d2d578957919ec4b3cddcb4babb549ad2865665e6b71",
+      "size_bytes": 12465576
+    },
+    "preview_csv": {
+      "sha256": "77b13937fc2430e4bdda71cc10885ad5b7e5b494dea24cca12aed7d161cfd667",
+      "size_bytes": 125288
+    },
+    "asset_manifest": {
+      "sha256": "dac2d019865e2c042c477e6b4559896f2000f487090158269d98bd8af42163fb",
+      "size_bytes": 3361
+    },
+    "knowledge_package": {
+      "sha256": "fbd301282b2949f7c71c03bac9a2ca6e9b92a15d8c8acf2fc1f498860b3c291a",
+      "size_bytes": 28213
+    },
+    "build_log": {
+      "sha256": "0d665f0aa5bbc26632147881c2bd6efb0fb3a55643ebbd982fdac6b90915229b",
+      "size_bytes": 4121
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T131530Z_MIMIC-IV-3.1_std_rrt_fluid_removal_event",
+    "row_count": 702910,
+    "unique_stay_id": 4418,
+    "default_bridge_row_count": 338554,
+    "context_only_row_count": 364356,
+    "negative_value_caution_row_count": 1240,
+    "extreme_value_caution_row_count": 1306,
+    "default_bridge_eligible_volume_ml": 130066286.78999999,
+    "fluid_removal_event_name_counts": {
+      "hemodialysis_output_volume": 3307,
+      "machine_hourly_patient_removal_volume": 335247,
+      "peritoneal_dialysis_volume_in_context": 1669,
+      "peritoneal_dialysis_volume_out_context": 1456,
+      "ultrafiltrate_output_volume_context": 361231
+    },
+    "fluid_removal_event_name_stays": {
+      "hemodialysis_output_volume": 1755,
+      "machine_hourly_patient_removal_volume": 2902,
+      "peritoneal_dialysis_volume_in_context": 209,
+      "peritoneal_dialysis_volume_out_context": 183,
+      "ultrafiltrate_output_volume_context": 2870
+    },
+    "fluid_removal_event_name_volume_ml": {
+      "hemodialysis_output_volume": 6350804.09,
+      "machine_hourly_patient_removal_volume": 123623777.7,
+      "peritoneal_dialysis_volume_in_context": 3212390.0,
+      "peritoneal_dialysis_volume_out_context": 3094315.0,
+      "ultrafiltrate_output_volume_context": 127242738.49999997
+    },
+    "bridge_role_class_counts": {
+      "context_only_not_default_bridge": 364356,
+      "default_balance_bridge_include": 338554
+    },
+    "source_rrt_family_class_counts": {
+      "crrt_family": 696478,
+      "non_crrt_rrt": 6432
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_candidate",
+  "artifact_status": "candidate_mapping_pending_owner_review",
+  "approval_status": "not_owner_approved",
+  "mvp_phase": "class_7_amsterdam_q2_build_first_candidate_mvp",
+  "created_at": "2026-05-04",
+  "updated_at": "2026-05-04",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_icu_entry_source/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_icu_entry_source",
+    "variable_version": "v0_draft",
+    "semantic_intent": "ICU stay entry-source category",
+    "semantic_grain": "one row per retained ICU stay entry-source category",
+    "source_value_class": "source_recorded_admin_category",
+    "canonical_unit": "none",
+    "canonical_value_family": "administrative_category"
+  },
+  "candidate_boundary_notice": {
+    "status": "built_candidate_owner_approval_pending",
+    "owner_approval_status": "not_owner_approved",
+    "reason": "Amsterdam origin is source-faithful local admission context, not yet harmonized to a cross-database transfer taxonomy.",
+    "approval_gate": "candidate runtime evidence only until detailed review and owner approval close"
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_locator_mode": "direct_admissions_core_admin_field",
+    "source_package": "Amsterdam admissions",
+    "source_table": "admissions_core",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+    "source_value_field": "origin",
+    "source_grain": "one Amsterdam admissions_core local ICU/MC admission row",
+    "target_grain": "ICU stay",
+    "identifier_normalization": {
+      "subject_id_role": "patientid",
+      "hadm_id_role": "not separately available in the current Amsterdam opening mapping",
+      "stay_id_role": "admissionid normalized to ICU/MC stay_id",
+      "stay_link_status": "icu_mcu_local_admission_via_admissionid"
+    }
+  },
+  "admin_demographic_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "identifier_translation": "emit subject_id from patientid and stay_id from admissionid; keep hadm_id null because no separate hospital admission id is currently available",
+    "value_normalization_translation": "retain admissions_core.origin with light public-safe category labels while preserving the raw origin field",
+    "no_row_translation": "rows with null source values are not emitted in this first candidate asset"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "amsterdam_origin_to_icu_entry_source_source_faithful_candidate_v1",
+    "primary_output_value_field": "std_icu_entry_source",
+    "source_value_output_field": "origin"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "stay_id",
+      "admin_record_index",
+      "std_icu_entry_source"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "admin_record_index"
+    ],
+    "duplicate_action": "fail",
+    "notes": [
+      "Build-first candidate mapping; owner approval is explicitly pending.",
+      "Amsterdam admissions_core.origin gives local pre-ICU/MC source context when non-null.",
+      "Amsterdam origin is source-faithful local admission context, not yet harmonized to a cross-database transfer taxonomy."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_icu_entry_source/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_entry_source/extract_code/Extract_Code_std_icu_entry_source.py",
+    "formal_output_rule": "Candidate output should be generated through the governed execution.py path and reviewed before approval.",
+    "non_bypassable_target_rule": "Approval-facing outputs should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_icu_entry_source.md",
+    "candidate_evidence_review_path": "docs/standard_system_mvp/AMSTERDAM_Q2_DIRECT_BUILD_CANDIDATE_REVIEW.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_entry_source/extract_code/Extract_Code_std_icu_entry_source.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/encounter_information/std_icu_entry_source/std_icu_entry_source_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_entry_source/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_entry_source/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_entry_source/preview/std_icu_entry_source_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_entry_source/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_entry_source/query_summary"
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_2_mimic_batch_governed_mvp",
+  "created_at": "2026-04-25",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "baseline_summary_window_numeric",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BaselineSummaryWindowNumeric_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_weight_admission_baseline",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "admission baseline weight",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "anthropometrics",
+    "category": "anthropometric_measurement"
+  },
+  "immutable_core": {
+    "semantic_intent": "admission baseline body weight snapshot",
+    "semantic_definition": "A one-row-per-hospital-admission encounter baseline snapshot retaining one selected cleaned body-weight event in kilograms inside the approved admission-start baseline window, rather than a raw weight event stream, a patient-level stable weight, an ICU-start baseline, or a discharge/follow-up weight.",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "value_family": "numeric_measurement",
+    "source_value_class": "baseline_snapshot_from_cleaned_event_stream",
+    "derived_values_allowed": true,
+    "aggregated_values_allowed": false,
+    "baseline_or_summary_interpretation_allowed": true,
+    "same_name_cross_database_rule": "Any database asset published as std_weight_admission_baseline must preserve admission-baseline encounter-start meaning, kilogram representation, and explicit anchor/window/selection semantics. It must not silently widen to generic patient-level weight or shift to ICU-start, discharge, or arbitrary nearest-weight semantics."
+  },
+  "summary_contract": {
+    "summary_subclass": "baseline_snapshot",
+    "target_entity_grain": "hospital admission encounter",
+    "anchor_family": "hospital admission start",
+    "window_label": "admission_baseline_0_to_24h_clipped_by_discharge",
+    "window_start_rule": "start at the hospital admission timestamp",
+    "window_end_rule": "end at the earlier of hospital discharge or hospital admission timestamp plus 1440 minutes",
+    "qualifying_row_rule": "a qualifying source row is a cleaned weight event with a direct hospital-admission identifier, a non-null measurement timestamp, and a measurement timestamp inside the approved admission-baseline window",
+    "selection_rule": "select the qualifying event with the smallest absolute time distance to the hospital admission timestamp",
+    "aggregation_rule": "single_selected_event_value_no_aggregation",
+    "tie_break_rule": "if multiple qualifying events are tied on time distance, prefer admission_weight_kg, then admission_weight_lbs converted to kg, then daily_weight_kg; if still tied, prefer earlier measurement time and then stable source_measurement_id order",
+    "no_source_row_action": "do not retain a target encounter row when no qualifying baseline event exists under the approved source and window rules",
+    "partial_window_action": "clip the baseline window at hospital discharge when discharge occurs before 24 hours after admission"
+  },
+  "canonical_representation": {
+    "canonical_unit": "kg",
+    "canonical_ucum": "kg",
+    "value_type": "numeric_measurement",
+    "storage_type": "Float64",
+    "storage_precision_digits": 2,
+    "display_precision_digits": 2,
+    "anchor_timestamp_required": false,
+    "window_bounds_required": false,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "selected_stay_id"
+    ],
+    "hard_valid_range_in_canonical_unit": [
+      20,
+      500
+    ],
+    "plausible_range_in_canonical_unit": [
+      30,
+      250
+    ],
+    "range_role_note": "The hard range matches the current approved MIMIC retained-cleaning envelope. Values outside the plausible band require review but are not automatically impossible in critically ill adult records."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "derived",
+    "public_anchor_status": "broader body-weight observation anchors exist, but the admission-baseline encounter snapshot semantics are governed by this internal anchor/window contract",
+    "preferred_anchor_families": [
+      "LOINC",
+      "SNOMED CT"
+    ],
+    "candidate_external_refs": [
+      {
+        "system": "LOINC",
+        "code": "29463-7",
+        "label": "Body weight",
+        "mapping_type": "broader"
+      }
+    ],
+    "note": "The external body-weight concept is a useful semantic anchor, but it does not by itself encode the admission-baseline window, target encounter grain, or no-source-row behavior."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "summary_subclass",
+      "target_entity_grain",
+      "anchor_family",
+      "window_label",
+      "window_start_rule",
+      "window_end_rule",
+      "qualifying_row_rule",
+      "selection_rule",
+      "aggregation_rule",
+      "no_source_row_action",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "hard_valid_range_in_canonical_unit",
+      "plausible_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "changing std_weight_admission_baseline from admission-baseline encounter weight to generic subject-level body weight",
+      "changing the anchor from hospital admission start to ICU admission start or discharge time"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving the same admission-baseline meaning",
+      "tightening the source priority list or validation range after review without changing the baseline window semantics"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "raw source tables and source codes used to find local weight measurements",
+      "unit conversion route before canonical kilogram output",
+      "local structural keys used as provenance fields",
+      "availability of exact measured rows versus approved proxy rows, when explicitly reviewed"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing a patient-level stable or historical weight as std_weight_admission_baseline",
+      "publishing an ICU-start baseline, discharge weight, first-day average, or arbitrary nearest weight as std_weight_admission_baseline without creating or approving a distinct variable contract"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_for_mimic_only",
+    "formal_output_rule": "Formal std_weight_admission_baseline outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_weight_admission_baseline outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_weight_admission_baseline/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_weight_admission_baseline/execution.py",
+    "public_card": "docs/std_variable_cards/std_weight_admission_baseline.md",
+    "class_readme": "docs/standard_system_mvp/variable_classes/baseline_summary_window_numeric/README.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  },
+  "current_scope_boundary": {
+    "approved_public_databases": [
+      "MIMIC-IV-3.1"
+    ],
+    "not_yet_approved_database_notes": [
+      "AmsterdamUMCdb-1.0.2 has a local candidate asset, but it remains built_pending_user_review and is not included in this public approved mapping set."
+    ]
+  }
+}

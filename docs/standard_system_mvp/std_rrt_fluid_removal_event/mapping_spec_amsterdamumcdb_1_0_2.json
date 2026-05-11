@@ -1,0 +1,159 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "reviewed_approved_public_mapping_lock",
+  "mvp_phase": "class_4_rrt_fluid_removal_event_amsterdam_same_name_approval",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_rrt_fluid_removal_event/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_rrt_fluid_removal_event",
+    "variable_version": "v0_draft",
+    "semantic_intent": "source-recorded renal replacement therapy fluid-removal event",
+    "semantic_grain": "time-stamped treatment/device/IO event",
+    "source_value_class": "source_recorded_treatment_device_io_amount_event",
+    "canonical_unit": "mL",
+    "canonical_value_family": "numeric_event_with_context"
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_locator_mode": "approved_source_event_primary_numericitems_itemid_filter_with_parent_context_flags",
+    "source_package": "reviewed_unsplit_numericitems_event_plus_approved_rrt_parent_episodes",
+    "source_table": "numericitems_event + std_crrt_family_active + std_non_crrt_rrt_active",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_crrt_family_active/std_crrt_family_active_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_non_crrt_rrt_active/std_non_crrt_rrt_active_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet"
+    ],
+    "source_itemids": [
+      8805,
+      8806
+    ],
+    "source_time_field": "event_time_primary_ms_raw",
+    "source_value_field": "value",
+    "source_unit_field": "unit",
+    "source_grain": "one Amsterdam numericitems row for itemid 8805 or 8806",
+    "target_grain": "one retained approved RRT fluid-removal event row",
+    "identifier_normalization": {
+      "subject_id_role": "Amsterdam patientid from admissions_core",
+      "hadm_id_role": "not available for Amsterdam ICU/MC local-admission semantics",
+      "stay_id_role": "Amsterdam admissionid under ICU/MC local-admission semantics",
+      "stay_link_status": "icu_mcu_local_admission_via_admissionid"
+    },
+    "adjacent_status_boundary": {
+      "included_scope": [
+        "8805 / CVVH Onttrokken as approved CRRT/CVVH removed-volume row",
+        "8806 / Hemodialyse onttrekken as approved hemodialysis removed-volume row"
+      ],
+      "default_bridge_scope": [
+        "8805 / CVVH Onttrokken",
+        "8806 / Hemodialyse onttrekken"
+      ],
+      "excluded_same_family_outputs": [
+        "std_rrt_active",
+        "std_crrt_family_active",
+        "std_non_crrt_rrt_active",
+        "std_rrt_modality_episode",
+        "std_icu_urine_output_event",
+        "std_first_day_urine_output_summary",
+        "std_icu_output_event"
+      ],
+      "excluded_adjacent_source_rows": [
+        "8808 / Peritoneaaldialyse",
+        "12091 / CVVH-Vochtverlies stand",
+        "12454 / Vochtverlies ingesteld",
+        "12463 / Onttrekken",
+        "14849 / MFT_Ultrafiltratie (ingesteld)",
+        "14851 / MFT_UF Totaal (ingesteld)",
+        "20078 / MFT_Filtraatvolume_huidig",
+        "20079 / MFT_Filtraatvolume_totaal",
+        "dialysis access-line rows",
+        "peritoneal catheter rows",
+        "RRT process active flags",
+        "RRT modality episodes"
+      ],
+      "mapping_specific_notes": [
+        "This mapping approves Amsterdam same-name publication under a source-event-primary rule.",
+        "Rows are retained even when expected parent overlap is missing, with parent_link_status and parent_link_missing_caution_flag.",
+        "No rate setting, cumulative counter, access line, active flag, or modality episode is promoted into the event numerator."
+      ],
+      "boundary_reason": "Amsterdam explicit numeric volume rows are narrow enough to support the same-name event stream without importing adjacent non-event semantics; parent links provide context and caution rather than a hard inclusion gate."
+    }
+  },
+  "event_stream_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "event_time_translation": "retain event_time_primary_ms_raw as charttime_offset_ms_raw and event_time_primary_minutes_relative as charttime_minutes_relative",
+    "event_value_translation": "copy numericitems.value to fluid_removal_value_ml when unit is ml",
+    "unit_translation": "retain source unit and write standard_unit=mL for approved rows",
+    "context_translation": "8805 maps to CVVH approved context and 8806 maps to IHD approved context; source itemid, label, unit, family, modality, and bridge role are retained",
+    "parent_link_translation": "link 8805 rows to std_crrt_family_active and 8806 rows to std_non_crrt_rrt_active when event time falls inside an approved parent interval; otherwise retain missing-parent caution",
+    "downstream_aggregation_translation": "do not smooth, back-shift, difference counters, or summarize; this approved mapping remains event-level",
+    "no_row_translation": "absence of a retained row means no itemid 8805/8806 numeric event under this approved mapping, not absence of RRT support"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "mL",
+    "normalization_rule_id": "amsterdam_numericitems_8805_8806_to_approved_rrt_fluid_removal_event_v1",
+    "primary_output_value_field": "fluid_removal_value_ml",
+    "event_time_output_field": "charttime_offset_ms_raw",
+    "standard_unit_output_field": "standard_unit",
+    "source_context_output_field": "fluid_removal_event_name_std",
+    "bridge_role_output_field": "bridge_role_class",
+    "parent_support_output_field": "parent_support_episode_id",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_time_output_field": "relative_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "stay_id",
+      "rrt_fluid_removal_event_index",
+      "source_event_id",
+      "charttime_offset_ms_raw",
+      "std_rrt_fluid_removal_event",
+      "fluid_removal_event_name_std",
+      "fluid_removal_value_ml",
+      "standard_unit",
+      "bridge_role_class",
+      "parent_link_status"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "source_event_id"
+    ],
+    "duplicate_action": "fail",
+    "no_row_policy_check": "absence of row is not universal proof of no RRT support or no unrecorded extracorporeal removal",
+    "unit_check": "standard_unit must be mL for all retained rows",
+    "bridge_role_domain_check": [
+      "default_balance_bridge_include"
+    ],
+    "source_context_domain_check": [
+      "cvvh_removed_volume",
+      "hemodialysis_removed_volume"
+    ],
+    "parent_context_caution_check": "parent-link absence is retained as a caution because the approved rule is source-event-primary rather than parent-required",
+    "notes": [
+      "This is a formal Amsterdam same-name approval mapping.",
+      "Parent-link absence is retained as a caution rather than an exclusion.",
+      "Rate settings and cumulative counters remain outside this approved execution."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_rrt_fluid_removal_event/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_rrt_fluid_removal_event/extract_code/Extract_Code_std_rrt_fluid_removal_event.py",
+    "formal_output_rule": "The governed execution.py entrypoint runs the approved Amsterdam same-name mapping under the source-event-primary rule.",
+    "non_bypassable_target_rule": "Formal Amsterdam std_rrt_fluid_removal_event outputs should be produced only through this governed path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_rrt_fluid_removal_event.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_rrt_fluid_removal_event/extract_code/Extract_Code_std_rrt_fluid_removal_event.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/intake_output_balance/std_rrt_fluid_removal_event/std_rrt_fluid_removal_event_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_rrt_fluid_removal_event/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_rrt_fluid_removal_event/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_rrt_fluid_removal_event/preview/std_rrt_fluid_removal_event_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_rrt_fluid_removal_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_rrt_fluid_removal_event/query_summary"
+  }
+}

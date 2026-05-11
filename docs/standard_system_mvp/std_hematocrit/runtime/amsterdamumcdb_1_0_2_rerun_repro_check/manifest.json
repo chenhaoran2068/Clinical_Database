@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:23:39Z",
+  "variable_id": "std_hematocrit",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_hematocrit/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_hematocrit/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_hematocrit/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hematocrit/extract_code/Extract_Code_std_hematocrit.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hematocrit/extract_code/Extract_Code_std_hematocrit.py"
+  ],
+  "process_batch_id": "20260503T092332Z_AmsterdamUMCdb-1.0.2_std_hematocrit",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:23:31Z",
+  "finished_at": "2026-05-03T09:23:39Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "9c4e3218e2e274a29bead88d425a9016f1ae58179eaf6a434b96d8021f6a0ef0",
+    "mapping_spec_sha256": "938b199c722678a89c0fa3660e5165526ddd83ca57d95e32a32d89904eb688a6"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_hematocrit/std_hematocrit_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hematocrit/preview/std_hematocrit_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hematocrit/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hematocrit/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_hematocrit/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "0718a53ca20d4d30557f13199ac22e9607d53be441ac012061eafce5462f2cff",
+      "size_bytes": 7695234
+    },
+    "preview_csv": {
+      "sha256": "24bdaa84347ab3baaeffcade411524dacf739be5022343fc1f4f614ab5d89804",
+      "size_bytes": 88417
+    },
+    "asset_manifest": {
+      "sha256": "8ac37a9617b2b4755151341311b822147673ab3d06d89410164b517809a2c76d",
+      "size_bytes": 4164
+    },
+    "knowledge_package": {
+      "sha256": "a435eaea1a7aa95c9979b582d57340a4f5917f1cbaaab8acc5b4a9a7a1c6bc0a",
+      "size_bytes": 25845
+    },
+    "build_log": {
+      "sha256": "1dab7b065fc7672e6cc940455393f495ebb1a2e488b40e89e9e7eafa911e6e21",
+      "size_bytes": 704
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T092332Z_AmsterdamUMCdb-1.0.2_std_hematocrit",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_hematocrit/std_hematocrit_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hematocrit/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hematocrit/log_archive/20260503T092332Z_AmsterdamUMCdb-1.0.2_std_hematocrit__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

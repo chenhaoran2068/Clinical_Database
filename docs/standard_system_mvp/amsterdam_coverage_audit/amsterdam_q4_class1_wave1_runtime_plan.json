@@ -1,0 +1,21 @@
+{
+  "artifact_type": "amsterdam_q4_class1_wave1_runtime_plan",
+  "created_at": "2026-05-04",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "owner_approval_status": "not_owner_approved",
+  "variables": [
+    "std_anion_gap",
+    "std_amylase",
+    "std_lipase",
+    "std_ferritin",
+    "std_haptoglobin",
+    "std_magnesium",
+    "std_phosphate",
+    "std_osmolality_measured",
+    "std_total_cholesterol",
+    "std_troponin_t"
+  ],
+  "first_runtime_dir_suffix": "amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution",
+  "rerun_runtime_dir_suffix": "amsterdamumcdb_1_0_2_q4_class1_wave1_rerun_repro_check",
+  "review_packet": "docs/standard_system_mvp/AMSTERDAM_Q4_CLASS1_WAVE1_RUNTIME_CANDIDATE_REVIEW.md"
+}

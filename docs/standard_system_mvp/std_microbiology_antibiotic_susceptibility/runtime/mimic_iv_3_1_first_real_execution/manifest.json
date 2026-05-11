@@ -1,0 +1,107 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T15:56:44Z",
+  "variable_id": "std_microbiology_antibiotic_susceptibility",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/extract_code/Extract_Code_std_microbiology_antibiotic_susceptibility.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_microbiologyevents.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/extract_code/Extract_Code_std_microbiology_antibiotic_susceptibility.py"
+  ],
+  "process_batch_id": "20260502T155441Z_MIMIC-IV-3.1_std_microbiology_antibiotic_susceptibility",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T15:54:41Z",
+  "finished_at": "2026-05-02T15:56:44Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "d21f76b4c136e3b7bf236259fe69eb1ad25c1d4ecb90edf35d54f65f616e5e57",
+    "mapping_spec_sha256": "748345981a77c09e59ab74cec6c59dc8682ba6cd9c4fdd219e41c8c2fca1a6a1"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_microbiology_antibiotic_susceptibility/std_microbiology_antibiotic_susceptibility_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/preview/std_microbiology_antibiotic_susceptibility_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "31b908bc583de33a5da1d0455914b5b58f4a8e6b7ca1c41bb55901e8c9cb2712",
+      "size_bytes": 24151132
+    },
+    "preview_csv": {
+      "sha256": "1d303572c68e26e69b69aaee2ed591a0348011169a8ff8bb901ab7b4f495dfa8",
+      "size_bytes": 80285
+    },
+    "asset_manifest": {
+      "sha256": "9d8ba4f81add7161a51518545695fbabee257c2bd899e74429887ca7cca48ea9",
+      "size_bytes": 3477
+    },
+    "knowledge_package": {
+      "sha256": "e266a754ae1655b66269ccec6bb1aa300012d21db4d05c39d440e0a1716045e3",
+      "size_bytes": 28722
+    },
+    "build_log": {
+      "sha256": "37c9d7d7d37b4272aed3eb9a2200e68c7c3d86cda8326ae56a65fccfac4c95d1",
+      "size_bytes": 1842
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T155441Z_MIMIC-IV-3.1_std_microbiology_antibiotic_susceptibility",
+    "source_opening_scope_rows": 2791324,
+    "retained_rows": 1314671,
+    "unique_subject_id": 52973,
+    "unique_hadm_id_nonnull": 33109,
+    "null_hadm_rows": 838045,
+    "encounter_anchor_status_counts": {
+      "subject_only_no_hadm": 838045,
+      "hospital_admission": 476626
+    },
+    "opening_test_class_counts": {
+      "urine_culture": 823984,
+      "wound_culture": 157682,
+      "blood_culture": 135674,
+      "respiratory_culture": 124715,
+      "body_fluid_culture": 72253,
+      "fungal_culture": 363
+    },
+    "organism_positive_analysis_class_counts": {
+      "count_as_positive_isolate": 1314664,
+      "exclude_flora_or_mixed_summary": 7
+    },
+    "interpretation_raw_counts": {
+      "S": 1050745,
+      "R": 224987,
+      "I": 38687,
+      "D": 203,
+      "Z": 39,
+      "N": 6,
+      "P": 4
+    },
+    "interpretation_class_counts": {
+      "susceptible": 1050745,
+      "resistant": 224987,
+      "intermediate": 38687,
+      "susceptible_dose_dependent": 203,
+      "other_rare_raw_code": 49
+    },
+    "sir_standard_class_counts": {
+      "susceptible": 1050745,
+      "resistant": 224987,
+      "intermediate": 38687
+    },
+    "sir_standard_eligible_rows": 1314419,
+    "resistance_analysis_eligible_rows": 1314412,
+    "rows_with_dilution_text": 1284277,
+    "rows_with_dilution_value": 1283868,
+    "rows_with_comment_text": 290960
+  }
+}

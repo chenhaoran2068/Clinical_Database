@@ -1,0 +1,443 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:35Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_microbiology_antibiotic_susceptibility",
+  "database_id": "MIMIC-IV-3.1",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/runtime/mimic_iv_3_1_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/runtime/mimic_iv_3_1_rerun_repro_check",
+  "baseline_process_batch_id": "20260502T155441Z_MIMIC-IV-3.1_std_microbiology_antibiotic_susceptibility",
+  "candidate_process_batch_id": "20260502T155650Z_MIMIC-IV-3.1_std_microbiology_antibiotic_susceptibility",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "encounter_anchor_status_counts",
+    "interpretation_class_counts",
+    "interpretation_raw_counts",
+    "null_hadm_rows",
+    "opening_test_class_counts",
+    "organism_positive_analysis_class_counts",
+    "resistance_analysis_eligible_rows",
+    "retained_rows",
+    "rows_with_comment_text",
+    "rows_with_dilution_text",
+    "rows_with_dilution_value",
+    "sir_standard_class_counts",
+    "sir_standard_eligible_rows",
+    "source_opening_scope_rows",
+    "unique_hadm_id_nonnull",
+    "unique_subject_id"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/runtime/mimic_iv_3_1_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/runtime/mimic_iv_3_1_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_encounter_anchor_status_counts_match",
+      "status": "pass",
+      "message": "build_summary field encounter_anchor_status_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_interpretation_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field interpretation_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_interpretation_raw_counts_match",
+      "status": "pass",
+      "message": "build_summary field interpretation_raw_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_null_hadm_rows_match",
+      "status": "pass",
+      "message": "build_summary field null_hadm_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_opening_test_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field opening_test_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_organism_positive_analysis_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field organism_positive_analysis_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_resistance_analysis_eligible_rows_match",
+      "status": "pass",
+      "message": "build_summary field resistance_analysis_eligible_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_retained_rows_match",
+      "status": "pass",
+      "message": "build_summary field retained_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_rows_with_comment_text_match",
+      "status": "pass",
+      "message": "build_summary field rows_with_comment_text matches across reruns"
+    },
+    {
+      "check_id": "build_summary_rows_with_dilution_text_match",
+      "status": "pass",
+      "message": "build_summary field rows_with_dilution_text matches across reruns"
+    },
+    {
+      "check_id": "build_summary_rows_with_dilution_value_match",
+      "status": "pass",
+      "message": "build_summary field rows_with_dilution_value matches across reruns"
+    },
+    {
+      "check_id": "build_summary_sir_standard_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field sir_standard_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_sir_standard_eligible_rows_match",
+      "status": "pass",
+      "message": "build_summary field sir_standard_eligible_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_source_opening_scope_rows_match",
+      "status": "pass",
+      "message": "build_summary field source_opening_scope_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_hadm_id_nonnull_match",
+      "status": "pass",
+      "message": "build_summary field unique_hadm_id_nonnull matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_subject_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_subject_id matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "9d8ba4f81add7161a51518545695fbabee257c2bd899e74429887ca7cca48ea9",
+        "size_bytes": 3477
+      },
+      "candidate_signature": {
+        "sha256": "9d8ba4f81add7161a51518545695fbabee257c2bd899e74429887ca7cca48ea9",
+        "size_bytes": 3477
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "37c9d7d7d37b4272aed3eb9a2200e68c7c3d86cda8326ae56a65fccfac4c95d1",
+        "size_bytes": 1842
+      },
+      "candidate_signature": {
+        "sha256": "3afbc9698e9829a6f52456b66d78c0497e7dc7d54ebcf2d7ce8f4bb85cf713b7",
+        "size_bytes": 1842
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "e266a754ae1655b66269ccec6bb1aa300012d21db4d05c39d440e0a1716045e3",
+        "size_bytes": 28722
+      },
+      "candidate_signature": {
+        "sha256": "e266a754ae1655b66269ccec6bb1aa300012d21db4d05c39d440e0a1716045e3",
+        "size_bytes": 28722
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/preview/std_microbiology_antibiotic_susceptibility_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/preview/std_microbiology_antibiotic_susceptibility_preview.csv",
+      "baseline_signature": {
+        "sha256": "1d303572c68e26e69b69aaee2ed591a0348011169a8ff8bb901ab7b4f495dfa8",
+        "size_bytes": 80285
+      },
+      "candidate_signature": {
+        "sha256": "1d303572c68e26e69b69aaee2ed591a0348011169a8ff8bb901ab7b4f495dfa8",
+        "size_bytes": 80285
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_microbiology_antibiotic_susceptibility/std_microbiology_antibiotic_susceptibility_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_microbiology_antibiotic_susceptibility/std_microbiology_antibiotic_susceptibility_long.parquet",
+      "baseline_signature": {
+        "sha256": "31b908bc583de33a5da1d0455914b5b58f4a8e6b7ca1c41bb55901e8c9cb2712",
+        "size_bytes": 24151132
+      },
+      "candidate_signature": {
+        "sha256": "31b908bc583de33a5da1d0455914b5b58f4a8e6b7ca1c41bb55901e8c9cb2712",
+        "size_bytes": 24151132
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "encounter_anchor_status_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "subject_only_no_hadm": 838045,
+        "hospital_admission": 476626
+      },
+      "candidate_value": {
+        "subject_only_no_hadm": 838045,
+        "hospital_admission": 476626
+      }
+    },
+    "interpretation_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "susceptible": 1050745,
+        "resistant": 224987,
+        "intermediate": 38687,
+        "susceptible_dose_dependent": 203,
+        "other_rare_raw_code": 49
+      },
+      "candidate_value": {
+        "susceptible": 1050745,
+        "resistant": 224987,
+        "intermediate": 38687,
+        "susceptible_dose_dependent": 203,
+        "other_rare_raw_code": 49
+      }
+    },
+    "interpretation_raw_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "S": 1050745,
+        "R": 224987,
+        "I": 38687,
+        "D": 203,
+        "Z": 39,
+        "N": 6,
+        "P": 4
+      },
+      "candidate_value": {
+        "S": 1050745,
+        "R": 224987,
+        "I": 38687,
+        "D": 203,
+        "Z": 39,
+        "N": 6,
+        "P": 4
+      }
+    },
+    "null_hadm_rows": {
+      "status": "pass",
+      "baseline_value": 838045,
+      "candidate_value": 838045
+    },
+    "opening_test_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "urine_culture": 823984,
+        "wound_culture": 157682,
+        "blood_culture": 135674,
+        "respiratory_culture": 124715,
+        "body_fluid_culture": 72253,
+        "fungal_culture": 363
+      },
+      "candidate_value": {
+        "urine_culture": 823984,
+        "wound_culture": 157682,
+        "blood_culture": 135674,
+        "respiratory_culture": 124715,
+        "body_fluid_culture": 72253,
+        "fungal_culture": 363
+      }
+    },
+    "organism_positive_analysis_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "count_as_positive_isolate": 1314664,
+        "exclude_flora_or_mixed_summary": 7
+      },
+      "candidate_value": {
+        "count_as_positive_isolate": 1314664,
+        "exclude_flora_or_mixed_summary": 7
+      }
+    },
+    "resistance_analysis_eligible_rows": {
+      "status": "pass",
+      "baseline_value": 1314412,
+      "candidate_value": 1314412
+    },
+    "retained_rows": {
+      "status": "pass",
+      "baseline_value": 1314671,
+      "candidate_value": 1314671
+    },
+    "rows_with_comment_text": {
+      "status": "pass",
+      "baseline_value": 290960,
+      "candidate_value": 290960
+    },
+    "rows_with_dilution_text": {
+      "status": "pass",
+      "baseline_value": 1284277,
+      "candidate_value": 1284277
+    },
+    "rows_with_dilution_value": {
+      "status": "pass",
+      "baseline_value": 1283868,
+      "candidate_value": 1283868
+    },
+    "sir_standard_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "susceptible": 1050745,
+        "resistant": 224987,
+        "intermediate": 38687
+      },
+      "candidate_value": {
+        "susceptible": 1050745,
+        "resistant": 224987,
+        "intermediate": 38687
+      }
+    },
+    "sir_standard_eligible_rows": {
+      "status": "pass",
+      "baseline_value": 1314419,
+      "candidate_value": 1314419
+    },
+    "source_opening_scope_rows": {
+      "status": "pass",
+      "baseline_value": 2791324,
+      "candidate_value": 2791324
+    },
+    "unique_hadm_id_nonnull": {
+      "status": "pass",
+      "baseline_value": 33109,
+      "candidate_value": 33109
+    },
+    "unique_subject_id": {
+      "status": "pass",
+      "baseline_value": 52973,
+      "candidate_value": 52973
+    }
+  }
+}

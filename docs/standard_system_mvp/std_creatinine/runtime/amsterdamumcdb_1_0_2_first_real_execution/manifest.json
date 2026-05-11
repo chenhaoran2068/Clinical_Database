@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:16:06Z",
+  "variable_id": "std_creatinine",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_creatinine/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_creatinine/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_creatinine/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_creatinine/extract_code/Extract_Code_std_creatinine.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_creatinine/extract_code/Extract_Code_std_creatinine.py"
+  ],
+  "process_batch_id": "20260503T091600Z_AmsterdamUMCdb-1.0.2_std_creatinine",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:15:59Z",
+  "finished_at": "2026-05-03T09:16:06Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "9c10fd73c281a7ba8a2d456b10fd3e19e1332b8973a852ea00bb3fd80c27ef35",
+    "mapping_spec_sha256": "d94c19db84686ee300ba223edaefa558ce30dca926d8cf30c7f6bde59b309833"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_creatinine/std_creatinine_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_creatinine/preview/std_creatinine_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_creatinine/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_creatinine/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_creatinine/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "4d02a981e2c051e8918c4215b46de64512e6449e0d474109f1829b4590c048ec",
+      "size_bytes": 2856031
+    },
+    "preview_csv": {
+      "sha256": "b09cc8e8da0bd254270c7e8d8b3d723693382dd74330ad7e71fad7492fbff13f",
+      "size_bytes": 90357
+    },
+    "asset_manifest": {
+      "sha256": "a5492d3cc00cc5f0bda4dcdc22084a18eddfb3dd89d3df2a92045eacf8ca7a20",
+      "size_bytes": 4245
+    },
+    "knowledge_package": {
+      "sha256": "d41f556e67792e877838d59baf3413cfd89a2f688450b43b357acee478a92dbc",
+      "size_bytes": 25870
+    },
+    "build_log": {
+      "sha256": "1f16e692e1ad0cc97320ffc07f4b4782264358249d90cee61064f488c65d70ab",
+      "size_bytes": 699
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T091600Z_AmsterdamUMCdb-1.0.2_std_creatinine",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_creatinine/std_creatinine_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_creatinine/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_creatinine/log_archive/20260503T091600Z_AmsterdamUMCdb-1.0.2_std_creatinine__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

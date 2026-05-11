@@ -478,15 +478,18 @@ def build_release_safe_categories() -> dict[str, list[str]]:
         "framework_contracts": files_from_glob("Framework_Guideline/*.md"),
         "docs_core": sorted(
             [
+                "docs/CURRENT_STAGE_COMPLETION_STANDARD.md",
                 "docs/DATABASE_LINEAGE_AND_VERSION_MATRIX.md",
                 "docs/GETTING_STARTED.md",
                 "docs/NEXT_STAGE_PUBLIC_METHOD_REPOSITORY_CHECKLIST.md",
                 "docs/PUBLIC_INVENTORY.md",
                 "docs/PUBLIC_REPOSITORY_DETAILED_REVIEW_CHECKLIST.md",
+                "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md",
                 "docs/database_catalog.json",
                 "docs/release_safe_manifest.json",
             ]
         ),
+        "standard_system_mvp_docs": files_from_recursive("docs/standard_system_mvp"),
         "release_docs": sorted(
             [
                 "docs/RELEASE_CHANGELOG.md",
@@ -756,6 +759,11 @@ def build_public_inventory_markdown(
 ) -> str:
     manifest = build_release_safe_manifest(data, release_overrides)
     categories: dict[str, list[str]] = manifest["categories"]
+    release_safe_paths = {
+        path
+        for category_paths in categories.values()
+        for path in category_paths
+    }
     families = family_records(data)
     databases = database_records(data)
     coverage = build_variable_coverage_snapshot(data)
@@ -893,6 +901,9 @@ def build_public_inventory_markdown(
         f"| core docs | `{len(categories['docs_core'])}` | matrix, inventory, review checklist, and other core public notes |"
     )
     lines.append(
+        f"| standard-system MVP docs | `{len(categories['standard_system_mvp_docs'])}` | early machine-readable MVP drafts and support notes under `docs/standard_system_mvp/` |"
+    )
+    lines.append(
         f"| release docs | `{len(categories['release_docs'])}` | changelog and release-process support docs |"
     )
     lines.append(
@@ -934,6 +945,684 @@ def build_public_inventory_markdown(
     lines.append(
         f"| test support files | `{len(categories['test_support_files'])}` | public-safe fixtures and repository test notes |"
     )
+    lines.append("")
+    lines.append("## Governed MVP highlights")
+    lines.append("")
+    lines.append("| public asset | current role | release-safe status |")
+    lines.append("| --- | --- | --- |")
+    governed_highlights = [
+        (
+            "docs/standard_system_mvp/CLASS1_CURRENT_APPROVAL_CLOSURE.md",
+            "current class-1 approval closure",
+        ),
+        (
+            "docs/standard_system_mvp/CLASS2_CURRENT_APPROVAL_CLOSURE.md",
+            "current class-2 approval closure",
+        ),
+        (
+            "docs/standard_system_mvp/CLASS2_TOTAL_CLOSURE_REVIEW_AND_MIMIC_EXPANSION_DECISION.md",
+            "class-2 total closure review and MIMIC expansion decision",
+        ),
+        (
+            "docs/standard_system_mvp/CLASS2_NEXT_SMALL_CANDIDATE_SELECTION.md",
+            "class-2 next small MIMIC candidate selection",
+        ),
+        (
+            "docs/standard_system_mvp/CLASS3_FIRST_MVP_SELECTION.md",
+            "class-3 first MVP selection and execution checklist",
+        ),
+        (
+            "docs/standard_system_mvp/STD_INVASIVE_MECHANICAL_VENTILATION_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 invasive mechanical ventilation active approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_INVASIVE_MECHANICAL_VENTILATION_ACTIVE_AMSTERDAM_CANDIDATE_REVIEW.md",
+            "class-3 Amsterdam invasive mechanical ventilation active candidate review",
+        ),
+        (
+            "docs/standard_system_mvp/STD_INVASIVE_MECHANICAL_VENTILATION_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 Amsterdam invasive mechanical ventilation active formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/AMSTERDAM_RESPIRATORY_SUPPORT_FAMILY_SOURCE_AUDIT_REVIEW.md",
+            "class-3 Amsterdam respiratory-support family source-audit closure",
+        ),
+        (
+            "docs/standard_system_mvp/STD_NONINVASIVE_VENTILATION_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 noninvasive ventilation active MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_NONINVASIVE_VENTILATION_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 Amsterdam noninvasive ventilation active formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_HIGH_FLOW_NASAL_CANNULA_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 high-flow nasal cannula active MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_HIGH_FLOW_NASAL_CANNULA_ACTIVE_AMSTERDAM_CANDIDATE_REVIEW.md",
+            "class-3 Amsterdam high-flow nasal cannula active blocked candidate review",
+        ),
+        (
+            "docs/standard_system_mvp/STD_SUPPLEMENTAL_OXYGEN_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 supplemental oxygen active MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_SUPPLEMENTAL_OXYGEN_ACTIVE_AMSTERDAM_CANDIDATE_REVIEW.md",
+            "class-3 Amsterdam supplemental oxygen active blocked candidate review",
+        ),
+        (
+            "docs/standard_system_mvp/STD_TRACHEOSTOMY_STATUS_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 tracheostomy status active MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_TRACHEOSTOMY_STATUS_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 Amsterdam tracheostomy status active formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_VASOPRESSOR_SUPPORT_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 vasopressor support active MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_VASOPRESSOR_SUPPORT_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 Amsterdam vasopressor support active formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_RRT_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 RRT active MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_RRT_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 Amsterdam RRT active formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_CRRT_FAMILY_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 CRRT-family active MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_CRRT_FAMILY_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 Amsterdam CRRT-family active formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_NON_CRRT_RRT_ACTIVE_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 non-CRRT RRT active MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_NON_CRRT_RRT_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-3 Amsterdam non-CRRT RRT active formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_RRT_MODALITY_EPISODE_FORMAL_APPROVAL_REVIEW.md",
+            "class-5 RRT exact modality episode MIMIC formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_RRT_MODALITY_EPISODE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-5 Amsterdam RRT exact modality episode formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_ICU_LOS_DAYS_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 duration-summary approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_HOSPITAL_LOS_DAYS_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 MIMIC hospital-duration approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_DAYS_TO_NEXT_HOSPITAL_ADMISSION_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 MIMIC next-hospital-admission duration approval",
+        ),
+        (
+            "docs/standard_system_mvp/AMSTERDAM_HOSPITAL_ADMISSION_BRIDGE_FEASIBILITY_REVIEW.md",
+            "Amsterdam hospital-admission bridge feasibility review",
+        ),
+        (
+            "docs/standard_system_mvp/AMSTERDAM_NEXT_ICU_MCU_ADMISSION_DURATION_CANDIDATE_REVIEW.md",
+            "Amsterdam next ICU/MCU local-admission duration candidate review",
+        ),
+        (
+            "docs/standard_system_mvp/STD_DAYS_TO_NEXT_ICU_MCU_ADMISSION_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 Amsterdam next ICU/MCU local-admission duration formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_DAYS_TO_NEXT_ICU_ADMISSION_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 Amsterdam next ICU admission same-name duration formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_HOSPITAL_LOS_DAYS_AMSTERDAM_CANDIDATE_REVIEW.md",
+            "class-2 Amsterdam hospital-duration candidate boundary review",
+        ),
+        (
+            "docs/standard_system_mvp/STD_BMI_ADMISSION_BASELINE_CANDIDATE_REVIEW.md",
+            "class-2 BMI admission-baseline candidate review",
+        ),
+        (
+            "docs/standard_system_mvp/STD_BMI_ICU_BASELINE_CANDIDATE_REVIEW.md",
+            "class-2 BMI ICU-baseline candidate review",
+        ),
+        (
+            "docs/standard_system_mvp/STD_BMI_ADMISSION_BASELINE_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 BMI admission-baseline formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_BMI_ICU_BASELINE_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 BMI ICU-baseline formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_WEIGHT_ADMISSION_BASELINE_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 exact baseline-snapshot approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_WEIGHT_ICU_BASELINE_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 MIMIC ICU-baseline exact-weight approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_WEIGHT_ICU_BASELINE_GROUPED_PROXY_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 grouped/proxy baseline approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_FIRST_DAY_URINE_OUTPUT_SUMMARY_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 window-summary approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_FIRST_DAY_URINE_OUTPUT_SUMMARY_AMSTERDAM_CANDIDATE_REVIEW.md",
+            "class-2 Amsterdam window-summary candidate review",
+        ),
+        (
+            "docs/standard_system_mvp/STD_FIRST_DAY_URINE_OUTPUT_SUMMARY_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "class-2 Amsterdam window-summary formal approval",
+        ),
+        (
+            "docs/standard_system_mvp/STD_ICU_URINE_OUTPUT_EVENT_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+            "Amsterdam upstream urine-output event approval",
+        ),
+        (
+            "docs/standard_system_mvp/AMSTERDAM_GOVERNED_RESULTS_DISTRIBUTION_APPROVAL_REVIEW.md",
+            "Amsterdam governed result-distribution approval across current scoped variables",
+        ),
+        (
+            "docs/standard_system_mvp/std_icu_urine_output_event/variable_spec.json",
+            "upstream urine-output event variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_icu_urine_output_event/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "upstream urine-output event Amsterdam mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_first_day_urine_output_summary/variable_spec.json",
+            "window-summary variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_first_day_urine_output_summary/mapping_spec_mimic_iv_3_1.json",
+            "window-summary MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_first_day_urine_output_summary/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "window-summary Amsterdam mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_weight_icu_baseline/variable_spec.json",
+            "ICU-baseline exact-weight variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_weight_icu_baseline/mapping_spec_mimic_iv_3_1.json",
+            "ICU-baseline exact-weight MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_bmi_admission_baseline/variable_spec.json",
+            "BMI admission-baseline variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_bmi_admission_baseline/mapping_spec_mimic_iv_3_1.json",
+            "BMI admission-baseline MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_bmi_icu_baseline/variable_spec.json",
+            "BMI ICU-baseline variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_bmi_icu_baseline/mapping_spec_mimic_iv_3_1.json",
+            "BMI ICU-baseline MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_hospital_los_days/variable_spec.json",
+            "hospital-duration variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_hospital_los_days/mapping_spec_mimic_iv_3_1.json",
+            "hospital-duration MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/variable_spec.json",
+            "invasive mechanical ventilation active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/mapping_spec_mimic_iv_3_1.json",
+            "invasive mechanical ventilation active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "invasive mechanical ventilation active Amsterdam approved mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/variable_spec.json",
+            "noninvasive ventilation active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/mapping_spec_mimic_iv_3_1.json",
+            "noninvasive ventilation active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "noninvasive ventilation active Amsterdam approved mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "noninvasive ventilation active MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "noninvasive ventilation active MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "noninvasive ventilation active MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "noninvasive ventilation active Amsterdam approved validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "noninvasive ventilation active Amsterdam approved execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_noninvasive_ventilation_active/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "noninvasive ventilation active Amsterdam approved rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_high_flow_nasal_cannula_active/variable_spec.json",
+            "high-flow nasal cannula active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_high_flow_nasal_cannula_active/mapping_spec_mimic_iv_3_1.json",
+            "high-flow nasal cannula active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_high_flow_nasal_cannula_active/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "high-flow nasal cannula active MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_high_flow_nasal_cannula_active/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "high-flow nasal cannula active MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_high_flow_nasal_cannula_active/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "high-flow nasal cannula active MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_supplemental_oxygen_active/variable_spec.json",
+            "supplemental oxygen active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_supplemental_oxygen_active/mapping_spec_mimic_iv_3_1.json",
+            "supplemental oxygen active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_supplemental_oxygen_active/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "supplemental oxygen active MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_supplemental_oxygen_active/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "supplemental oxygen active MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_supplemental_oxygen_active/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "supplemental oxygen active MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/variable_spec.json",
+            "tracheostomy status active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/mapping_spec_mimic_iv_3_1.json",
+            "tracheostomy status active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "tracheostomy status active Amsterdam approved mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "tracheostomy status active MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "tracheostomy status active MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "tracheostomy status active MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "tracheostomy status active Amsterdam approved validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "tracheostomy status active Amsterdam approved execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_tracheostomy_status_active/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "tracheostomy status active Amsterdam approved rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/variable_spec.json",
+            "vasopressor support active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/mapping_spec_mimic_iv_3_1.json",
+            "vasopressor support active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "vasopressor support active Amsterdam approved mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "vasopressor support active MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "vasopressor support active MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "vasopressor support active MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "vasopressor support active Amsterdam approved validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "vasopressor support active Amsterdam approved execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_vasopressor_support_active/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "vasopressor support active Amsterdam approved rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/variable_spec.json",
+            "RRT active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/mapping_spec_mimic_iv_3_1.json",
+            "RRT active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "RRT active Amsterdam approved mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "RRT active MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "RRT active MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "RRT active MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "RRT active Amsterdam approved validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "RRT active Amsterdam approved execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_active/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "RRT active Amsterdam approved rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/variable_spec.json",
+            "CRRT-family active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/mapping_spec_mimic_iv_3_1.json",
+            "CRRT-family active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "CRRT-family active Amsterdam mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "CRRT-family active MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "CRRT-family active MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "CRRT-family active MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "CRRT-family active Amsterdam validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "CRRT-family active Amsterdam execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_crrt_family_active/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "CRRT-family active Amsterdam rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/variable_spec.json",
+            "non-CRRT RRT active variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/mapping_spec_mimic_iv_3_1.json",
+            "non-CRRT RRT active MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "non-CRRT RRT active Amsterdam mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "non-CRRT RRT active MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "non-CRRT RRT active MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "non-CRRT RRT active MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "non-CRRT RRT active Amsterdam validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "non-CRRT RRT active Amsterdam execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_non_crrt_rrt_active/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "non-CRRT RRT active Amsterdam rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/variable_spec.json",
+            "RRT exact modality episode variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/mapping_spec_mimic_iv_3_1.json",
+            "RRT exact modality episode MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "RRT exact modality episode Amsterdam mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/runtime/mimic_iv_3_1_first_real_execution/validation_report.json",
+            "RRT exact modality episode MIMIC validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/runtime/mimic_iv_3_1_first_real_execution/manifest.json",
+            "RRT exact modality episode MIMIC execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/runtime/mimic_iv_3_1_rerun_repro_check/reproducibility_report.json",
+            "RRT exact modality episode MIMIC rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "RRT exact modality episode Amsterdam validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "RRT exact modality episode Amsterdam execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_rrt_modality_episode/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "RRT exact modality episode Amsterdam rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/variable_spec.json",
+            "Amsterdam next ICU/MCU admission duration variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "Amsterdam next ICU/MCU admission duration mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "Amsterdam next ICU/MCU admission duration validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "Amsterdam next ICU/MCU admission duration execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_mcu_admission/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "Amsterdam next ICU/MCU admission duration rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_admission/variable_spec.json",
+            "next ICU admission duration variable spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_admission/mapping_spec_mimic_iv_3_1.json",
+            "next ICU admission duration MIMIC mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_admission/mapping_spec_amsterdamumcdb_1_0_2.json",
+            "next ICU admission duration Amsterdam same-name mapping spec",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_admission/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "Amsterdam next ICU admission duration validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_admission/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "Amsterdam next ICU admission duration execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_days_to_next_icu_admission/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "Amsterdam next ICU admission duration rerun reproducibility report",
+        ),
+        (
+            "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/validation_report.json",
+            "invasive mechanical ventilation active Amsterdam approved validation report",
+        ),
+        (
+            "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/runtime/amsterdamumcdb_1_0_2_first_real_execution/manifest.json",
+            "invasive mechanical ventilation active Amsterdam approved execution manifest",
+        ),
+        (
+            "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/reproducibility_report.json",
+            "invasive mechanical ventilation active Amsterdam approved rerun reproducibility report",
+        ),
+        (
+            "docs/std_variable_cards/std_invasive_mechanical_ventilation_active.md",
+            "public invasive mechanical ventilation active cross-database card",
+        ),
+        (
+            "docs/std_variable_cards/std_noninvasive_ventilation_active.md",
+            "public noninvasive ventilation active card",
+        ),
+        (
+            "docs/std_variable_cards/std_high_flow_nasal_cannula_active.md",
+            "public high-flow nasal cannula active card",
+        ),
+        (
+            "docs/std_variable_cards/std_supplemental_oxygen_active.md",
+            "public supplemental oxygen active card",
+        ),
+        (
+            "docs/std_variable_cards/std_tracheostomy_status_active.md",
+            "public tracheostomy status active card",
+        ),
+        (
+            "docs/std_variable_cards/std_vasopressor_support_active.md",
+            "public vasopressor support active cross-database card",
+        ),
+        (
+            "docs/std_variable_cards/std_rrt_active.md",
+            "public RRT active cross-database card",
+        ),
+        (
+            "docs/std_variable_cards/std_crrt_family_active.md",
+            "public CRRT-family active card",
+        ),
+        (
+            "docs/std_variable_cards/std_non_crrt_rrt_active.md",
+            "public non-CRRT RRT active card",
+        ),
+        (
+            "docs/std_variable_cards/std_rrt_modality_episode.md",
+            "public RRT exact modality episode card",
+        ),
+        (
+            "docs/std_variable_cards/std_first_day_urine_output_summary.md",
+            "public variable card",
+        ),
+        (
+            "docs/std_variable_cards/std_weight_icu_baseline.md",
+            "public ICU-baseline exact-weight card",
+        ),
+        (
+            "docs/std_variable_cards/std_hospital_los_days.md",
+            "public hospital-duration card",
+        ),
+        (
+            "docs/std_variable_cards/std_bmi_admission_baseline.md",
+            "public BMI admission-baseline card",
+        ),
+        (
+            "docs/std_variable_cards/std_bmi_icu_baseline.md",
+            "public BMI ICU-baseline card",
+        ),
+        (
+            "docs/std_variable_cards/std_days_to_next_icu_mcu_admission.md",
+            "public Amsterdam next ICU/MCU admission duration card",
+        ),
+        (
+            "docs/std_variable_cards/std_days_to_next_icu_admission.md",
+            "public next ICU admission duration cross-database card",
+        ),
+    ]
+    for path, role in governed_highlights:
+        status = "listed" if path in release_safe_paths else "missing"
+        lines.append(f"| `{path}` | {role} | `{status}` |")
     lines.append("")
     lines.append("## Key entrypoints")
     lines.append("")

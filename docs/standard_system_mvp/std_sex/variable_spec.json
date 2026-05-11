@@ -1,0 +1,61 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_7_sex_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "diagnosis_admin_demographic_id_map",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_DiagnosisAdminDemographicIdMap_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_sex",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Sex",
+    "semantic_folder": "demographics",
+    "category": "demographics"
+  },
+  "immutable_core": {
+    "semantic_intent": "source-standardized patient-level sex category",
+    "semantic_definition": "A patient-level standardized sex category derived from a database-authoritative patient demographic source, retaining a governed source-specific normalization rule and explicit grain caution.",
+    "semantic_grain": "one row per patient",
+    "value_family": "demographic_category",
+    "source_value_class": "source_recorded_demographic_category",
+    "same_name_cross_database_rule": "Any database asset published as std_sex must preserve a patient-level source-standardized sex-like administrative category and must not silently change into gender identity, race, ethnicity, admission sex, diagnosis, or phenotype truth."
+  },
+  "admin_demographic_contract": {
+    "target_entity_grain": "patient",
+    "identifier_scope_rule": "retain one row per patient-level subject_id under the source database identifier system",
+    "source_authority_rule": "use the database-authoritative patient demographic table for the mapping; do not infer from diagnoses, procedures, notes, or encounter-level repeats",
+    "normalization_rule": "map approved source sex-like encodings into the retained domain female/male when source support is sufficiently narrow; do not force-map unclear values without review",
+    "no_row_interpretation": "no retained row or null retained value means no approved patient-level sex category under the source rule, not a biological assertion"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "demographic_category",
+    "storage_type": "string_category",
+    "timestamp_required": false,
+    "context_fields_required": false,
+    "identifier_roles": [
+      "subject_id"
+    ],
+    "result_domain": [
+      "female",
+      "male"
+    ],
+    "time_anchor": "none"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_sex outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_sex/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_sex/execution.py",
+    "public_card": "docs/std_variable_cards/std_sex.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_DiagnosisAdminDemographicIdMap_Contract.md"
+  }
+}

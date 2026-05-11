@@ -1,0 +1,155 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_2_window_summary_governed_mvp",
+  "created_at": "2026-04-25",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "baseline_summary_window_numeric",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BaselineSummaryWindowNumeric_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_first_day_urine_output_summary",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "first-day urine output summary",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "supportive_therapy",
+    "category": "supportive_therapy_summary"
+  },
+  "immutable_core": {
+    "semantic_intent": "first-day ICU urine-output window summary",
+    "semantic_definition": "A one-row-per-ICU-stay first-day urine-output summary in milliliters, aggregating approved ICU urine-output event rows inside the official first-day window from ICU intime through ICU intime plus 24 hours while preserving official-style NULL when no qualifying urine-output row exists.",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "value_family": "numeric_window_summary",
+    "source_value_class": "window_summary_from_approved_urine_output_event_stream",
+    "derived_values_allowed": true,
+    "aggregated_values_allowed": true,
+    "baseline_or_summary_interpretation_allowed": true,
+    "same_name_cross_database_rule": "Any database asset published as std_first_day_urine_output_summary must preserve ICU-stay target grain, first-day ICU admission anchor, milliliter total-output semantics, and official-style no-source-row NULL behavior unless a new variable identity is approved."
+  },
+  "summary_contract": {
+    "summary_subclass": "window_summary",
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "window_label": "official_first_day_window_intime_to_plus_24h",
+    "window_start_rule": "start at ICU admission time or ICU-semantic stay entry time",
+    "window_end_rule": "end at ICU admission time plus 24 hours; the opening MIMIC-compatible contract does not clip the aggregation numerator by ICU outtime",
+    "qualifying_row_rule": "a qualifying source row is an approved ICU urine-output event row with event charttime greater than or equal to ICU intime and less than or equal to ICU intime plus 24 hours",
+    "selection_rule": "include all qualifying urine-output event rows inside the first-day window",
+    "aggregation_rule": "sum qualifying urine_output_ml values per ICU stay",
+    "tie_break_rule": "not_applicable_all_qualifying_rows_are_aggregated",
+    "no_source_row_action": "retain the ICU stay row with NULL first_day_urine_output_ml and has_any_first_day_urine_row_flag=false when no qualifying urine-output row exists",
+    "partial_window_action": "retain observed-window context and partial-window caution flags, but do not alter the official first-day aggregation numerator"
+  },
+  "canonical_representation": {
+    "canonical_unit": "mL",
+    "canonical_ucum": "mL",
+    "value_type": "numeric_window_summary_with_metadata",
+    "storage_type": "Float64",
+    "storage_precision_digits": 3,
+    "display_precision_digits": 1,
+    "anchor_timestamp_required": true,
+    "window_bounds_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "hard_valid_range_in_canonical_unit": [
+      0,
+      100000
+    ],
+    "plausible_range_in_canonical_unit": [
+      0,
+      15000
+    ],
+    "range_role_note": "The hard range is an engineering guardrail for first-day total urine output in mL. The plausible range is a review prompt, not an automatic proof of error."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external clinical terminologies as semantic anchors when reliable, but keep the first-day ICU window and no-source-row behavior governed by this internal standard-variable contract.",
+    "mapping_type": "derived",
+    "public_anchor_status": "urine-output observation concepts exist, but the first-day ICU window total is a derived stay-level summary",
+    "preferred_anchor_families": [
+      "LOINC",
+      "SNOMED CT"
+    ],
+    "candidate_external_refs": [],
+    "note": "External terminology alignment should not be forced until a precise public anchor for first-day ICU urine-output total semantics is selected."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "summary_subclass",
+      "target_entity_grain",
+      "anchor_family",
+      "window_label",
+      "window_start_rule",
+      "window_end_rule",
+      "qualifying_row_rule",
+      "selection_rule",
+      "aggregation_rule",
+      "no_source_row_action",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "hard_valid_range_in_canonical_unit",
+      "plausible_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "changing the window from ICU intime through plus 24 hours to ICU day calendar date",
+      "changing no-source-row behavior from NULL to zero",
+      "changing the output from total first-day urine output to urine-output rate normalized by body weight",
+      "clipping the numerator by ICU outtime and treating that as the same variable without an explicit versioned contract decision"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a reviewed Amsterdam mapping that preserves the same first-day window-summary meaning",
+      "tightening validation ranges without changing the first-day window or NULL semantics"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "raw output-event tables or source codes used to identify local urine-output events",
+      "local structural identifiers normalized into subject_id, hadm_id, and stay_id roles",
+      "availability of explicit outtime context for partial-window warning flags"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing urine-output rate as std_first_day_urine_output_summary",
+      "forcing stays without qualifying urine rows to zero without a distinct contract",
+      "using a calendar-day ICU day rather than ICU-admission-relative first 24 hours",
+      "mixing total intake-output balance or non-urine output into the retained numerator"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_for_mimic_and_amsterdam",
+    "formal_output_rule": "Formal std_first_day_urine_output_summary outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_first_day_urine_output_summary outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_first_day_urine_output_summary/mapping_spec_mimic_iv_3_1.json",
+      "docs/standard_system_mvp/std_first_day_urine_output_summary/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_first_day_urine_output_summary/execution.py",
+    "public_card": "docs/std_variable_cards/std_first_day_urine_output_summary.md",
+    "class_readme": "docs/standard_system_mvp/variable_classes/baseline_summary_window_numeric/README.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  },
+  "current_scope_boundary": {
+    "approved_public_databases": [
+      "MIMIC-IV-3.1",
+      "AmsterdamUMCdb-1.0.2"
+    ],
+    "not_yet_approved_database_notes": [
+      "No additional database has an approved same-name mapping under this first-day urine-output summary contract yet."
+    ]
+  }
+}

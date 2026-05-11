@@ -1,0 +1,6 @@
+﻿database_id,declared_version,source_directory_label,bucket,purpose,status
+NWICU-0.1.0,0.1.0,NWICU-0.1.0,raw_original,restricted source CSV/TXT delivery,local_only_populated_public_skeleton_empty
+NWICU-0.1.0,0.1.0,NWICU-0.1.0,raw_unpacked,unpacked/readable source staging,not_duplicated_csv_delivery_is_already_readable
+NWICU-0.1.0,0.1.0,NWICU-0.1.0,source_supplied_derived,source supplied derived/helper tables,not_yet_populated
+NWICU-0.1.0,0.1.0,NWICU-0.1.0,local_converted_parquet,local performance parquet copies,not_yet_generated
+NWICU-0.1.0,0.1.0,NWICU-0.1.0,docs_manifest,public-safe skeleton docs,populated

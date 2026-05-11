@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T14:03:48Z",
+  "variable_id": "std_sex",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_sex/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_sex/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_sex/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_sex/extract_code/Extract_Code_std_sex.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_patients.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_sex/extract_code/Extract_Code_std_sex.py"
+  ],
+  "process_batch_id": "20260502T140347Z_MIMIC-IV-3.1_std_sex",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T14:03:47Z",
+  "finished_at": "2026-05-02T14:03:48Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "e38d07d49d72140da409c9f98b81de16a79cbf93470f1d59ec62d30edd383973",
+    "mapping_spec_sha256": "bb153ce3b9a8f93fdf176e10f45bbcd44b7b7a2b7a1fd2d889257ffd5f40fece"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/demographics/std_sex/std_sex_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_sex/preview/std_sex_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_sex/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_sex/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_sex/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "a42dead535366397c1f790893f84b6336a485a5c695280b457c999dace1d75a6",
+      "size_bytes": 1819595
+    },
+    "preview_csv": {
+      "sha256": "3c0ea77039911b2a1a9ec9c796247a20619e8c18b0e34eb5d3ae827ce5246252",
+      "size_bytes": 3242
+    },
+    "asset_manifest": {
+      "sha256": "be5738a1fa43e3857d0266d2b0a44ccd487b1c122b9773ad657214cd518a4aa2",
+      "size_bytes": 1695
+    },
+    "knowledge_package": {
+      "sha256": "30ef78280eadc2de338916c2c16b31ed5b68bac7f5054541cf832f6fc53634b2",
+      "size_bytes": 25364
+    },
+    "build_log": {
+      "sha256": "51fd640a27285b3eedfa9f6a676610e2d74889e1d91ceb4755f621ff3e09c8de",
+      "size_bytes": 1392
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T140347Z_MIMIC-IV-3.1_std_sex",
+    "total_rows": 364627,
+    "unique_subject_id": 364627,
+    "female_rows": 191984,
+    "male_rows": 172643
+  }
+}

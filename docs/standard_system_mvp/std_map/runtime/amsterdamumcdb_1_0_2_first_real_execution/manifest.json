@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:11:33Z",
+  "variable_id": "std_map",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_map/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_map/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_map/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_map/extract_code/Extract_Code_std_map.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_map/extract_code/Extract_Code_std_map.py"
+  ],
+  "process_batch_id": "20260503T091041Z_AmsterdamUMCdb-1.0.2_std_map",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:10:41Z",
+  "finished_at": "2026-05-03T09:11:33Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "5f5bd623e48aa58679ad8a15a7716049836bebfc963cdfdd25ec14c036cee8dd",
+    "mapping_spec_sha256": "e941a728cb0a8aa168fd3ae084433c1356223e52390bec07b5079d4d7be8d08d"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_map/std_map_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_map/preview/std_map_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_map/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_map/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_map/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "ab45325911d700f698d126eac5dea3ffcfb35fb288a32c03e3b2c099367d93cf",
+      "size_bytes": 208716669
+    },
+    "preview_csv": {
+      "sha256": "0241b0d491bc7a388644b6007755f77c1619c3460a47084701c2ef996e95b7c5",
+      "size_bytes": 77472
+    },
+    "asset_manifest": {
+      "sha256": "e396be6346dadb2b39bc116cb1c1a986a81112704c5fe5b8c918bbc524a64079",
+      "size_bytes": 3949
+    },
+    "knowledge_package": {
+      "sha256": "2d6d5a1e75c3396ad40be575576902ef7ea60ede48ae3ade3b5b9ae6fb94f93e",
+      "size_bytes": 25845
+    },
+    "build_log": {
+      "sha256": "6f5e9a406094a1d1a9f1647458fdff105392ba3ed9e0f7afc52083246f90495a",
+      "size_bytes": 688
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T091041Z_AmsterdamUMCdb-1.0.2_std_map",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_map/std_map_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_map/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_map/log_archive/20260503T091041Z_AmsterdamUMCdb-1.0.2_std_map__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

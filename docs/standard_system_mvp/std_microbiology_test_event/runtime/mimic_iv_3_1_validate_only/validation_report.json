@@ -1,0 +1,234 @@
+{
+  "artifact_type": "validation_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T15:45:46Z",
+  "validation_scope": "pre_execution_spec_and_environment_checks",
+  "overall_status": "pass",
+  "variable_id": "std_microbiology_test_event",
+  "database_id": "MIMIC-IV-3.1",
+  "variable_spec_path": "docs/standard_system_mvp/std_microbiology_test_event/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_microbiology_test_event/mapping_spec_mimic_iv_3_1.json",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "spec_hashes": {
+    "variable_spec_sha256": "6f8baf9dcabbbde60db591d1f517c9958fd147fed83486c995493df9de1ac200",
+    "mapping_spec_sha256": "e7defa4dba539134f97967ce2aac2965899c4f59744f881f9845ebaca8382401"
+  },
+  "checks": [
+    {
+      "check_id": "variable_spec_artifact_type",
+      "status": "pass",
+      "message": "variable_spec artifact_type is variable_spec"
+    },
+    {
+      "check_id": "mapping_spec_artifact_type",
+      "status": "pass",
+      "message": "mapping_spec artifact_type is mapping_spec"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id is consistently locked to std_microbiology_test_event"
+    },
+    {
+      "check_id": "variable_version_match",
+      "status": "pass",
+      "message": "variable_version matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "mapping_spec database_id matches requested database_id MIMIC-IV-3.1"
+    },
+    {
+      "check_id": "variable_spec_ref_match",
+      "status": "pass",
+      "message": "mapping_spec variable_spec_ref points to the chosen variable_spec.json"
+    },
+    {
+      "check_id": "semantic_grain_match",
+      "status": "pass",
+      "message": "semantic_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "source_value_class_match",
+      "status": "pass",
+      "message": "source_value_class matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_value_family_match",
+      "status": "pass",
+      "message": "value family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "representation_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and representation_and_normalization"
+    },
+    {
+      "check_id": "microbiology_multi_entity_class_lock",
+      "status": "pass",
+      "message": "variable is compatible with the microbiology multi-entity family class for std_microbiology_test_event"
+    },
+    {
+      "check_id": "variable_directory_alignment",
+      "status": "pass",
+      "message": "variable directory name matches variable_id std_microbiology_test_event"
+    },
+    {
+      "check_id": "microbiology_value_family_lock",
+      "status": "pass",
+      "message": "value family and representation are locked to microbiology multi-entity roles"
+    },
+    {
+      "check_id": "microbiology_source_class_lock",
+      "status": "pass",
+      "message": "source_value_class is locked to a microbiology entity role"
+    },
+    {
+      "check_id": "microbiology_entity_contract_family_role_present",
+      "status": "pass",
+      "message": "microbiology_entity_contract.family_role is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_entity_contract_entity_grain_present",
+      "status": "pass",
+      "message": "microbiology_entity_contract.entity_grain is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_entity_contract_source_hierarchy_rule_present",
+      "status": "pass",
+      "message": "microbiology_entity_contract.source_hierarchy_rule is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_entity_contract_parent_child_rule_present",
+      "status": "pass",
+      "message": "microbiology_entity_contract.parent_child_rule is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_entity_contract_raw_text_retention_rule_present",
+      "status": "pass",
+      "message": "microbiology_entity_contract.raw_text_retention_rule is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_entity_contract_no_row_interpretation_present",
+      "status": "pass",
+      "message": "microbiology_entity_contract.no_row_interpretation is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_locator_mode_present",
+      "status": "pass",
+      "message": "database_mapping.source_locator_mode is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_table_present",
+      "status": "pass",
+      "message": "database_mapping.source_table is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_grain_present",
+      "status": "pass",
+      "message": "database_mapping.source_grain is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_target_grain_present",
+      "status": "pass",
+      "message": "database_mapping.target_grain is explicitly locked"
+    },
+    {
+      "check_id": "source_entity_key_fields_present",
+      "status": "pass",
+      "message": "mapping_spec locks source_entity_key_fields"
+    },
+    {
+      "check_id": "microbiology_translation_family_role_present",
+      "status": "pass",
+      "message": "microbiology_family_build_translation.family_role is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_translation_entity_grain_translation_present",
+      "status": "pass",
+      "message": "microbiology_family_build_translation.entity_grain_translation is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_translation_source_hierarchy_translation_present",
+      "status": "pass",
+      "message": "microbiology_family_build_translation.source_hierarchy_translation is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_translation_parent_child_translation_present",
+      "status": "pass",
+      "message": "microbiology_family_build_translation.parent_child_translation is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_translation_raw_text_retention_translation_present",
+      "status": "pass",
+      "message": "microbiology_family_build_translation.raw_text_retention_translation is explicitly locked"
+    },
+    {
+      "check_id": "microbiology_translation_no_row_translation_present",
+      "status": "pass",
+      "message": "microbiology_family_build_translation.no_row_translation is explicitly locked"
+    },
+    {
+      "check_id": "family_role_match",
+      "status": "pass",
+      "message": "family_role matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "mapping_semantic_grain_match",
+      "status": "pass",
+      "message": "mapping_spec standard_variable.semantic_grain matches variable_spec immutable_core.semantic_grain"
+    },
+    {
+      "check_id": "representation_normalization_rule_id_present",
+      "status": "pass",
+      "message": "representation_and_normalization.normalization_rule_id is explicitly locked"
+    },
+    {
+      "check_id": "representation_primary_entity_id_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.primary_entity_id_field is explicitly locked"
+    },
+    {
+      "check_id": "required_non_null_fields_present",
+      "status": "pass",
+      "message": "mapping_spec declares required_non_null_fields for validation"
+    },
+    {
+      "check_id": "no_row_policy_present",
+      "status": "pass",
+      "message": "mapping_spec explicitly locks a no-row policy check"
+    },
+    {
+      "check_id": "governed_execution_entrypoint_declared",
+      "status": "pass",
+      "message": "mapping_spec governed_execution_entrypoint points to this execution.py"
+    },
+    {
+      "check_id": "reference_implementation_declared",
+      "status": "pass",
+      "message": "mapping_spec declares current_reference_implementation"
+    },
+    {
+      "check_id": "reference_implementation_exists",
+      "status": "pass",
+      "message": "current reference implementation exists: Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_test_event/extract_code/Extract_Code_std_microbiology_test_event.py"
+    },
+    {
+      "check_id": "local_input_asset_declared",
+      "status": "pass",
+      "message": "mapping_spec declares a primary local prepared input asset"
+    },
+    {
+      "check_id": "local_input_asset_exists",
+      "status": "pass",
+      "message": "local prepared input asset exists: Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_microbiologyevents.parquet"
+    }
+  ]
+}

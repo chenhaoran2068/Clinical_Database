@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:22:18Z",
+  "variable_id": "std_glucose",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_glucose/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_glucose/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_glucose/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_glucose/extract_code/Extract_Code_std_glucose.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_glucose/extract_code/Extract_Code_std_glucose.py"
+  ],
+  "process_batch_id": "20260503T092212Z_AmsterdamUMCdb-1.0.2_std_glucose",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:22:11Z",
+  "finished_at": "2026-05-03T09:22:18Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "62886ac568a75e1ed5f4026f1537210eaca05fa51cd91f3702be0c9668a6590e",
+    "mapping_spec_sha256": "08dd39d71467d0605b8780b39275f0bfa54ee109971a2ccaeddeed2dc04ed689"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_glucose/std_glucose_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_glucose/preview/std_glucose_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_glucose/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_glucose/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_glucose/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "92a885c3afe230f41142f56b6f55aa4bdb8cb423178bd863ace9278448ef6d72",
+      "size_bytes": 9152751
+    },
+    "preview_csv": {
+      "sha256": "3e410650192c08c8dbe9719ddba6a6ac89bbde6ed7373f1925c47335c1d2a8fb",
+      "size_bytes": 88298
+    },
+    "asset_manifest": {
+      "sha256": "13e1ccd49ddfbe8dd0e789edae2738f6cb908058f45e5c2f6c077fa4695ddb88",
+      "size_bytes": 4047
+    },
+    "knowledge_package": {
+      "sha256": "59c8f0e4787e173d38c22a95952cb896b52d5ac0f5401c4bc0b0294c67aba774",
+      "size_bytes": 25829
+    },
+    "build_log": {
+      "sha256": "edead9dba3263dd6801e9d862deefd2a878b0151be410b5f8eb3c0ce744010eb",
+      "size_bytes": 686
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T092212Z_AmsterdamUMCdb-1.0.2_std_glucose",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_glucose/std_glucose_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_glucose/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_glucose/log_archive/20260503T092212Z_AmsterdamUMCdb-1.0.2_std_glucose__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

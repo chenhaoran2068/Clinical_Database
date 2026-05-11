@@ -1,0 +1,165 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_2_next_small_mimic_candidate_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "baseline_summary_window_numeric",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BaselineSummaryWindowNumeric_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_days_to_next_hospital_admission",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Days to next hospital admission",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present",
+    "semantic_folder": "outcomes",
+    "category": "outcome"
+  },
+  "immutable_core": {
+    "semantic_intent": "post-discharge observed time-to-next-hospital-admission duration summary",
+    "semantic_definition": "A one-row-per-hospital-admission encounter duration summary retaining elapsed days from the current hospital discharge boundary to the first later different hospitalization observed in the captured source system.",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "value_family": "duration_measurement",
+    "source_value_class": "post_discharge_observed_future_event_duration",
+    "derived_values_allowed": true,
+    "aggregated_values_allowed": false,
+    "baseline_or_summary_interpretation_allowed": true,
+    "same_name_cross_database_rule": "Any database asset published as std_days_to_next_hospital_admission must preserve hospital-admission encounter grain, hospital discharge anchoring, and first-later-different-hospitalization semantics; ICU readmission timing, same-hospitalization ICU return timing, binary readmission flags, and all-system utilization claims require separate identities or separate approval."
+  },
+  "summary_contract": {
+    "summary_subclass": "duration_summary",
+    "target_entity_grain": "hospital admission encounter",
+    "anchor_family": "hospital discharge anchor",
+    "window_label": "post_discharge_observed_followup_to_next_hospital_admission",
+    "window_start_rule": "start at the current hospital discharge timestamp",
+    "window_end_rule": "end at the first later different hospitalization admission timestamp observed for the same subject",
+    "qualifying_row_rule": "one retained row per hospital admission encounter with subject_id, hadm_id, and discharge boundary present",
+    "selection_rule": "within the same subject, select the first later different hospitalization whose admission timestamp is strictly after the current discharge timestamp",
+    "aggregation_rule": "single_future_event_elapsed_duration_days_round_half_away_from_zero_3dp",
+    "tie_break_rule": "order candidate future hospitalizations by admission timestamp and hospital admission identifier after enforcing strict post-discharge timing and different-hospitalization rules",
+    "no_source_row_action": "do not synthesize hospital admission rows outside the source admissions table; retain a null value for source admissions with no later different hospitalization observed",
+    "partial_window_action": "fail or reopen the contract when the current discharge boundary is missing; do not reinterpret missing future events as zero duration"
+  },
+  "canonical_representation": {
+    "canonical_unit": "days",
+    "canonical_ucum": "d",
+    "value_type": "duration_measurement",
+    "storage_type": "Float64",
+    "storage_precision_digits": 3,
+    "display_precision_digits": 3,
+    "anchor_timestamp_required": false,
+    "window_bounds_required": false,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id"
+    ],
+    "hard_valid_range_in_canonical_unit": [
+      0,
+      6000
+    ],
+    "plausible_range_in_canonical_unit": [
+      0,
+      3650
+    ],
+    "range_role_note": "The retained value is semantically nonnegative. Long observed gaps can occur because this is an observed future-utilization duration inside the captured source; the plausible band is a review cue, not an exclusion rule."
+  },
+  "null_semantics": {
+    "retained_value_nullable": true,
+    "null_meaning": "No later different hospitalization was observed after discharge in the captured MIMIC source snapshot.",
+    "null_does_not_mean": [
+      "the patient was proven never to be rehospitalized",
+      "the patient had zero days to next admission",
+      "the patient was followed in all external hospital systems"
+    ],
+    "status_column_policy": "No separate status column is retained in the current MIMIC asset because the source audit found complete current discharge timestamps and the retained null has one intended meaning."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external outcome and utilization terminology as semantic context only; govern this variable primarily by discharge anchor, future admission search rule, encounter grain, and day-unit representation.",
+    "mapping_type": "derived",
+    "public_anchor_status": "no_single_exact_external_anchor_locked_for_this_observed_followup_duration",
+    "preferred_anchor_families": [
+      "SNOMED CT"
+    ],
+    "note": "This is a source-observed utilization duration, not a direct coded clinical event and not a binary readmission measure."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "summary_subclass",
+      "target_entity_grain",
+      "anchor_family",
+      "window_label",
+      "window_start_rule",
+      "window_end_rule",
+      "qualifying_row_rule",
+      "selection_rule",
+      "aggregation_rule",
+      "no_source_row_action",
+      "source_value_class",
+      "null_meaning"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "hard_valid_range_in_canonical_unit",
+      "plausible_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs",
+      "status_column_policy"
+    ],
+    "new_variable_trigger_examples": [
+      "changing from hospital-admission encounter grain to ICU-stay grain",
+      "changing from time-to-next hospital admission to a binary 30-day readmission flag",
+      "changing from first later different hospitalization after discharge to same-hospitalization ICU return",
+      "claiming all-system readmission follow-up rather than source-observed follow-up inside the captured database"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving the same hospital-admission discharge anchor and future-admission search rule",
+      "adding a status column for a database with incomplete discharge boundaries while keeping the same retained duration semantics"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "local identifiers used to normalize patient and hospital-admission encounter keys",
+      "database-specific names for hospital admission and discharge timestamps",
+      "database-specific evidence proving whether future admissions are source-observed only or more complete within a health system",
+      "database-specific status handling when discharge timestamps are missing, if explicitly mapped"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing ICU readmission or next ICU admission timing as std_days_to_next_hospital_admission",
+      "publishing a 30-day readmission binary indicator as this duration variable",
+      "treating null retained values as zero days",
+      "claiming complete all-system rehospitalization follow-up without database-specific proof",
+      "using ICU or ICU/MC admission boundaries as hospital admission/discharge boundaries without a separately proven hospital-level bridge"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_for_mimic_only",
+    "formal_output_rule": "Formal std_days_to_next_hospital_admission outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_days_to_next_hospital_admission outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_days_to_next_hospital_admission/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_days_to_next_hospital_admission/execution.py",
+    "public_card": "docs/std_variable_cards/std_days_to_next_hospital_admission.md",
+    "class_readme": "docs/standard_system_mvp/variable_classes/baseline_summary_window_numeric/README.md",
+    "selection_note": "docs/standard_system_mvp/CLASS2_NEXT_SMALL_CANDIDATE_SELECTION.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  },
+  "current_scope_boundary": {
+    "approved_public_databases": [
+      "MIMIC-IV-3.1"
+    ],
+    "not_yet_approved_database_notes": [
+      "AmsterdamUMCdb-1.0.2 is not approved for same-name publication in this opening step. It first needs a separate hospital-admission encounter bridge proving true hospital admission and discharge boundaries rather than ICU/MC stay boundaries."
+    ]
+  }
+}

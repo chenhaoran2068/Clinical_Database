@@ -1,0 +1,385 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:36Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_rrt_fluid_removal_event",
+  "database_id": "MIMIC-IV-3.1",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_rrt_fluid_removal_event/runtime/mimic_iv_3_1_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_rrt_fluid_removal_event/runtime/mimic_iv_3_1_rerun_repro_check",
+  "baseline_process_batch_id": "20260502T131530Z_MIMIC-IV-3.1_std_rrt_fluid_removal_event",
+  "candidate_process_batch_id": "20260502T131539Z_MIMIC-IV-3.1_std_rrt_fluid_removal_event",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "bridge_role_class_counts",
+    "context_only_row_count",
+    "default_bridge_eligible_volume_ml",
+    "default_bridge_row_count",
+    "extreme_value_caution_row_count",
+    "fluid_removal_event_name_counts",
+    "fluid_removal_event_name_stays",
+    "fluid_removal_event_name_volume_ml",
+    "negative_value_caution_row_count",
+    "row_count",
+    "source_rrt_family_class_counts",
+    "unique_stay_id"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_rrt_fluid_removal_event/runtime/mimic_iv_3_1_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_rrt_fluid_removal_event/runtime/mimic_iv_3_1_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_bridge_role_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field bridge_role_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_context_only_row_count_match",
+      "status": "pass",
+      "message": "build_summary field context_only_row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_default_bridge_eligible_volume_ml_match",
+      "status": "pass",
+      "message": "build_summary field default_bridge_eligible_volume_ml matches across reruns"
+    },
+    {
+      "check_id": "build_summary_default_bridge_row_count_match",
+      "status": "pass",
+      "message": "build_summary field default_bridge_row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_extreme_value_caution_row_count_match",
+      "status": "pass",
+      "message": "build_summary field extreme_value_caution_row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_fluid_removal_event_name_counts_match",
+      "status": "pass",
+      "message": "build_summary field fluid_removal_event_name_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_fluid_removal_event_name_stays_match",
+      "status": "pass",
+      "message": "build_summary field fluid_removal_event_name_stays matches across reruns"
+    },
+    {
+      "check_id": "build_summary_fluid_removal_event_name_volume_ml_match",
+      "status": "pass",
+      "message": "build_summary field fluid_removal_event_name_volume_ml matches across reruns"
+    },
+    {
+      "check_id": "build_summary_negative_value_caution_row_count_match",
+      "status": "pass",
+      "message": "build_summary field negative_value_caution_row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_row_count_match",
+      "status": "pass",
+      "message": "build_summary field row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_source_rrt_family_class_counts_match",
+      "status": "pass",
+      "message": "build_summary field source_rrt_family_class_counts matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_stay_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_stay_id matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "dac2d019865e2c042c477e6b4559896f2000f487090158269d98bd8af42163fb",
+        "size_bytes": 3361
+      },
+      "candidate_signature": {
+        "sha256": "dac2d019865e2c042c477e6b4559896f2000f487090158269d98bd8af42163fb",
+        "size_bytes": 3361
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_rrt_fluid_removal_event/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_rrt_fluid_removal_event/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "0d665f0aa5bbc26632147881c2bd6efb0fb3a55643ebbd982fdac6b90915229b",
+        "size_bytes": 4121
+      },
+      "candidate_signature": {
+        "sha256": "fca7d38289ca78ac92d26cfa2ec037639a02dc426bf494e01a367c038fbacea9",
+        "size_bytes": 4115
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "fbd301282b2949f7c71c03bac9a2ca6e9b92a15d8c8acf2fc1f498860b3c291a",
+        "size_bytes": 28213
+      },
+      "candidate_signature": {
+        "sha256": "fbd301282b2949f7c71c03bac9a2ca6e9b92a15d8c8acf2fc1f498860b3c291a",
+        "size_bytes": 28213
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/preview/std_rrt_fluid_removal_event_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_fluid_removal_event/preview/std_rrt_fluid_removal_event_preview.csv",
+      "baseline_signature": {
+        "sha256": "77b13937fc2430e4bdda71cc10885ad5b7e5b494dea24cca12aed7d161cfd667",
+        "size_bytes": 125288
+      },
+      "candidate_signature": {
+        "sha256": "77b13937fc2430e4bdda71cc10885ad5b7e5b494dea24cca12aed7d161cfd667",
+        "size_bytes": 125288
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/intake_output_balance/std_rrt_fluid_removal_event/std_rrt_fluid_removal_event_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/intake_output_balance/std_rrt_fluid_removal_event/std_rrt_fluid_removal_event_long.parquet",
+      "baseline_signature": {
+        "sha256": "72928670f2a2e1c57135d2d578957919ec4b3cddcb4babb549ad2865665e6b71",
+        "size_bytes": 12465576
+      },
+      "candidate_signature": {
+        "sha256": "72928670f2a2e1c57135d2d578957919ec4b3cddcb4babb549ad2865665e6b71",
+        "size_bytes": 12465576
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "bridge_role_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "context_only_not_default_bridge": 364356,
+        "default_balance_bridge_include": 338554
+      },
+      "candidate_value": {
+        "context_only_not_default_bridge": 364356,
+        "default_balance_bridge_include": 338554
+      }
+    },
+    "context_only_row_count": {
+      "status": "pass",
+      "baseline_value": 364356,
+      "candidate_value": 364356
+    },
+    "default_bridge_eligible_volume_ml": {
+      "status": "pass",
+      "baseline_value": 130066286.78999999,
+      "candidate_value": 130066286.79
+    },
+    "default_bridge_row_count": {
+      "status": "pass",
+      "baseline_value": 338554,
+      "candidate_value": 338554
+    },
+    "extreme_value_caution_row_count": {
+      "status": "pass",
+      "baseline_value": 1306,
+      "candidate_value": 1306
+    },
+    "fluid_removal_event_name_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "hemodialysis_output_volume": 3307,
+        "machine_hourly_patient_removal_volume": 335247,
+        "peritoneal_dialysis_volume_in_context": 1669,
+        "peritoneal_dialysis_volume_out_context": 1456,
+        "ultrafiltrate_output_volume_context": 361231
+      },
+      "candidate_value": {
+        "hemodialysis_output_volume": 3307,
+        "machine_hourly_patient_removal_volume": 335247,
+        "peritoneal_dialysis_volume_in_context": 1669,
+        "peritoneal_dialysis_volume_out_context": 1456,
+        "ultrafiltrate_output_volume_context": 361231
+      }
+    },
+    "fluid_removal_event_name_stays": {
+      "status": "pass",
+      "baseline_value": {
+        "hemodialysis_output_volume": 1755,
+        "machine_hourly_patient_removal_volume": 2902,
+        "peritoneal_dialysis_volume_in_context": 209,
+        "peritoneal_dialysis_volume_out_context": 183,
+        "ultrafiltrate_output_volume_context": 2870
+      },
+      "candidate_value": {
+        "hemodialysis_output_volume": 1755,
+        "machine_hourly_patient_removal_volume": 2902,
+        "peritoneal_dialysis_volume_in_context": 209,
+        "peritoneal_dialysis_volume_out_context": 183,
+        "ultrafiltrate_output_volume_context": 2870
+      }
+    },
+    "fluid_removal_event_name_volume_ml": {
+      "status": "pass",
+      "baseline_value": {
+        "hemodialysis_output_volume": 6350804.09,
+        "machine_hourly_patient_removal_volume": 123623777.7,
+        "peritoneal_dialysis_volume_in_context": 3212390.0,
+        "peritoneal_dialysis_volume_out_context": 3094315.0,
+        "ultrafiltrate_output_volume_context": 127242738.49999997
+      },
+      "candidate_value": {
+        "hemodialysis_output_volume": 6350804.09,
+        "machine_hourly_patient_removal_volume": 123623777.7,
+        "peritoneal_dialysis_volume_in_context": 3212390.0,
+        "peritoneal_dialysis_volume_out_context": 3094315.0,
+        "ultrafiltrate_output_volume_context": 127242738.49999996
+      }
+    },
+    "negative_value_caution_row_count": {
+      "status": "pass",
+      "baseline_value": 1240,
+      "candidate_value": 1240
+    },
+    "row_count": {
+      "status": "pass",
+      "baseline_value": 702910,
+      "candidate_value": 702910
+    },
+    "source_rrt_family_class_counts": {
+      "status": "pass",
+      "baseline_value": {
+        "crrt_family": 696478,
+        "non_crrt_rrt": 6432
+      },
+      "candidate_value": {
+        "crrt_family": 696478,
+        "non_crrt_rrt": 6432
+      }
+    },
+    "unique_stay_id": {
+      "status": "pass",
+      "baseline_value": 4418,
+      "candidate_value": 4418
+    }
+  }
+}

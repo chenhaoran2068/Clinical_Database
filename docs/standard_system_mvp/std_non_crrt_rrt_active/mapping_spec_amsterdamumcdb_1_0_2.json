@@ -1,0 +1,177 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v1",
+  "artifact_status": "approved_public_mapping_lock",
+  "approval_status": "reviewed_approved",
+  "mvp_phase": "class_3_non_crrt_rrt_active_amsterdam_governed_mvp",
+  "created_at": "2026-05-02",
+  "updated_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_non_crrt_rrt_active/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_non_crrt_rrt_active",
+    "variable_version": "v0_draft",
+    "semantic_intent": "non-CRRT renal replacement therapy active state",
+    "semantic_grain": "one row per positive state episode",
+    "source_value_class": "positive_state_episode",
+    "canonical_unit": "none",
+    "canonical_value_family": "binary_state"
+  },
+  "approved_boundary_notice": {
+    "status": "approved_same_name_mapping_with_source_coverage_note",
+    "reason": "Amsterdam processitems exposes explicit start/stop intervals for itemid 16363 / Hemodialyse, which is narrow enough for non-CRRT RRT active support when CVVH, dialysis-line access, peritoneal catheter, plasma exchange, orders, device parameters, and fluid-removal measurements remain outside the same-name output. Amsterdam opening evidence does not prove peritoneal dialysis active intervals.",
+    "formal_approval_date": "2026-05-02",
+    "accepted_policy_scope": "conservative hemodialysis positive episode boundary for non-CRRT active support"
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_locator_mode": "direct_positive_state_episode_from_reviewed_processitems_interval_filter",
+    "source_package": "processitems",
+    "source_table": "processitems_interval",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/processitems_interval.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+      "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/amsterdam_item_dictionary_legacy.parquet"
+    ],
+    "source_status_field": "itemid + item",
+    "source_status_codes": [
+      "16363:Hemodialyse:intermittent_hemodialysis_active_interval"
+    ],
+    "source_status_code_labels": {
+      "16363": "Hemodialyse"
+    },
+    "source_filter_lock": {
+      "included_itemids": [
+        16363
+      ],
+      "required_interval_rule": "start, stop, and duration are non-null and positive; stop must be greater than start",
+      "required_source_table": "processitems_interval"
+    },
+    "source_start_field": "start",
+    "source_end_field": "stop",
+    "source_duration_field": "duration",
+    "source_grain": "one Amsterdam processitems Hemodialyse interval row before non-CRRT interval union",
+    "target_grain": "one retained positive non-CRRT support state episode row after merging overlapping approved Hemodialyse intervals within the stay",
+    "identifier_normalization": {
+      "subject_id_role": "patientid joined from Amsterdam admissions_core by admissionid",
+      "hadm_id_role": "not separately available in the current Amsterdam opening mapping",
+      "stay_id_role": "raw admissionid is the Amsterdam ICU/MC local admission identifier and normalizes to stay_id under ICU/MC semantics",
+      "stay_link_status": "icu_mcu_local_admission_via_admissionid"
+    },
+    "adjacent_status_boundary": {
+      "included_scope": [
+        "processitems itemid 16363 Hemodialyse active interval"
+      ],
+      "excluded_statuses": [
+        "12465 CVVH CRRT-family active interval",
+        "9161 Dialyselijn Femoralis dialysis access line",
+        "9162 Dialyselijn Jugularis dialysis access line",
+        "9163 Dialyselijn Subclavia dialysis access line",
+        "16352 Peritoneaal catheter peritoneal access catheter, not active dialysis interval",
+        "18718 Plasmaferese plasma exchange",
+        "numericitems 8808 Peritoneaaldialyse volume event, not governed active interval",
+        "numericitems Hemodialyse onttrekken and CVVH fluid-removal measurements"
+      ],
+      "excluded_same_family_outputs": [
+        "std_rrt_active",
+        "std_crrt_family_active",
+        "std_rrt_modality_episode",
+        "std_rrt_fluid_removal_event",
+        "std_first_day_rrt_window_summary",
+        "std_icu_admission_28d_rrt_free_days",
+        "std_kdigo_stage",
+        "std_sofa_renal_helper"
+      ],
+      "boundary_reason": "This same-name variable represents Amsterdam Hemodialyse-derived non-CRRT active support under current source coverage, not umbrella any-RRT, CVVH/CRRT, exact modality truth, access-line presence, peritoneal catheter presence, peritoneal dialysis volume events, fluid-removal events, or renal phenotypes."
+    },
+    "approved_source_audit_summary": {
+      "source_row_count": 58,
+      "valid_source_row_count": 58,
+      "invalid_timing_source_row_count": 0,
+      "approved_output_rows_after_interval_union": 57,
+      "unique_subject_id": 43,
+      "unique_stay_id": 46,
+      "duration_minutes_min": 75,
+      "duration_minutes_p50": 230,
+      "duration_minutes_p90": 888.2,
+      "duration_minutes_p95": 2798.8,
+      "duration_minutes_p99": 9274.48,
+      "duration_minutes_max": 13344,
+      "excluded_adjacent_process_counts": {
+        "9161 Dialyselijn Femoralis": 1090,
+        "9162 Dialyselijn Jugularis": 520,
+        "9163 Dialyselijn Subclavia": 304,
+        "16352 Peritoneaal catheter": 24,
+        "18718 Plasmaferese": 23
+      },
+      "source_coverage_caution": "Amsterdam opening processitems evidence supports Hemodialyse active intervals. It does not prove peritoneal dialysis active intervals; peritoneal catheter and Peritoneaaldialyse numeric volume rows remain adjacent evidence."
+    }
+  },
+  "state_episode_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "positive_state_translation": "retain Amsterdam processitems intervals for itemid 16363 Hemodialyse and merge overlapping or exactly contiguous retained Hemodialyse intervals within the same local admission",
+    "negative_state_translation": "do not emit false rows",
+    "episode_start_translation": "use merged source start as Amsterdam relative support_starttime in milliseconds while also emitting relative_start_time_value in minutes",
+    "episode_end_translation": "use merged source stop as Amsterdam relative support_endtime in milliseconds while also emitting relative_end_time_value in minutes",
+    "continuity_translation": "merge overlapping or exactly contiguous approved Hemodialyse processitems intervals; any positive gap starts a new support episode",
+    "no_row_translation": "absence of a retained row means no positive non-CRRT RRT episode under this processitems source rule"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "amsterdam_processitems_16363_hemodialyse_to_non_crrt_rrt_true_episode_v1",
+    "primary_output_value_field": "std_non_crrt_rrt_active",
+    "start_time_output_field": "support_starttime",
+    "end_time_output_field": "support_endtime",
+    "duration_output_field": "support_duration_minutes",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_start_output_field": "relative_start_time_value",
+    "relative_end_output_field": "relative_end_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "stay_id",
+      "support_episode_index",
+      "support_starttime",
+      "support_endtime",
+      "support_duration_minutes",
+      "std_non_crrt_rrt_active"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "support_episode_index"
+    ],
+    "duplicate_action": "fail",
+    "positive_only_no_row_policy_check": "false rows are not emitted; absence of row is not universal proof of no non-CRRT RRT support or no RRT",
+    "episode_time_order_action": "fail_when_end_not_after_start",
+    "source_code_lock_rule": "all retained rows must originate from Amsterdam processitems itemid 16363 Hemodialyse",
+    "duration_caution_rules": {
+      "short_episode_le_minutes": 60,
+      "prolonged_episode_ge_minutes": 10080
+    },
+    "notes": [
+      "This Amsterdam mapping is reviewed-approved for std_non_crrt_rrt_active under current hemodialysis interval source coverage.",
+      "The approved source scope is processitems active intervals for Hemodialyse.",
+      "Peritoneal active dialysis is not proven by the current Amsterdam opening processitems evidence."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_non_crrt_rrt_active/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_non_crrt_rrt_active/extract_code/Extract_Code_std_non_crrt_rrt_active.py",
+    "formal_output_rule": "Formal Amsterdam same-name output is approved only through the governed execution.py path reading this approved mapping spec and producing runtime plus rerun evidence.",
+    "non_bypassable_target_rule": "Formal outputs should be generated only through the governed execution.py path reading an approved mapping spec and producing runtime plus rerun evidence."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_non_crrt_rrt_active.md",
+    "formal_approval_review_path": "docs/standard_system_mvp/STD_NON_CRRT_RRT_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_non_crrt_rrt_active/extract_code/Extract_Code_std_non_crrt_rrt_active.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_non_crrt_rrt_active/std_non_crrt_rrt_active_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_non_crrt_rrt_active/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_non_crrt_rrt_active/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_non_crrt_rrt_active/preview/std_non_crrt_rrt_active_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_non_crrt_rrt_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_non_crrt_rrt_active/query_summary"
+  }
+}

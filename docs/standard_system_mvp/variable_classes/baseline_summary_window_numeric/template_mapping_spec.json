@@ -1,0 +1,135 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_2_definition_before_first_execution",
+  "created_at": "__YYYY-MM-DD__",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/__VARIABLE_ID__/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "__VARIABLE_ID__",
+    "variable_version": "v0_draft",
+    "semantic_intent": "__SEMANTIC_INTENT__",
+    "category": "__CATEGORY__",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "summary_subclass": "__SUMMARY_SUBCLASS__",
+    "target_entity_grain": "__TARGET_ENTITY_GRAIN__",
+    "anchor_family": "__ANCHOR_FAMILY__",
+    "canonical_unit": "__CANONICAL_UNIT__",
+    "canonical_value_family": "__VALUE_FAMILY__",
+    "current_output_storage_type": "__STORAGE_TYPE__",
+    "current_output_precision_digits": "__DISPLAY_PRECISION_DIGITS__"
+  },
+  "database_mapping": {
+    "database_id": "__DATABASE_ID__",
+    "source_locator_mode": "__SOURCE_LOCATOR_MODE__",
+    "source_package": "__SOURCE_PACKAGE__",
+    "primary_source_tables": [
+      "__SOURCE_TABLE_1__"
+    ],
+    "local_prepared_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 2/__DATABASE_ID__/__INPUT_ASSET_1__"
+    ],
+    "source_code_system": "__SOURCE_CODE_SYSTEM_OR_NOT_APPLICABLE__",
+    "source_codes": [],
+    "source_code_labels": {},
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "hadm_id",
+        "stay_id"
+      ],
+      "anchor_start_field": "__ANCHOR_START_FIELD__",
+      "anchor_end_field": "__ANCHOR_END_FIELD_OR_EMPTY__",
+      "source_time_field": "__SOURCE_TIME_FIELD_OR_EMPTY__",
+      "source_numeric_field": "__SOURCE_NUMERIC_FIELD_OR_EMPTY__",
+      "raw_unit_field": "__RAW_UNIT_FIELD_OR_EMPTY__",
+      "source_code_field": "__SOURCE_CODE_FIELD_OR_EMPTY__"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier",
+      "hadm_id_role": "hospital-admission-level identifier",
+      "stay_id_role": "ICU-stay-level or ICU-semantic stay-equivalent identifier",
+      "stay_link_status": "__STAY_LINK_STATUS__"
+    },
+    "source_grain": "__SOURCE_GRAIN__",
+    "target_grain": "__TARGET_GRAIN__",
+    "join_dependencies": [
+      {
+        "join_table": "__JOIN_TABLE__",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/__DATABASE_ID__/__JOIN_INPUT_ASSET__",
+        "join_keys": [
+          "__JOIN_KEY_1__"
+        ],
+        "join_cardinality": "__JOIN_CARDINALITY__",
+        "required_fields": [
+          "__JOIN_REQUIRED_FIELD_1__"
+        ],
+        "failure_action": "fail"
+      }
+    ]
+  },
+  "summary_build_translation": {
+    "window_label": "__WINDOW_LABEL__",
+    "anchor_family": "__ANCHOR_FAMILY__",
+    "window_start_translation": "__WINDOW_START_TRANSLATION__",
+    "window_end_translation": "__WINDOW_END_TRANSLATION__",
+    "qualifying_row_translation": "__QUALIFYING_ROW_TRANSLATION__",
+    "selection_translation": "__SELECTION_TRANSLATION__",
+    "aggregation_translation": "__AGGREGATION_TRANSLATION__",
+    "tie_break_translation": "__TIE_BREAK_TRANSLATION__",
+    "no_source_row_translation": "__NO_SOURCE_ROW_TRANSLATION__",
+    "partial_window_translation": "__PARTIAL_WINDOW_TRANSLATION__"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "__CANONICAL_UNIT__",
+    "source_unit_expectation": "__SOURCE_UNIT_EXPECTATION__",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "__NORMALIZATION_RULE_ID__",
+    "output_rounding_rule": "__OUTPUT_ROUNDING_RULE__",
+    "hard_valid_range_in_canonical_unit": [
+      "__HARD_MIN__",
+      "__HARD_MAX__"
+    ],
+    "plausible_range_in_canonical_unit": [
+      "__PLAUSIBLE_MIN__",
+      "__PLAUSIBLE_MAX__"
+    ],
+    "primary_output_value_field": "__PRIMARY_OUTPUT_VALUE_FIELD__",
+    "anchor_output_field": "__ANCHOR_OUTPUT_FIELD__",
+    "window_start_output_field": "__WINDOW_START_OUTPUT_FIELD__",
+    "window_end_output_field": "__WINDOW_END_OUTPUT_FIELD__"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "__REQUIRED_FIELD_1__"
+    ],
+    "duplicate_key": [
+      "__DUPLICATE_KEY_1__"
+    ],
+    "duplicate_action": "fail",
+    "missing_anchor_action": "fail",
+    "missing_window_bound_action": "__MISSING_WINDOW_BOUND_ACTION__",
+    "no_source_row_policy_check": "__NO_SOURCE_ROW_POLICY_CHECK__",
+    "window_consistency_action": "fail",
+    "join_failure_action": "fail",
+    "notes": [
+      "__VALIDATION_NOTE_1__"
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/__VARIABLE_ID__/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/__DATABASE_ID__/__VARIABLE_ID__/extract_code/Extract_Code___VARIABLE_ID__.py",
+    "formal_output_rule": "The future governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal outputs for this database should later be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/__VARIABLE_ID__.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/__DATABASE_ID__/__VARIABLE_ID__/extract_code/Extract_Code___VARIABLE_ID__.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/__SEMANTIC_FOLDER__/__VARIABLE_ID__/__OUTPUT_FILE__",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/__DATABASE_ID__/__VARIABLE_ID__/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/__DATABASE_ID__/__VARIABLE_ID__/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/__DATABASE_ID__/__VARIABLE_ID__/preview/__VARIABLE_ID___preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/__DATABASE_ID__/__VARIABLE_ID__/Layer5_PerVariable_KnowledgePackage.xlsx"
+  }
+}

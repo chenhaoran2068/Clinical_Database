@@ -112,6 +112,21 @@ When a new database or module is onboarded:
 4. document the source-to-canonical mapping in the database onboarding playbook
 5. document any stay-equivalent approximation or caveat explicitly
 
+## Future Database Readmission And Next-Admission Rule
+
+Future next-admission variables must follow the encounter layer that the database can actually prove.
+
+If a database exposes a hospital-level encounter with admission and discharge boundaries, and it can order later same-patient hospital encounters, it may be reviewed for hospital-level next-admission variables such as `std_days_to_next_hospital_admission`.
+
+If a database exposes only ICU-level or ICU/HDU/MCU-level local admissions, it must not be silently interpreted as hospital readmission. It should instead be reviewed under ICU, ICU/MCU, or local critical-care next-admission variables.
+
+Practical routing:
+
+- hospital-level encounter proven: eligible for hospital-level next-admission review
+- ICU-only encounter proven: use an ICU-only next-admission identity such as `std_days_to_next_icu_admission`
+- ICU plus MCU/HDU/stepdown rows retained: use a split identity that names the broader local critical-care scope, such as `std_days_to_next_icu_mcu_admission`, rather than widening an ICU-only variable
+- hospital bridge absent: keep hospital-level next-admission variables unapproved for that database until a bridge is separately proven
+
 ## Practical interpretation
 
 The project should behave as if canonical identifier naming is a shared cross-database dictionary.

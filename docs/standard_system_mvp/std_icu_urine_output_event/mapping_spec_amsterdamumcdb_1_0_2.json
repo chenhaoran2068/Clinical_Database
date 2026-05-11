@@ -1,0 +1,172 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "reviewed_approved_public_mapping_lock",
+  "approval_status": "reviewed_approved",
+  "review_state": {
+    "current_stage": "formal_variable_review_closed_approved",
+    "approval_gate": "approved_by_std_icu_urine_output_event_amsterdam_formal_review_2026_04_25",
+    "planned_review_path": "docs/standard_system_mvp/STD_ICU_URINE_OUTPUT_EVENT_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md"
+  },
+  "mvp_phase": "event_level_urine_output_governed_mvp",
+  "created_at": "2026-04-25",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_icu_urine_output_event/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_icu_urine_output_event",
+    "variable_version": "v0_draft",
+    "semantic_intent": "ICU urine-output measurement event",
+    "category": "supportive_therapy",
+    "semantic_grain": "time-stamped measurement event",
+    "source_value_class": "raw_measured_or_source_recorded_output_volume",
+    "aggregation_status": "grouped_same_stay_same_event_time_components",
+    "canonical_unit": "mL",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Float64",
+    "current_output_precision_digits": 3
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_package": "numericitems_source_access_index",
+    "source_table": "numericitems urine-output hotset",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/source_access_index/numericitems_hotsets/urine_output_candidate_itemids_8794_8796_8798_8800_8803_10743_10745_19921_19922.csv",
+    "source_code_system": "Amsterdam numericitems itemid",
+    "source_codes": [
+      8794,
+      8796,
+      8798,
+      8800,
+      8803,
+      10743,
+      10745,
+      19921,
+      19922
+    ],
+    "source_code_labels": {
+      "8794": "UrineCAD",
+      "8796": "UrineSupraPubis",
+      "8798": "UrineSpontaan",
+      "8800": "UrineIncontinentie",
+      "8803": "UrineUP",
+      "10743": "Nefrodrain li Uit",
+      "10745": "Nefrodrain re Uit",
+      "19921": "UrineSplint Li",
+      "19922": "UrineSplint Re"
+    },
+    "source_fields": {
+      "local_identifier_fields": [
+        "admissionid"
+      ],
+      "time_field": "measuredat",
+      "store_time_field": "registeredat",
+      "update_time_field": "updatedat",
+      "raw_value_numeric_field": "fluidout",
+      "raw_value_fallback_field": "value",
+      "raw_unit_field": "unit",
+      "raw_unitid_field": "unitid",
+      "source_code_field": "itemid",
+      "source_label_field": "item",
+      "lab_flag_field": "islabresult"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patientid obtained through admissions_core join",
+      "stay_id_role": "raw admissionid is the Amsterdam ICU/MC local admission identifier and normalizes to stay_id under ICU/MC semantics",
+      "hadm_id_role": "not separately available in the current opening Amsterdam public mapping",
+      "stay_link_status": "icu_mcu_local_admission_via_admissionid"
+    },
+    "source_grain": "one row per Amsterdam numericitems urine-output source component row before same-time grouping",
+    "target_grain": "one row per normalized ICU urine-output event grouped by stay_id and measuredat",
+    "join_dependencies": [
+      {
+        "join_table": "admissions_core",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+        "join_key": "admissionid",
+        "join_cardinality": "many_to_one",
+        "required_fields": [
+          "patientid",
+          "admissionid",
+          "admissioncount",
+          "admittedat",
+          "dischargedat"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "source_access_index manifest",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/source_access_index/numericitems_itemid_index_manifest.json",
+        "join_key": "itemid",
+        "required_fields": [
+          "item",
+          "unit",
+          "row_count_excluding_header",
+          "official_dictionary_count",
+          "external_anchor"
+        ],
+        "failure_action": "fail"
+      }
+    ]
+  },
+  "representation_and_normalization": {
+    "anchor_type": "icu_admission_anchor",
+    "relative_time_unit": "minutes",
+    "measurement_time_precision": "milliseconds_offset",
+    "canonical_unit": "mL",
+    "source_unit_expectation": "mL via raw unit ml and unitid 6",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "amsterdam_numericitems_urine_output_event_group_by_stay_measuredat_clean_0_5000_ml_v1",
+    "grouping_rule": "group source components by stay_id and measuredat and sum source volumes",
+    "source_numeric_rule": "use fluidout as source urine-output mL; fall back to value only if fluidout is missing",
+    "hard_valid_range_ml_per_event": [
+      0,
+      5000
+    ],
+    "outlier_action": "preserve_raw_value_in_urine_output_ml_raw_and_null_approved_urine_output_ml",
+    "cleaned_value_field": "urine_output_ml",
+    "raw_value_field": "urine_output_ml_raw",
+    "outlier_flag_field": "is_outlier_by_contract",
+    "cleaning_status_field": "cleaning_status"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "stay_id",
+      "source_measurement_group_id",
+      "event_time_offset_ms_raw",
+      "urine_output_ml_raw",
+      "anchor_type",
+      "relative_time_unit",
+      "official_definition_profile_class"
+    ],
+    "source_code_lock_rule": "all source rows must have one of the approved Amsterdam urine-output itemids",
+    "same_itemid_detail_lock_rule": "unit, unitid, islabresult, value-fluidout equality, timestamps, and official dictionary counts must be checked before approval",
+    "duplicate_key": [
+      "source_measurement_group_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_timestamp_action": "fail",
+    "missing_numeric_value_action": "fail_for_missing_fluidout_and_value",
+    "join_failure_action": "fail",
+    "approved_outlier_policy": "urine_output_ml may be null only when is_outlier_by_contract is true and cleaning_status is excluded_implausible_single_event_volume",
+    "notes": [
+      "Amsterdam retained absolute time is a raw milliseconds offset and should not be interpreted as a wall-clock datetime.",
+      "admissionid is treated as the local ICU/MC stay-equivalent identifier for standard stay_id normalization.",
+      "Nephrostomy and ureteral-splint routes are included with explicit component flags rather than collapsed into a bladder-catheter-only interpretation."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_icu_urine_output_event/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/extract_code/Extract_Code_std_icu_urine_output_event.py",
+    "formal_output_rule": "The governed execution.py entrypoint reads this mapping spec and delegates to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_icu_urine_output_event outputs for AmsterdamUMCdb-1.0.2 should be produced only through the governed execution.py path rather than side scripts or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_icu_urine_output_event.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/extract_code/Extract_Code_std_icu_urine_output_event.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/supportive_therapy/std_icu_urine_output_event/std_icu_urine_output_event_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/preview/std_icu_urine_output_event_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_urine_output_event/query_summary"
+  }
+}

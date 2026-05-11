@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T23:04:25Z",
+  "variable_id": "std_carbon_dioxide_partial_pressure_bg_allspecimen",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_carbon_dioxide_partial_pressure_bg_allspecimen/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_carbon_dioxide_partial_pressure_bg_allspecimen/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_carbon_dioxide_partial_pressure_bg_allspecimen/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_carbon_dioxide_partial_pressure_bg_allspecimen/extract_code/Extract_Code_std_carbon_dioxide_partial_pressure_bg_allspecimen.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_carbon_dioxide_partial_pressure_bg_allspecimen/extract_code/Extract_Code_std_carbon_dioxide_partial_pressure_bg_allspecimen.py"
+  ],
+  "process_batch_id": "20260503T230418Z_AmsterdamUMCdb-1.0.2_std_pco2_bg_all",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T23:04:18Z",
+  "finished_at": "2026-05-03T23:04:25Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "b443b625069a08a9673b4e35e37fee626610652b0e6e9758daa2f020e3ab8275",
+    "mapping_spec_sha256": "c0426aa33646d2df160910fc87c70915e3e67450586f41a826fbde7d7de35ba4"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_carbon_dioxide_partial_pressure_bg_allspecimen/std_carbon_dioxide_partial_pressure_bg_allspecimen_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_carbon_dioxide_partial_pressure_bg_allspecimen/preview/std_carbon_dioxide_partial_pressure_bg_allspecimen_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_carbon_dioxide_partial_pressure_bg_allspecimen/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_carbon_dioxide_partial_pressure_bg_allspecimen/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_carbon_dioxide_partial_pressure_bg_allspecimen/runtime/amsterdamumcdb_1_0_2_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "712d3279068d1985f589e00d0a7efee51ec7378bd8ab55db14d593a6c957eb91",
+      "size_bytes": 7039504
+    },
+    "preview_csv": {
+      "sha256": "b09d6b2b9e928a8e4316b68972584f6f5403be5f9cbc7383a91782d5142b6295",
+      "size_bytes": 88824
+    },
+    "asset_manifest": {
+      "sha256": "da2933f64a5c2ed765d500d0d0b254532b56cbace0b0b731cec4d0879f243061",
+      "size_bytes": 4913
+    },
+    "knowledge_package": {
+      "sha256": "21f6c3907b946a156e6cd5ac0022aa31dbd422c82505ec29cf1071700e4851a8",
+      "size_bytes": 26074
+    },
+    "build_log": {
+      "sha256": "d1b1e1d4c3a26cbfb169de99097e804ca04e63ce3105cb66bf32be8b1dbde316",
+      "size_bytes": 814
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T230418Z_AmsterdamUMCdb-1.0.2_std_pco2_bg_all",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_carbon_dioxide_partial_pressure_bg_allspecimen/std_carbon_dioxide_partial_pressure_bg_allspecimen_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_carbon_dioxide_partial_pressure_bg_allspecimen/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_carbon_dioxide_partial_pressure_bg_allspecimen/log_archive/20260503T230418Z_AmsterdamUMCdb-1.0.2_std_pco2_bg_all__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

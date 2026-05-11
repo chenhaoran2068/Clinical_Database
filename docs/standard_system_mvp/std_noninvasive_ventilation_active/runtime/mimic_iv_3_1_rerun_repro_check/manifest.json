@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T08:03:41Z",
+  "variable_id": "std_noninvasive_ventilation_active",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_noninvasive_ventilation_active/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_noninvasive_ventilation_active/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_noninvasive_ventilation_active/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/extract_code/Extract_Code_std_noninvasive_ventilation_active.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/ventilation.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/extract_code/Extract_Code_std_noninvasive_ventilation_active.py"
+  ],
+  "process_batch_id": "20260502T080340Z_MIMIC-IV-3.1_std_noninvasive_ventilation_active",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T08:03:39Z",
+  "finished_at": "2026-05-02T08:03:41Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "e35d540ad6be2cda59e91d199ac43630a9c8a096abfda46a6e5c0482f1b379cc",
+    "mapping_spec_sha256": "b69a735f0a8d0adcd56407304b17572b58578925649acd6613b94062be8b9ba3"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_noninvasive_ventilation_active/std_noninvasive_ventilation_active_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/preview/std_noninvasive_ventilation_active_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_noninvasive_ventilation_active/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "997c31d8ae52780611875a9e90fa20a9b6417d7ad9383f80aebd92d501500ad5",
+      "size_bytes": 272552
+    },
+    "preview_csv": {
+      "sha256": "3e42b7e67075cd39d93b77f7f72779080b7b46b6b9ade4b90aee71c619a20f51",
+      "size_bytes": 90469
+    },
+    "asset_manifest": {
+      "sha256": "18fb392463fc734a4cc2713e1e1793f4cd66f0cc693b3b77be5babf64b23a2cb",
+      "size_bytes": 2365
+    },
+    "knowledge_package": {
+      "sha256": "210cb29dfb7e27355a384a3e4d726af7b7b509fe37d9cf1a86d4df59d9d8ce00",
+      "size_bytes": 27041
+    },
+    "build_log": {
+      "sha256": "9d0b0b15f8e51e6d80631ec7fc23a0234429ea0ab45d106f5afffca1729d70d2",
+      "size_bytes": 1646
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T080340Z_MIMIC-IV-3.1_std_noninvasive_ventilation_active",
+    "prolonged_episode_ge_7d_count": 2,
+    "row_count": 4833,
+    "short_episode_le_60m_count": 33,
+    "unique_stay_id": 2974
+  }
+}

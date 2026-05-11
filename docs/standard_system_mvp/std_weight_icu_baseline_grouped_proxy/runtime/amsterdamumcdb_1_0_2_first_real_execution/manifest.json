@@ -1,0 +1,83 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-25T05:41:08Z",
+  "variable_id": "std_weight_icu_baseline_grouped_proxy",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_weight_icu_baseline_grouped_proxy/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_weight_icu_baseline_grouped_proxy/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_weight_icu_baseline_grouped_proxy/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_weight_icu_baseline_grouped_proxy/extract_code/Extract_Code_std_weight_icu_baseline_grouped_proxy.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_weight_icu_baseline_grouped_proxy/extract_code/Extract_Code_std_weight_icu_baseline_grouped_proxy.py"
+  ],
+  "process_batch_id": "20260425T054059Z_AmsterdamUMCdb-1.0.2_std_weight_icu_baseline_grouped_proxy",
+  "subprocess_return_code": 0,
+  "started_at": "2026-04-25T05:40:58Z",
+  "finished_at": "2026-04-25T05:41:08Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "0a75d2c1b2907d2bee9414d437b62f96c6717e220c50654076f2d4d78dd10448",
+    "mapping_spec_sha256": "8d661dc9d6ec230e21d3b5d6b5a021347d40d84bd87bd4c85de029cd63c8f7d1"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/anthropometrics/std_weight_icu_baseline_grouped_proxy/std_weight_icu_baseline_grouped_proxy_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_weight_icu_baseline_grouped_proxy/preview/std_weight_icu_baseline_grouped_proxy_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_weight_icu_baseline_grouped_proxy/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_weight_icu_baseline_grouped_proxy/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_weight_icu_baseline_grouped_proxy/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "de979f64859c33a6cfe98ff69343fd66fa545031196daaa13675538ccc250f8d",
+      "size_bytes": 510930
+    },
+    "preview_csv": {
+      "sha256": "f68e49cb143155eccfb94ab40bc74f1f384666edb0ebb121a296477595281c45",
+      "size_bytes": 48556
+    },
+    "asset_manifest": {
+      "sha256": "fc592ecef64c3ab50ae665576fafd609d9cd23b03607068d4e4d4344cfac181e",
+      "size_bytes": 4151
+    },
+    "knowledge_package": {
+      "sha256": "0f524730a2a10ef069b06cbc202b595ca34b8cfaef150bb9a18507313d6b1f9c",
+      "size_bytes": 27731
+    },
+    "build_log": {
+      "sha256": "278302d314ca68196795b8e161dd53e24c71cb9427aac78b81217dd99078522b",
+      "size_bytes": 1483
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260425T054059Z_AmsterdamUMCdb-1.0.2_std_weight_icu_baseline_grouped_proxy",
+    "effective_status": "reviewed_approved",
+    "total_rows": 23106,
+    "unique_patientid": 20109,
+    "unique_admissionid": 23106,
+    "nonnull_baseline_rows": 22206,
+    "null_baseline_rows": 900,
+    "source_origin_admissions_weightgroup_proxy_rows": 22160,
+    "source_origin_event_fallback_rows": 46,
+    "source_origin_unresolved_rows": 900,
+    "p25_std_weight_kg_baseline": 70.0,
+    "p50_std_weight_kg_baseline": 74.5,
+    "p75_std_weight_kg_baseline": 84.5,
+    "measured_context_rows": 1771,
+    "anamnestic_context_rows": 10235,
+    "estimated_context_rows": 6142,
+    "unknown_context_rows": 4958,
+    "weight_source_context_admissions_core_rows": 17378,
+    "weight_source_context_listitems_fallback_rows": 770,
+    "weight_source_context_missing_rows": 4958,
+    "weight_source_context_discordance_rows": 611,
+    "open_lower_boundary_rows": 1845,
+    "open_upper_boundary_rows": 918,
+    "event_fallback_exact_zero_minute_rows": 21
+  }
+}

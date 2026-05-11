@@ -1,0 +1,95 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_6_nitrite_urinalysis_result_mimic_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_nitrite_urinalysis_result/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_nitrite_urinalysis_result",
+    "variable_version": "v0_draft",
+    "semantic_intent": "source-recorded urinalysis nitrite ordinal result event",
+    "semantic_grain": "one retained source-recorded urinalysis nitrite result event",
+    "source_value_class": "source_recorded_ordinal_text_result",
+    "canonical_unit": "none",
+    "canonical_value_family": "binary_ordinal_result"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "approved_hosp_labevents_itemid_filter_with_text_normalization",
+    "source_package": "reviewed_unsplit_hosp_labevents_plus_labitems_and_id_maps",
+    "source_table": "hosp.labevents + hosp.d_labitems + retained id maps",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_labevents.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_d_labitems.parquet",
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm/std_id_map_subject_hadm_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm_stay/std_id_map_subject_hadm_stay_long.parquet"
+    ],
+    "source_itemids": [
+      51487,
+      51987
+    ],
+    "source_result_field": "value",
+    "source_time_field": "charttime",
+    "source_grain": "one raw hosp.labevents row for itemid 51487 or 51987 before approved result normalization",
+    "target_grain": "one retained interpretable urinalysis nitrite result event row"
+  },
+  "ordinal_result_build_translation": {
+    "target_entity_grain": "laboratory result event with best-available admission and ICU-stay linkage",
+    "anchor_family": "laboratory charttime anchor",
+    "result_normalization_translation": "NEG, NEGATIVE, and N map to negative; POS, POSITIVE, and P map to positive; blank placeholders are excluded",
+    "raw_result_retention_translation": "retain raw source value, raw itemid, source label, specimen id, raw unit, abnormal flag, hadm recovery, and stay linkage status",
+    "no_row_translation": "absence of a retained row means no interpretable nitrite result under this source rule, not a negative nitrite result"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "nitrite_urinalysis_result_normalization_v1",
+    "primary_output_value_field": "std_nitrite_urinalysis_result",
+    "source_result_output_field": "source_value_raw",
+    "event_time_output_field": "charttime",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_time_output_field": "relative_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "charttime",
+      "source_labevent_id_raw",
+      "source_itemid_raw",
+      "source_value_raw",
+      "normalization_rule",
+      "std_nitrite_urinalysis_result"
+    ],
+    "duplicate_key": [
+      "source_labevent_id_raw"
+    ],
+    "duplicate_action": "fail",
+    "result_domain_check": [
+      "negative",
+      "positive"
+    ],
+    "no_row_policy_check": "absence of row is not universal proof of negative nitrite or no urinary infection",
+    "notes": [
+      "This is a Class 6 ordinal/text result event, not a numeric urine chemistry result and not a microbiology/UTI phenotype.",
+      "Hospital-only and insufficient-linkage rows are retained with stay_link_status for downstream filtering."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_nitrite_urinalysis_result/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/extract_code/Extract_Code_std_nitrite_urinalysis_result.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation.",
+    "non_bypassable_target_rule": "Formal std_nitrite_urinalysis_result outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_nitrite_urinalysis_result.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/extract_code/Extract_Code_std_nitrite_urinalysis_result.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_nitrite_urinalysis_result/std_nitrite_urinalysis_result_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/preview/std_nitrite_urinalysis_result_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_nitrite_urinalysis_result/query_summary"
+  }
+}

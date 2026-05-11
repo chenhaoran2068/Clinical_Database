@@ -1,0 +1,178 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T15:54:30Z",
+  "variable_id": "std_microbiology_organism_isolate",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_microbiology_organism_isolate/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_microbiology_organism_isolate/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_microbiology_organism_isolate/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/extract_code/Extract_Code_std_microbiology_organism_isolate.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_microbiologyevents.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/extract_code/Extract_Code_std_microbiology_organism_isolate.py"
+  ],
+  "process_batch_id": "20260502T155225Z_MIMIC-IV-3.1_std_microbiology_organism_isolate",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T15:52:24Z",
+  "finished_at": "2026-05-02T15:54:30Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "09265a46564b06c61d33ec3d321f5163a755aa593e73df50c3fbff7e7e73fd15",
+    "mapping_spec_sha256": "77d38c56ab38e0b8c007b954b8103339de8fa2536f3690f6d8a1adfa409881d3"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_microbiology_organism_isolate/std_microbiology_organism_isolate_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/preview/std_microbiology_organism_isolate_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_microbiology_organism_isolate/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "5488de4dd307638627b9302a4d7c4e0b1f21d4bc8087cde3b727d11f3f0aafc4",
+      "size_bytes": 16219374
+    },
+    "preview_csv": {
+      "sha256": "43af1ed8c15afcc729c9e3e348fbbd3a1ebeebc2b92f2538e08eb8ab4e084da1",
+      "size_bytes": 66212
+    },
+    "asset_manifest": {
+      "sha256": "e39e3a540dda3fddc1fcc0391f33ee6554aeee5fd6fd7d4a93ea72482bd96805",
+      "size_bytes": 3083
+    },
+    "knowledge_package": {
+      "sha256": "53ff4c0b4bba22d3c89c39f6478eb5af91680a75c26ad46f34c690d74f7b0344",
+      "size_bytes": 27874
+    },
+    "build_log": {
+      "sha256": "a6500f956dfc6b81b86fc0d1eb3b7020d62adaaf2821a1a4a73e38c82137f0d2",
+      "size_bytes": 1772
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T155225Z_MIMIC-IV-3.1_std_microbiology_organism_isolate",
+    "source_opening_scope_rows": 2791324,
+    "retained_rows": 306613,
+    "unique_subject_id": 89352,
+    "unique_hadm_id_nonnull": 51516,
+    "null_hadm_rows": 180039,
+    "encounter_anchor_status_counts": {
+      "subject_only_no_hadm": 180039,
+      "hospital_admission": 126574
+    },
+    "opening_test_class_counts": {
+      "urine_culture": 127455,
+      "blood_culture": 76757,
+      "wound_culture": 40589,
+      "respiratory_culture": 35099,
+      "body_fluid_culture": 17056,
+      "fungal_culture": 8073,
+      "acid_fast_culture": 1584
+    },
+    "specimen_class_counts": {
+      "urine": 128180,
+      "blood": 77063,
+      "wound_swab_abscess": 49454,
+      "respiratory": 39109,
+      "body_fluid": 10573,
+      "other": 1451,
+      "tissue": 756,
+      "stool": 27
+    },
+    "specimen_subtype_std_counts": {
+      "urine": 127650,
+      "blood_culture_bottle": 76185,
+      "swab": 36624,
+      "sputum": 25993,
+      "abscess": 9574,
+      "bronchoalveolar_lavage": 7316,
+      "bronchial_washings": 3510,
+      "peritoneal_fluid": 2700,
+      "other_body_fluid": 2357,
+      "bile": 2297,
+      "mini_bal": 1849,
+      "pleural_fluid": 1366,
+      "joint_fluid": 1231,
+      "catheter_tip": 1230,
+      "foreign_body": 1157,
+      "foot_wound": 773,
+      "tissue": 756,
+      "nail_scrapings": 591,
+      "blood_culture_post_mortem": 578,
+      "urine_kidney": 489,
+      "ear": 482,
+      "cerebrospinal_fluid": 443,
+      "aspirate": 312,
+      "blood_fungal_culture_bottle": 276,
+      "eye": 143,
+      "dialysis_fluid": 108,
+      "throat_culture": 84,
+      "skin_scrapings": 80,
+      "prosthetic_joint_fluid": 71,
+      "corneal_scraping": 60,
+      "tracheal_aspirate": 52,
+      "bronchial_brush": 45,
+      "urine_suprapubic_aspirate": 41,
+      "wound_fluid": 36,
+      "staph_aureus_swab": 32,
+      "stool": 27,
+      "fluid_in_blood_culture_bottles": 24,
+      "throat_for_strep": 23,
+      "protected_bronchial_brush": 16,
+      "biopsy": 12,
+      "bone_marrow": 6,
+      "post_mortem_other": 5,
+      "hair": 3,
+      "other_unresolved": 2,
+      "respiratory_viral_test": 1,
+      "throat": 1,
+      "viral_culture_hsv_ruleout": 1,
+      "swab_ruleout_gc": 1
+    },
+    "specimen_site_class_counts": {
+      "urinary_tract": 128180,
+      "bloodstream": 77039,
+      "lower_respiratory": 38781,
+      "swab_or_superficial": 36657,
+      "skin_soft_tissue": 10383,
+      "peritoneal_space": 2700,
+      "device_related": 2387,
+      "other_body_fluid": 2381,
+      "biliary": 2297,
+      "pleural_space": 1366,
+      "joint_space": 1302,
+      "tissue_or_biopsy": 768,
+      "hair_or_skin_appendage": 674,
+      "ear": 482,
+      "central_nervous_system": 443,
+      "other_or_unspecified": 315,
+      "eye": 203,
+      "upper_airway_or_oral": 108,
+      "dialysis_related_fluid": 108,
+      "gastrointestinal": 27,
+      "bone_marrow": 6,
+      "post_mortem": 5,
+      "respiratory_other": 1
+    },
+    "organism_branch_role_class_counts": {
+      "named_isolate_or_group": 208744,
+      "generic_morphology_or_unspecified_microbe": 53301,
+      "cancelled_placeholder": 37140,
+      "summary_flora_or_mixed": 7428
+    },
+    "organism_positive_analysis_class_counts": {
+      "count_as_positive_isolate": 262045,
+      "exclude_cancelled_placeholder": 37140,
+      "exclude_flora_or_mixed_summary": 7428
+    },
+    "rows_with_susceptibility_child": 139153,
+    "rows_with_quantity_text": 27,
+    "rows_with_comment_text": 49019,
+    "max_susceptibility_row_count": 23
+  }
+}

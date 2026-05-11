@@ -1,0 +1,150 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-04-23",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_heart_rate/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_heart_rate",
+    "variable_version": "v0_draft",
+    "semantic_intent": "heart rate observation",
+    "category": "vital_sign",
+    "semantic_grain": "time-stamped measurement event",
+    "source_value_class": "raw_measured_only",
+    "aggregation_status": "not_aggregated",
+    "canonical_unit": "bpm",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Int64",
+    "current_output_precision_digits": 0
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_package": "numericitems",
+    "source_table": "numericitems_event",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+    "source_code_system": "itemid",
+    "source_codes": [
+      6640
+    ],
+    "source_code_labels": {
+      "6640": "Hartfrequentie"
+    },
+    "source_fields": {
+      "local_identifier_fields": [
+        "patientid",
+        "admissionid"
+      ],
+      "time_field": "event_time_primary_ms_raw",
+      "relative_time_field": "event_time_primary_minutes_relative",
+      "raw_value_numeric_field": "value",
+      "raw_unit_field": "unit",
+      "raw_comment_field": "comment",
+      "lab_flag_field": "islabresult",
+      "source_code_field": "itemid",
+      "source_label_field": "item"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "raw patientid should normalize to subject_id",
+      "stay_id_role": "raw admissionid is the Amsterdam ICU-semantic stay-equivalent identifier and should normalize to stay_id",
+      "hadm_id_role": "not separately available in the current opening Amsterdam public mapping",
+      "stay_link_status": "icu_semantic_stay_equivalent_via_admissionid"
+    },
+    "source_grain": "one row per Amsterdam numericitems heart-rate event",
+    "target_grain": "one row per normalized standard heart-rate event",
+    "join_dependencies": [
+      {
+        "join_table": "admissions_core",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+        "join_key": "admissionid",
+        "join_cardinality": "many_to_one",
+        "required_fields": [
+          "patientid",
+          "admissioncount",
+          "admittedat",
+          "dischargedat"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "amsterdam_item_dictionary_legacy",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/amsterdam_item_dictionary_legacy.parquet",
+        "join_key": "itemid",
+        "required_fields": [
+          "item",
+          "item_en",
+          "unit",
+          "ucum_code",
+          "table",
+          "expected_min_value",
+          "expected_max_value"
+        ],
+        "dictionary_lock": {
+          "itemid": 6640,
+          "item": "Hartfrequentie",
+          "table": "numericitems",
+          "unit": "/min"
+        },
+        "failure_action": "fail"
+      }
+    ]
+  },
+  "representation_and_normalization": {
+    "anchor_type": "icu_admission_anchor",
+    "relative_time_unit": "minutes",
+    "measurement_time_precision": "milliseconds_offset",
+    "canonical_unit": "bpm",
+    "source_unit_expectation": "/min",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "amsterdam_numericitems_heart_rate_integer_round_half_away_from_zero",
+    "rounding_rule": "nearest_integer_half_away_from_zero",
+    "cleaned_range_bpm": [
+      0,
+      250
+    ],
+    "outlier_action": "retain_normalized_value_mark_is_outlier_and_null_cleaned_value",
+    "cleaned_value_field": "std_heart_rate_bpm_cleaned",
+    "normalized_value_field": "std_heart_rate_bpm_normalized",
+    "outlier_flag_field": "is_outlier_by_contract",
+    "cleaning_status_field": "cleaning_status"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "patientid",
+      "admissionid",
+      "measurement_time_offset_ms_raw",
+      "source_value_numeric_raw"
+    ],
+    "source_code_lock_rule": "all_rows_must_have_itemid_6640",
+    "dictionary_alignment_rule": "itemid_6640_must_match_Hartfrequentie_in_numericitems_dictionary",
+    "duplicate_key": [
+      "source_measurement_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_timestamp_action": "fail",
+    "missing_numeric_value_action": "fail",
+    "join_failure_action": "fail",
+    "notes": [
+      "Amsterdam retained absolute time is a raw milliseconds offset and should not be interpreted as a wall-clock datetime.",
+      "admissionid is treated as the local ICU-semantic stay-equivalent identifier for standard stay_id normalization."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_heart_rate/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/extract_code/Extract_Code_std_heart_rate.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_heart_rate outputs for AmsterdamUMCdb-1.0.2 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_heart_rate.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/extract_code/Extract_Code_std_heart_rate.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_heart_rate/std_heart_rate_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/log_archive",
+    "local_build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/log_archive/20260423T021212Z_AmsterdamUMCdb-1.0.2_std_heart_rate__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/preview/std_heart_rate_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/query_summary"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:56:30Z",
+  "variable_id": "std_osmolality_measured",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_osmolality_measured/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_osmolality_measured/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_osmolality_measured/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/extract_code/Extract_Code_std_osmolality_measured.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/extract_code/Extract_Code_std_osmolality_measured.py"
+  ],
+  "process_batch_id": "20260507T225628Z_AmsterdamUMCdb-1.0.2_std_osmolality_measured",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:56:27Z",
+  "finished_at": "2026-05-07T22:56:30Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "e6860618c095ff50edfa182e83dbc9d75778247d5f11b8e18941fd65605219c1",
+    "mapping_spec_sha256": "0cbfc6004f4c69c21d2dd68c45cc4ffee86124d66407346caf65d4fbc45878e7"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_osmolality_measured/std_osmolality_measured_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/preview/std_osmolality_measured_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_osmolality_measured/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "e65e37e10ef42d4dbb2b30740c2db1ee529b3ca4e2ff9d3557a613a6a24643d4",
+      "size_bytes": 75791
+    },
+    "preview_csv": {
+      "sha256": "ee435397068f47badfd0b81c4d490eb708476cb02a8220f01a62ea6a73332e4a",
+      "size_bytes": 90447
+    },
+    "asset_manifest": {
+      "sha256": "29e8a2d3b4e8b158eca1a0cd9e9c1314f718235a8d28e3fd07fec0075730a75d",
+      "size_bytes": 4081
+    },
+    "knowledge_package": {
+      "sha256": "9efe96bfa8b10b9c310375f0112d2a6f168ffce11ef50024329e6737c31f29c6",
+      "size_bytes": 26250
+    },
+    "build_log": {
+      "sha256": "2dae767d0f90580bcd238d0ee1a349616341802f6d414e3bf62ec222ae798cca",
+      "size_bytes": 727
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225628Z_AmsterdamUMCdb-1.0.2_std_osmolality_measured",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_osmolality_measured/std_osmolality_measured_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_osmolality_measured/log_archive/20260507T225628Z_AmsterdamUMCdb-1.0.2_std_osmolality_measured__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

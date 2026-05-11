@@ -1,0 +1,31 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T15:45:46Z",
+  "variable_id": "std_microbiology_organism_isolate",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "validate_only",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_microbiology_organism_isolate/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_microbiology_organism_isolate/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_microbiology_organism_isolate/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/extract_code/Extract_Code_std_microbiology_organism_isolate.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_microbiologyevents.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/extract_code/Extract_Code_std_microbiology_organism_isolate.py"
+  ],
+  "process_batch_id": null,
+  "subprocess_return_code": null,
+  "started_at": null,
+  "finished_at": null,
+  "spec_hashes": {
+    "variable_spec_sha256": "09265a46564b06c61d33ec3d321f5163a755aa593e73df50c3fbff7e7e73fd15",
+    "mapping_spec_sha256": "77d38c56ab38e0b8c007b954b8103339de8fa2536f3690f6d8a1adfa409881d3"
+  },
+  "output_artifacts": {},
+  "output_signatures": {},
+  "build_summary": {}
+}

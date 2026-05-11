@@ -1,0 +1,139 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_2_definition_before_first_execution",
+  "created_at": "__YYYY-MM-DD__",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "baseline_summary_window_numeric",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BaselineSummaryWindowNumeric_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "__VARIABLE_ID__",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "__STANDARDIZED_NAME_EN__",
+    "standardized_name_cn_publication_status": "draft_or_existing_public_card_name",
+    "semantic_folder": "__SEMANTIC_FOLDER__",
+    "category": "__CATEGORY__"
+  },
+  "immutable_core": {
+    "semantic_intent": "__SEMANTIC_INTENT__",
+    "semantic_definition": "__SEMANTIC_DEFINITION__",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "value_family": "__VALUE_FAMILY__",
+    "source_value_class": "__SOURCE_VALUE_CLASS__",
+    "derived_values_allowed": true,
+    "aggregated_values_allowed": true,
+    "baseline_or_summary_interpretation_allowed": true,
+    "same_name_cross_database_rule": "__SAME_NAME_RULE__"
+  },
+  "summary_contract": {
+    "summary_subclass": "__SUMMARY_SUBCLASS__",
+    "target_entity_grain": "__TARGET_ENTITY_GRAIN__",
+    "anchor_family": "__ANCHOR_FAMILY__",
+    "window_label": "__WINDOW_LABEL__",
+    "window_start_rule": "__WINDOW_START_RULE__",
+    "window_end_rule": "__WINDOW_END_RULE__",
+    "qualifying_row_rule": "__QUALIFYING_ROW_RULE__",
+    "selection_rule": "__SELECTION_RULE__",
+    "aggregation_rule": "__AGGREGATION_RULE__",
+    "tie_break_rule": "__TIE_BREAK_RULE__",
+    "no_source_row_action": "__NO_SOURCE_ROW_ACTION__",
+    "partial_window_action": "__PARTIAL_WINDOW_ACTION__"
+  },
+  "canonical_representation": {
+    "canonical_unit": "__CANONICAL_UNIT__",
+    "canonical_ucum": "__CANONICAL_UCUM__",
+    "value_type": "__VALUE_TYPE__",
+    "storage_type": "__STORAGE_TYPE__",
+    "storage_precision_digits": "__STORAGE_PRECISION_DIGITS__",
+    "display_precision_digits": "__DISPLAY_PRECISION_DIGITS__",
+    "anchor_timestamp_required": "__ANCHOR_TIMESTAMP_REQUIRED__",
+    "window_bounds_required": "__WINDOW_BOUNDS_REQUIRED__",
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "hard_valid_range_in_canonical_unit": [
+      "__HARD_MIN__",
+      "__HARD_MAX__"
+    ],
+    "plausible_range_in_canonical_unit": [
+      "__PLAUSIBLE_MIN__",
+      "__PLAUSIBLE_MAX__"
+    ],
+    "range_role_note": "__RANGE_ROLE_NOTE__"
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "__MAPPING_TYPE__",
+    "public_anchor_status": "__PUBLIC_ANCHOR_STATUS__",
+    "preferred_anchor_families": [
+      "LOINC",
+      "SNOMED CT"
+    ],
+    "note": "__EXTERNAL_ALIGNMENT_NOTE__"
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "summary_subclass",
+      "target_entity_grain",
+      "anchor_family",
+      "window_label",
+      "window_start_rule",
+      "window_end_rule",
+      "qualifying_row_rule",
+      "selection_rule",
+      "aggregation_rule",
+      "no_source_row_action"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "hard_valid_range_in_canonical_unit",
+      "plausible_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "__NEW_VARIABLE_TRIGGER_EXAMPLE_1__",
+      "__NEW_VARIABLE_TRIGGER_EXAMPLE_2__"
+    ],
+    "version_bump_trigger_examples": [
+      "__VERSION_BUMP_TRIGGER_EXAMPLE_1__",
+      "__VERSION_BUMP_TRIGGER_EXAMPLE_2__"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "source tables and source fields",
+      "source code systems and source codes when relevant",
+      "database-specific raw anchor fields and local structural keys",
+      "availability of upstream event streams before summary reduction"
+    ],
+    "disallowed_same_name_variation": [
+      "__DISALLOWED_VARIATION_EXAMPLE_1__",
+      "__DISALLOWED_VARIATION_EXAMPLE_2__"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "class_contract_defined_execution_runner_not_yet_locked",
+    "formal_output_rule": "Formal outputs for this variable should eventually go through execution.py reading this variable_spec and an approved mapping_spec.",
+    "future_non_bypassable_rule": "Formal outputs should later be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/__VARIABLE_ID__/mapping_spec___DATABASE_SLUG__.json"
+    ],
+    "public_card": "docs/std_variable_cards/__VARIABLE_ID__.md",
+    "class_readme": "docs/standard_system_mvp/variable_classes/baseline_summary_window_numeric/README.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  }
+}

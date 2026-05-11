@@ -1,0 +1,98 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_9_microbiology_antibiotic_susceptibility_mimic_governed_mvp",
+  "created_at": "2026-05-03",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_microbiology_antibiotic_susceptibility",
+    "variable_version": "v0_draft",
+    "semantic_intent": "microbiology antibiotic susceptibility leaf under an organism branch",
+    "semantic_grain": "one row per microbiology susceptibility leaf row",
+    "source_value_class": "microbiology_susceptibility_leaf",
+    "canonical_unit": "none",
+    "canonical_value_family": "microbiology_multi_entity"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "approved_opening_scope_hosp_microbiologyevents_susceptibility_leaf_build",
+    "source_package": "reviewed_unsplit_hosp_microbiologyevents",
+    "source_table": "hosp.microbiologyevents",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_microbiologyevents.parquet",
+    "source_entity_key_fields": [
+      "microevent_id",
+      "micro_specimen_id",
+      "test_seq",
+      "org_itemid",
+      "isolate_num",
+      "ab_itemid"
+    ],
+    "source_time_field": "parent charttime + chartdate",
+    "source_grain": "one opening-scope source microbiology antibiotic susceptibility row",
+    "target_grain": "one retained antibiotic susceptibility leaf row",
+    "opening_scope_test_classes": [
+      "blood_culture",
+      "urine_culture",
+      "respiratory_culture",
+      "wound_culture",
+      "body_fluid_culture",
+      "fungal_culture"
+    ]
+  },
+  "microbiology_family_build_translation": {
+    "family_role": "antibiotic_susceptibility_leaf",
+    "entity_grain_translation": "retain one leaf row per source susceptibility microevent_id under an organism branch",
+    "source_hierarchy_translation": "retain susceptibility rows as leaf children under organism branches and parent microbiology test events",
+    "parent_child_translation": "link each susceptibility leaf to microbiology_organism_branch_id and microbiology_test_event_id",
+    "raw_text_retention_translation": "retain raw antibiotic name, interpretation code, dilution text/comparison/value, and comments together with standardized interpretation helper classes",
+    "no_row_translation": "absence of a retained susceptibility leaf means no approved susceptibility row under this mapping, not absence of resistance or antibiotic exposure"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "mimic_hosp_microbiologyevents_to_antibiotic_susceptibility_leaf_v1",
+    "primary_entity_id_field": "source_microevent_id",
+    "parent_entity_id_field": "microbiology_organism_branch_id",
+    "grandparent_entity_id_field": "microbiology_test_event_id",
+    "antibiotic_label_output_field": "antibiotic_name_raw",
+    "interpretation_output_field": "susceptibility_interpretation_class"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "microbiology_test_event_id",
+      "microbiology_organism_branch_id",
+      "source_microevent_id",
+      "organism_name_raw",
+      "antibiotic_name_raw",
+      "interpretation_raw",
+      "susceptibility_interpretation_class"
+    ],
+    "duplicate_key": [
+      "source_microevent_id"
+    ],
+    "duplicate_action": "fail",
+    "no_row_policy_check": "absence of row is not proof of susceptibility, resistance, organism absence, culture absence, or antibiotic exposure absence",
+    "notes": [
+      "Use susceptibility_resistance_analysis_eligible for simple resistance-rate workflows.",
+      "Rare raw interpretation codes are retained and folded into explicit standardized helper classes."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/extract_code/Extract_Code_std_microbiology_antibiotic_susceptibility.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation.",
+    "non_bypassable_target_rule": "Formal std_microbiology_antibiotic_susceptibility outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_microbiology_antibiotic_susceptibility.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/extract_code/Extract_Code_std_microbiology_antibiotic_susceptibility.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_microbiology_antibiotic_susceptibility/std_microbiology_antibiotic_susceptibility_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/preview/std_microbiology_antibiotic_susceptibility_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_antibiotic_susceptibility/query_summary"
+  }
+}

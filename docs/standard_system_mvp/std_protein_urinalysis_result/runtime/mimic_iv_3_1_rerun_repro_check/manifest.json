@@ -1,0 +1,94 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T14:50:00Z",
+  "variable_id": "std_protein_urinalysis_result",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_protein_urinalysis_result/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_protein_urinalysis_result/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_protein_urinalysis_result/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_protein_urinalysis_result/extract_code/Extract_Code_std_protein_urinalysis_result.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_labevents.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_protein_urinalysis_result/extract_code/Extract_Code_std_protein_urinalysis_result.py"
+  ],
+  "process_batch_id": "20260502T144953Z_MIMIC-IV-3.1_std_protein_urinalysis_result",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T14:49:52Z",
+  "finished_at": "2026-05-02T14:49:59Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "f0e23f3c312270625e8c8889a1498fc54205d2d05d69e04c1734345aa818b674",
+    "mapping_spec_sha256": "798e988bbe87cbbd31f2ebf33055123726d7fb5c9c328d9b4651e9e0b2a3cc20"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_protein_urinalysis_result/std_protein_urinalysis_result_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_protein_urinalysis_result/preview/std_protein_urinalysis_result_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_protein_urinalysis_result/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_protein_urinalysis_result/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_protein_urinalysis_result/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "5df0d66ad3991164cd8b253fe5410ece2f94f38fdbd891aa9d53563f88521e8e",
+      "size_bytes": 15355513
+    },
+    "preview_csv": {
+      "sha256": "a8d27e781c889cf1c40cd7a1a9309f996abf992752299b1edaf6510043d8d86b",
+      "size_bytes": 65905
+    },
+    "asset_manifest": {
+      "sha256": "954f6c617520d77000c5ee6a18aa0cdbd1ef5e2e82a5c1f30fd0045614ed602c",
+      "size_bytes": 4612
+    },
+    "knowledge_package": {
+      "sha256": "85e6092db6be51301641ac0c0195e4cca90f54e80564b7001f330d8fd60cb8f9",
+      "size_bytes": 29628
+    },
+    "build_log": {
+      "sha256": "6345cc0d8c2fa1282eaf6a3bbac2d9c3d10547dd53d21db6412fcefe2ed52e59",
+      "size_bytes": 1628
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T144953Z_MIMIC-IV-3.1_std_protein_urinalysis_result",
+    "total_rows": 380346,
+    "unique_subject_id": 139077,
+    "unique_hadm_id": 99160,
+    "unique_stay_id": 20998,
+    "source_hadm_direct_rows": 129608,
+    "source_hadm_null_rows": 250738,
+    "hadm_recovered_rows": 13827,
+    "hadm_unresolved_rows": 236911,
+    "inferred_unique_stay_rows": 32819,
+    "hospital_only_no_icu_overlap_rows": 110616,
+    "ambiguous_multi_stay_rows": 2,
+    "insufficient_linkage_info_rows": 236909,
+    "exact_event_key_duplicate_rows": 803,
+    "source_abnormal_true_rows": 129033,
+    "source_unit_counts": {
+      "mg/dL": 380346
+    },
+    "source_category_counts": {
+      "Hematology": 378715,
+      "Chemistry": 1631
+    },
+    "rows_before_icu_intime": 0,
+    "rows_at_icu_intime": 3,
+    "rows_after_icu_intime": 32816,
+    "relative_time_min": 0,
+    "relative_time_max": 180654,
+    "standardized_result_counts": {
+      "mild_positive": 166099,
+      "negative": 81205,
+      "moderate_positive": 56884,
+      "trace": 54296,
+      "marked_positive": 18421,
+      "severe_positive": 3441
+    }
+  }
+}

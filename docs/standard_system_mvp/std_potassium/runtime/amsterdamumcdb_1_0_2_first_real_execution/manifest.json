@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:15:52Z",
+  "variable_id": "std_potassium",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_potassium/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_potassium/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_potassium/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_potassium/extract_code/Extract_Code_std_potassium.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_potassium/extract_code/Extract_Code_std_potassium.py"
+  ],
+  "process_batch_id": "20260503T091546Z_AmsterdamUMCdb-1.0.2_std_potassium",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:15:45Z",
+  "finished_at": "2026-05-03T09:15:52Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "0ba6b08abeba93bb5d644164751bb3397d393636fa79e97eadde55c2f4dfe39a",
+    "mapping_spec_sha256": "3acfd8e60d266d691182537ae68f17f477841f0333a6c6b2154b53595e45c0dc"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_potassium/std_potassium_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_potassium/preview/std_potassium_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_potassium/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_potassium/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_potassium/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "5627420522df2e37849be70422c50b164b8810c8baee5a61f299c458e9bf3f04",
+      "size_bytes": 8811756
+    },
+    "preview_csv": {
+      "sha256": "bccf904434c223cbc02e857b838f431b82b0cb0fca2b45fe860f3acc3cabf249",
+      "size_bytes": 83915
+    },
+    "asset_manifest": {
+      "sha256": "fe67214a15f72b80056f235ec058ade8f51e7b8cc4d5efda24eedcc986f79195",
+      "size_bytes": 4051
+    },
+    "knowledge_package": {
+      "sha256": "730ed9ce06f29067b4bdd5748a600d73719b5c566a1994afb63cf69f17c35846",
+      "size_bytes": 25880
+    },
+    "build_log": {
+      "sha256": "fbacb4d0c10cf7233b67d2ca8ea5bcec4535e3e610178039b2a7b1e99979cc52",
+      "size_bytes": 707
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T091546Z_AmsterdamUMCdb-1.0.2_std_potassium",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_potassium/std_potassium_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_potassium/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_potassium/log_archive/20260503T091546Z_AmsterdamUMCdb-1.0.2_std_potassium__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

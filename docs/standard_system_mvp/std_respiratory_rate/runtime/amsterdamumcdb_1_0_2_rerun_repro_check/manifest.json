@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:21:03Z",
+  "variable_id": "std_respiratory_rate",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_respiratory_rate/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_respiratory_rate/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_respiratory_rate/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_respiratory_rate/extract_code/Extract_Code_std_respiratory_rate.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_respiratory_rate/extract_code/Extract_Code_std_respiratory_rate.py"
+  ],
+  "process_batch_id": "20260503T092000Z_AmsterdamUMCdb-1.0.2_std_respiratory_rate",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:20:00Z",
+  "finished_at": "2026-05-03T09:21:03Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "5672f1b9c3dfd53a7d1c70eea97fd8fa2fd0325ebf10909c54307d6ba255face",
+    "mapping_spec_sha256": "a2f932c87f3fd048f126b919bfb362354a8b437ea3866759818d1e58776c9259"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_respiratory_rate/std_respiratory_rate_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_respiratory_rate/preview/std_respiratory_rate_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_respiratory_rate/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_respiratory_rate/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_respiratory_rate/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "41ca17815c923199bca20b011452bd8fe85afc6319bb34ce944a965c9171e655",
+      "size_bytes": 263033281
+    },
+    "preview_csv": {
+      "sha256": "9a35fa0d7755e550fdcf9438a7ef8e474e2189c05a737a66300e7b494384ba66",
+      "size_bytes": 79454
+    },
+    "asset_manifest": {
+      "sha256": "d9a0c9af84281a4c28c8d08e283acd8b891f0f4775bcfdec23897ed1cc8857f6",
+      "size_bytes": 4309
+    },
+    "knowledge_package": {
+      "sha256": "86e309e4e543116c0048b64fb7c084717aa19a313688dfcf529e208329236cbb",
+      "size_bytes": 25937
+    },
+    "build_log": {
+      "sha256": "95c979a0b202ba081916289f04d6f95b40d92ef871bdcd4fb00aad1fe65cde92",
+      "size_bytes": 747
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T092000Z_AmsterdamUMCdb-1.0.2_std_respiratory_rate",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_respiratory_rate/std_respiratory_rate_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_respiratory_rate/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_respiratory_rate/log_archive/20260503T092000Z_AmsterdamUMCdb-1.0.2_std_respiratory_rate__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

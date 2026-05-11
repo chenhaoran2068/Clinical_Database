@@ -1,0 +1,76 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "template",
+  "variable_spec_ref": "docs/standard_system_mvp/std_example_treatment_device_io_event/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_example_treatment_device_io_event",
+    "variable_version": "v0_draft",
+    "semantic_intent": "example source-recorded treatment/device/IO amount event",
+    "semantic_grain": "time-stamped treatment/device/IO event",
+    "source_value_class": "source_recorded_treatment_device_io_amount_event",
+    "canonical_unit": "mL",
+    "canonical_value_family": "numeric_event_with_context"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "source_itemid_filter_with_context_projection",
+    "source_package": "example",
+    "source_table": "source.example",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/example.parquet",
+    "source_itemids": [
+      "example_itemid"
+    ],
+    "source_time_field": "charttime",
+    "source_value_field": "valuenum",
+    "source_unit_field": "valueuom",
+    "source_grain": "one source treatment/device/IO event row",
+    "target_grain": "one retained standardized treatment/device/IO event row"
+  },
+  "event_stream_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "event_time_translation": "retain source charttime",
+    "event_value_translation": "copy or deterministically convert source amount value",
+    "unit_translation": "retain raw unit and write standard unit when deterministic",
+    "context_translation": "retain source item and context labels",
+    "parent_link_translation": "no parent bridge in this template",
+    "downstream_aggregation_translation": "no smoothing, differencing, or summary aggregation in this event stream",
+    "no_row_translation": "absence of a retained row means no source-recorded event under this mapping"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "mL",
+    "normalization_rule_id": "source_treatment_device_io_amount_to_standard_event",
+    "primary_output_value_field": "example_value_ml",
+    "event_time_output_field": "charttime",
+    "standard_unit_output_field": "standard_unit",
+    "source_context_output_field": "source_context"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "stay_id",
+      "charttime",
+      "example_value_ml",
+      "standard_unit"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "charttime",
+      "source_context"
+    ],
+    "duplicate_action": "mapping_specific",
+    "no_row_policy_check": "absence of row is not universal proof of no treatment or device state"
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_example_treatment_device_io_event/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_example_treatment_device_io_event/extract_code/Extract_Code_std_example_treatment_device_io_event.py"
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_example_treatment_device_io_event.md",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_device_io/std_example_treatment_device_io_event/std_example_treatment_device_io_event_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_example_treatment_device_io_event/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_example_treatment_device_io_event/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_example_treatment_device_io_event/preview/std_example_treatment_device_io_event_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_example_treatment_device_io_event/Layer5_PerVariable_KnowledgePackage.xlsx"
+  }
+}

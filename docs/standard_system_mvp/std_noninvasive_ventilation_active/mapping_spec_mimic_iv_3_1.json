@@ -1,0 +1,122 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_3_respiratory_support_family_mimic_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_noninvasive_ventilation_active/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_noninvasive_ventilation_active",
+    "variable_version": "v0_draft",
+    "semantic_intent": "noninvasive ventilation active state",
+    "semantic_grain": "one row per positive state episode",
+    "source_value_class": "positive_state_episode",
+    "canonical_unit": "none",
+    "canonical_value_family": "binary_state"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "direct_positive_state_episode_filter",
+    "source_package": "source_supplied_derived",
+    "source_table": "source_supplied_derived.ventilation",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/ventilation.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm_stay/std_id_map_subject_hadm_stay_long.parquet"
+    ],
+    "source_status_field": "ventilation_status",
+    "source_status_codes": [
+      "NonInvasiveVent"
+    ],
+    "source_start_field": "starttime",
+    "source_end_field": "endtime",
+    "source_grain": "one official ventilation status interval row",
+    "target_grain": "one retained positive noninvasive ventilation state episode row",
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier from trusted stay map",
+      "hadm_id_role": "hospital-admission-level identifier from trusted stay map",
+      "stay_id_role": "ICU-stay-level identifier from official ventilation source and trusted stay map",
+      "stay_link_status": "direct_stay"
+    },
+    "official_source_references": [
+      "References/MIMIC/2026-03-20_snapshot_v2/raw/mimic_code/mimic-iv/concepts/treatment/ventilation.sql"
+    ],
+    "adjacent_status_boundary": {
+      "included_statuses": [
+        "NonInvasiveVent"
+      ],
+      "excluded_statuses": [
+        "InvasiveVent",
+        "HFNC",
+        "SupplementalOxygen",
+        "Tracheostomy"
+      ],
+      "boundary_reason": "This same-name variable represents noninvasive positive-pressure ventilation only. Other respiratory-support states are sibling variables or broader composites."
+    }
+  },
+  "state_episode_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "positive_state_translation": "retain official ventilation rows whose ventilation_status is exactly NonInvasiveVent",
+    "negative_state_translation": "do not emit false rows",
+    "episode_start_translation": "use source starttime as support_starttime",
+    "episode_end_translation": "use source endtime as support_endtime",
+    "continuity_translation": "keep official NonInvasiveVent interval boundaries; do not union invasive ventilation, HFNC, supplemental oxygen, or tracheostomy rows into this asset",
+    "no_row_translation": "absence of a retained row means no positive NonInvasiveVent episode under this source-status rule"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "mimic_official_ventilation_noninvasivevent_to_true_episode",
+    "primary_output_value_field": "std_noninvasive_ventilation_active",
+    "start_time_output_field": "support_starttime",
+    "end_time_output_field": "support_endtime",
+    "duration_output_field": "support_duration_minutes",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_start_output_field": "relative_start_time_value",
+    "relative_end_output_field": "relative_end_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "support_episode_index",
+      "support_starttime",
+      "support_endtime",
+      "support_duration_minutes",
+      "std_noninvasive_ventilation_active"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "support_episode_index"
+    ],
+    "duplicate_action": "fail",
+    "positive_only_no_row_policy_check": "false rows are not emitted; absence of row is not universal proof of no noninvasive ventilation",
+    "episode_time_order_action": "fail_when_end_not_after_start",
+    "duration_caution_rules": {
+      "short_episode_le_minutes": 60,
+      "prolonged_episode_ge_minutes": 10080
+    },
+    "notes": [
+      "The retained source is official source_supplied_derived.ventilation with ventilation_status=NonInvasiveVent.",
+      "InvasiveVent, HFNC, SupplementalOxygen, and Tracheostomy are adjacent statuses but are excluded from this same-name output."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_noninvasive_ventilation_active/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/extract_code/Extract_Code_std_noninvasive_ventilation_active.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_noninvasive_ventilation_active outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_noninvasive_ventilation_active.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/extract_code/Extract_Code_std_noninvasive_ventilation_active.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_noninvasive_ventilation_active/std_noninvasive_ventilation_active_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/preview/std_noninvasive_ventilation_active_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_noninvasive_ventilation_active/query_summary"
+  }
+}

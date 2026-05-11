@@ -1,4 +1,4 @@
-# Database Onboarding Playbooks
+﻿# Database Onboarding Playbooks
 
 These playbooks translate the repository contracts into database-level first steps.
 
@@ -15,12 +15,20 @@ Family playbooks:
 - [`families/README.md`](families/README.md)
 - [`families/MIMIC-IV.md`](families/MIMIC-IV.md)
 - [`families/AmsterdamUMCdb.md`](families/AmsterdamUMCdb.md)
+- [`families/SICdb.md`](families/SICdb.md)
+- [`families/NWICU.md`](families/NWICU.md)
+- [`families/eICU-CRD.md`](families/eICU-CRD.md)
+- [`families/Zigong.md`](families/Zigong.md)
 
 Current playbooks:
 
 - [`MIMIC-IV-3.1.md`](MIMIC-IV-3.1.md)
 - [`MIMIC-IV-ECHO-1.0.md`](MIMIC-IV-ECHO-1.0.md)
 - [`AmsterdamUMCdb-1.0.2.md`](AmsterdamUMCdb-1.0.2.md)
+- [`SICdb-1.0.5.md`](SICdb-1.0.5.md)
+- [`NWICU-0.1.0.md`](NWICU-0.1.0.md)
+- [`eICU-CRD-2.0.md`](eICU-CRD-2.0.md)
+- [`Zigong-1.1.md`](Zigong-1.1.md)
 
 Template:
 

@@ -1,0 +1,31 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T14:41:02Z",
+  "variable_id": "std_id_map_subject_hadm",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "validate_only",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_id_map_subject_hadm/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_id_map_subject_hadm/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_id_map_subject_hadm/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/extract_code/Extract_Code_std_id_map_subject_hadm.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_admissions.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_id_map_subject_hadm/extract_code/Extract_Code_std_id_map_subject_hadm.py"
+  ],
+  "process_batch_id": null,
+  "subprocess_return_code": null,
+  "started_at": null,
+  "finished_at": null,
+  "spec_hashes": {
+    "variable_spec_sha256": "6f4ffee96dfc07ee321ef84eaeedc4db788470354a6996a85510d0d3b1b860a8",
+    "mapping_spec_sha256": "0c64b22b9ead9f275a90a5e095f775f1e6979f10e3f307b6da73ee22aa6064cd"
+  },
+  "output_artifacts": {},
+  "output_signatures": {},
+  "build_summary": {}
+}

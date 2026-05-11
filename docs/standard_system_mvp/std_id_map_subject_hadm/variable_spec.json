@@ -1,0 +1,58 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_7_subject_hadm_id_map_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "diagnosis_admin_demographic_id_map",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_DiagnosisAdminDemographicIdMap_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_id_map_subject_hadm",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Subject to hospital admission identifier map",
+    "semantic_folder": "id_mapping",
+    "category": "id_mapping"
+  },
+  "immutable_core": {
+    "semantic_intent": "patient-to-hospital-admission identifier bridge",
+    "semantic_definition": "A hospital-admission-level identifier map linking patient subject_id to hospital admission hadm_id with admission start and discharge timestamps retained for encounter-window joins.",
+    "semantic_grain": "one row per hospital admission identifier",
+    "value_family": "identifier_map",
+    "source_value_class": "source_recorded_identifier_relationship",
+    "same_name_cross_database_rule": "Any database asset published as std_id_map_subject_hadm must preserve a patient-to-hospital-admission identifier relationship and admission time window; it must not silently change into ICU-stay mapping, readmission outcome, diagnosis event, demographic category, or follow-up phenotype."
+  },
+  "admin_demographic_contract": {
+    "target_entity_grain": "hospital admission",
+    "identifier_scope_rule": "retain one row per hospital admission identifier, with subject_id allowed to repeat across admissions",
+    "source_authority_rule": "use the database-authoritative hospital admissions table for the mapping; do not infer admission windows from ICU stays or event tables",
+    "normalization_rule": "retain source subject_id, hadm_id, admittime, and dischtime after type normalization and uniqueness checks",
+    "no_row_interpretation": "no retained row means no approved hospital-admission identifier relationship under the source rule, not absence of hospitalization"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "identifier_map",
+    "storage_type": "identifier_relationship_plus_window",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id"
+    ],
+    "time_anchor": "hospital_admission_start"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_id_map_subject_hadm outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_id_map_subject_hadm/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_id_map_subject_hadm/execution.py",
+    "public_card": "docs/std_variable_cards/std_id_map_subject_hadm.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_DiagnosisAdminDemographicIdMap_Contract.md"
+  }
+}

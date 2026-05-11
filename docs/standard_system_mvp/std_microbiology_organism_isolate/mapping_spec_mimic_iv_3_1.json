@@ -1,0 +1,98 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_9_microbiology_organism_isolate_mimic_governed_mvp",
+  "created_at": "2026-05-03",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_microbiology_organism_isolate/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_microbiology_organism_isolate",
+    "variable_version": "v0_draft",
+    "semantic_intent": "microbiology organism branch under a specimen-test event",
+    "semantic_grain": "one row per microbiology specimen-test-organism branch",
+    "source_value_class": "microbiology_organism_branch",
+    "canonical_unit": "none",
+    "canonical_value_family": "microbiology_multi_entity"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "approved_opening_scope_hosp_microbiologyevents_organism_branch_build",
+    "source_package": "reviewed_unsplit_hosp_microbiologyevents",
+    "source_table": "hosp.microbiologyevents",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_microbiologyevents.parquet",
+    "source_entity_key_fields": [
+      "micro_specimen_id",
+      "test_seq",
+      "org_itemid",
+      "isolate_num",
+      "org_name"
+    ],
+    "source_time_field": "parent charttime + chartdate",
+    "source_grain": "one opening-scope source organism branch under a specimen-test event before branch aggregation",
+    "target_grain": "one retained organism branch row per microbiology_organism_branch_id",
+    "opening_scope_test_classes": [
+      "blood_culture",
+      "urine_culture",
+      "respiratory_culture",
+      "wound_culture",
+      "body_fluid_culture",
+      "fungal_culture",
+      "acid_fast_culture"
+    ]
+  },
+  "microbiology_family_build_translation": {
+    "family_role": "organism_branch",
+    "entity_grain_translation": "aggregate source rows to one microbiology_organism_branch_id per parent event and organism branch identity",
+    "source_hierarchy_translation": "retain organism branches as children of parent microbiology_test_event rows and parents of susceptibility leaf rows",
+    "parent_child_translation": "link each organism branch to microbiology_test_event_id and expose susceptibility child presence/count",
+    "raw_text_retention_translation": "retain raw organism name, isolate number, quantity text, organism comments, and branch role/positivity helper classes",
+    "no_row_translation": "absence of a retained organism branch means no approved organism branch under this mapping, not definitive negative culture"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "mimic_hosp_microbiologyevents_to_organism_branch_v1",
+    "primary_entity_id_field": "microbiology_organism_branch_id",
+    "parent_entity_id_field": "microbiology_test_event_id",
+    "event_time_output_field": "charttime",
+    "branch_label_output_field": "organism_name_raw",
+    "positivity_helper_field": "organism_positive_analysis_class"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "microbiology_test_event_id",
+      "microbiology_organism_branch_id",
+      "source_micro_specimen_id",
+      "source_test_seq",
+      "organism_name_raw",
+      "organism_branch_role_class",
+      "organism_positive_analysis_class"
+    ],
+    "duplicate_key": [
+      "microbiology_organism_branch_id"
+    ],
+    "duplicate_action": "fail",
+    "no_row_policy_check": "absence of row is not proof of negative culture or no organism; use parent event context and raw comments",
+    "notes": [
+      "Not every organism branch is a true positive isolate; use organism_positive_analysis_class.",
+      "Quantity text is retained raw and should not be treated as a standardized colony count."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_microbiology_organism_isolate/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/extract_code/Extract_Code_std_microbiology_organism_isolate.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation.",
+    "non_bypassable_target_rule": "Formal std_microbiology_organism_isolate outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_microbiology_organism_isolate.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/extract_code/Extract_Code_std_microbiology_organism_isolate.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_microbiology_organism_isolate/std_microbiology_organism_isolate_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/preview/std_microbiology_organism_isolate_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_microbiology_organism_isolate/query_summary"
+  }
+}

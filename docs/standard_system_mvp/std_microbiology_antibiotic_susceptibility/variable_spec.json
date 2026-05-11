@@ -1,0 +1,62 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_9_microbiology_antibiotic_susceptibility_governed_mvp",
+  "created_at": "2026-05-03",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "microbiology_multi_entity_family",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_MicrobiologyMultiEntityFamily_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_microbiology_antibiotic_susceptibility",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Microbiology antibiotic susceptibility",
+    "semantic_folder": "laboratory",
+    "category": "laboratory"
+  },
+  "immutable_core": {
+    "semantic_intent": "microbiology antibiotic susceptibility leaf under an organism branch",
+    "semantic_definition": "A microbiology antibiotic-susceptibility leaf asset at specimen-test-organism-antibiotic grain, preserving raw antibiotic name, raw interpretation code, standardized interpretation class, dilution context, and linkage to the parent organism branch and test event.",
+    "semantic_grain": "one row per microbiology susceptibility leaf row",
+    "value_family": "microbiology_multi_entity",
+    "source_value_class": "microbiology_susceptibility_leaf",
+    "same_name_cross_database_rule": "Any database asset published as std_microbiology_antibiotic_susceptibility must preserve susceptibility leaf semantics and must not silently become antibiotic administration, prescription intent, organism isolate, parent culture event, infection phenotype, or antibiogram summary."
+  },
+  "microbiology_entity_contract": {
+    "family_role": "antibiotic_susceptibility_leaf",
+    "entity_grain": "one row per microbiology specimen-test-organism-antibiotic susceptibility leaf",
+    "source_hierarchy_rule": "retain antibiotic susceptibility rows beneath organism branches and parent specimen-test events",
+    "parent_child_rule": "link each susceptibility leaf to microbiology_organism_branch_id and microbiology_test_event_id",
+    "raw_text_retention_rule": "retain raw antibiotic name, raw interpretation code, raw dilution text/comparison/value, and raw comments",
+    "no_row_interpretation": "no retained susceptibility leaf means no approved susceptibility row under the source rule, not absence of organism, culture, antibiotic exposure, or resistance"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "microbiology_antibiotic_susceptibility_leaf",
+    "storage_type": "susceptibility_leaf_plus_parent_context",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "microbiology_test_event_id",
+      "microbiology_organism_branch_id",
+      "source_microevent_id"
+    ],
+    "time_anchor": "parent_event_charttime_or_chartdate"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_microbiology_antibiotic_susceptibility outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_microbiology_antibiotic_susceptibility/execution.py",
+    "public_card": "docs/std_variable_cards/std_microbiology_antibiotic_susceptibility.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_MicrobiologyMultiEntityFamily_Contract.md"
+  }
+}

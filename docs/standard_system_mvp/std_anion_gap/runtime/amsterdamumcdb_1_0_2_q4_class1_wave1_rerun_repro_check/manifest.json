@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:54:54Z",
+  "variable_id": "std_anion_gap",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_anion_gap/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_anion_gap/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_anion_gap/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/extract_code/Extract_Code_std_anion_gap.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/extract_code/Extract_Code_std_anion_gap.py"
+  ],
+  "process_batch_id": "20260507T225450Z_AmsterdamUMCdb-1.0.2_std_anion_gap",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:54:50Z",
+  "finished_at": "2026-05-07T22:54:54Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "f147093ded888a2b59f04151527d41e887d3f3138daa4b7cb58d0f06d6fa1775",
+    "mapping_spec_sha256": "33b0356afc9166f9d6be2fbb81d76d4ad81fbe302ea0276509759cec5c69d28f"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_anion_gap/std_anion_gap_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/preview/std_anion_gap_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_anion_gap/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "d60cf2de63a5e59efcbadaa679d6cc583eecc5a751a6592c8c7a6b56f46706d4",
+      "size_bytes": 4606353
+    },
+    "preview_csv": {
+      "sha256": "bcbdb995e7cdd7357c3a6449c115f29eda540e2c99484d5f1940c468953cc484",
+      "size_bytes": 84469
+    },
+    "asset_manifest": {
+      "sha256": "61e4066ac8a20618273d172dd82fc4bc14cfdfb3fc89f534734ba883b057ce34",
+      "size_bytes": 3866
+    },
+    "knowledge_package": {
+      "sha256": "6bc7b3b5e0f014fe6ca3e19c5ee931f4c649a0578d897211f61230303517470b",
+      "size_bytes": 26211
+    },
+    "build_log": {
+      "sha256": "98243ee6760bbe578f5add685e2b8b3c5a225dc8da3e3b8b2047a309d65b5f49",
+      "size_bytes": 679
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225450Z_AmsterdamUMCdb-1.0.2_std_anion_gap",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_anion_gap/std_anion_gap_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_anion_gap/log_archive/20260507T225450Z_AmsterdamUMCdb-1.0.2_std_anion_gap__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

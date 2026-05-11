@@ -1,0 +1,186 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-04-24",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_map/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_map",
+    "variable_version": "v0_draft",
+    "semantic_intent": "mean arterial pressure observation",
+    "category": "vital_sign",
+    "semantic_grain": "time-stamped measurement event",
+    "source_value_class": "primary_direct_measurement_with_rule_based_same_time_derivation",
+    "aggregation_status": "not_aggregated",
+    "canonical_unit": "mmHg",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Int64",
+    "current_output_precision_digits": 0
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_package": "icu",
+    "source_table": "chartevents",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables",
+    "source_code_system": "itemid",
+    "source_codes": [
+      220052,
+      220181,
+      225312
+    ],
+    "source_code_labels": {
+      "220052": "Arterial Blood Pressure mean",
+      "220181": "Non Invasive Blood Pressure mean",
+      "225312": "ART BP mean"
+    },
+    "supporting_same_time_pair_source_codes": [
+      {
+        "role": "same_time_sbp_support",
+        "source_code_system": "itemid",
+        "source_codes": [
+          220050,
+          220179,
+          225309
+        ]
+      },
+      {
+        "role": "same_time_dbp_support",
+        "source_code_system": "itemid",
+        "source_codes": [
+          220051,
+          220180,
+          225310
+        ]
+      }
+    ],
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "hadm_id",
+        "stay_id"
+      ],
+      "time_field": "charttime",
+      "raw_value_text_field": "value",
+      "raw_value_numeric_field": "valuenum",
+      "raw_unit_field": "valueuom",
+      "warning_flag_field": "warning",
+      "source_code_field": "itemid",
+      "caregiver_field": "caregiver_id"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier",
+      "hadm_id_role": "hospital-admission-level identifier",
+      "stay_id_role": "ICU-stay-level identifier",
+      "stay_link_status": "direct_stay"
+    },
+    "source_grain": "one row per charted ICU MAP event before representation selection, with same-time SBP/DBP pair support available for fallback derivation",
+    "target_grain": "one row per normalized standard MAP representation event",
+    "join_dependencies": [
+      {
+        "join_table": "icu.icustays",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_icustays.parquet",
+        "join_keys": [
+          "subject_id",
+          "hadm_id",
+          "stay_id"
+        ],
+        "join_cardinality": "many_to_one",
+        "required_fields": [
+          "intime",
+          "outtime"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "icu.d_items",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_d_items.parquet",
+        "join_key": "itemid",
+        "required_fields": [
+          "label",
+          "linksto",
+          "category",
+          "unitname",
+          "param_type"
+        ],
+        "dictionary_lock": {
+          "itemids": [
+            220052,
+            220181,
+            225312,
+            220050,
+            220051,
+            220179,
+            220180,
+            225309,
+            225310
+          ],
+          "linksto": "chartevents"
+        },
+        "failure_action": "fail"
+      }
+    ]
+  },
+  "representation_and_normalization": {
+    "anchor_type": "icu_intime",
+    "relative_time_unit": "minutes",
+    "measurement_time_precision": "datetime",
+    "canonical_unit": "mmHg",
+    "source_unit_expectation": "mmHg",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "bp_map_direct_or_same_time_sbp_dbp_integer_round_half_away_from_zero",
+    "rounding_rule": "nearest_integer_half_away_from_zero",
+    "representation_selection_rule": "retain invasive and noninvasive rows explicitly; combined prefers invasive over noninvasive at the same event time",
+    "derivation_rule": "prefer direct MAP; if direct MAP is absent for a representation and same-time same-modality SBP and DBP exist, derive MAP as DBP + (SBP - DBP) / 3 under the approved builder logic",
+    "cleaned_range_in_canonical_unit": [
+      0,
+      300
+    ],
+    "outlier_action": "retain_normalized_value_mark_is_outlier_and_null_cleaned_value",
+    "cleaned_value_field": "std_map_mmhg_cleaned",
+    "normalized_value_field": "std_map_mmhg_normalized",
+    "outlier_flag_field": "is_outlier_by_contract",
+    "cleaning_status_field": "cleaning_status"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "measurement_time",
+      "bp_representation",
+      "measurement_origin",
+      "source_value_numeric_raw"
+    ],
+    "source_code_lock_rule": "direct MAP rows must originate from itemid 220052, 220181, or 225312; derived MAP rows must originate from approved same-time SBP/DBP support codes under the fallback rule",
+    "duplicate_key": [
+      "source_measurement_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_timestamp_action": "fail",
+    "missing_numeric_value_action": "fail",
+    "join_failure_action": "fail",
+    "notes": [
+      "Combined rows are convenience representation rows and do not average invasive and noninvasive modalities.",
+      "Direct MAP is preferred; same-time SBP/DBP-derived MAP is allowed only when direct MAP is absent under the approved build rule.",
+      "Outlier rows remain in the event asset for audit, but the cleaned MAP column is set null."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_map/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/extract_code/Extract_Code_std_map.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_map outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_map.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/extract_code/Extract_Code_std_map.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/vital_signs/std_map/std_map_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/preview/std_map_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/query_summary"
+  }
+}

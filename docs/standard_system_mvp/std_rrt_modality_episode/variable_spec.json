@@ -1,0 +1,123 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_5_rrt_modality_episode_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "episode_interval_bridge",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_EpisodeIntervalBridge_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_rrt_modality_episode",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Renal replacement therapy modality episode",
+    "standardized_name_cn_publication_status": "not_yet_relocked_for_public_publication",
+    "semantic_folder": "treatment_state",
+    "category": "treatment_state"
+  },
+  "immutable_core": {
+    "semantic_intent": "exact renal replacement therapy modality episode",
+    "semantic_definition": "A positive labeled episode asset retaining one row for each ICU-stay interval during which an approved exact renal replacement therapy modality is active, with parent links back to broader any-RRT and family support episodes when applicable.",
+    "semantic_grain": "one row per retained labeled episode interval",
+    "value_family": "categorical_episode",
+    "source_value_class": "positive_modality_episode",
+    "same_name_cross_database_rule": "Any database asset published as std_rrt_modality_episode must preserve exact RRT modality episode scope, retain a governed exact modality label, keep parent-link semantics explicit, and must not silently collapse to any-RRT active, CRRT-family active, non-CRRT active, RRT fluid-removal events, summaries, free-day outcomes, AKI/KDIGO phenotype truth, or renal SOFA truth."
+  },
+  "episode_interval_contract": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "episode_label_meaning": "exact RRT modality label",
+    "episode_start_rule": "start at the approved exact-modality source interval start after source-faithful intervalization",
+    "episode_end_rule": "end at the approved exact-modality source interval end after source-faithful intervalization",
+    "continuity_rule": "merge overlapping or exactly contiguous approved source intervals only within the same exact modality and ICU stay; any positive gap or label change starts a new modality episode",
+    "parent_link_rule": "link each child modality episode to the largest positive-overlap any-RRT parent episode and, where opening-family eligible, to the largest positive-overlap family parent episode",
+    "no_row_interpretation": "no retained positive exact-modality episode under the approved source-label rule; this does not prove absence of umbrella RRT support"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "categorical_interval_episode",
+    "storage_type": "string_label_plus_interval",
+    "timestamp_start_required": true,
+    "timestamp_end_required": true,
+    "duration_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "retained_label_domain": [
+      "CRRT",
+      "CVVH",
+      "CVVHD",
+      "CVVHDF",
+      "SCUF",
+      "IHD",
+      "Peritoneal"
+    ],
+    "duration_unit": "minutes",
+    "time_anchor": "icu_intime"
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "derived_labeled_treatment_episode_from_rrt_modality_evidence",
+    "public_anchor_status": "no_single_exact_external_anchor_locked_for_this_multi_label_episode_asset",
+    "preferred_anchor_families": [
+      "SNOMED CT",
+      "LOINC"
+    ],
+    "note": "The current MVP identity is governed primarily by reviewed database-specific exact-modality interval evidence, ICU-stay interval semantics, and parent-link rules."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "target_entity_grain",
+      "episode_label_meaning",
+      "episode_start_rule",
+      "episode_end_rule",
+      "continuity_rule",
+      "parent_link_rule",
+      "source_value_class",
+      "same_name_cross_database_rule"
+    ],
+    "versionable_fields": [
+      "database_mapping_specs",
+      "retained label domain",
+      "parent-link implementation details",
+      "duration caution thresholds",
+      "source-evidence inclusion policy",
+      "external_alignment",
+      "public-card wording"
+    ],
+    "new_variable_trigger_examples": [
+      "changing the concept to any-RRT active",
+      "changing the concept to CRRT-family active",
+      "changing the concept to non-CRRT RRT active",
+      "changing the concept to RRT fluid-removal event",
+      "changing the output to first-day RRT summary",
+      "removing the exact modality label from the retained output"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving exact-modality episode meaning",
+      "adding a reviewed exact modality label without changing the variable identity",
+      "tightening a parent-link or duration caution rule while preserving the same episode identity"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_rrt_modality_episode outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_rrt_modality_episode outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_rrt_modality_episode/mapping_spec_mimic_iv_3_1.json",
+      "docs/standard_system_mvp/std_rrt_modality_episode/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_rrt_modality_episode/execution.py",
+    "public_card": "docs/std_variable_cards/std_rrt_modality_episode.md",
+    "class_selection_note": "docs/standard_system_mvp/VARIABLE_CLASS_LANDSCAPE_AND_ROLLOUT.md"
+  }
+}

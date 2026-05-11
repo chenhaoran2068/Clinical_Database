@@ -1,0 +1,158 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-04-24",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_spo2/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_spo2",
+    "variable_version": "v0_draft",
+    "semantic_intent": "pulse oximetry oxygen saturation observation",
+    "category": "vital_sign",
+    "semantic_grain": "time-stamped measurement event",
+    "source_value_class": "raw_measured_only",
+    "aggregation_status": "not_aggregated",
+    "canonical_unit": "percent",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Int64",
+    "current_output_precision_digits": 0
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_package": "icu",
+    "source_table": "chartevents",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables/chartevents_itemid_220277_o2_saturation_pulseoxymetry",
+    "source_code_system": "itemid",
+    "source_codes": [
+      220277
+    ],
+    "source_code_labels": {
+      "220277": "O2 saturation pulseoxymetry"
+    },
+    "deferred_or_excluded_source_codes": [
+      {
+        "source_code_system": "itemid",
+        "source_codes": [
+          220227
+        ],
+        "status": "not_in_current_formal_mapping",
+        "reason": "The current reviewed-approved asset and extract code are explicitly scoped to pulse oximetry only and exclude arterial oxygen saturation (SaO2)."
+      }
+    ],
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "hadm_id",
+        "stay_id"
+      ],
+      "time_field": "charttime",
+      "raw_value_text_field": "value",
+      "raw_value_numeric_field": "valuenum",
+      "raw_unit_field": "valueuom",
+      "warning_flag_field": "warning",
+      "source_code_field": "itemid",
+      "caregiver_field": "caregiver_id"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier",
+      "hadm_id_role": "hospital-admission-level identifier",
+      "stay_id_role": "ICU-stay-level identifier",
+      "stay_link_status": "direct_stay"
+    },
+    "source_grain": "one row per charted ICU pulse-oximetry oxygen-saturation event",
+    "target_grain": "one row per normalized standard SpO2 event",
+    "join_dependencies": [
+      {
+        "join_table": "icu.icustays",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_icustays.parquet",
+        "join_keys": [
+          "subject_id",
+          "hadm_id",
+          "stay_id"
+        ],
+        "join_cardinality": "many_to_one",
+        "required_fields": [
+          "intime",
+          "outtime"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "icu.d_items",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_d_items.parquet",
+        "join_key": "itemid",
+        "required_fields": [
+          "label",
+          "linksto",
+          "category",
+          "unitname",
+          "param_type"
+        ],
+        "dictionary_lock": {
+          "itemid": 220277,
+          "linksto": "chartevents"
+        },
+        "failure_action": "fail"
+      }
+    ]
+  },
+  "representation_and_normalization": {
+    "anchor_type": "icu_intime",
+    "relative_time_unit": "minutes",
+    "measurement_time_precision": "datetime",
+    "canonical_unit": "percent",
+    "source_unit_expectation": "%",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "icu_spo2_percent_direct_integer_round_half_away_from_zero",
+    "rounding_rule": "nearest_integer_half_away_from_zero",
+    "cleaned_range_in_canonical_unit": [
+      1,
+      100
+    ],
+    "outlier_action": "retain_normalized_value_mark_is_outlier_and_null_cleaned_value",
+    "cleaned_value_field": "std_spo2_percent_cleaned",
+    "normalized_value_field": "std_spo2_percent_normalized",
+    "outlier_flag_field": "is_outlier_by_contract",
+    "cleaning_status_field": "cleaning_status"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "measurement_time",
+      "source_value_numeric_raw"
+    ],
+    "source_code_lock_rule": "all_rows_must_have_itemid_220277",
+    "duplicate_key": [
+      "source_measurement_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_timestamp_action": "fail",
+    "missing_numeric_value_action": "fail",
+    "join_failure_action": "fail",
+    "notes": [
+      "Rows before intime or after outtime are retained and logged rather than silently deleted.",
+      "The current source scope excludes arterial oxygen saturation (SaO2) itemid 220227 and ED oxygen-saturation fields.",
+      "Outlier rows remain in the event asset for audit, but the cleaned SpO2 column is set null."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_spo2/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_spo2/extract_code/Extract_Code_std_spo2.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_spo2 outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_spo2.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_spo2/extract_code/Extract_Code_std_spo2.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/vital_signs/std_spo2/std_spo2_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_spo2/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_spo2/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_spo2/preview/std_spo2_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_spo2/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_spo2/query_summary"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_8_oasis_mimic_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_oasis/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_oasis",
+    "variable_version": "v0_draft",
+    "semantic_intent": "source-supplied ICU first-day OASIS score summary",
+    "semantic_grain": "one row per ICU stay",
+    "source_value_class": "source_supplied_composite_score",
+    "canonical_unit": "score_points",
+    "canonical_value_family": "score_summary"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "approved_source_supplied_oasis_score_summary_table",
+    "source_package": "reviewed_unsplit_source_supplied_derived_oasis_plus_icu_stays",
+    "source_table": "source_supplied_derived.oasis + icu.icustays",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/oasis.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_icustays.parquet"
+    ],
+    "source_value_field": "oasis",
+    "source_time_field": "starttime + endtime or ICU intime-derived first-day window",
+    "source_grain": "one official source-supplied OASIS row per stay_id",
+    "target_grain": "one retained OASIS score summary row per stay_id",
+    "identifier_normalization": {
+      "subject_id_role": "patient identifier joined and checked against icu.icustays",
+      "hadm_id_role": "hospital admission identifier joined and checked against icu.icustays",
+      "stay_id_role": "ICU stay identifier from source OASIS row and icu.icustays",
+      "stay_link_status": "direct_stay"
+    },
+    "official_source_references": [
+      "References/MIMIC/2026-03-20_snapshot_v2/raw/mimic_code/mimic-iv/concepts/score/oasis.sql"
+    ]
+  },
+  "score_phenotype_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "time_basis_translation": "retain source starttime/endtime when supplied, otherwise retain the first 24 hours after ICU intime as the OASIS score window",
+    "score_value_translation": "map source oasis to std_oasis_total with canonical unit score_points and score-range validation",
+    "component_trace_translation": "retain official hospital mortality probability and OASIS component subscores as same-row trace context",
+    "no_row_translation": "absence of a row means no approved source OASIS row under this mapping, not low severity"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "score_points",
+    "normalization_rule_id": "mimic_source_supplied_oasis_to_std_oasis_v1",
+    "primary_output_value_field": "std_oasis_total",
+    "event_time_output_field": "score_window_start",
+    "event_time_end_output_field": "score_window_end",
+    "score_window_hours_output_field": "score_window_hours",
+    "relative_anchor_output_field": "icu_first_day_window",
+    "relative_time_unit": "hours"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "source_score_id",
+      "score_window_start",
+      "score_window_end",
+      "score_window_hours",
+      "std_oasis_total",
+      "std_oasis_hospital_mortality_prob"
+    ],
+    "duplicate_key": [
+      "stay_id"
+    ],
+    "duplicate_action": "fail",
+    "score_range_check": [
+      0,
+      100
+    ],
+    "probability_range_check": [
+      "std_oasis_hospital_mortality_prob"
+    ],
+    "no_row_policy_check": "absence of row is not universal proof of low severity and should not be converted to zero OASIS without a governed downstream rule",
+    "notes": [
+      "This mapping preserves the source-supplied OASIS score rather than recalculating it from raw events.",
+      "Some component subscores can be null while the primary total and mortality probability remain required."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_oasis/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_oasis/extract_code/Extract_Code_std_oasis.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation.",
+    "non_bypassable_target_rule": "Formal std_oasis outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_oasis.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_oasis/extract_code/Extract_Code_std_oasis.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/scores/std_oasis/std_oasis_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_oasis/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_oasis/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_oasis/preview/std_oasis_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_oasis/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_oasis/query_summary"
+  }
+}

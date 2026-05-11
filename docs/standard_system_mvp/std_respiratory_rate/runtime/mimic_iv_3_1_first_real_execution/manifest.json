@@ -1,0 +1,79 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:46:12Z",
+  "variable_id": "std_respiratory_rate",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_respiratory_rate/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_respiratory_rate/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_respiratory_rate/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_respiratory_rate/extract_code/Extract_Code_std_respiratory_rate.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables/chartevents_itemid_220210_respiratory_rate",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_respiratory_rate/extract_code/Extract_Code_std_respiratory_rate.py"
+  ],
+  "process_batch_id": "20260503T094446Z_MIMIC-IV-3.1_std_respiratory_rate",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:44:45Z",
+  "finished_at": "2026-05-03T09:46:12Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "5672f1b9c3dfd53a7d1c70eea97fd8fa2fd0325ebf10909c54307d6ba255face",
+    "mapping_spec_sha256": "fb4edf4a314b16028e267e0a1eb6b5624b4fbdd48a1d929317ae657da3b51ece"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/vital_signs/std_respiratory_rate/std_respiratory_rate_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_respiratory_rate/preview/std_respiratory_rate_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_respiratory_rate/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_respiratory_rate/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_respiratory_rate/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "d781d8330fa441311bafbf149c4a5bf7512d8ab3afa499891cc6de914a745da6",
+      "size_bytes": 206016183
+    },
+    "preview_csv": {
+      "sha256": "461ea3f9290e3b780bf6867649716b734b0d420af2072d94e5eaacad16fae052",
+      "size_bytes": 71502
+    },
+    "asset_manifest": {
+      "sha256": "dcef3f770ece7315e05d58d84f4bc86838fc4ba8859e35003db4cf72da8f08e0",
+      "size_bytes": 3130
+    },
+    "knowledge_package": {
+      "sha256": "d3d0a2913496a0674edda661da0b25d247d7fded3a082d8d30bb249f87558feb",
+      "size_bytes": 28699
+    },
+    "build_log": {
+      "sha256": "e20d494efd771c5eb2d467a055f27ff20e2b083fc32191b07ef61d1d9131896e",
+      "size_bytes": 1675
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T094446Z_MIMIC-IV-3.1_std_respiratory_rate",
+    "total_rows": 8636655,
+    "unique_subject_id": 65302,
+    "unique_hadm_id": 85156,
+    "unique_stay_id": 94334,
+    "kept_rows": 8636179,
+    "excluded_outlier_rows": 476,
+    "warning_true_rows": 20045,
+    "warning_true_outlier_rows": 9,
+    "non_integer_raw_rows": 4,
+    "normalized_min": 0,
+    "normalized_max": 7000400,
+    "before_intime_rows": 29882,
+    "after_outtime_rows": 2889,
+    "relative_time_min": -525596,
+    "relative_time_max": 325941,
+    "p01": 8.0,
+    "p50": 19.0,
+    "p99": 37.0,
+    "p999": 48.0
+  }
+}

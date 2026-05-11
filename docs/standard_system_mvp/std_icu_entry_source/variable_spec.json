@@ -1,0 +1,57 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_7_amsterdam_q2_build_first_candidate_mvp",
+  "created_at": "2026-05-04",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "diagnosis_admin_demographic_id_map",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_DiagnosisAdminDemographicIdMap_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_icu_entry_source",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "ICU entry source",
+    "semantic_folder": "encounter_information",
+    "category": "encounter_information"
+  },
+  "immutable_core": {
+    "semantic_intent": "ICU stay entry-source category",
+    "semantic_definition": "A stay-level administrative category preserving source-faithful immediate pre-ICU or pre-ICU/MC entry context when available.",
+    "semantic_grain": "one row per retained ICU stay entry-source category",
+    "value_family": "administrative_category",
+    "source_value_class": "source_recorded_admin_category",
+    "same_name_cross_database_rule": "Database mappings must preserve the declared administrative grain and keep source-faithful local categories visible unless a governed grouping rule is explicitly approved."
+  },
+  "admin_demographic_contract": {
+    "target_entity_grain": "ICU stay",
+    "identifier_scope_rule": "subject_id and stay_id are required; hadm_id may be unavailable in Amsterdam and must remain visibly null rather than fabricated",
+    "source_authority_rule": "use the source administrative admission/discharge field as the authority for the retained category",
+    "normalization_rule": "retain source-faithful origin category with light public-safe label normalization",
+    "no_row_interpretation": "no retained source category under the current source-field rule; not proof that the administrative concept is absent"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "categorical_text_admin_record",
+    "storage_type": "string_label",
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "time_anchor": "icu_intime_or_administrative_record"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_candidate_mapping_pending_owner_review",
+    "formal_output_rule": "Formal outputs should go through execution.py reading this variable_spec and a database mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_icu_entry_source/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_icu_entry_source/execution.py",
+    "public_card": "docs/std_variable_cards/std_icu_entry_source.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_DiagnosisAdminDemographicIdMap_Contract.md"
+  }
+}

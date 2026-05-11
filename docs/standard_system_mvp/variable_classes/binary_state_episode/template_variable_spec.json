@@ -1,0 +1,52 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "template",
+  "variable_class": {
+    "variable_class_id": "binary_state_episode",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BinaryStateEpisode_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_example_active",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Example active state",
+    "semantic_folder": "treatment_state",
+    "category": "treatment_state"
+  },
+  "immutable_core": {
+    "semantic_intent": "example active state",
+    "semantic_definition": "One positive state episode row per target entity interval when the example state is active.",
+    "semantic_grain": "one row per positive state episode",
+    "value_family": "binary_state",
+    "source_value_class": "positive_state_episode",
+    "same_name_cross_database_rule": "Same-name assets must preserve the active-state scope and positive-only interpretation."
+  },
+  "state_episode_contract": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "positive_state_meaning": "state active",
+    "negative_state_representation": "absence_of_row_not_proven_negative",
+    "episode_start_rule": "start at approved source active-state interval start",
+    "episode_end_rule": "end at approved source active-state interval end",
+    "continuity_rule": "use approved source interval boundaries unless a mapping-specific union rule is explicitly approved",
+    "allowed_true_value": true,
+    "allowed_false_rows": false,
+    "no_row_interpretation": "no retained positive state episode under the approved source-status inclusion rule"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "boolean_state_episode",
+    "storage_type": "boolean",
+    "timestamp_start_required": true,
+    "timestamp_end_required": true,
+    "duration_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "retained_value_domain": [
+      true
+    ]
+  }
+}

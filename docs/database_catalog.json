@@ -1,5 +1,5 @@
 {
-  "catalog_version": "2026-04-21",
+  "catalog_version": "2026-05-09",
   "repository_scope": "public_method_repository",
   "families": [
     {
@@ -24,6 +24,50 @@
       ],
       "future_member_rule": "Add future Amsterdam releases as new versioned database_id rows. Re-review timing assumptions rather than inheriting them blindly.",
       "alignment_rule": "Cross-version or companion-module alignment must explicitly preserve version-scoped time semantics."
+    },
+    {
+      "family_id": "SICdb",
+      "display_name": "SICdb family",
+      "description": "Standalone ICU database family staged from the SICdb CSV delivery with case-level identifiers, offset-time fields, and source reference dictionaries.",
+      "public_family_playbook": "docs/onboarding/families/SICdb.md",
+      "current_database_ids": [
+        "SICdb-1.0.5"
+      ],
+      "future_member_rule": "Add future SICdb versions as new versioned database_id rows. Re-review ID, offset-time, and source dictionary assumptions for each version.",
+      "alignment_rule": "Cross-version or cross-database alignment must use standardized IDs and documented offset-time interpretation, not raw field-name similarity."
+    },
+    {
+      "family_id": "NWICU",
+      "display_name": "NWICU family",
+      "description": "Standalone ICU database family staged from the NWICU delivery with MIMIC-like patient, admission, stay, event, and dictionary tables.",
+      "public_family_playbook": "docs/onboarding/families/NWICU.md",
+      "current_database_ids": [
+        "NWICU-0.1.0"
+      ],
+      "future_member_rule": "Add future NWICU versions as new versioned database_id rows. Preserve declared-version and source-folder-label provenance for each intake.",
+      "alignment_rule": "Cross-version or cross-database alignment must use standardized IDs and documented timestamp interpretation, not raw field-name similarity."
+    },
+    {
+      "family_id": "eICU-CRD",
+      "display_name": "eICU-CRD family",
+      "description": "Standalone ICU database family staged from the eICU Collaborative Research Database delivery with patient-unit-stay identifiers, offset-time event tables, hospital/site context, and source-supplied APACHE surfaces.",
+      "public_family_playbook": "docs/onboarding/families/eICU-CRD.md",
+      "current_database_ids": [
+        "eICU-CRD-2.0"
+      ],
+      "future_member_rule": "Add future eICU-CRD versions as new versioned database_id rows. Re-review ICU-stay identity, offset-time semantics, hospital/site fields, and APACHE source-supplied score surfaces for each version.",
+      "alignment_rule": "Cross-version or cross-database alignment must use standardized IDs and documented offset-time interpretation, not raw field-name similarity."
+    },
+    {
+      "family_id": "Zigong",
+      "display_name": "Zigong family",
+      "description": "Standalone ICU database family staged from the Zigong CSV delivery with patient identifiers, inpatient encounter identifiers, hour-offset fields, source dictionary metadata, and wide nursing charting.",
+      "public_family_playbook": "docs/onboarding/families/Zigong.md",
+      "current_database_ids": [
+        "Zigong-1.1"
+      ],
+      "future_member_rule": "Add future Zigong versions as new versioned database_id rows. Re-review patient/admission identity, offset-time semantics, outcome definitions, and dictionary usage for each version.",
+      "alignment_rule": "Cross-version or cross-database alignment must use standardized IDs and documented offset-time interpretation, not raw field-name similarity."
     }
   ],
   "databases": [
@@ -33,7 +77,7 @@
       "family_id": "MIMIC-IV",
       "module_role": "core_database",
       "version": "3.1",
-      "relationship_note": "Primary MIMIC-IV critical-care database module covering core, ICU, ED, and note deliveries under the current Layer 1 conventions.",
+      "relationship_note": "Primary MIMIC-IV critical-care database module covering core, ICU, ED, and note deliveries under the current Layer 1 conventions. Local Layer 4 opening registry build completed on 2026-05-09 and is pending owner review.",
       "public_layer1_skeleton_path": "Data/Layer 1/MIMIC-IV-3.1",
       "public_onboarding_playbook": "docs/onboarding/MIMIC-IV-3.1.md",
       "public_script_entrypoints": [
@@ -46,9 +90,9 @@
         "Framework_Guideline/MIMICIV_SourcePackageAndModuleBoundary_Contract.md"
       ],
       "public_layer1_support_status": "published_skeleton_and_public_scripts",
-      "public_layer4_support_status": "contract_and_registry_validator_published",
+      "public_layer4_support_status": "public MIMIC source-package boundary contract published; local Layer 4 opening registry built pending owner review",
       "public_layer5_public_status": "broad reviewed-approved local assets exist and public std-variable cards are published",
-      "current_local_stage": "mature retained-variable coverage with cross-database public-card export",
+      "current_local_stage": "mature retained-variable coverage with cross-database public-card export; local Layer 4 opening registry built pending owner review",
       "public_tutorials": [
         "docs/tutorials/std_heart_rate_cross_database_walkthrough.md",
         "docs/tutorials/minimal_variable_validation_workflow.md"
@@ -60,7 +104,7 @@
       "family_id": "MIMIC-IV",
       "module_role": "sibling_module",
       "version": "1.0",
-      "relationship_note": "Stand-alone sibling module for echocardiography material. It should not be semantically version-owned by the MIMIC-IV-3.1 directory path.",
+      "relationship_note": "Stand-alone sibling module for echocardiography material. It should not be semantically version-owned by the MIMIC-IV-3.1 directory path. Local Layer 4 opening registry build completed on 2026-05-09 and is pending owner review.",
       "public_layer1_skeleton_path": "Data/Layer 1/MIMIC-IV-ECHO-1.0",
       "public_onboarding_playbook": "docs/onboarding/MIMIC-IV-ECHO-1.0.md",
       "public_script_entrypoints": [
@@ -70,9 +114,9 @@
       ],
       "special_semantics_contracts": [],
       "public_layer1_support_status": "published_skeleton_and_public_scripts",
-      "public_layer4_support_status": "global contracts available; no ECHO-specific policy registry published yet",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; ECHO-specific public opening policy not yet published",
       "public_layer5_public_status": "database-level local notes exist, but no reviewed-approved retained-variable family has been published yet",
-      "current_local_stage": "stand-alone Layer 1 module established; retained-variable design not yet started",
+      "current_local_stage": "stand-alone Layer 1/2 module established; local Layer 4 opening registry built pending owner review; retained-variable design not yet started",
       "public_tutorials": [
         "docs/tutorials/variable_card_to_local_knowledge_package.md"
       ]
@@ -100,6 +144,90 @@
       "current_local_stage": "active pilot retained-variable approvals with explicit opening and mortality contracts",
       "public_tutorials": [
         "docs/tutorials/std_heart_rate_cross_database_walkthrough.md",
+        "docs/tutorials/variable_card_to_local_knowledge_package.md"
+      ]
+    },
+    {
+      "database_id": "SICdb-1.0.5",
+      "display_name": "SICdb v1.0.5",
+      "family_id": "SICdb",
+      "module_role": "core_database",
+      "version": "1.0.5",
+      "relationship_note": "Standalone SICdb CSV delivery staged as a new Layer 1 database line. Local intake copied source CSVs into raw_original; Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build have completed locally.",
+      "public_layer1_skeleton_path": "Data/Layer 1/SICdb-1.0.5",
+      "public_onboarding_playbook": "docs/onboarding/SICdb-1.0.5.md",
+      "public_script_entrypoints": [
+        "scripts/public_workflow.py"
+      ],
+      "special_semantics_contracts": [],
+      "public_layer1_support_status": "published_skeleton_initial_intake_only",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; public opening policy not yet published",
+      "public_layer5_public_status": "no reviewed-approved SICdb retained-variable assets yet",
+      "current_local_stage": "Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build completed locally; no reviewed-approved variables yet",
+      "public_tutorials": [
+        "docs/tutorials/variable_card_to_local_knowledge_package.md"
+      ]
+    },
+    {
+      "database_id": "NWICU-0.1.0",
+      "display_name": "NWICU v0.1.0",
+      "family_id": "NWICU",
+      "module_role": "core_database",
+      "version": "0.1.0",
+      "relationship_note": "Standalone NWICU delivery staged as a new Layer 1 database line. Source holding folder label, official/source database version, and local database_id are aligned as NWICU-0.1.0. Local intake copied source CSV/TXT files into raw_original; Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build have completed locally.",
+      "public_layer1_skeleton_path": "Data/Layer 1/NWICU-0.1.0",
+      "public_onboarding_playbook": "docs/onboarding/NWICU-0.1.0.md",
+      "public_script_entrypoints": [
+        "scripts/public_workflow.py"
+      ],
+      "special_semantics_contracts": [],
+      "public_layer1_support_status": "published_skeleton_initial_intake_only",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; public opening policy not yet published",
+      "public_layer5_public_status": "no reviewed-approved NWICU retained-variable assets yet",
+      "current_local_stage": "Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build completed locally; no reviewed-approved variables yet",
+      "public_tutorials": [
+        "docs/tutorials/variable_card_to_local_knowledge_package.md"
+      ]
+    },
+    {
+      "database_id": "eICU-CRD-2.0",
+      "display_name": "eICU-CRD v2.0",
+      "family_id": "eICU-CRD",
+      "module_role": "core_database",
+      "version": "2.0",
+      "relationship_note": "Standalone eICU Collaborative Research Database 2.0 delivery staged as a new Layer 1 database line. Local intake copied official source CSV/TXT files into raw_original; historical owner eICU workspaces are reference-only and were not copied. Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build have completed locally.",
+      "public_layer1_skeleton_path": "Data/Layer 1/eICU-CRD-2.0",
+      "public_onboarding_playbook": "docs/onboarding/eICU-CRD-2.0.md",
+      "public_script_entrypoints": [
+        "scripts/public_workflow.py"
+      ],
+      "special_semantics_contracts": [],
+      "public_layer1_support_status": "published_skeleton_initial_intake_only",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; public opening policy not yet published",
+      "public_layer5_public_status": "no reviewed-approved eICU-CRD retained-variable assets yet",
+      "current_local_stage": "Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build completed locally; no reviewed-approved variables yet",
+      "public_tutorials": [
+        "docs/tutorials/variable_card_to_local_knowledge_package.md"
+      ]
+    },
+    {
+      "database_id": "Zigong-1.1",
+      "display_name": "Zigong v1.1",
+      "family_id": "Zigong",
+      "module_role": "core_database",
+      "version": "1.1",
+      "relationship_note": "Standalone Zigong 1.1 CSV delivery staged as a new Layer 1 database line. Local intake copied official source CSV files plus LICENSE.txt and SHA256SUMS.txt into raw_original. The retained license matches its manifest hash, while the upstream DataTables.zip package hash cannot be verified from the currently staged unzipped CSV files. Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build have completed locally.",
+      "public_layer1_skeleton_path": "Data/Layer 1/Zigong-1.1",
+      "public_onboarding_playbook": "docs/onboarding/Zigong-1.1.md",
+      "public_script_entrypoints": [
+        "scripts/public_workflow.py"
+      ],
+      "special_semantics_contracts": [],
+      "public_layer1_support_status": "published_skeleton_initial_intake_only",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; public opening policy not yet published",
+      "public_layer5_public_status": "no reviewed-approved Zigong retained-variable assets yet",
+      "current_local_stage": "Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build completed locally; no reviewed-approved variables yet",
+      "public_tutorials": [
         "docs/tutorials/variable_card_to_local_knowledge_package.md"
       ]
     }

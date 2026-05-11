@@ -1,0 +1,63 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_8_oasis_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "score_phenotype_composite_derived",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_ScorePhenotypeCompositeDerived_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_oasis",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Oxford Acute Severity of Illness Score",
+    "semantic_folder": "scores",
+    "category": "scores"
+  },
+  "immutable_core": {
+    "semantic_intent": "source-supplied ICU first-day OASIS score summary",
+    "semantic_definition": "An ICU-stay-level OASIS summary asset preserving the source-supplied total score, official hospital mortality probability, first-day ICU score window, and same-row official component subscores.",
+    "semantic_grain": "one row per ICU stay",
+    "value_family": "score_summary",
+    "source_value_class": "source_supplied_composite_score",
+    "same_name_cross_database_rule": "Any database asset published as std_oasis must preserve OASIS score summary semantics, a governed first-day ICU score window, component traceability, and score value meaning; it must not silently change into raw labs, raw vitals, mortality phenotype, SOFA, SAPSII, or sepsis onset."
+  },
+  "score_phenotype_contract": {
+    "target_entity_grain": "ICU stay",
+    "time_basis_rule": "retain the approved source OASIS first ICU-day score window with explicit score_window_start, score_window_end, and score_window_hours",
+    "component_trace_rule": "retain same-row official OASIS component subscores and hospital mortality probability when source supplied",
+    "score_value_rule": "use std_oasis_total as the primary standardized score value in score_points",
+    "no_row_interpretation": "no retained OASIS row means no approved source-supplied OASIS row under this mapping, not proof of low severity or mortality probability"
+  },
+  "canonical_representation": {
+    "canonical_unit": "score_points",
+    "value_type": "numeric_score_summary",
+    "storage_type": "numeric_score_plus_component_context",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "score_range": [
+      0,
+      100
+    ],
+    "time_anchor": "icu_first_day_window"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_oasis outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_oasis/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_oasis/execution.py",
+    "public_card": "docs/std_variable_cards/std_oasis.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_ScorePhenotypeCompositeDerived_Contract.md"
+  }
+}

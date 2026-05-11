@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T23:04:10Z",
+  "variable_id": "std_oxygen_partial_pressure_bg_allspecimen",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_oxygen_partial_pressure_bg_allspecimen/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_oxygen_partial_pressure_bg_allspecimen/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_oxygen_partial_pressure_bg_allspecimen/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_partial_pressure_bg_allspecimen/extract_code/Extract_Code_std_oxygen_partial_pressure_bg_allspecimen.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_partial_pressure_bg_allspecimen/extract_code/Extract_Code_std_oxygen_partial_pressure_bg_allspecimen.py"
+  ],
+  "process_batch_id": "20260503T230403Z_AmsterdamUMCdb-1.0.2_std_po2_bg_all",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T23:04:03Z",
+  "finished_at": "2026-05-03T23:04:10Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "f9a85444a5a99b6da03de80f0ce3603c7610a1458aded1445a8855fa6cd38824",
+    "mapping_spec_sha256": "cae654ecb163ec024b7625244fba18f4ec824fdd64c98eee030918cde47ab192"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_oxygen_partial_pressure_bg_allspecimen/std_oxygen_partial_pressure_bg_allspecimen_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_partial_pressure_bg_allspecimen/preview/std_oxygen_partial_pressure_bg_allspecimen_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_partial_pressure_bg_allspecimen/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_partial_pressure_bg_allspecimen/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_oxygen_partial_pressure_bg_allspecimen/runtime/amsterdamumcdb_1_0_2_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "a520b7626aeec1ba041de35d93848ec0fb9b7c1f49b98791fb6619977834d526",
+      "size_bytes": 8247664
+    },
+    "preview_csv": {
+      "sha256": "b37c9b8a890e52989c0497c6c23ee2ab3c45026c909609266a5e0b552ba71ed8",
+      "size_bytes": 87326
+    },
+    "asset_manifest": {
+      "sha256": "feeb246c75542091ac7d0ee2d6912bef83ce59847695ed3a6a0d2dfd5ad07844",
+      "size_bytes": 4759
+    },
+    "knowledge_package": {
+      "sha256": "7a0846f014c548d333070437426467f6b0e081b63e8c38e914e9e64fbf40b82f",
+      "size_bytes": 26031
+    },
+    "build_log": {
+      "sha256": "4cb0db1564cf88c8889e27096b132cee02ee22b5430e4ff89d3b4f641c664145",
+      "size_bytes": 790
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T230403Z_AmsterdamUMCdb-1.0.2_std_po2_bg_all",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_oxygen_partial_pressure_bg_allspecimen/std_oxygen_partial_pressure_bg_allspecimen_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_partial_pressure_bg_allspecimen/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_oxygen_partial_pressure_bg_allspecimen/log_archive/20260503T230403Z_AmsterdamUMCdb-1.0.2_std_po2_bg_all__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T14:02:31Z",
+  "variable_id": "std_sofa",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "validate_only",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_sofa/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_sofa/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_sofa/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_sofa/extract_code/Extract_Code_std_sofa.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/sofa.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_sofa/extract_code/Extract_Code_std_sofa.py"
+  ],
+  "process_batch_id": null,
+  "subprocess_return_code": null,
+  "started_at": null,
+  "finished_at": null,
+  "spec_hashes": {
+    "variable_spec_sha256": "f7810c91b8ed39abb10d04a990c6ca1660e85d5faacaab25f5f4d11e3f93ed64",
+    "mapping_spec_sha256": "e6ba270ee56f8a2b52bf5a2a9e8c770a7554b38377a7b2172d10fd7d1759d3c6"
+  },
+  "output_artifacts": {},
+  "output_signatures": {},
+  "build_summary": {}
+}

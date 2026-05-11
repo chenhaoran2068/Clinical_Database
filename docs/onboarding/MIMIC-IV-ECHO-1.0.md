@@ -51,6 +51,7 @@ These relative examples assume the current shell is at the repository root.
 - Layer 1 skeleton in [`Data/Layer 1/MIMIC-IV-ECHO-1.0`](../../Data/Layer%201/MIMIC-IV-ECHO-1.0)
 - ECHO Layer 1 unpack and convert scripts
 - cross-database contracts that govern future `std_*` alignment
+- local Layer 4 opening registry: `PolicyRegistry_MIMIC-IV-ECHO-1.0_opening.json`, built pending owner review
 
 ## Local-only execution surface
 

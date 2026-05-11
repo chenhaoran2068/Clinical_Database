@@ -1,0 +1,214 @@
+{
+  "artifact_type": "validation_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-04T02:19:20Z",
+  "validation_scope": "pre_execution_spec_and_environment_checks",
+  "overall_status": "pass",
+  "variable_id": "std_icu_entry_source",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "variable_spec_path": "docs/standard_system_mvp/std_icu_entry_source/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_icu_entry_source/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "spec_hashes": {
+    "variable_spec_sha256": "de2445859ecb98350e3654676da9156606c86ffd539db263ced8e1cc18473b53",
+    "mapping_spec_sha256": "cd0dd2a1511df9f9a68a10c138ed67cf3ea9d6fc6948552c152afc50e77bfeb0"
+  },
+  "checks": [
+    {
+      "check_id": "variable_spec_artifact_type",
+      "status": "pass",
+      "message": "variable_spec artifact_type is variable_spec"
+    },
+    {
+      "check_id": "mapping_spec_artifact_type",
+      "status": "pass",
+      "message": "mapping_spec artifact_type is mapping_spec"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id is consistently locked to std_icu_entry_source"
+    },
+    {
+      "check_id": "variable_version_match",
+      "status": "pass",
+      "message": "variable_version matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "mapping_spec database_id matches requested database_id AmsterdamUMCdb-1.0.2"
+    },
+    {
+      "check_id": "variable_spec_ref_match",
+      "status": "pass",
+      "message": "mapping_spec variable_spec_ref points to the chosen variable_spec.json"
+    },
+    {
+      "check_id": "semantic_grain_match",
+      "status": "pass",
+      "message": "semantic_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "source_value_class_match",
+      "status": "pass",
+      "message": "source_value_class matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_value_family_match",
+      "status": "pass",
+      "message": "value family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "representation_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and representation_and_normalization"
+    },
+    {
+      "check_id": "admin_demographic_class_lock",
+      "status": "pass",
+      "message": "variable is compatible with the diagnosis/admin/demographic/id-map class for std_icu_entry_source"
+    },
+    {
+      "check_id": "variable_directory_alignment",
+      "status": "pass",
+      "message": "variable directory name matches variable_id std_icu_entry_source"
+    },
+    {
+      "check_id": "admin_value_family_lock",
+      "status": "pass",
+      "message": "value family is locked to an administrative/demographic/id-map compatible family"
+    },
+    {
+      "check_id": "admin_source_class_present",
+      "status": "pass",
+      "message": "source_value_class is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_contract_target_entity_grain_present",
+      "status": "pass",
+      "message": "admin_demographic_contract.target_entity_grain is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_contract_identifier_scope_rule_present",
+      "status": "pass",
+      "message": "admin_demographic_contract.identifier_scope_rule is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_contract_source_authority_rule_present",
+      "status": "pass",
+      "message": "admin_demographic_contract.source_authority_rule is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_contract_normalization_rule_present",
+      "status": "pass",
+      "message": "admin_demographic_contract.normalization_rule is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_contract_no_row_interpretation_present",
+      "status": "pass",
+      "message": "admin_demographic_contract.no_row_interpretation is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_locator_mode_present",
+      "status": "pass",
+      "message": "database_mapping.source_locator_mode is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_table_present",
+      "status": "pass",
+      "message": "database_mapping.source_table is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_value_field_present",
+      "status": "pass",
+      "message": "database_mapping.source_value_field is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_grain_present",
+      "status": "pass",
+      "message": "database_mapping.source_grain is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_target_grain_present",
+      "status": "pass",
+      "message": "database_mapping.target_grain is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_translation_target_entity_grain_present",
+      "status": "pass",
+      "message": "admin_demographic_build_translation.target_entity_grain is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_translation_identifier_translation_present",
+      "status": "pass",
+      "message": "admin_demographic_build_translation.identifier_translation is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_translation_value_normalization_translation_present",
+      "status": "pass",
+      "message": "admin_demographic_build_translation.value_normalization_translation is explicitly locked"
+    },
+    {
+      "check_id": "admin_demographic_translation_no_row_translation_present",
+      "status": "pass",
+      "message": "admin_demographic_build_translation.no_row_translation is explicitly locked"
+    },
+    {
+      "check_id": "target_entity_grain_match",
+      "status": "pass",
+      "message": "target_entity_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "mapping_semantic_grain_match",
+      "status": "pass",
+      "message": "mapping_spec standard_variable.semantic_grain matches variable_spec immutable_core.semantic_grain"
+    },
+    {
+      "check_id": "representation_normalization_rule_id_present",
+      "status": "pass",
+      "message": "representation_and_normalization.normalization_rule_id is explicitly locked"
+    },
+    {
+      "check_id": "representation_primary_output_value_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.primary_output_value_field is explicitly locked"
+    },
+    {
+      "check_id": "required_non_null_fields_present",
+      "status": "pass",
+      "message": "mapping_spec declares required_non_null_fields for validation"
+    },
+    {
+      "check_id": "governed_execution_entrypoint_declared",
+      "status": "pass",
+      "message": "mapping_spec governed_execution_entrypoint points to this execution.py"
+    },
+    {
+      "check_id": "reference_implementation_declared",
+      "status": "pass",
+      "message": "mapping_spec declares current_reference_implementation"
+    },
+    {
+      "check_id": "reference_implementation_exists",
+      "status": "pass",
+      "message": "current reference implementation exists: Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_entry_source/extract_code/Extract_Code_std_icu_entry_source.py"
+    },
+    {
+      "check_id": "local_input_asset_declared",
+      "status": "pass",
+      "message": "mapping_spec declares a primary local prepared input asset"
+    },
+    {
+      "check_id": "local_input_asset_exists",
+      "status": "pass",
+      "message": "local prepared input asset exists: Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet"
+    }
+  ]
+}

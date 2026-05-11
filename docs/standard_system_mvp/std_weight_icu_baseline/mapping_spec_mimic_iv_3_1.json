@@ -1,0 +1,176 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_2_mimic_batch_governed_mvp",
+  "created_at": "2026-04-26",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_weight_icu_baseline/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_weight_icu_baseline",
+    "variable_version": "v0_draft",
+    "semantic_intent": "ICU baseline body weight snapshot",
+    "category": "anthropometric_measurement",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "source_value_class": "baseline_snapshot_from_cleaned_event_stream",
+    "summary_subclass": "baseline_snapshot",
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "canonical_unit": "kg",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Float64",
+    "current_output_precision_digits": 2
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "approved_upstream_event_asset_with_icu_stay_anchor_join",
+    "source_package": "icu_chartevents_weight_events_plus_icu_icustays_and_hosp_admissions",
+    "primary_source_tables": [
+      "std_weight_event",
+      "icu.icustays",
+      "hosp.admissions"
+    ],
+    "local_prepared_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_weight_event/std_weight_event_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_icustays.parquet",
+      "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_admissions.parquet"
+    ],
+    "source_code_system": "MIMIC-IV ICU chartevents itemid via upstream std_weight_event",
+    "source_codes": [
+      226512,
+      226531,
+      224639
+    ],
+    "source_code_labels": {
+      "226512": "Admission Weight (Kg)",
+      "226531": "Admission Weight (lbs.)",
+      "224639": "Daily Weight"
+    },
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "hadm_id",
+        "stay_id"
+      ],
+      "anchor_start_field": "icu_icustays.intime",
+      "anchor_end_field": "icu_icustays.outtime",
+      "hospital_start_field": "hosp_admissions.admittime",
+      "hospital_end_field": "hosp_admissions.dischtime",
+      "source_time_field": "std_weight_event.measurement_time",
+      "source_numeric_field": "std_weight_event.std_weight_kg_cleaned",
+      "raw_unit_field": "std_weight_event source normalization inherited from std_weight_event",
+      "source_code_field": "std_weight_event.source_table and source_measurement_id"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier",
+      "hadm_id_role": "hospital-admission-level context identifier",
+      "stay_id_role": "ICU-stay-level identifier and target retained key",
+      "stay_link_status": "direct_stay_link_required"
+    },
+    "source_grain": "one row per cleaned source weight event before ICU-baseline reduction",
+    "target_grain": "one retained row per ICU stay with an eligible baseline weight event",
+    "join_dependencies": [
+      {
+        "join_table": "icu.icustays",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_icustays.parquet",
+        "join_keys": [
+          "subject_id",
+          "hadm_id",
+          "stay_id"
+        ],
+        "join_cardinality": "many_events_to_one_icu_stay",
+        "required_fields": [
+          "intime",
+          "outtime"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "hosp.admissions",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_admissions.parquet",
+        "join_keys": [
+          "hadm_id"
+        ],
+        "join_cardinality": "many_events_to_one_hospital_admission_context",
+        "required_fields": [
+          "admittime",
+          "dischtime"
+        ],
+        "failure_action": "fail_for_boundary_clipping"
+      }
+    ]
+  },
+  "summary_build_translation": {
+    "window_label": "icu_baseline_minus_360_to_plus_360min_clipped_by_hospital_and_icu_boundaries",
+    "anchor_family": "ICU admission anchor",
+    "window_start_translation": "start at max(hosp_admissions.admittime, icu_icustays.intime - 360 minutes)",
+    "window_end_translation": "end at min(icu_icustays.outtime, hosp_admissions.dischtime, icu_icustays.intime + 360 minutes)",
+    "qualifying_row_translation": "keep std_weight_event rows with cleaning_status=kept, direct non-null stay_id linkage, non-null measurement_time, and source_table in the approved MIMIC ICU-baseline source priority list",
+    "selection_translation": "after joining to icustays and admissions, retain candidate rows where window_start <= measurement_time <= window_end; sort by stay_id, absolute seconds from intime, source priority, measurement_time, source_measurement_id; keep the first row per stay_id",
+    "aggregation_translation": "no numeric aggregation; retain the selected event's std_weight_kg_cleaned as std_weight_kg_baseline rounded to 2 decimals",
+    "tie_break_translation": "source priority is admission_weight_kg, then admission_weight_lbs, then daily_weight_kg; after source priority, choose the earlier measurement_time and then stable source_measurement_id order",
+    "no_source_row_translation": "no row is retained for an ICU stay when no qualifying cleaned source event exists in the approved window",
+    "partial_window_translation": "the candidate window is clipped by hospital admission, ICU outtime, and hospital discharge boundaries"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "kg",
+    "source_unit_expectation": "upstream std_weight_event has already normalized retained source rows to kg",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "mimic_weight_icu_baseline_from_cleaned_event_minus360_to_plus360min_round_2dp",
+    "output_rounding_rule": "round_half_even_or_pandas_float_round_2dp_as_current_reference_implementation",
+    "hard_valid_range_in_canonical_unit": [
+      20,
+      500
+    ],
+    "plausible_range_in_canonical_unit": [
+      30,
+      250
+    ],
+    "primary_output_value_field": "std_weight_kg_baseline",
+    "anchor_output_field": "baseline_event_time",
+    "window_start_output_field": "",
+    "window_end_output_field": ""
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "source_measurement_id",
+      "baseline_event_time",
+      "baseline_offset_minutes",
+      "std_weight_kg_baseline",
+      "source_preferred"
+    ],
+    "duplicate_key": [
+      "stay_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_anchor_action": "fail",
+    "missing_window_bound_action": "fail_for_missing_intime_or_unresolved_boundary_clip",
+    "no_source_row_policy_check": "target ICU stays without a qualifying event are intentionally absent from the retained output; coverage is audited rather than represented as null rows",
+    "window_consistency_action": "fail",
+    "join_failure_action": "fail_for_required_icustays_join_and_fail_for_required_admissions_boundary_context",
+    "notes": [
+      "The retained target grain is ICU stay, not hospital admission encounter.",
+      "This variable is a closest-to-ICU-intime baseline snapshot, not a first-day average or a patient-level stable body weight.",
+      "AmsterdamUMCdb-1.0.2 has a related grouped/proxy ICU baseline body-weight asset, but it is approved under std_weight_icu_baseline_grouped_proxy rather than this exact continuous weight identity."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_weight_icu_baseline/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_weight_icu_baseline/extract_code/Extract_Code_std_weight_icu_baseline.py",
+    "formal_output_rule": "The governed execution.py entrypoint reads this mapping spec and delegates to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_weight_icu_baseline outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_weight_icu_baseline.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_weight_icu_baseline/extract_code/Extract_Code_std_weight_icu_baseline.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_weight_icu_baseline/std_weight_icu_baseline_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_weight_icu_baseline/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_weight_icu_baseline/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_weight_icu_baseline/preview/std_weight_icu_baseline_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_weight_icu_baseline/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_weight_icu_baseline/query_summary"
+  }
+}

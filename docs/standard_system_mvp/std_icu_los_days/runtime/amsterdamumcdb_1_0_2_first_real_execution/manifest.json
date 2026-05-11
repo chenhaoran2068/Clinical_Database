@@ -1,0 +1,77 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-25T03:58:15Z",
+  "variable_id": "std_icu_los_days",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_icu_los_days/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_icu_los_days/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_icu_los_days/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_los_days/extract_code/Extract_Code_std_icu_los_days.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_los_days/extract_code/Extract_Code_std_icu_los_days.py"
+  ],
+  "process_batch_id": "20260425T035814Z_AmsterdamUMCdb-1.0.2_std_icu_los_days",
+  "subprocess_return_code": 0,
+  "started_at": "2026-04-25T03:58:12Z",
+  "finished_at": "2026-04-25T03:58:15Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "60bfef9fc1fd2906238344b5a9189af98ab85b182afc5970ccfe81ebada8a2e3",
+    "mapping_spec_sha256": "e543c18f2f438da7ca26fe447ed615630981a06461c63bc5fe1d00a7918cc1ac"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/outcomes/std_icu_los_days/std_icu_los_days_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_los_days/preview/std_icu_los_days_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_los_days/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_icu_los_days/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_icu_los_days/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "7e420ae2b7134dce581afa9c80a1cabd597f9b6e4826692f4b32071b89d5a7e0",
+      "size_bytes": 300621
+    },
+    "preview_csv": {
+      "sha256": "9b508744d099bbbba068e2a75021e437b8eeb158fc6f2482836704cb490bcc73",
+      "size_bytes": 39450
+    },
+    "asset_manifest": {
+      "sha256": "bba6d345bac7e0e5d44f03a9062c884e7c9814dcee9abbfcc0b6e471b2e931dd",
+      "size_bytes": 4256
+    },
+    "knowledge_package": {
+      "sha256": "ec4fb6f2fee761667d951978c2f0cbbf0249161868c37a4297a773751fc71b88",
+      "size_bytes": 27394
+    },
+    "build_log": {
+      "sha256": "b5e7b9bccb59ff188cabdd811e364b3388345c10155c25127d0ce75bf9c31257",
+      "size_bytes": 1196
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260425T035814Z_AmsterdamUMCdb-1.0.2_std_icu_los_days",
+    "effective_status": "reviewed_approved",
+    "total_rows": 18386,
+    "unique_patients": 16518,
+    "unique_admissions": 18386,
+    "observed_rows": 18386,
+    "null_std_icu_los_days_rows": 0,
+    "positive_duration_rows": 18383,
+    "zero_duration_rows": 3,
+    "negative_duration_rows": 0,
+    "min_days_raw": 0.0,
+    "p01_days_raw": 0.2054513888888889,
+    "p50_days_raw": 1.2440972222222224,
+    "p99_days_raw": 52.705937500000125,
+    "max_days_raw": 237.36597222222224,
+    "p50_abs_diff_hours": 0.29999999999999716,
+    "p90_abs_diff_hours": 0.6999999999999993,
+    "max_abs_diff_hours": 0.9833333333333485
+  }
+}

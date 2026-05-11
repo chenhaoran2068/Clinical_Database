@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T06:54:52Z",
+  "variable_id": "std_high_flow_nasal_cannula_active",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_high_flow_nasal_cannula_active/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_high_flow_nasal_cannula_active/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_high_flow_nasal_cannula_active/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_high_flow_nasal_cannula_active/extract_code/Extract_Code_std_high_flow_nasal_cannula_active.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/ventilation.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_high_flow_nasal_cannula_active/extract_code/Extract_Code_std_high_flow_nasal_cannula_active.py"
+  ],
+  "process_batch_id": "20260502T065451Z_MIMIC-IV-3.1_std_high_flow_nasal_cannula_active",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T06:54:50Z",
+  "finished_at": "2026-05-02T06:54:52Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "1c5bd368e75718e3584c4678876340b0efdd84412b59bc578f3840cac6a9a807",
+    "mapping_spec_sha256": "89ffef0d1adb14d174ae705c51c2a169256d507971714b351d19690cbe58505d"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_high_flow_nasal_cannula_active/std_high_flow_nasal_cannula_active_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_high_flow_nasal_cannula_active/preview/std_high_flow_nasal_cannula_active_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_high_flow_nasal_cannula_active/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_high_flow_nasal_cannula_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_high_flow_nasal_cannula_active/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "d1055ee38f436f5aa09f581e4d7f0b0eba4adbad37e04750da3a56cee11d2ee7",
+      "size_bytes": 274928
+    },
+    "preview_csv": {
+      "sha256": "2f6e3f6ce90d672bdb6f3bb29e27be39e86e5a887d211893944a3a0eb6f68c76",
+      "size_bytes": 84039
+    },
+    "asset_manifest": {
+      "sha256": "2efd5f0d92f51e36d9320d333b5ea8924e7ff9ceb66e8cb9f23ed2e11ca86177",
+      "size_bytes": 2366
+    },
+    "knowledge_package": {
+      "sha256": "71410d855f52f646e921c09ddf2b06fb58d93b99f95c6b49f86b08d2e6064b30",
+      "size_bytes": 27058
+    },
+    "build_log": {
+      "sha256": "6e635a3a6ff0de8286ac74a9e68618840d049e07d144359b9853b4b3ef387a3a",
+      "size_bytes": 1603
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T065451Z_MIMIC-IV-3.1_std_high_flow_nasal_cannula_active",
+    "prolonged_episode_ge_7d_count": 35,
+    "row_count": 4744,
+    "short_episode_le_60m_count": 18,
+    "unique_stay_id": 3051
+  }
+}

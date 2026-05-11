@@ -1,0 +1,210 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_candidate_draft",
+  "artifact_status": "candidate_public_mapping_draft_not_approved",
+  "approval_status": "candidate_only_not_reviewed_approved",
+  "mvp_phase": "class_3_amsterdam_candidate_same_name_review",
+  "created_at": "2026-05-01",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_invasive_mechanical_ventilation_active",
+    "variable_version": "v0_draft",
+    "semantic_intent": "invasive mechanical ventilation active state",
+    "semantic_grain": "one row per positive state episode",
+    "source_value_class": "positive_state_episode",
+    "canonical_unit": "none",
+    "canonical_value_family": "binary_state"
+  },
+  "candidate_boundary_notice": {
+    "status": "candidate_mapping_only",
+    "not_approved_as_same_name_output": true,
+    "reason": "Amsterdam processitems itemid 9328 / Beademen is a strong candidate interval source, but formal same-name approval still requires governed runtime evidence, validation, rerun reproducibility, and final approval review.",
+    "owner_policy_acceptance_date": "2026-05-01",
+    "accepted_policy_scope": "first-pass conservative candidate boundary only"
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_locator_mode": "direct_positive_state_episode_filter_with_candidate_boundary_exclusions",
+    "source_package": "processitems",
+    "source_table": "processitems_interval",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/processitems_interval.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/classification/amsterdam_9328_candidate_interval_classification.csv",
+      "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/classification/amsterdam_9328_candidate_interval_classification_summary.json",
+      "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/manual_review_policy/amsterdam_9328_manual_review_policy.csv",
+      "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/manual_review_policy/amsterdam_9328_manual_review_policy_summary.json"
+    ],
+    "source_status_field": "itemid",
+    "source_status_codes": [
+      9328
+    ],
+    "source_status_code_labels": {
+      "9328": "Beademen"
+    },
+    "source_start_field": "start",
+    "source_end_field": "stop",
+    "source_duration_field": "duration",
+    "source_grain": "one Amsterdam processitems ventilation-process interval row",
+    "target_grain": "one retained candidate positive invasive mechanical ventilation state episode row",
+    "identifier_normalization": {
+      "subject_id_role": "patientid obtained through the Amsterdam admission/stay foundation when available",
+      "hadm_id_role": "not separately available in the current Amsterdam opening mapping",
+      "stay_id_role": "raw admissionid is the Amsterdam ICU/MC local admission identifier and normalizes to stay_id under ICU/MC semantics",
+      "stay_link_status": "icu_mcu_local_admission_via_admissionid"
+    },
+    "excluded_adjacent_source_codes": [
+      {
+        "source_table": "processitems",
+        "itemid": 10740,
+        "label": "Beademen non-invasief",
+        "decision": "exclude_from_same_name_invasive_mechanical_ventilation_active",
+        "reason": "explicit noninvasive ventilation boundary source"
+      },
+      {
+        "source_table": "processitems",
+        "itemid": 9671,
+        "label": "CPAP",
+        "decision": "exclude_from_first_pass_same_name_candidate_unless_separately_approved",
+        "reason": "adjacent noninvasive or CPAP support boundary source"
+      },
+      {
+        "source_table": "processitems",
+        "itemid": 9325,
+        "label": "Weanen",
+        "decision": "audit_flag_only_not_primary_source",
+        "reason": "weaning can overlap invasive ventilation but is not by itself the active invasive ventilation source"
+      }
+    ],
+    "candidate_source_audit_summary": {
+      "source_9328_rows": 18471,
+      "source_9328_unique_admissionid": 15950,
+      "retain_candidate": 18061,
+      "retain_candidate_with_flag": 198,
+      "manual_review": 211,
+      "exclude_invalid_timing": 1,
+      "accepted_first_pass_retained_candidate_intervals": 18259,
+      "accepted_first_pass_excluded_or_not_retained_intervals": 212
+    }
+  },
+  "state_episode_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "positive_state_translation": "retain Amsterdam processitems rows with itemid 9328 only when the accepted candidate classification is retain_candidate or retain_candidate_with_flag",
+    "negative_state_translation": "do not emit false rows",
+    "episode_start_translation": "use source start as support_starttime after Amsterdam time semantics are applied by the governed implementation",
+    "episode_end_translation": "use source stop as support_endtime after Amsterdam time semantics are applied by the governed implementation",
+    "continuity_translation": "keep retained 9328 source interval boundaries; do not union 10740 noninvasive ventilation, 9671 CPAP, oxygen-delivery, tracheostomy-only, or ventilator-parameter rows into this same-name asset",
+    "no_row_translation": "absence of a retained row means no positive candidate 9328 invasive mechanical ventilation episode under this first-pass conservative source rule"
+  },
+  "candidate_policy_translation": {
+    "retain_classes": [
+      "retain_candidate",
+      "retain_candidate_with_flag"
+    ],
+    "retain_with_flags": {
+      "retain_candidate_with_flag": [
+        "weaning_overlap"
+      ]
+    },
+    "exclude_classes": [
+      "exclude"
+    ],
+    "manual_review_policy": {
+      "exclude_from_same_name_candidate": "exclude from first-pass same-name candidate output",
+      "manual_review_keep_possible_transition": "do not auto-retain in the first-pass same-name candidate unless separately approved"
+    },
+    "negative_duration_policy": {
+      "action": "exclude_and_audit_do_not_repair_from_current_fields",
+      "known_source_edge_case": {
+        "admissionid": 9810,
+        "itemid": 9328,
+        "start": 717300000,
+        "stop": -1899,
+        "duration": -54557891
+      }
+    },
+    "first_pass_candidate_counts": {
+      "retained_clean": 18061,
+      "retained_with_weaning_flag": 198,
+      "excluded_by_manual_policy": 205,
+      "withheld_possible_transition": 6,
+      "excluded_invalid_timing": 1,
+      "total_retained_first_pass": 18259,
+      "total_not_retained_first_pass": 212
+    }
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "amsterdam_processitems_9328_beademen_to_candidate_true_episode_excluding_niv_cpap_boundary_risk_v0",
+    "primary_output_value_field": "std_invasive_mechanical_ventilation_active",
+    "start_time_output_field": "support_starttime",
+    "end_time_output_field": "support_endtime",
+    "duration_output_field": "support_duration_minutes",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_start_output_field": "relative_start_time_value",
+    "relative_end_output_field": "relative_end_time_value",
+    "relative_time_unit": "minutes",
+    "candidate_flag_fields": [
+      "weaning_overlap",
+      "noninvasive_overlap_excluded",
+      "cpap_overlap_excluded",
+      "possible_transition_withheld",
+      "source_time_invalid_excluded"
+    ]
+  },
+  "validation_contract": {
+    "candidate_only_gate": "validation_pass_does_not_equal_formal_approval",
+    "required_non_null_fields": [
+      "stay_id",
+      "support_episode_index",
+      "support_starttime",
+      "support_endtime",
+      "support_duration_minutes",
+      "std_invasive_mechanical_ventilation_active"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "support_episode_index"
+    ],
+    "duplicate_action": "fail",
+    "positive_only_no_row_policy_check": "false rows are not emitted; absence of row is not universal proof of no invasive mechanical ventilation",
+    "episode_time_order_action": "fail_when_end_not_after_start",
+    "source_code_lock_rule": "all retained rows must originate from processitems itemid 9328",
+    "boundary_exclusion_rule": "rows marked exclude_from_same_name_candidate or manual_review_keep_possible_transition are not retained in the first-pass candidate output",
+    "flag_retention_rule": "rows retained from retain_candidate_with_flag must carry visible weaning-overlap evidence",
+    "duration_caution_rules": {
+      "short_episode_le_minutes": 60,
+      "prolonged_episode_ge_minutes": 10080
+    },
+    "notes": [
+      "This candidate mapping is not an Amsterdam reviewed-approved same-name mapping.",
+      "The accepted first-pass policy prioritizes same-name semantic purity over maximum sensitivity.",
+      "Possible CPAP or airway-transition cases are withheld from the first-pass candidate unless separately approved."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_runtime/extract_code/Extract_Code_std_invasive_mechanical_ventilation_active_candidate.py",
+    "formal_output_rule": "No formal Amsterdam same-name output is approved by this candidate mapping spec alone. A governed execution may use this candidate mapping only to generate candidate runtime evidence for review.",
+    "non_bypassable_target_rule": "If Amsterdam is later promoted, formal outputs should be generated only through the governed execution.py path reading an approved mapping spec and producing runtime plus rerun evidence."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_invasive_mechanical_ventilation_active.md",
+    "candidate_review_path": "docs/standard_system_mvp/STD_INVASIVE_MECHANICAL_VENTILATION_ACTIVE_AMSTERDAM_CANDIDATE_REVIEW.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_runtime/extract_code/Extract_Code_std_invasive_mechanical_ventilation_active_candidate.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/out/active_candidate.csv",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/log",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/preview/active_candidate_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/candidate_knowledge_package.json",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/query_summary",
+    "local_candidate_audit_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit",
+    "local_classification_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/classification/amsterdam_9328_candidate_interval_classification.csv",
+    "local_classification_summary_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/classification/amsterdam_9328_candidate_interval_classification_summary.json",
+    "local_manual_review_policy_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/manual_review_policy/amsterdam_9328_manual_review_policy.csv",
+    "local_manual_review_policy_summary_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/manual_review_policy/amsterdam_9328_manual_review_policy_summary.json",
+    "local_source_audit_summary_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/query_summary/std_invasive_mechanical_ventilation_active_amsterdam_source_audit_summary.json",
+    "local_risk_audit_summary_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_source_audit/risk_audit/std_invasive_mechanical_ventilation_active_amsterdam_risk_audit_summary.json"
+  }
+}

@@ -173,6 +173,13 @@ def _normalize_public_range_note(value: Any, standard_unit: str) -> str:
     return f"{text} {unit}"
 
 
+def _normalize_public_review_date(value: Any) -> str:
+    text = _normalize_text(value)
+    if text and set(text) == {"#"}:
+        return ""
+    return text
+
+
 def _normalize_public_name_en(catalog_row: dict[str, Any], variable_profile: dict[str, Any]) -> str:
     catalog_value = _normalize_text(catalog_row.get("std_variable_name_en"))
     if catalog_value:
@@ -286,6 +293,7 @@ def _primary_value_sort_key(std_variable_id: str, row: dict[str, Any]) -> tuple[
 def _load_knowledge_package_summary(std_variable_id: str, workbook_path: Path) -> dict[str, Any]:
     variable_profile_rows = _sheet_rows_as_dicts(workbook_path, "variable_profile")
     layer3_schema_rows = _sheet_rows_as_dicts(workbook_path, "layer3_schema")
+    standard_contract_rows = _sheet_rows_as_dicts(workbook_path, "standard_contract")
     caution_rows = _sheet_rows_as_dicts(workbook_path, "global_cautions")
 
     variable_profile = variable_profile_rows[0] if variable_profile_rows else {}
@@ -302,6 +310,7 @@ def _load_knowledge_package_summary(std_variable_id: str, workbook_path: Path) -
     return {
         "variable_profile": variable_profile,
         "primary_value_row": primary_value_row,
+        "standard_contract_rows": standard_contract_rows,
         "active_cautions": active_cautions,
     }
 
@@ -348,13 +357,84 @@ def _approved_assets_note(records: list[dict[str, Any]]) -> str:
     return "Currently approved in: " + ", ".join(database_ids) + "."
 
 
+def _database_review_date_map(database_summaries: list[dict[str, Any]]) -> dict[str, str]:
+    mapping: dict[str, str] = {}
+    for summary in database_summaries:
+        database_id = _normalize_text(summary.get("database_id"))
+        if not database_id:
+            continue
+        review_date = _normalize_public_review_date(summary.get("latest_review_date"))
+        if review_date:
+            mapping[database_id] = review_date
+    return mapping
+
+
+def _looks_like_public_range_note(value: Any) -> bool:
+    text = _normalize_text(value)
+    if not text or contains_local_only_detail(text):
+        return False
+    lowered = text.lower()
+    if "null for outlier" in lowered or "outlier rows" in lowered:
+        return False
+    return any(char.isdigit() for char in text) or "[" in text or "(" in text
+
+
+def _select_public_value_range_note(
+    primary_value_row: dict[str, Any],
+    standard_contract_rows: list[dict[str, Any]],
+    standard_unit: str,
+) -> str:
+    primary_value_range = _normalize_public_range_note(
+        primary_value_row.get("allowed_values_or_range"),
+        standard_unit,
+    )
+    if _looks_like_public_range_note(primary_value_range):
+        return primary_value_range
+
+    for row in standard_contract_rows:
+        rule_dimension = _normalize_slug(row.get("rule_dimension"))
+        if rule_dimension not in {"cleaning_threshold", "value_domain", "value_range"}:
+            continue
+        candidate = _normalize_public_range_note(row.get("allowed_values_or_range"), standard_unit)
+        if _looks_like_public_range_note(candidate):
+            return candidate
+
+    return primary_value_range
+
+
+def _read_asset_manifest_latest_review_date(
+    workspace_root: Path,
+    asset_record: dict[str, Any],
+) -> str:
+    manifest_path = _resolve_workspace_path(
+        workspace_root,
+        _normalize_text(asset_record.get("layer5_asset_manifest_path")),
+    )
+    if manifest_path is None or not manifest_path.exists():
+        return ""
+
+    for raw_line in manifest_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line.startswith("- `latest_review_date`:"):
+            continue
+        parts = line.split("`")
+        if len(parts) >= 4:
+            return _normalize_public_review_date(parts[3])
+    return ""
+
+
 def _build_database_summary(
+    workspace_root: Path,
     asset_record: dict[str, Any],
     knowledge_summary: dict[str, Any],
 ) -> dict[str, Any]:
     variable_profile = knowledge_summary["variable_profile"]
     primary_value_row = knowledge_summary["primary_value_row"]
+    standard_contract_rows = knowledge_summary["standard_contract_rows"]
     active_cautions = knowledge_summary["active_cautions"]
+    latest_review_date = _normalize_public_review_date(asset_record.get("latest_review_date"))
+    if not latest_review_date:
+        latest_review_date = _read_asset_manifest_latest_review_date(workspace_root, asset_record)
     return {
         "database_id": _normalize_text(asset_record.get("database_id")),
         "definition": _normalize_text(variable_profile.get("definition")) or _normalize_text(asset_record.get("definition")),
@@ -376,11 +456,15 @@ def _build_database_summary(
         ),
         "default_display_rule": _format_default_display_rule(primary_value_row),
         "primary_value_column": _normalize_text(primary_value_row.get("column_name")),
-        "primary_value_range": _normalize_text(primary_value_row.get("allowed_values_or_range")),
+        "primary_value_range": _select_public_value_range_note(
+            primary_value_row,
+            standard_contract_rows,
+            _normalize_text(variable_profile.get("standard_unit")) or _normalize_text(asset_record.get("standard_unit")),
+        ),
         "summary_note": _normalize_text(variable_profile.get("summary_note")) or _normalize_text(asset_record.get("remarks")),
         "current_status": _normalize_text(asset_record.get("current_status")),
         "latest_version": _normalize_text(asset_record.get("latest_version")),
-        "latest_review_date": _normalize_text(asset_record.get("latest_review_date")),
+        "latest_review_date": latest_review_date,
         "active_cautions": active_cautions,
     }
 
@@ -442,6 +526,9 @@ def _build_single_database_card_markdown(
         lines.append(f"- default anchor type: `{default_anchor_type}`")
     if primary_value_range:
         lines.append(f"- current approved value range note: `{primary_value_range}`")
+    summary_note = _normalize_text(database_summary.get("summary_note"))
+    if _is_public_safe_text(summary_note):
+        lines.append(f"- current implementation note: {_strip_terminal_punctuation(summary_note)}.")
     lines.append("")
     lines.append("## Global Warnings")
     lines.append("")
@@ -462,12 +549,16 @@ def _build_single_database_card_markdown(
     lines.append("| database_id | current_status | latest_version | latest_review_date |")
     lines.append("| --- | --- | --- | --- |")
     for record in sorted(approved_asset_records, key=lambda row: _normalize_text(row.get("database_id"))):
+        record_database_id = _normalize_text(record.get("database_id"))
+        review_date = _normalize_public_review_date(record.get("latest_review_date"))
+        if not review_date and record_database_id == database_summary["database_id"]:
+            review_date = _normalize_public_review_date(database_summary["latest_review_date"])
         lines.append(
             "| {database_id} | {current_status} | {latest_version} | {latest_review_date} |".format(
-                database_id=_normalize_text(record.get("database_id")) or "-",
+                database_id=record_database_id or "-",
                 current_status=_normalize_text(record.get("current_status")) or "-",
                 latest_version=_normalize_text(record.get("latest_version")) or "-",
-                latest_review_date=_normalize_text(record.get("latest_review_date")) or "-",
+                latest_review_date=review_date or "-",
             )
         )
     lines.append("")
@@ -673,13 +764,16 @@ def _build_cross_database_card_markdown(
     lines.append("")
     lines.append("| database_id | current_status | latest_version | latest_review_date |")
     lines.append("| --- | --- | --- | --- |")
+    review_date_map = _database_review_date_map(database_summaries)
     for record in sorted(approved_asset_records, key=lambda row: _normalize_text(row.get("database_id"))):
+        record_database_id = _normalize_text(record.get("database_id"))
+        review_date = _normalize_public_review_date(record.get("latest_review_date")) or review_date_map.get(record_database_id, "")
         lines.append(
             "| {database_id} | {current_status} | {latest_version} | {latest_review_date} |".format(
-                database_id=_normalize_text(record.get("database_id")) or "-",
+                database_id=record_database_id or "-",
                 current_status=_normalize_text(record.get("current_status")) or "-",
                 latest_version=_normalize_text(record.get("latest_version")) or "-",
-                latest_review_date=_normalize_text(record.get("latest_review_date")) or "-",
+                latest_review_date=review_date or "-",
             )
         )
     lines.append("")
@@ -698,13 +792,14 @@ def _build_cross_database_card_markdown(
 def build_public_variable_card(
     *,
     workspace_root: Path,
+    master_index_path: Path | None,
     std_variable_id: str,
     database_id: str | None,
     output_path: Path,
     overwrite: bool,
     cross_database: bool,
 ) -> Path:
-    master_index_path = default_master_index_path(workspace_root)
+    master_index_path = master_index_path or default_master_index_path(workspace_root)
     asset_records = read_database_asset_records(master_index_path, std_variable_id=std_variable_id)
     approved_asset_records = [
         record for record in asset_records if _normalize_text(record.get("current_status")).lower() in APPROVED_VALUES
@@ -729,7 +824,7 @@ def build_public_variable_card(
                     f"Knowledge package not found for `{std_variable_id}` at `{asset_record.get('knowledge_package_path')}`."
                 )
             knowledge_summary = _load_knowledge_package_summary(std_variable_id, knowledge_package_path)
-            database_summaries.append(_build_database_summary(asset_record, knowledge_summary))
+            database_summaries.append(_build_database_summary(workspace_root, asset_record, knowledge_summary))
         markdown = _build_cross_database_card_markdown(
             std_variable_id=std_variable_id,
             catalog_row=catalog_row,
@@ -763,7 +858,7 @@ def build_public_variable_card(
             )
 
         knowledge_summary = _load_knowledge_package_summary(std_variable_id, knowledge_package_path)
-        database_summary = _build_database_summary(selected_asset_record, knowledge_summary)
+        database_summary = _build_database_summary(workspace_root, selected_asset_record, knowledge_summary)
         markdown = _build_single_database_card_markdown(
             std_variable_id=std_variable_id,
             catalog_row=catalog_row,
@@ -784,13 +879,14 @@ def build_public_variable_card(
 def batch_export_public_variable_cards(
     *,
     workspace_root: Path,
+    master_index_path: Path | None,
     output_dir: Path,
     overwrite: bool,
     only_missing: bool,
     database_id: str | None,
     cross_database: bool,
 ) -> dict[str, Any]:
-    master_index_path = default_master_index_path(workspace_root)
+    master_index_path = master_index_path or default_master_index_path(workspace_root)
     asset_records = read_database_asset_records(master_index_path)
     approved_asset_records = [
         record for record in asset_records if _normalize_text(record.get("current_status")).lower() in APPROVED_VALUES
@@ -853,6 +949,7 @@ def batch_export_public_variable_cards(
         try:
             written_path = build_public_variable_card(
                 workspace_root=workspace_root,
+                master_index_path=master_index_path,
                 std_variable_id=std_variable_id,
                 database_id=selected_database_id,
                 output_path=output_path,
@@ -884,6 +981,10 @@ def batch_export_public_variable_cards(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export a GitHub-safe public variable card from local Layer 5 metadata.")
     parser.add_argument("--workspace-root", default=str(_workspace_root()), help="Workspace root containing Methods/...")
+    parser.add_argument(
+        "--master-index",
+        help="Optional Layer 5 master index workbook path. Default: conventional local-work master index under the workspace root.",
+    )
     selection_group = parser.add_mutually_exclusive_group(required=True)
     selection_group.add_argument("--std-variable-id", help="Standardized variable id to publish.")
     selection_group.add_argument(
@@ -917,12 +1018,14 @@ def main() -> None:
     args = parser.parse_args()
 
     workspace_root = Path(args.workspace_root).resolve()
+    master_index_path = Path(args.master_index).resolve() if args.master_index else None
     if args.all_reviewed_approved:
         if args.output:
             raise ValueError("Do not pass --output in batch mode. Use --output-dir instead.")
         output_dir = Path(args.output_dir).resolve() if args.output_dir else _default_output_dir()
         summary = batch_export_public_variable_cards(
             workspace_root=workspace_root,
+            master_index_path=master_index_path,
             output_dir=output_dir,
             overwrite=args.overwrite,
             only_missing=args.only_missing,
@@ -948,6 +1051,7 @@ def main() -> None:
     output_path = Path(args.output).resolve() if args.output else _default_output_path(args.std_variable_id)
     written = build_public_variable_card(
         workspace_root=workspace_root,
+        master_index_path=master_index_path,
         std_variable_id=args.std_variable_id,
         database_id=args.database_id,
         output_path=output_path,

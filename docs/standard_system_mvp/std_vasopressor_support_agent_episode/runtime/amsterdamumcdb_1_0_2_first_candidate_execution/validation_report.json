@@ -1,0 +1,304 @@
+{
+  "artifact_type": "validation_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-04T02:18:27Z",
+  "validation_scope": "pre_execution_spec_and_environment_checks",
+  "overall_status": "pass",
+  "variable_id": "std_vasopressor_support_agent_episode",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "variable_spec_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "spec_hashes": {
+    "variable_spec_sha256": "0a34ed86bd39e8a8062419d47e7d716f02c21f4b63d0cd85ad485a579920a733",
+    "mapping_spec_sha256": "d4044b4bd815617a8b21be740054f4136d3eba11a32a042a5fc696252c9923ae"
+  },
+  "checks": [
+    {
+      "check_id": "variable_spec_artifact_type",
+      "status": "pass",
+      "message": "variable_spec artifact_type is variable_spec"
+    },
+    {
+      "check_id": "mapping_spec_artifact_type",
+      "status": "pass",
+      "message": "mapping_spec artifact_type is mapping_spec"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id is consistently locked to std_vasopressor_support_agent_episode"
+    },
+    {
+      "check_id": "variable_version_match",
+      "status": "pass",
+      "message": "variable_version matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "mapping_spec database_id matches requested database_id AmsterdamUMCdb-1.0.2"
+    },
+    {
+      "check_id": "variable_spec_ref_match",
+      "status": "pass",
+      "message": "mapping_spec variable_spec_ref points to the chosen variable_spec.json"
+    },
+    {
+      "check_id": "semantic_grain_match",
+      "status": "pass",
+      "message": "semantic_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "source_value_class_match",
+      "status": "pass",
+      "message": "source_value_class matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_value_family_match",
+      "status": "pass",
+      "message": "value family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "representation_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and representation_and_normalization"
+    },
+    {
+      "check_id": "episode_interval_bridge_class_lock",
+      "status": "pass",
+      "message": "variable is compatible with the episode-interval bridge class for std_vasopressor_support_agent_episode"
+    },
+    {
+      "check_id": "variable_directory_alignment",
+      "status": "pass",
+      "message": "variable directory name matches variable_id std_vasopressor_support_agent_episode"
+    },
+    {
+      "check_id": "episode_value_family_lock",
+      "status": "pass",
+      "message": "value family is categorical_episode and representation is categorical_interval_episode"
+    },
+    {
+      "check_id": "episode_source_class_lock",
+      "status": "pass",
+      "message": "source_value_class is locked to a positive episode/interval class"
+    },
+    {
+      "check_id": "interval_requirements_are_boolean_true",
+      "status": "pass",
+      "message": "start timestamp, end timestamp, and duration are required"
+    },
+    {
+      "check_id": "label_domain_present",
+      "status": "pass",
+      "message": "retained label domain is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_contract_target_entity_grain_present",
+      "status": "pass",
+      "message": "episode_interval_contract.target_entity_grain is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_contract_anchor_family_present",
+      "status": "pass",
+      "message": "episode_interval_contract.anchor_family is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_contract_episode_label_meaning_present",
+      "status": "pass",
+      "message": "episode_interval_contract.episode_label_meaning is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_contract_episode_start_rule_present",
+      "status": "pass",
+      "message": "episode_interval_contract.episode_start_rule is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_contract_episode_end_rule_present",
+      "status": "pass",
+      "message": "episode_interval_contract.episode_end_rule is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_contract_continuity_rule_present",
+      "status": "pass",
+      "message": "episode_interval_contract.continuity_rule is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_contract_parent_link_rule_present",
+      "status": "pass",
+      "message": "episode_interval_contract.parent_link_rule is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_contract_no_row_interpretation_present",
+      "status": "pass",
+      "message": "episode_interval_contract.no_row_interpretation is explicitly locked"
+    },
+    {
+      "check_id": "source_locator_mode_present",
+      "status": "pass",
+      "message": "mapping_spec declares source_locator_mode"
+    },
+    {
+      "check_id": "source_table_present",
+      "status": "pass",
+      "message": "mapping_spec declares a concrete source_table"
+    },
+    {
+      "check_id": "source_status_field_present",
+      "status": "pass",
+      "message": "mapping_spec declares source_status_field"
+    },
+    {
+      "check_id": "source_status_codes_present",
+      "status": "pass",
+      "message": "mapping_spec locks at least one retained episode label or status"
+    },
+    {
+      "check_id": "database_mapping_source_start_field_present",
+      "status": "pass",
+      "message": "database_mapping.source_start_field is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_end_field_present",
+      "status": "pass",
+      "message": "database_mapping.source_end_field is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_grain_present",
+      "status": "pass",
+      "message": "database_mapping.source_grain is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_target_grain_present",
+      "status": "pass",
+      "message": "database_mapping.target_grain is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_translation_target_entity_grain_present",
+      "status": "pass",
+      "message": "episode_interval_build_translation.target_entity_grain is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_translation_anchor_family_present",
+      "status": "pass",
+      "message": "episode_interval_build_translation.anchor_family is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_translation_episode_label_translation_present",
+      "status": "pass",
+      "message": "episode_interval_build_translation.episode_label_translation is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_translation_episode_start_translation_present",
+      "status": "pass",
+      "message": "episode_interval_build_translation.episode_start_translation is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_translation_episode_end_translation_present",
+      "status": "pass",
+      "message": "episode_interval_build_translation.episode_end_translation is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_translation_continuity_translation_present",
+      "status": "pass",
+      "message": "episode_interval_build_translation.continuity_translation is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_translation_parent_link_translation_present",
+      "status": "pass",
+      "message": "episode_interval_build_translation.parent_link_translation is explicitly locked"
+    },
+    {
+      "check_id": "episode_interval_translation_no_row_translation_present",
+      "status": "pass",
+      "message": "episode_interval_build_translation.no_row_translation is explicitly locked"
+    },
+    {
+      "check_id": "target_entity_grain_match",
+      "status": "pass",
+      "message": "target_entity_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "anchor_family_match",
+      "status": "pass",
+      "message": "anchor_family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "mapping_semantic_grain_match",
+      "status": "pass",
+      "message": "mapping_spec standard_variable.semantic_grain matches variable_spec immutable_core.semantic_grain"
+    },
+    {
+      "check_id": "normalization_rule_present",
+      "status": "pass",
+      "message": "mapping_spec declares a normalization_rule_id"
+    },
+    {
+      "check_id": "representation_primary_output_value_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.primary_output_value_field is explicitly locked"
+    },
+    {
+      "check_id": "representation_primary_episode_label_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.primary_episode_label_field is explicitly locked"
+    },
+    {
+      "check_id": "representation_start_time_output_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.start_time_output_field is explicitly locked"
+    },
+    {
+      "check_id": "representation_end_time_output_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.end_time_output_field is explicitly locked"
+    },
+    {
+      "check_id": "representation_duration_output_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.duration_output_field is explicitly locked"
+    },
+    {
+      "check_id": "required_non_null_fields_present",
+      "status": "pass",
+      "message": "mapping_spec declares required_non_null_fields for validation"
+    },
+    {
+      "check_id": "no_row_policy_present",
+      "status": "pass",
+      "message": "mapping_spec explicitly locks a no-row policy check"
+    },
+    {
+      "check_id": "governed_execution_entrypoint_declared",
+      "status": "pass",
+      "message": "mapping_spec governed_execution_entrypoint points to this execution.py"
+    },
+    {
+      "check_id": "reference_implementation_declared",
+      "status": "pass",
+      "message": "mapping_spec declares current_reference_implementation"
+    },
+    {
+      "check_id": "reference_implementation_exists",
+      "status": "pass",
+      "message": "current reference implementation exists: Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py"
+    },
+    {
+      "check_id": "local_input_asset_declared",
+      "status": "pass",
+      "message": "mapping_spec declares a primary local prepared input asset"
+    },
+    {
+      "check_id": "local_input_asset_exists",
+      "status": "pass",
+      "message": "local prepared input asset exists: Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/drugitems_event.parquet"
+    }
+  ]
+}

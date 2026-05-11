@@ -1,0 +1,143 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v1",
+  "artifact_status": "approved_public_mapping_lock",
+  "approval_status": "reviewed_approved",
+  "mvp_phase": "class_3_amsterdam_respiratory_support_family_governed_mvp",
+  "created_at": "2026-05-02",
+  "updated_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_tracheostomy_status_active/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_tracheostomy_status_active",
+    "variable_version": "v0_draft",
+    "semantic_intent": "tracheostomy status active state",
+    "semantic_grain": "one row per positive state episode",
+    "source_value_class": "positive_state_episode",
+    "canonical_unit": "none",
+    "canonical_value_family": "binary_state"
+  },
+  "approved_boundary_notice": {
+    "status": "approved_same_name_mapping",
+    "reason": "Amsterdam processitems itemid 12635 / Tracheostoma is a direct interval source for tracheostomy status and is narrow enough for same-name approval when ventilation, NIV/CPAP, HFNC, and oxygen-only evidence remain separate.",
+    "formal_approval_date": "2026-05-02",
+    "accepted_policy_scope": "conservative tracheostomy-status positive episode boundary"
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_locator_mode": "direct_positive_state_episode_filter",
+    "source_package": "processitems",
+    "source_table": "processitems_interval",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/processitems_interval.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/admissions_core.parquet"
+    ],
+    "source_status_field": "itemid",
+    "source_status_codes": [
+      12635
+    ],
+    "source_status_code_labels": {
+      "12635": "Tracheostoma"
+    },
+    "source_start_field": "start",
+    "source_end_field": "stop",
+    "source_duration_field": "duration",
+    "source_grain": "one Amsterdam processitems tracheostomy status interval row",
+    "target_grain": "one retained positive tracheostomy status state episode row",
+    "identifier_normalization": {
+      "subject_id_role": "patientid joined from Amsterdam admissions_core by admissionid",
+      "hadm_id_role": "not separately available in the current Amsterdam opening mapping",
+      "stay_id_role": "raw admissionid is the Amsterdam ICU/MC local admission identifier and normalizes to stay_id under ICU/MC semantics",
+      "stay_link_status": "icu_mcu_local_admission_via_admissionid"
+    },
+    "adjacent_status_boundary": {
+      "included_statuses": [
+        "12635 Tracheostoma"
+      ],
+      "excluded_statuses": [
+        "9328 Beademen",
+        "10740 Beademen non-invasief",
+        "9671 CPAP",
+        "HFNC no approved source found",
+        "8189 oxygen administration device values",
+        "9171/9176/9177/10618 legacy no-longer-used tracheostomy process codes"
+      ],
+      "boundary_reason": "This same-name variable represents tracheostomy status only. It must not be auto-equated to invasive ventilation or any broader respiratory-support composite."
+    },
+    "approved_source_audit_summary": {
+      "source_12635_rows": 1940,
+      "valid_source_row_count": 1940,
+      "invalid_timing_source_row_count": 0,
+      "approved_output_rows": 1940,
+      "unique_subject_id": 1081,
+      "unique_stay_id": 1275
+    }
+  },
+  "state_episode_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "positive_state_translation": "retain Amsterdam processitems rows with itemid 12635 only",
+    "negative_state_translation": "do not emit false rows",
+    "episode_start_translation": "use source start as Amsterdam relative support_starttime in milliseconds while also emitting relative_start_time_value in minutes",
+    "episode_end_translation": "use source stop as Amsterdam relative support_endtime in milliseconds while also emitting relative_end_time_value in minutes",
+    "continuity_translation": "keep source 12635 interval boundaries; do not union invasive ventilation, NIV/CPAP, HFNC, supplemental oxygen, or legacy no-longer-used tracheostomy codes into this asset",
+    "no_row_translation": "absence of a retained row means no positive approved Tracheostoma episode under this source rule"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "amsterdam_processitems_12635_tracheostoma_to_true_episode_v1",
+    "primary_output_value_field": "std_tracheostomy_status_active",
+    "start_time_output_field": "support_starttime",
+    "end_time_output_field": "support_endtime",
+    "duration_output_field": "support_duration_minutes",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_start_output_field": "relative_start_time_value",
+    "relative_end_output_field": "relative_end_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "stay_id",
+      "support_episode_index",
+      "support_starttime",
+      "support_endtime",
+      "support_duration_minutes",
+      "std_tracheostomy_status_active"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "support_episode_index"
+    ],
+    "duplicate_action": "fail",
+    "positive_only_no_row_policy_check": "false rows are not emitted; absence of row is not universal proof of no tracheostomy status",
+    "episode_time_order_action": "fail_when_end_not_after_start",
+    "source_code_lock_rule": "all retained rows must originate from Amsterdam processitems itemid 12635",
+    "duration_caution_rules": {
+      "short_episode_le_minutes": 60,
+      "prolonged_episode_ge_minutes": 10080
+    },
+    "notes": [
+      "This Amsterdam mapping is reviewed-approved for std_tracheostomy_status_active.",
+      "The approved source scope is processitems 12635 Tracheostoma only.",
+      "Ventilation, NIV/CPAP, oxygen-only devices, and legacy no-longer-used tracheostomy process codes remain outside this same-name output."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_tracheostomy_status_active/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_tracheostomy_status_active/extract_code/Extract_Code_std_tracheostomy_status_active.py",
+    "formal_output_rule": "Formal Amsterdam same-name output is approved only through the governed execution.py path reading this approved mapping spec and producing runtime plus rerun evidence.",
+    "non_bypassable_target_rule": "Formal outputs should be generated only through the governed execution.py path reading an approved mapping spec and producing runtime plus rerun evidence."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_tracheostomy_status_active.md",
+    "formal_approval_review_path": "docs/standard_system_mvp/STD_TRACHEOSTOMY_STATUS_ACTIVE_AMSTERDAM_FORMAL_APPROVAL_REVIEW.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_tracheostomy_status_active/extract_code/Extract_Code_std_tracheostomy_status_active.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_tracheostomy_status_active/std_tracheostomy_status_active_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_tracheostomy_status_active/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_tracheostomy_status_active/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_tracheostomy_status_active/preview/std_tracheostomy_status_active_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_tracheostomy_status_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_tracheostomy_status_active/query_summary"
+  }
+}

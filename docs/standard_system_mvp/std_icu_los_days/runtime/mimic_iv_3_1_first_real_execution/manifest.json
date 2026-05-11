@@ -1,0 +1,66 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-25T03:57:38Z",
+  "variable_id": "std_icu_los_days",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_icu_los_days/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_icu_los_days/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_icu_los_days/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_icu_los_days/extract_code/Extract_Code_std_icu_los_days.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_icustays.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_icu_los_days/extract_code/Extract_Code_std_icu_los_days.py"
+  ],
+  "process_batch_id": "20260425T035734Z_MIMIC-IV-3.1_std_icu_los_days",
+  "subprocess_return_code": 0,
+  "started_at": "2026-04-25T03:57:25Z",
+  "finished_at": "2026-04-25T03:57:38Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "60bfef9fc1fd2906238344b5a9189af98ab85b182afc5970ccfe81ebada8a2e3",
+    "mapping_spec_sha256": "4b843f8452781b96c6fb6d1bf6c55b750277658c143bf8062e1b22e78ecfd260"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/outcomes/std_icu_los_days/std_icu_los_days_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_icu_los_days/preview/std_icu_los_days_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_icu_los_days/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_icu_los_days/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_icu_los_days/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "09a8971ee75ca85a4690fd708ed4e0bddefd91495f8c56963c83264382c6b51b",
+      "size_bytes": 2004917
+    },
+    "preview_csv": {
+      "sha256": "2eaada4cbc4180bd09e261017f68f2ad694d3d96dfe01125c6aac0c9128ad7cf",
+      "size_bytes": 8669
+    },
+    "asset_manifest": {
+      "sha256": "812fd3eb9adee5f47107d7b0acc7b47740693f283948b5252c7532bddc45507a",
+      "size_bytes": 2804
+    },
+    "knowledge_package": {
+      "sha256": "3c7e77a8e0a967916f5c8a9647a49ab084cc333dac5b9089998be5a9f3db28e2",
+      "size_bytes": 25660
+    },
+    "build_log": {
+      "sha256": "9236b30d55286e0af4fe17d7b65f5736c224b05ca67a5c833e543e44a229660f",
+      "size_bytes": 1165
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260425T035734Z_MIMIC-IV-3.1_std_icu_los_days",
+    "total_rows": 94458,
+    "unique_stay_id": 94458,
+    "observed_rows": 94444,
+    "missing_outtime_rows": 14,
+    "min_days_raw": 0.00125,
+    "max_days_raw": 226.4030787037037
+  }
+}

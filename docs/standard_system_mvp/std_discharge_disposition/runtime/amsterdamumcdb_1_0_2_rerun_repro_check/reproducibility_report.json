@@ -1,0 +1,337 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:33Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_discharge_disposition",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_discharge_disposition/runtime/amsterdamumcdb_1_0_2_first_candidate_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_discharge_disposition/runtime/amsterdamumcdb_1_0_2_rerun_repro_check",
+  "baseline_process_batch_id": "20260504T021858Z_AmsterdamUMCdb-1.0.2_std_discharge_disposition",
+  "candidate_process_batch_id": "20260504T021920Z_AmsterdamUMCdb-1.0.2_std_discharge_disposition",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "asset_manifest_path",
+    "knowledge_package_path",
+    "layer3_asset_path",
+    "layer3_asset_sha256",
+    "local_code_value_count",
+    "null_source_value_row_count",
+    "preview_path",
+    "row_count",
+    "source_row_count",
+    "status",
+    "unique_stay_id",
+    "unique_subject_id"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_discharge_disposition/runtime/amsterdamumcdb_1_0_2_first_candidate_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_discharge_disposition/runtime/amsterdamumcdb_1_0_2_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_asset_manifest_path_match",
+      "status": "pass",
+      "message": "build_summary field asset_manifest_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_knowledge_package_path_match",
+      "status": "pass",
+      "message": "build_summary field knowledge_package_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_layer3_asset_path_match",
+      "status": "pass",
+      "message": "build_summary field layer3_asset_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_layer3_asset_sha256_match",
+      "status": "pass",
+      "message": "build_summary field layer3_asset_sha256 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_local_code_value_count_match",
+      "status": "pass",
+      "message": "build_summary field local_code_value_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_null_source_value_row_count_match",
+      "status": "pass",
+      "message": "build_summary field null_source_value_row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_preview_path_match",
+      "status": "pass",
+      "message": "build_summary field preview_path matches across reruns"
+    },
+    {
+      "check_id": "build_summary_row_count_match",
+      "status": "pass",
+      "message": "build_summary field row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_source_row_count_match",
+      "status": "pass",
+      "message": "build_summary field source_row_count matches across reruns"
+    },
+    {
+      "check_id": "build_summary_status_match",
+      "status": "pass",
+      "message": "build_summary field status matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_stay_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_stay_id matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_subject_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_subject_id matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "0bd8746f647cb207bd4a2720da69e679c2ad07476925a56b99dd292d0cf7e357",
+        "size_bytes": 2129
+      },
+      "candidate_signature": {
+        "sha256": "0bd8746f647cb207bd4a2720da69e679c2ad07476925a56b99dd292d0cf7e357",
+        "size_bytes": 2129
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_discharge_disposition/runtime/amsterdamumcdb_1_0_2_first_candidate_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_discharge_disposition/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "3361928c1dc6e3f35911c0b7f5d5a5e00103c0f6757a4a6e232d790e19b25c93",
+        "size_bytes": 885
+      },
+      "candidate_signature": {
+        "sha256": "6f4d05d507c17eac8644fbf4958dfd5cd293c9bc5f4531901c20d00f47cb79bd",
+        "size_bytes": 885
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "53b7884998a652a4bcbfd9dd518e734fbb469f9941496ceb9988778693c55d0d",
+        "size_bytes": 8878
+      },
+      "candidate_signature": {
+        "sha256": "53b7884998a652a4bcbfd9dd518e734fbb469f9941496ceb9988778693c55d0d",
+        "size_bytes": 8878
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/preview/std_discharge_disposition_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/preview/std_discharge_disposition_preview.csv",
+      "baseline_signature": {
+        "sha256": "226be6ecfde4949fcf16ab2dffbad9376eacc4f25b76fc18a969b5c48eb7bdfc",
+        "size_bytes": 94977
+      },
+      "candidate_signature": {
+        "sha256": "226be6ecfde4949fcf16ab2dffbad9376eacc4f25b76fc18a969b5c48eb7bdfc",
+        "size_bytes": 94977
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/outcomes/std_discharge_disposition/std_discharge_disposition_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/outcomes/std_discharge_disposition/std_discharge_disposition_long.parquet",
+      "baseline_signature": {
+        "sha256": "030ca044c2437593dade99a5c0c8e65e88b8933d817a2cdb53e7518a09c5de06",
+        "size_bytes": 815828
+      },
+      "candidate_signature": {
+        "sha256": "030ca044c2437593dade99a5c0c8e65e88b8933d817a2cdb53e7518a09c5de06",
+        "size_bytes": 815828
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "asset_manifest_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/asset_manifest.md",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/asset_manifest.md"
+    },
+    "knowledge_package_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/Layer5_PerVariable_KnowledgePackage.xlsx"
+    },
+    "layer3_asset_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/outcomes/std_discharge_disposition/std_discharge_disposition_long.parquet",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/outcomes/std_discharge_disposition/std_discharge_disposition_long.parquet"
+    },
+    "layer3_asset_sha256": {
+      "status": "pass",
+      "baseline_value": "030ca044c2437593dade99a5c0c8e65e88b8933d817a2cdb53e7518a09c5de06",
+      "candidate_value": "030ca044c2437593dade99a5c0c8e65e88b8933d817a2cdb53e7518a09c5de06"
+    },
+    "local_code_value_count": {
+      "status": "pass",
+      "baseline_value": 20598,
+      "candidate_value": 20598
+    },
+    "null_source_value_row_count": {
+      "status": "pass",
+      "baseline_value": 220,
+      "candidate_value": 220
+    },
+    "preview_path": {
+      "status": "pass",
+      "baseline_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/preview/std_discharge_disposition_preview.csv",
+      "candidate_value": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_discharge_disposition/preview/std_discharge_disposition_preview.csv"
+    },
+    "row_count": {
+      "status": "pass",
+      "baseline_value": 22886,
+      "candidate_value": 22886
+    },
+    "source_row_count": {
+      "status": "pass",
+      "baseline_value": 23106,
+      "candidate_value": 23106
+    },
+    "status": {
+      "status": "pass",
+      "baseline_value": "built_candidate_destination_code_dictionary_pending_owner_approval",
+      "candidate_value": "built_candidate_destination_code_dictionary_pending_owner_approval"
+    },
+    "unique_stay_id": {
+      "status": "pass",
+      "baseline_value": 22886,
+      "candidate_value": 22886
+    },
+    "unique_subject_id": {
+      "status": "pass",
+      "baseline_value": 19903,
+      "candidate_value": 19903
+    }
+  }
+}

@@ -83,6 +83,8 @@ def _normalize_date_like_text(value: Any) -> Any:
     else:
         text = str(value)
     text = text.strip()
+    if text and set(text) == {"#"}:
+        return ""
     if len(text) >= 10 and text[4] == "-" and text[7] == "-":
         return text[:10]
     return text

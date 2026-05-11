@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:56:17Z",
+  "variable_id": "std_phosphate",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_phosphate/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_phosphate/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_phosphate/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_phosphate/extract_code/Extract_Code_std_phosphate.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_phosphate/extract_code/Extract_Code_std_phosphate.py"
+  ],
+  "process_batch_id": "20260507T225612Z_AmsterdamUMCdb-1.0.2_std_phosphate",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:56:11Z",
+  "finished_at": "2026-05-07T22:56:17Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "ac04f6656789b1035973491298e55613e360de48faa9cf2c8542f1a631125898",
+    "mapping_spec_sha256": "f150cce7e2d5a5dfd3b106fdfcd3d85354a61af091972a7a0a8e5c9dc5910c01"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_phosphate/std_phosphate_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_phosphate/preview/std_phosphate_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_phosphate/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_phosphate/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_phosphate/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "b19dcee098d29c64c15041c6564bd22df037459d6fcf51c5d40d4abfb2741987",
+      "size_bytes": 1882288
+    },
+    "preview_csv": {
+      "sha256": "dfe486ec0834f3720207b10a4f78e8b69603b85f56705eeb001e84780b8789d2",
+      "size_bytes": 88416
+    },
+    "asset_manifest": {
+      "sha256": "79a68544e40af9c0c9a0e89ccd0f736de48da545383a3c621c2eb6a008e40f52",
+      "size_bytes": 4034
+    },
+    "knowledge_package": {
+      "sha256": "94b5df52dbd060a751cc2ee6fd16cfe8c9d4f3d8f38898e8060a8e81bb4c9e37",
+      "size_bytes": 26231
+    },
+    "build_log": {
+      "sha256": "e92b1c38e5a56208afb58971042237f1a34aed924ddf0c457c01855539dfe836",
+      "size_bytes": 690
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225612Z_AmsterdamUMCdb-1.0.2_std_phosphate",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_phosphate/std_phosphate_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_phosphate/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_phosphate/log_archive/20260507T225612Z_AmsterdamUMCdb-1.0.2_std_phosphate__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

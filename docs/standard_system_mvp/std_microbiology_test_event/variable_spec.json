@@ -1,0 +1,60 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_9_microbiology_test_event_governed_mvp",
+  "created_at": "2026-05-03",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "microbiology_multi_entity_family",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_MicrobiologyMultiEntityFamily_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_microbiology_test_event",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Microbiology test event",
+    "semantic_folder": "laboratory",
+    "category": "laboratory"
+  },
+  "immutable_core": {
+    "semantic_intent": "performed microbiology specimen-test event",
+    "semantic_definition": "A parent microbiology laboratory result event at specimen-test grain, retaining specimen/test context, event timing, result-comment inference helpers, and child organism/susceptibility counts without flattening child entities into the parent row.",
+    "semantic_grain": "one row per microbiology specimen-test event",
+    "value_family": "microbiology_multi_entity",
+    "source_value_class": "microbiology_test_event",
+    "same_name_cross_database_rule": "Any database asset published as std_microbiology_test_event must preserve parent specimen-test event semantics and must not silently become an organism isolate, susceptibility leaf, microbiology order, antibiotic treatment event, suspected-infection phenotype, Sepsis-3 onset, or organism ontology table."
+  },
+  "microbiology_entity_contract": {
+    "family_role": "parent_test_event",
+    "entity_grain": "one row per microbiology specimen-test event",
+    "source_hierarchy_rule": "retain performed microbiology laboratory result events from the source hierarchy and expose child organism/susceptibility counts rather than flattening children into the event row",
+    "parent_child_rule": "this entity is the parent/root row; child organism branches link by microbiology_test_event_id",
+    "raw_text_retention_rule": "retain raw specimen, test, comment, and Gram-stain text fields needed for source-faithful interpretation",
+    "no_row_interpretation": "no retained event row means no approved opening-scope performed microbiology result event under this mapping, not absence of culture order, infection, organism, or antimicrobial exposure"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "microbiology_test_event",
+    "storage_type": "parent_event_plus_hierarchy_context",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "microbiology_test_event_id"
+    ],
+    "time_anchor": "charttime_or_chartdate"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_microbiology_test_event outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_microbiology_test_event/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_microbiology_test_event/execution.py",
+    "public_card": "docs/std_variable_cards/std_microbiology_test_event.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_MicrobiologyMultiEntityFamily_Contract.md"
+  }
+}

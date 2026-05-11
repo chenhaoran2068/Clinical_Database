@@ -1,0 +1,157 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_2_mimic_bmi_derived_baseline_governed_mvp",
+  "created_at": "2026-04-28",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_bmi_icu_baseline/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_bmi_icu_baseline",
+    "variable_version": "v0_draft",
+    "semantic_intent": "ICU baseline body mass index snapshot",
+    "category": "anthropometric_derived_measurement",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "source_value_class": "derived_baseline_snapshot_from_approved_weight_and_height_assets",
+    "summary_subclass": "baseline_snapshot",
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor inherited from std_weight_icu_baseline",
+    "canonical_unit": "kg/m^2",
+    "canonical_value_family": "numeric_derived",
+    "current_output_storage_type": "Float64",
+    "current_output_precision_digits": 2
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "approved_upstream_standard_assets",
+    "source_package": "std_weight_icu_baseline_plus_std_height",
+    "primary_source_tables": [
+      "std_weight_icu_baseline",
+      "std_height"
+    ],
+    "local_prepared_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_weight_icu_baseline/std_weight_icu_baseline_long.parquet",
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_height/std_height_long.parquet"
+    ],
+    "source_code_system": "approved upstream standard variables",
+    "source_codes": [
+      "std_weight_icu_baseline",
+      "std_height"
+    ],
+    "source_code_labels": {
+      "std_weight_icu_baseline": "approved ICU-baseline weight in kg",
+      "std_height": "approved subject-level standardized height in cm"
+    },
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "hadm_id",
+        "stay_id"
+      ],
+      "source_weight_field": "std_weight_icu_baseline.std_weight_kg_baseline",
+      "source_height_field": "std_height.std_height_cm",
+      "formula": "std_weight_kg_baseline / ((std_height_cm / 100.0) ^ 2)",
+      "source_weight_provenance_field": "std_weight_icu_baseline.source_preferred",
+      "source_height_provenance_field": "std_height.source_preferred"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier and height join key",
+      "hadm_id_role": "hospital-admission-level context identifier",
+      "stay_id_role": "ICU-stay-level identifier and target retained key",
+      "stay_link_status": "direct_stay_link_required"
+    },
+    "source_grain": "one retained upstream ICU-baseline weight row per stay_id plus one retained upstream height row per subject_id",
+    "target_grain": "one retained row per ICU stay with both approved baseline weight and approved height",
+    "join_dependencies": [
+      {
+        "join_table": "std_height",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_height/std_height_long.parquet",
+        "join_keys": [
+          "subject_id"
+        ],
+        "join_cardinality": "many_icu_weight_rows_to_one_subject_height",
+        "required_fields": [
+          "std_height_cm",
+          "source_preferred"
+        ],
+        "failure_action": "drop_target_row_and_audit_as_missing_height"
+      }
+    ]
+  },
+  "summary_build_translation": {
+    "window_label": "icu_baseline_weight_window_inherited_plus_subject_height_join",
+    "anchor_family": "ICU admission anchor inherited from std_weight_icu_baseline",
+    "window_start_translation": "inherit the selected baseline weight window from std_weight_icu_baseline",
+    "window_end_translation": "inherit the selected baseline weight window from std_weight_icu_baseline",
+    "qualifying_row_translation": "start from retained std_weight_icu_baseline rows and keep only rows with a matching retained std_height row on subject_id",
+    "selection_translation": "no BMI-specific event selection; selected weight row is inherited from std_weight_icu_baseline",
+    "aggregation_translation": "compute std_bmi_kg_per_m2 = std_weight_kg_baseline / ((std_height_cm / 100.0) ^ 2), rounded to 2 decimals",
+    "tie_break_translation": "weight tie-breaks are inherited from std_weight_icu_baseline; height tie-breaks are inherited from std_height",
+    "no_source_row_translation": "ICU stays without retained baseline weight or retained height are absent from the BMI output",
+    "partial_window_translation": "partial window behavior is inherited from std_weight_icu_baseline"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "kg/m^2",
+    "source_unit_expectation": "upstream weight is kg and upstream height is cm before conversion to meters in the formula",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "mimic_bmi_icu_baseline_from_weight_kg_and_height_cm_round_2dp",
+    "output_rounding_rule": "round_half_even_or_pandas_float_round_2dp_as_current_reference_implementation",
+    "hard_valid_range_in_canonical_unit": [
+      1.0,
+      250.0
+    ],
+    "plausible_range_in_canonical_unit": [
+      10.0,
+      60.0
+    ],
+    "outlier_flag_range_in_canonical_unit": [
+      1.0,
+      80.0
+    ],
+    "primary_output_value_field": "std_bmi_kg_per_m2",
+    "anchor_output_field": "",
+    "window_start_output_field": "",
+    "window_end_output_field": ""
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "std_bmi_kg_per_m2",
+      "is_bmi_outlier_by_contract",
+      "weight_source_preferred",
+      "height_source_preferred"
+    ],
+    "duplicate_key": [
+      "stay_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_anchor_action": "inherit_from_upstream_weight_asset",
+    "missing_window_bound_action": "inherit_from_upstream_weight_asset",
+    "no_source_row_policy_check": "target ICU stays without approved upstream baseline weight or approved height are intentionally absent from the retained output; missing height is audited rather than represented as null BMI",
+    "window_consistency_action": "inherit_from_upstream_weight_asset",
+    "join_failure_action": "drop_and_audit_missing_height_for_subject_id",
+    "notes": [
+      "The retained target grain is ICU stay, not hospital admission encounter.",
+      "BMI is derived only from approved retained upstream standard assets.",
+      "Outlier-flagged rows are retained and must not be silently dropped in this governed asset."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_bmi_icu_baseline/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_icu_baseline/extract_code/Extract_Code_std_bmi_icu_baseline.py",
+    "formal_output_rule": "The governed execution.py entrypoint reads this mapping spec and delegates to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_bmi_icu_baseline outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_bmi_icu_baseline.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_icu_baseline/extract_code/Extract_Code_std_bmi_icu_baseline.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_bmi_icu_baseline/std_bmi_icu_baseline_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_icu_baseline/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_icu_baseline/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_icu_baseline/preview/std_bmi_icu_baseline_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_icu_baseline/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_icu_baseline/query_summary"
+  }
+}

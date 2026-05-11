@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:56:48Z",
+  "variable_id": "std_troponin_t",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_troponin_t/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_troponin_t/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_troponin_t/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_troponin_t/extract_code/Extract_Code_std_troponin_t.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_troponin_t/extract_code/Extract_Code_std_troponin_t.py"
+  ],
+  "process_batch_id": "20260507T225643Z_AmsterdamUMCdb-1.0.2_std_troponin_t",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:56:43Z",
+  "finished_at": "2026-05-07T22:56:48Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "1dd64d327a516242091666adb10e88339934dcc1cfc339983b5aaf4f194d6556",
+    "mapping_spec_sha256": "f1656b99737754f17227a8be272fd1a7a11f351e240ef83af7dd5da84366a392"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_troponin_t/std_troponin_t_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_troponin_t/preview/std_troponin_t_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_troponin_t/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_troponin_t/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_troponin_t/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "f720781994b53c8efbf128ac3b179237104056a49a191de1e7a423bddb034d2b",
+      "size_bytes": 395000
+    },
+    "preview_csv": {
+      "sha256": "32d902071be9e62ce1e8ec7edc2fd575e8ae647942f5e04ca2cef8cf442643aa",
+      "size_bytes": 94069
+    },
+    "asset_manifest": {
+      "sha256": "2b2859efa8f060088e5ebaebe71657fa964f7bdf46d57fd996e041735c75b056",
+      "size_bytes": 3949
+    },
+    "knowledge_package": {
+      "sha256": "33024d8b2bcef41fb07c238b0e5789c3a388b86d577c3a3ab19f5df88d8f9638",
+      "size_bytes": 26224
+    },
+    "build_log": {
+      "sha256": "9287ac894225dbc557e225068177ccd514134b0cf826afcd48c076ab22359cb4",
+      "size_bytes": 694
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225643Z_AmsterdamUMCdb-1.0.2_std_troponin_t",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_troponin_t/std_troponin_t_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_troponin_t/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_troponin_t/log_archive/20260507T225643Z_AmsterdamUMCdb-1.0.2_std_troponin_t__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

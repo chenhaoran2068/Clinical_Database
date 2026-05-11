@@ -1,0 +1,6 @@
+database_id,family_id,declared_version,bucket,purpose,status
+Zigong-1.1,Zigong,1.1,raw_original,restricted source CSV/TXT delivery,local_only_populated_public_skeleton_empty
+Zigong-1.1,Zigong,1.1,raw_unpacked,unpacked/readable source staging,not_duplicated_csv_delivery_is_already_readable
+Zigong-1.1,Zigong,1.1,source_supplied_derived,source supplied derived/helper tables,not_yet_populated
+Zigong-1.1,Zigong,1.1,local_converted_parquet,local performance parquet copies,not_yet_generated
+Zigong-1.1,Zigong,1.1,docs_manifest,public-safe skeleton docs,populated

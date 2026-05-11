@@ -1,0 +1,57 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_7_amsterdam_q2_build_first_candidate_mvp",
+  "created_at": "2026-05-04",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "diagnosis_admin_demographic_id_map",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_DiagnosisAdminDemographicIdMap_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_discharge_disposition",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Discharge disposition",
+    "semantic_folder": "outcomes",
+    "category": "outcomes"
+  },
+  "immutable_core": {
+    "semantic_intent": "encounter discharge disposition category",
+    "semantic_definition": "An administrative category asset retaining discharge/destination disposition information at the encounter-like grain available in the source database.",
+    "semantic_grain": "one row per retained encounter discharge disposition candidate",
+    "value_family": "administrative_category",
+    "source_value_class": "source_recorded_admin_category",
+    "same_name_cross_database_rule": "Database mappings must preserve the declared administrative grain and keep source-faithful local categories visible unless a governed grouping rule is explicitly approved."
+  },
+  "admin_demographic_contract": {
+    "target_entity_grain": "encounter",
+    "identifier_scope_rule": "subject_id and stay_id are required; hadm_id may be unavailable in Amsterdam and must remain visibly null rather than fabricated",
+    "source_authority_rule": "use the source administrative admission/discharge field as the authority for the retained category",
+    "normalization_rule": "retain source-faithful discharge/destination category; group died when explicit and keep local destination codes visible pending dictionary review",
+    "no_row_interpretation": "no retained source category under the current source-field rule; not proof that the administrative concept is absent"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "categorical_text_admin_record",
+    "storage_type": "string_label",
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "time_anchor": "icu_intime_or_administrative_record"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_candidate_mapping_pending_owner_review",
+    "formal_output_rule": "Formal outputs should go through execution.py reading this variable_spec and a database mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_discharge_disposition/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_discharge_disposition/execution.py",
+    "public_card": "docs/std_variable_cards/std_discharge_disposition.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_DiagnosisAdminDemographicIdMap_Contract.md"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "artifact_type": "validation_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:23:39Z",
+  "validation_scope": "pre_execution_spec_and_environment_checks",
+  "overall_status": "pass",
+  "variable_id": "std_platelet_count",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "variable_spec_path": "docs/standard_system_mvp/std_platelet_count/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_platelet_count/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "spec_hashes": {
+    "variable_spec_sha256": "f4939d75fac0e107f9c2e4a402f7c91b136913a2919e3043ee7ad77de020be34",
+    "mapping_spec_sha256": "89ab9c7929cddd25a5e1955bbdb3e60e315347073f84e1fd43aca66e911fdee9"
+  },
+  "checks": [
+    {
+      "check_id": "variable_spec_artifact_type",
+      "status": "pass",
+      "message": "variable_spec artifact_type is variable_spec"
+    },
+    {
+      "check_id": "mapping_spec_artifact_type",
+      "status": "pass",
+      "message": "mapping_spec artifact_type is mapping_spec"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id is consistently locked to std_platelet_count"
+    },
+    {
+      "check_id": "variable_version_match",
+      "status": "pass",
+      "message": "variable_version matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "mapping_spec database_id matches requested database_id AmsterdamUMCdb-1.0.2"
+    },
+    {
+      "check_id": "variable_spec_ref_match",
+      "status": "pass",
+      "message": "mapping_spec variable_spec_ref points to the chosen variable_spec.json"
+    },
+    {
+      "check_id": "semantic_grain_match",
+      "status": "pass",
+      "message": "semantic_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "source_value_class_match",
+      "status": "pass",
+      "message": "source_value_class matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_value_family_match",
+      "status": "pass",
+      "message": "value family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "representation_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and representation_and_normalization"
+    },
+    {
+      "check_id": "event_numeric_class_lock",
+      "status": "pass",
+      "message": "variable is compatible with the event-level numeric primary-source class for std_platelet_count"
+    },
+    {
+      "check_id": "variable_directory_alignment",
+      "status": "pass",
+      "message": "variable directory name matches variable_id std_platelet_count"
+    },
+    {
+      "check_id": "numeric_value_family_lock",
+      "status": "pass",
+      "message": "value family and representation are both locked as numeric_measurement"
+    },
+    {
+      "check_id": "timestamp_required_lock",
+      "status": "pass",
+      "message": "timestamp_required is locked to true for the event-level numeric class"
+    },
+    {
+      "check_id": "source_table_present",
+      "status": "pass",
+      "message": "mapping_spec declares a concrete primary source_table"
+    },
+    {
+      "check_id": "source_codes_present",
+      "status": "pass",
+      "message": "mapping_spec locks at least one concrete primary source code"
+    },
+    {
+      "check_id": "source_code_system_present",
+      "status": "pass",
+      "message": "mapping_spec declares a concrete primary source_code_system"
+    },
+    {
+      "check_id": "mapping_semantic_grain_is_event_level",
+      "status": "pass",
+      "message": "mapping_spec standard_variable.semantic_grain is locked to time-stamped measurement event"
+    },
+    {
+      "check_id": "normalization_rule_present",
+      "status": "pass",
+      "message": "mapping_spec declares a normalization_rule_id"
+    },
+    {
+      "check_id": "required_non_null_fields_present",
+      "status": "pass",
+      "message": "mapping_spec declares required_non_null_fields for validation"
+    },
+    {
+      "check_id": "governed_execution_entrypoint_declared",
+      "status": "pass",
+      "message": "mapping_spec governed_execution_entrypoint points to this execution.py"
+    },
+    {
+      "check_id": "reference_implementation_declared",
+      "status": "pass",
+      "message": "mapping_spec declares current_reference_implementation"
+    },
+    {
+      "check_id": "reference_implementation_exists",
+      "status": "pass",
+      "message": "current reference implementation exists: Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_platelet_count/extract_code/Extract_Code_std_platelet_count.py"
+    },
+    {
+      "check_id": "local_input_asset_declared",
+      "status": "pass",
+      "message": "mapping_spec declares a primary local prepared input asset"
+    },
+    {
+      "check_id": "local_input_asset_exists",
+      "status": "pass",
+      "message": "local prepared input asset exists: Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet"
+    }
+  ]
+}

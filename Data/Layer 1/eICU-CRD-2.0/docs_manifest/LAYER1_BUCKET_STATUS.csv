@@ -1,0 +1,6 @@
+database_id,family_id,declared_version,bucket,purpose,status
+eICU-CRD-2.0,eICU-CRD,2.0,raw_original,restricted source CSV/TXT delivery,local_only_populated_public_skeleton_empty
+eICU-CRD-2.0,eICU-CRD,2.0,raw_unpacked,unpacked/readable source staging,not_duplicated_csv_delivery_is_already_readable
+eICU-CRD-2.0,eICU-CRD,2.0,source_supplied_derived,source supplied derived/helper tables,not_yet_populated
+eICU-CRD-2.0,eICU-CRD,2.0,local_converted_parquet,local performance parquet copies,not_yet_generated
+eICU-CRD-2.0,eICU-CRD,2.0,docs_manifest,public-safe skeleton docs,populated

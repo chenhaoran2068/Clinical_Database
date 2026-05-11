@@ -1,0 +1,81 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-01T15:52:59Z",
+  "variable_id": "std_invasive_mechanical_ventilation_active",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/mapping_spec_amsterdamumcdb_1_0_2_candidate_20260501.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_runtime/extract_code/Extract_Code_std_invasive_mechanical_ventilation_active_candidate.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/processitems_interval.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_invasive_mechanical_ventilation_active_candidate_runtime/extract_code/Extract_Code_std_invasive_mechanical_ventilation_active_candidate.py"
+  ],
+  "process_batch_id": "20260501T155259Z_AmsterdamUMCdb-1.0.2_std_invasive_mechanical_ventilation_active",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-01T15:52:59Z",
+  "finished_at": "2026-05-01T15:52:59Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "6bdf4b9ca9a979cb3e7dfae443c6d1c474526d7678fffea6483217277d04745a",
+    "mapping_spec_sha256": "738ca3982c35c89a73862638efc94a2002a391444c82abf2cfa1a9637c1173b7"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/out/active_candidate.csv",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/preview/active_candidate_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/candidate_knowledge_package.json",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/runtime/amsterdamumcdb_1_0_2_candidate_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "cad47f89f951da980f4503d122803db789a0083227e269f6d3bb2497c5b2f3ba",
+      "size_bytes": 5121468
+    },
+    "preview_csv": {
+      "sha256": "e533f49189def242fb99b1b72b4175b91bb5b2f2ef3caba92694c080f7947730",
+      "size_bytes": 55926
+    },
+    "asset_manifest": {
+      "sha256": "1e448e2769e5bd332e5056a1c0c72a2cdb360bff8fa96ee81baa2e5e28447ac5",
+      "size_bytes": 2060
+    },
+    "knowledge_package": {
+      "sha256": "2ab9c48efeaae88ca0b8605a6327633aee4b99541c6b5cc8afd45cf27e364126",
+      "size_bytes": 1871
+    },
+    "build_log": {
+      "sha256": "78b105482b7c48b477dc9bb1de248d4bcaea14517a2eda4f38ad87a7675a16c8",
+      "size_bytes": 1388
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260501T155259Z_AmsterdamUMCdb-1.0.2_std_invasive_mechanical_ventilation_active",
+    "duration_minutes_max": 248286,
+    "duration_minutes_min": 1,
+    "duration_minutes_p50": 832,
+    "duration_minutes_p95": 23013.199999999968,
+    "invalid_timing_excluded": 1,
+    "manual_policy_excluded": 205,
+    "manual_policy_withheld_possible_transition": 6,
+    "manual_review_rows": 211,
+    "output_rows": 18259,
+    "prolonged_episode_ge_7d": 2465,
+    "retained_clean": 18061,
+    "retained_with_weaning_flag": 198,
+    "short_episode_le_60m": 285,
+    "source_rows": 18471,
+    "status": "candidate_only_not_reviewed_approved",
+    "total_not_retained_first_pass": 212,
+    "unique_stay_id": 15879,
+    "weaning_flagged_output_rows": 198,
+    "candidate_output_asset": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/out/active_candidate.csv",
+    "candidate_quality_summary": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_imv_active_cand/query_summary/active_candidate_quality_summary.json",
+    "candidate_output_sha256": "cad47f89f951da980f4503d122803db789a0083227e269f6d3bb2497c5b2f3ba"
+  }
+}

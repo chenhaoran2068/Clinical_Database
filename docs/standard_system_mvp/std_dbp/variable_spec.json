@@ -1,0 +1,114 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-04-24",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "event_level_numeric_primary_source",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_EventLevelNumericPrimarySource_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_dbp",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "diastolic blood pressure event",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "vital_signs",
+    "category": "vital_sign"
+  },
+  "immutable_core": {
+    "semantic_intent": "diastolic blood pressure observation",
+    "semantic_definition": "A time-stamped diastolic blood-pressure measurement event representing event-level ICU diastolic blood pressure rather than a baseline, summary, or stay-level aggregate. The retained asset may expose invasive, noninvasive, and combined representations, but each row still reflects measured diastolic blood pressure.",
+    "semantic_grain": "time-stamped measurement event",
+    "value_family": "numeric_measurement",
+    "source_value_class": "raw_measured_only",
+    "derived_values_allowed": false,
+    "aggregated_values_allowed": false,
+    "baseline_or_summary_interpretation_allowed": false,
+    "same_name_cross_database_rule": "Any database asset published as std_dbp must preserve this event-level diastolic blood-pressure meaning."
+  },
+  "canonical_representation": {
+    "canonical_unit": "mmHg",
+    "canonical_ucum": "mm[Hg]",
+    "value_type": "numeric_measurement",
+    "storage_type": "Int64",
+    "storage_precision_digits": 0,
+    "display_precision_digits": 0,
+    "timestamp_required": true,
+    "time_precision_requirement": "datetime_or_equivalent_event_time",
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "cleaned_value_range_in_canonical_unit": [
+      0,
+      300
+    ],
+    "range_role_note": "This is the current cleaned retained-output range for the governed MIMIC build, not a claim that every raw source row in every database is already valid."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "none",
+    "public_anchor_status": "not_yet_locked_for_this_draft",
+    "preferred_anchor_families": [
+      "LOINC",
+      "SNOMED CT"
+    ],
+    "note": "A later review may lock a blood-pressure semantic anchor after the cross-database event boundary is frozen more formally."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "semantic_grain",
+      "value_family",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "cleaned_value_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "changing std_dbp from event-level diastolic blood pressure to baseline diastolic blood pressure",
+      "changing std_dbp from diastolic blood pressure to mean arterial pressure or another derived hemodynamic construct"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving the same event-level diastolic blood-pressure meaning",
+      "locking a reviewed external semantic anchor without changing the variable meaning"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "source code systems and source codes",
+      "raw unit labels before normalization",
+      "database-specific timing anchors and local structural keys",
+      "database-specific representation-selection metadata"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing baseline or stay-level averaged diastolic blood pressure as std_dbp",
+      "publishing mean arterial pressure or pulse pressure as std_dbp"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_dbp MVP execution should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_dbp outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_dbp/mapping_spec_mimic_iv_3_1.json",
+      "docs/standard_system_mvp/std_dbp/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_dbp/execution.py",
+    "public_card": "docs/std_variable_cards/std_dbp.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  }
+}

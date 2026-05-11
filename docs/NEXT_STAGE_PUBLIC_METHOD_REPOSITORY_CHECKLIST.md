@@ -16,6 +16,9 @@ The next stage is to make that public repository feel more like a reproducibilit
 
 This note defines the next major build-out areas.
 
+For the stricter transition from a human-readable method repository to a machine-readable, executable, validated standard system, use [`docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md`](STANDARD_SYSTEM_MATURITY_ROADMAP.md).
+This file stays focused on the public repository surface itself.
+
 ## Current public-repository baseline
 
 The repository already has:

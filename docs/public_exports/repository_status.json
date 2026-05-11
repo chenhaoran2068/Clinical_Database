@@ -1,10 +1,10 @@
 {
-  "catalog_version": "2026-04-21",
+  "catalog_version": "2026-05-09",
   "repository_scope": "public_method_repository",
-  "family_count": 2,
-  "database_count": 3,
-  "public_std_variable_card_count": 463,
-  "cross_database_public_card_count": 7,
+  "family_count": 6,
+  "database_count": 7,
+  "public_std_variable_card_count": 465,
+  "cross_database_public_card_count": 56,
   "release_governance": {
     "release_version": "0.1.0-dev",
     "release_tag": "public-method-foundation-2026-04-21",
@@ -26,6 +26,34 @@
       "current_database_ids": [
         "AmsterdamUMCdb-1.0.2"
       ]
+    },
+    {
+      "family_id": "SICdb",
+      "display_name": "SICdb family",
+      "current_database_ids": [
+        "SICdb-1.0.5"
+      ]
+    },
+    {
+      "family_id": "NWICU",
+      "display_name": "NWICU family",
+      "current_database_ids": [
+        "NWICU-0.1.0"
+      ]
+    },
+    {
+      "family_id": "eICU-CRD",
+      "display_name": "eICU-CRD family",
+      "current_database_ids": [
+        "eICU-CRD-2.0"
+      ]
+    },
+    {
+      "family_id": "Zigong",
+      "display_name": "Zigong family",
+      "current_database_ids": [
+        "Zigong-1.1"
+      ]
     }
   ],
   "databases": [
@@ -35,7 +63,7 @@
       "version": "3.1",
       "module_role": "core_database",
       "public_layer1_support_status": "published_skeleton_and_public_scripts",
-      "public_layer4_support_status": "contract_and_registry_validator_published",
+      "public_layer4_support_status": "public MIMIC source-package boundary contract published; local Layer 4 opening registry built pending owner review",
       "public_layer5_public_status": "broad reviewed-approved local assets exist and public std-variable cards are published",
       "public_card_count": 463
     },
@@ -45,7 +73,7 @@
       "version": "1.0",
       "module_role": "sibling_module",
       "public_layer1_support_status": "published_skeleton_and_public_scripts",
-      "public_layer4_support_status": "global contracts available; no ECHO-specific policy registry published yet",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; ECHO-specific public opening policy not yet published",
       "public_layer5_public_status": "database-level local notes exist, but no reviewed-approved retained-variable family has been published yet",
       "public_card_count": 0
     },
@@ -57,7 +85,47 @@
       "public_layer1_support_status": "published_skeleton_and_public_scripts",
       "public_layer4_support_status": "database opening policy registry contract and validator path are published",
       "public_layer5_public_status": "pilot reviewed-approved local assets exist and public std-variable cards are published for shared variables",
-      "public_card_count": 7
+      "public_card_count": 58
+    },
+    {
+      "database_id": "SICdb-1.0.5",
+      "family_id": "SICdb",
+      "version": "1.0.5",
+      "module_role": "core_database",
+      "public_layer1_support_status": "published_skeleton_initial_intake_only",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; public opening policy not yet published",
+      "public_layer5_public_status": "no reviewed-approved SICdb retained-variable assets yet",
+      "public_card_count": 0
+    },
+    {
+      "database_id": "NWICU-0.1.0",
+      "family_id": "NWICU",
+      "version": "0.1.0",
+      "module_role": "core_database",
+      "public_layer1_support_status": "published_skeleton_initial_intake_only",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; public opening policy not yet published",
+      "public_layer5_public_status": "no reviewed-approved NWICU retained-variable assets yet",
+      "public_card_count": 0
+    },
+    {
+      "database_id": "eICU-CRD-2.0",
+      "family_id": "eICU-CRD",
+      "version": "2.0",
+      "module_role": "core_database",
+      "public_layer1_support_status": "published_skeleton_initial_intake_only",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; public opening policy not yet published",
+      "public_layer5_public_status": "no reviewed-approved eICU-CRD retained-variable assets yet",
+      "public_card_count": 0
+    },
+    {
+      "database_id": "Zigong-1.1",
+      "family_id": "Zigong",
+      "version": "1.1",
+      "module_role": "core_database",
+      "public_layer1_support_status": "published_skeleton_initial_intake_only",
+      "public_layer4_support_status": "local Layer 4 opening registry built pending owner review; public opening policy not yet published",
+      "public_layer5_public_status": "no reviewed-approved Zigong retained-variable assets yet",
+      "public_card_count": 0
     }
   ]
 }

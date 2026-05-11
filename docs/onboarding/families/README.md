@@ -12,6 +12,10 @@ Current family playbooks:
 
 - [`MIMIC-IV.md`](MIMIC-IV.md)
 - [`AmsterdamUMCdb.md`](AmsterdamUMCdb.md)
+- [`SICdb.md`](SICdb.md)
+- [`NWICU.md`](NWICU.md)
+- [`eICU-CRD.md`](eICU-CRD.md)
+- [`Zigong.md`](Zigong.md)
 
 Template:
 

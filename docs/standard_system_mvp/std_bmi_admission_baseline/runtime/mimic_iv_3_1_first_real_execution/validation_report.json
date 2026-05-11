@@ -1,0 +1,299 @@
+{
+  "artifact_type": "validation_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-28T13:46:11Z",
+  "validation_scope": "pre_execution_spec_and_environment_checks",
+  "overall_status": "pass",
+  "variable_id": "std_bmi_admission_baseline",
+  "database_id": "MIMIC-IV-3.1",
+  "variable_spec_path": "docs/standard_system_mvp/std_bmi_admission_baseline/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_bmi_admission_baseline/mapping_spec_mimic_iv_3_1.json",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "spec_hashes": {
+    "variable_spec_sha256": "8bfbe2c4b379f16f454f056fe0274e2be0a175b6ac1d683e779996b26c0be22c",
+    "mapping_spec_sha256": "6841687a065f19a0b29839ab671c1af16749163cef773f8559700348df79277b"
+  },
+  "checks": [
+    {
+      "check_id": "variable_spec_artifact_type",
+      "status": "pass",
+      "message": "variable_spec artifact_type is variable_spec"
+    },
+    {
+      "check_id": "mapping_spec_artifact_type",
+      "status": "pass",
+      "message": "mapping_spec artifact_type is mapping_spec"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id is consistently locked to std_bmi_admission_baseline"
+    },
+    {
+      "check_id": "variable_version_match",
+      "status": "pass",
+      "message": "variable_version matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "mapping_spec database_id matches requested database_id MIMIC-IV-3.1"
+    },
+    {
+      "check_id": "variable_spec_ref_match",
+      "status": "pass",
+      "message": "mapping_spec variable_spec_ref points to the chosen variable_spec.json"
+    },
+    {
+      "check_id": "semantic_grain_match",
+      "status": "pass",
+      "message": "semantic_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "source_value_class_match",
+      "status": "pass",
+      "message": "source_value_class matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_value_family_match",
+      "status": "pass",
+      "message": "value family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "representation_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and representation_and_normalization"
+    },
+    {
+      "check_id": "summary_window_numeric_class_lock",
+      "status": "pass",
+      "message": "variable is compatible with the baseline-summary-window numeric class for std_bmi_admission_baseline"
+    },
+    {
+      "check_id": "variable_directory_alignment",
+      "status": "pass",
+      "message": "variable directory name matches variable_id std_bmi_admission_baseline"
+    },
+    {
+      "check_id": "summary_subclass_allowed",
+      "status": "pass",
+      "message": "summary_subclass is one of the currently allowed class-2 summary subclasses"
+    },
+    {
+      "check_id": "summary_contract_target_entity_grain_present",
+      "status": "pass",
+      "message": "summary_contract.target_entity_grain is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_anchor_family_present",
+      "status": "pass",
+      "message": "summary_contract.anchor_family is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_window_label_present",
+      "status": "pass",
+      "message": "summary_contract.window_label is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_window_start_rule_present",
+      "status": "pass",
+      "message": "summary_contract.window_start_rule is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_window_end_rule_present",
+      "status": "pass",
+      "message": "summary_contract.window_end_rule is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_qualifying_row_rule_present",
+      "status": "pass",
+      "message": "summary_contract.qualifying_row_rule is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_selection_rule_present",
+      "status": "pass",
+      "message": "summary_contract.selection_rule is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_aggregation_rule_present",
+      "status": "pass",
+      "message": "summary_contract.aggregation_rule is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_tie_break_rule_present",
+      "status": "pass",
+      "message": "summary_contract.tie_break_rule is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_no_source_row_action_present",
+      "status": "pass",
+      "message": "summary_contract.no_source_row_action is explicitly locked"
+    },
+    {
+      "check_id": "summary_contract_partial_window_action_present",
+      "status": "pass",
+      "message": "summary_contract.partial_window_action is explicitly locked"
+    },
+    {
+      "check_id": "summary_value_family_present",
+      "status": "pass",
+      "message": "immutable_core.value_family is explicitly locked for the class-2 summary variable"
+    },
+    {
+      "check_id": "representation_value_type_present",
+      "status": "pass",
+      "message": "canonical_representation.value_type is explicitly locked for the class-2 summary variable"
+    },
+    {
+      "check_id": "anchor_window_context_flags_are_boolean",
+      "status": "pass",
+      "message": "anchor_timestamp_required and window_bounds_required are explicitly boolean"
+    },
+    {
+      "check_id": "hard_valid_range_shape",
+      "status": "pass",
+      "message": "hard_valid_range_in_canonical_unit is present with two endpoints"
+    },
+    {
+      "check_id": "plausible_range_shape",
+      "status": "pass",
+      "message": "plausible_range_in_canonical_unit is present with two endpoints"
+    },
+    {
+      "check_id": "mapping_summary_subclass_match",
+      "status": "pass",
+      "message": "summary_subclass matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "mapping_target_entity_grain_match",
+      "status": "pass",
+      "message": "target_entity_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "mapping_anchor_family_match",
+      "status": "pass",
+      "message": "anchor_family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "source_locator_mode_present",
+      "status": "pass",
+      "message": "mapping_spec declares source_locator_mode for the class-2 summary variable"
+    },
+    {
+      "check_id": "primary_source_tables_present",
+      "status": "pass",
+      "message": "mapping_spec declares at least one primary_source_table"
+    },
+    {
+      "check_id": "source_grain_present",
+      "status": "pass",
+      "message": "mapping_spec declares source_grain"
+    },
+    {
+      "check_id": "target_grain_present",
+      "status": "pass",
+      "message": "mapping_spec declares target_grain"
+    },
+    {
+      "check_id": "summary_build_translation_window_label_present",
+      "status": "pass",
+      "message": "summary_build_translation.window_label is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_anchor_family_present",
+      "status": "pass",
+      "message": "summary_build_translation.anchor_family is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_window_start_translation_present",
+      "status": "pass",
+      "message": "summary_build_translation.window_start_translation is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_window_end_translation_present",
+      "status": "pass",
+      "message": "summary_build_translation.window_end_translation is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_qualifying_row_translation_present",
+      "status": "pass",
+      "message": "summary_build_translation.qualifying_row_translation is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_selection_translation_present",
+      "status": "pass",
+      "message": "summary_build_translation.selection_translation is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_aggregation_translation_present",
+      "status": "pass",
+      "message": "summary_build_translation.aggregation_translation is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_tie_break_translation_present",
+      "status": "pass",
+      "message": "summary_build_translation.tie_break_translation is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_no_source_row_translation_present",
+      "status": "pass",
+      "message": "summary_build_translation.no_source_row_translation is explicitly locked"
+    },
+    {
+      "check_id": "summary_build_translation_partial_window_translation_present",
+      "status": "pass",
+      "message": "summary_build_translation.partial_window_translation is explicitly locked"
+    },
+    {
+      "check_id": "normalization_rule_present",
+      "status": "pass",
+      "message": "mapping_spec declares a normalization_rule_id"
+    },
+    {
+      "check_id": "primary_output_value_field_present",
+      "status": "pass",
+      "message": "mapping_spec declares the primary_output_value_field"
+    },
+    {
+      "check_id": "required_non_null_fields_present",
+      "status": "pass",
+      "message": "mapping_spec declares required_non_null_fields for validation"
+    },
+    {
+      "check_id": "no_source_row_policy_check_present",
+      "status": "pass",
+      "message": "mapping_spec explicitly locks a no_source_row_policy_check"
+    },
+    {
+      "check_id": "governed_execution_entrypoint_declared",
+      "status": "pass",
+      "message": "mapping_spec governed_execution_entrypoint points to this execution.py"
+    },
+    {
+      "check_id": "reference_implementation_declared",
+      "status": "pass",
+      "message": "mapping_spec declares current_reference_implementation"
+    },
+    {
+      "check_id": "reference_implementation_exists",
+      "status": "pass",
+      "message": "current reference implementation exists: Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_bmi_admission_baseline/extract_code/Extract_Code_std_bmi_admission_baseline.py"
+    },
+    {
+      "check_id": "local_input_asset_declared",
+      "status": "pass",
+      "message": "mapping_spec declares a primary local prepared input asset"
+    },
+    {
+      "check_id": "local_input_asset_exists",
+      "status": "pass",
+      "message": "local prepared input asset exists: Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/anthropometrics/std_weight_admission_baseline/std_weight_admission_baseline_long.parquet"
+    }
+  ]
+}

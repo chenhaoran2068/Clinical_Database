@@ -1,0 +1,89 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T10:11:40Z",
+  "variable_id": "std_map",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_map/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_map/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_map/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/extract_code/Extract_Code_std_map.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/extract_code/Extract_Code_std_map.py"
+  ],
+  "process_batch_id": "20260503T101046Z_MIMIC-IV-3.1_std_map",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T10:00:35Z",
+  "finished_at": "2026-05-03T10:11:40Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "5f5bd623e48aa58679ad8a15a7716049836bebfc963cdfdd25ec14c036cee8dd",
+    "mapping_spec_sha256": "05af483a1e83d1922407606ffe6dfed220964a3745efb9b16ab84b5e6ee7f962"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/vital_signs/std_map/std_map_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/preview/std_map_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_map/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_map/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "ef18e61789c01a53999a3f727d9ee2be1929cd0a1754695b7d440c82c44ac97b",
+      "size_bytes": 356494050
+    },
+    "preview_csv": {
+      "sha256": "302192d37f62966706d10bcc43a4551b525c404e1cd5feeb8ad4ad0bf50b5154",
+      "size_bytes": 92040
+    },
+    "asset_manifest": {
+      "sha256": "11c248588292b8bf5dd71e361cb235c8a6feb00c83d703ddfb4def439201dee8",
+      "size_bytes": 2443
+    },
+    "knowledge_package": {
+      "sha256": "9caff954de001d5e83f491e3467e88f4a66239e7cbce91f205ddbb0ccfeb7f77",
+      "size_bytes": 29536
+    },
+    "build_log": {
+      "sha256": "f4fc316e407aef210156267c902a1ef2bb94db594ad7093c23da88d00cddfd7e",
+      "size_bytes": 1822
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T101046Z_MIMIC-IV-3.1_std_map",
+    "total_rows": 17589912,
+    "unique_subject_id": 65356,
+    "unique_hadm_id": 85195,
+    "unique_stay_id": 94353,
+    "kept_rows": 17578420,
+    "excluded_outlier_rows": 11492,
+    "warning_true_rows": 78837,
+    "warning_true_outlier_rows": 124,
+    "before_intime_rows": 55798,
+    "at_intime_rows": 1334,
+    "normalized_min": -22767,
+    "normalized_max": 8999090,
+    "raw_lt_min_rows": 4942,
+    "raw_gt_max_rows": 6558,
+    "p01": 48.0,
+    "p50": 77.0,
+    "p99": 125.0,
+    "kept_mean": 79.21439031494297,
+    "invasive_rows": 3444697,
+    "noninvasive_rows": 5438855,
+    "combined_rows": 8706360,
+    "invasive_selected_rows": 6889394,
+    "noninvasive_selected_rows": 10700518,
+    "origin__derived_same_time_sbp_dbp": 207737,
+    "origin__direct": 17382175,
+    "invasive_direct_rows": 3406201,
+    "noninvasive_direct_rows": 5372922,
+    "invasive_derived_rows": 38496,
+    "noninvasive_derived_rows": 65933
+  }
+}

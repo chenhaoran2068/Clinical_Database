@@ -1,0 +1,112 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_3_first_variable_governed_mvp",
+  "created_at": "2026-05-01",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "binary_state_episode",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BinaryStateEpisode_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_invasive_mechanical_ventilation_active",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Invasive mechanical ventilation active",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "treatment_state",
+    "category": "treatment_state"
+  },
+  "immutable_core": {
+    "semantic_intent": "invasive mechanical ventilation active state",
+    "semantic_definition": "A positive-only episode asset retaining one row for each ICU-stay interval during which invasive mechanical ventilation is active under the approved source-status inclusion rule.",
+    "semantic_grain": "one row per positive state episode",
+    "value_family": "binary_state",
+    "source_value_class": "positive_state_episode",
+    "same_name_cross_database_rule": "Any database asset published as std_invasive_mechanical_ventilation_active must preserve invasive mechanical ventilation active-state scope and must not silently widen to noninvasive ventilation, high-flow nasal cannula, supplemental oxygen, tracheostomy status, respiratory-support-free days, or any broader respiratory-support family."
+  },
+  "state_episode_contract": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "positive_state_meaning": "invasive mechanical ventilation active",
+    "negative_state_representation": "absence_of_row_not_proven_negative",
+    "episode_start_rule": "start at approved source InvasiveVent interval start",
+    "episode_end_rule": "end at approved source InvasiveVent interval end",
+    "continuity_rule": "use approved source interval boundaries for InvasiveVent episodes without silently unioning other support statuses",
+    "allowed_true_value": true,
+    "allowed_false_rows": false,
+    "no_row_interpretation": "no retained positive invasive mechanical ventilation episode under the approved source-status rule"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "boolean_state_episode",
+    "storage_type": "boolean",
+    "timestamp_start_required": true,
+    "timestamp_end_required": true,
+    "duration_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "retained_value_domain": [
+      true
+    ],
+    "duration_unit": "minutes",
+    "time_anchor": "icu_intime"
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "broader_or_derived_source_taxonomy",
+    "public_anchor_status": "no_single_exact_external_anchor_locked_for_this positive-only episode asset",
+    "preferred_anchor_families": [
+      "SNOMED CT",
+      "LOINC"
+    ],
+    "note": "The current MVP identity is governed primarily by the official MIMIC ventilation status InvasiveVent, ICU-stay interval semantics, and positive-only episode rules."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "target_entity_grain",
+      "positive_state_meaning",
+      "episode_start_rule",
+      "episode_end_rule",
+      "continuity_rule",
+      "source_value_class",
+      "same_name_cross_database_rule"
+    ],
+    "versionable_fields": [
+      "database_mapping_specs",
+      "duration caution thresholds",
+      "external_alignment",
+      "public-card wording"
+    ],
+    "new_variable_trigger_examples": [
+      "changing the concept to noninvasive ventilation active",
+      "changing the concept to any advanced respiratory support active",
+      "changing the output to invasive mechanical ventilation free days",
+      "adding explicit false rows instead of positive-only retained episodes"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving invasive ventilation active-state meaning",
+      "tightening a duration caution threshold without changing retained state semantics"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_invasive_mechanical_ventilation_active outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_invasive_mechanical_ventilation_active outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/mapping_spec_mimic_iv_3_1.json",
+      "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_invasive_mechanical_ventilation_active/execution.py",
+    "public_card": "docs/std_variable_cards/std_invasive_mechanical_ventilation_active.md",
+    "class_selection_note": "docs/standard_system_mvp/CLASS3_FIRST_MVP_SELECTION.md"
+  }
+}

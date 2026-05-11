@@ -259,11 +259,98 @@ def command_validate_registry(args: argparse.Namespace) -> int:
     return run_command(command, args.dry_run)
 
 
+def command_run_standard_mvp(args: argparse.Namespace) -> int:
+    execution_path = (
+        REPO_ROOT
+        / "docs"
+        / "standard_system_mvp"
+        / args.variable_id
+        / "execution.py"
+    )
+    if not execution_path.exists():
+        raise SystemExit(
+            "standard-system MVP execution entrypoint not found for "
+            f"variable_id={args.variable_id!r}: {execution_path}"
+        )
+
+    command = [
+        sys.executable,
+        str(execution_path),
+        "--database-id",
+        args.database_id,
+    ]
+    if args.workspace_root:
+        command.extend(["--workspace-root", str(Path(args.workspace_root).resolve())])
+    if args.variable_spec:
+        command.extend(["--variable-spec", str(Path(args.variable_spec).resolve())])
+    if args.mapping_spec:
+        command.extend(["--mapping-spec", str(Path(args.mapping_spec).resolve())])
+    if args.output_dir:
+        command.extend(["--output-dir", str(Path(args.output_dir).resolve())])
+    if args.validate_only:
+        command.append("--validate-only")
+    if args.dry_run:
+        command.append("--dry-run")
+    return run_command(command, args.dry_run)
+
+
+def command_validate_standard_runtime(args: argparse.Namespace) -> int:
+    command = [
+        sys.executable,
+        str(REPO_ROOT / "scripts" / "validate_standard_system_runtime.py"),
+    ]
+    if args.workspace_root:
+        command.extend(["--workspace-root", str(Path(args.workspace_root).resolve())])
+    for runtime_dir in args.runtime_dir:
+        command.extend(["--runtime-dir", str(Path(runtime_dir).resolve())])
+    if args.all_runtime_dirs:
+        command.append("--all-runtime-dirs")
+    return run_command(command, args.dry_run)
+
+
+def command_check_standard_rerun(args: argparse.Namespace) -> int:
+    command = [
+        sys.executable,
+        str(REPO_ROOT / "scripts" / "validate_standard_system_reproducibility.py"),
+    ]
+    if args.workspace_root:
+        command.extend(["--workspace-root", str(Path(args.workspace_root).resolve())])
+    if args.baseline_runtime_dir:
+        command.extend(["--baseline-runtime-dir", str(Path(args.baseline_runtime_dir).resolve())])
+    if args.candidate_runtime_dir:
+        command.extend(["--candidate-runtime-dir", str(Path(args.candidate_runtime_dir).resolve())])
+    if args.output:
+        command.extend(["--output", str(Path(args.output).resolve())])
+    for report_path in args.report_path:
+        command.extend(["--report-path", str(Path(report_path).resolve())])
+    if args.all_reports:
+        command.append("--all-reports")
+    return run_command(command, args.dry_run)
+
+
 def command_check_public_repository(args: argparse.Namespace) -> int:
     command = [
         sys.executable,
         str(REPO_ROOT / "scripts" / "check_public_repository.py"),
     ]
+    return run_command(command, args.dry_run)
+
+
+def command_validate_layer3_layout(args: argparse.Namespace) -> int:
+    command = [
+        sys.executable,
+        str(REPO_ROOT / "scripts" / "validate_layer3_layout_policy.py"),
+    ]
+    if args.policy:
+        command.extend(["--policy", str(Path(args.policy).resolve())])
+    if args.catalog:
+        command.extend(["--catalog", str(Path(args.catalog).resolve())])
+    for scan_root in args.scan_root:
+        command.extend(["--scan-root", str(Path(scan_root).resolve())])
+    if args.strict_legacy:
+        command.append("--strict-legacy")
+    if args.show_warnings:
+        command.append("--show-warnings")
     return run_command(command, args.dry_run)
 
 
@@ -375,6 +462,8 @@ def command_export_public_artifacts(args: argparse.Namespace) -> int:
             command.append("--cross-database")
         if args.only_missing:
             command.append("--only-missing")
+        if args.overwrite:
+            command.append("--overwrite")
         return run_command(command, args.dry_run)
 
     metadata_artifact_map = {
@@ -496,6 +585,112 @@ def build_parser() -> argparse.ArgumentParser:
     )
     validate_parser.set_defaults(handler=command_validate_registry)
 
+    mvp_parser = subparsers.add_parser(
+        "run-standard-mvp",
+        help="Run or validate the current governed single-variable standard-system MVP entrypoint.",
+    )
+    mvp_parser.add_argument(
+        "--variable-id",
+        required=True,
+        help="Current std_variable_id whose MVP execution entrypoint should be used.",
+    )
+    mvp_parser.add_argument(
+        "--database-id",
+        required=True,
+        help="Database id to use with the chosen MVP execution entrypoint.",
+    )
+    mvp_parser.add_argument(
+        "--workspace-root",
+        help="Optional workspace root containing Github/ and Methods/ as sibling directories.",
+    )
+    mvp_parser.add_argument(
+        "--variable-spec",
+        help="Optional explicit variable_spec.json path.",
+    )
+    mvp_parser.add_argument(
+        "--mapping-spec",
+        help="Optional explicit mapping_spec JSON path.",
+    )
+    mvp_parser.add_argument(
+        "--output-dir",
+        help="Optional output directory for runtime validation/manifest artifacts.",
+    )
+    mvp_parser.add_argument(
+        "--validate-only",
+        action="store_true",
+        help="Validate spec and environment consistency without executing the local reference implementation.",
+    )
+    mvp_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print the underlying command without executing it.",
+    )
+    mvp_parser.set_defaults(handler=command_run_standard_mvp)
+
+    runtime_validator_parser = subparsers.add_parser(
+        "validate-standard-runtime",
+        help="Validate public standard-system runtime evidence artifacts after execution.",
+    )
+    runtime_validator_parser.add_argument(
+        "--runtime-dir",
+        action="append",
+        default=[],
+        help="One runtime evidence directory to validate. May be passed multiple times.",
+    )
+    runtime_validator_parser.add_argument(
+        "--workspace-root",
+        help="Optional workspace root containing Github/ and Methods/ as sibling directories.",
+    )
+    runtime_validator_parser.add_argument(
+        "--all-runtime-dirs",
+        action="store_true",
+        help="Validate all runtime evidence directories under docs/standard_system_mvp/*/runtime/*.",
+    )
+    runtime_validator_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print the underlying command without executing it.",
+    )
+    runtime_validator_parser.set_defaults(handler=command_validate_standard_runtime)
+
+    rerun_parser = subparsers.add_parser(
+        "check-standard-rerun",
+        help="Generate or validate rerun reproducibility reports for governed standard-system MVP runs.",
+    )
+    rerun_parser.add_argument(
+        "--baseline-runtime-dir",
+        help="Baseline runtime evidence directory for rerun comparison.",
+    )
+    rerun_parser.add_argument(
+        "--candidate-runtime-dir",
+        help="Candidate rerun runtime evidence directory for rerun comparison.",
+    )
+    rerun_parser.add_argument(
+        "--output",
+        help="Optional output path for reproducibility_report.json.",
+    )
+    rerun_parser.add_argument(
+        "--workspace-root",
+        help="Optional workspace root containing Github/ and Methods/ as sibling directories.",
+    )
+    rerun_parser.add_argument(
+        "--report-path",
+        action="append",
+        default=[],
+        help="One reproducibility_report.json path to validate. May be passed multiple times.",
+    )
+    rerun_parser.add_argument(
+        "--all-reports",
+        action="store_true",
+        help="Validate all reproducibility_report.json files under docs/standard_system_mvp/*/runtime/*/.",
+    )
+    rerun_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print the underlying command without executing it.",
+    )
+    rerun_parser.set_defaults(handler=command_check_standard_rerun)
+
     check_parser = subparsers.add_parser(
         "check-public-repository",
         help="Run the public repository structural checker.",
@@ -506,6 +701,35 @@ def build_parser() -> argparse.ArgumentParser:
         help="Print the underlying command without executing it.",
     )
     check_parser.set_defaults(handler=command_check_public_repository)
+
+    layer3_parser = subparsers.add_parser(
+        "validate-layer3-layout",
+        help="Validate public Layer 3 path references against the database-scoped layout policy.",
+    )
+    layer3_parser.add_argument("--policy", help="Optional path to docs/layer3_directory_policy.json.")
+    layer3_parser.add_argument("--catalog", help="Optional path to docs/database_catalog.json.")
+    layer3_parser.add_argument(
+        "--scan-root",
+        action="append",
+        default=[],
+        help="File or directory to scan. May be passed multiple times.",
+    )
+    layer3_parser.add_argument(
+        "--strict-legacy",
+        action="store_true",
+        help="Fail even on known legacy MIMIC root-level Layer 3 references.",
+    )
+    layer3_parser.add_argument(
+        "--show-warnings",
+        action="store_true",
+        help="Print warning-level unknown-context root references.",
+    )
+    layer3_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print the underlying command without executing it.",
+    )
+    layer3_parser.set_defaults(handler=command_validate_layer3_layout)
 
     local_id_parser = subparsers.add_parser(
         "check-local-id-semantics",
@@ -665,6 +889,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--only-missing",
         action="store_true",
         help="Skip files that already exist in the output directory during batch export.",
+    )
+    export_parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Overwrite existing variable-card output files.",
     )
     export_parser.add_argument(
         "--dry-run",

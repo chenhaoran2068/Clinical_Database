@@ -1,0 +1,31 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T14:41:02Z",
+  "variable_id": "std_protein_urinalysis_result",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "validate_only",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_protein_urinalysis_result/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_protein_urinalysis_result/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_protein_urinalysis_result/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_protein_urinalysis_result/extract_code/Extract_Code_std_protein_urinalysis_result.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_labevents.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_protein_urinalysis_result/extract_code/Extract_Code_std_protein_urinalysis_result.py"
+  ],
+  "process_batch_id": null,
+  "subprocess_return_code": null,
+  "started_at": null,
+  "finished_at": null,
+  "spec_hashes": {
+    "variable_spec_sha256": "f0e23f3c312270625e8c8889a1498fc54205d2d05d69e04c1734345aa818b674",
+    "mapping_spec_sha256": "798e988bbe87cbbd31f2ebf33055123726d7fb5c9c328d9b4651e9e0b2a3cc20"
+  },
+  "output_artifacts": {},
+  "output_signatures": {},
+  "build_summary": {}
+}

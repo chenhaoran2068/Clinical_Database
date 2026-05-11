@@ -1,0 +1,31 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-04T02:27:41Z",
+  "variable_id": "std_vasopressor_support_agent_episode",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "validate_only",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/medication/std_icu_vasoactive_medication_infusion_event/std_icu_vasoactive_medication_infusion_event_long.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py"
+  ],
+  "process_batch_id": null,
+  "subprocess_return_code": null,
+  "started_at": null,
+  "finished_at": null,
+  "spec_hashes": {
+    "variable_spec_sha256": "0a34ed86bd39e8a8062419d47e7d716f02c21f4b63d0cd85ad485a579920a733",
+    "mapping_spec_sha256": "ef497123e477fae3c93918f0930887c44658cc0d2dd0ffec63c02633babba557"
+  },
+  "output_artifacts": {},
+  "output_signatures": {},
+  "build_summary": {}
+}

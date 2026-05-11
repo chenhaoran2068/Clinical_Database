@@ -1,0 +1,150 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_2_mimic_batch_governed_mvp",
+  "created_at": "2026-04-28",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "baseline_summary_window_numeric",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BaselineSummaryWindowNumeric_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_hospital_los_days",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Hospital length of stay in days",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_repaired_to_utf8_in_this_mvp",
+    "semantic_folder": "outcomes",
+    "category": "outcome"
+  },
+  "immutable_core": {
+    "semantic_intent": "hospital admission length-of-stay duration summary",
+    "semantic_definition": "A one-row-per-hospital-admission encounter duration summary retaining hospital length of stay in days from the hospital admission start boundary to the hospital discharge boundary, rather than ICU length of stay, a patient-level longitudinal duration, or a first-day partial-window summary.",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "value_family": "duration_measurement",
+    "source_value_class": "summary_from_interval_or_primary_duration_field",
+    "derived_values_allowed": true,
+    "aggregated_values_allowed": true,
+    "baseline_or_summary_interpretation_allowed": true,
+    "same_name_cross_database_rule": "Any database asset published as std_hospital_los_days must preserve hospital-admission encounter duration meaning under a hospital admission/discharge boundary contract and must not silently narrow to ICU stay duration or widen to subject-level follow-up time."
+  },
+  "summary_contract": {
+    "summary_subclass": "duration_summary",
+    "target_entity_grain": "hospital admission encounter",
+    "anchor_family": "hospital admission anchor",
+    "window_label": "full_hospital_admission_interval",
+    "window_start_rule": "start at the hospital admission timestamp",
+    "window_end_rule": "end at the hospital discharge timestamp",
+    "qualifying_row_rule": "one retained duration summary per hospital admission encounter when the required encounter identifiers and admission/discharge boundaries are present",
+    "selection_rule": "one hospital admission source row maps directly to one retained duration summary row",
+    "aggregation_rule": "single_interval_duration_days_round_half_away_from_zero_3dp",
+    "tie_break_rule": "not_applicable_one_target_row_per_hospital_admission_expected",
+    "no_source_row_action": "do not synthesize a hospital LOS row without a source hospital admission encounter row",
+    "partial_window_action": "not_applicable_full_hospital_admission_interval_or_explicit_validity_status"
+  },
+  "canonical_representation": {
+    "canonical_unit": "days",
+    "canonical_ucum": "d",
+    "value_type": "duration_measurement",
+    "storage_type": "Float64",
+    "storage_precision_digits": 3,
+    "display_precision_digits": 3,
+    "anchor_timestamp_required": false,
+    "window_bounds_required": false,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id"
+    ],
+    "hard_valid_range_in_canonical_unit": [
+      -1,
+      600
+    ],
+    "plausible_range_in_canonical_unit": [
+      0,
+      60
+    ],
+    "range_role_note": "Hospital LOS is semantically nonnegative, but the current MIMIC reviewed asset intentionally retains rare negative-duration source edge cases with hospital_los_validity_status rather than silently deleting them. Values outside the plausible band require review before cohort use."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "derived",
+    "public_anchor_status": "no_single_exact_external_anchor_locked_for_this_duration_summary",
+    "preferred_anchor_families": [
+      "SNOMED CT"
+    ],
+    "note": "std_hospital_los_days is a derived encounter-duration summary whose identity is governed primarily by hospital admission/discharge boundaries, encounter grain, and day-unit representation rather than one exact external code."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "summary_subclass",
+      "target_entity_grain",
+      "anchor_family",
+      "window_label",
+      "window_start_rule",
+      "window_end_rule",
+      "qualifying_row_rule",
+      "selection_rule",
+      "aggregation_rule",
+      "no_source_row_action",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "hard_valid_range_in_canonical_unit",
+      "plausible_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs",
+      "validity_status_policy"
+    ],
+    "new_variable_trigger_examples": [
+      "changing std_hospital_los_days from hospital admission duration to ICU stay duration",
+      "changing std_hospital_los_days from encounter-level duration to subject-level follow-up time",
+      "changing std_hospital_los_days from full hospital admission duration to a first-day or partial-window duration"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving the same hospital-admission duration meaning",
+      "tightening the duration range guidance or validity-status handling without changing the interval meaning"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "raw interval fields used to define hospital admission and discharge boundaries",
+      "database-specific local structural keys that normalize into subject_id and hadm_id",
+      "presence or absence of audit-only reported LOS fields alongside the retained primary interval duration",
+      "database-specific validity-status labels when explicitly mapped to the standard validity policy"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing ICU length of stay as std_hospital_los_days",
+      "publishing ICU/MC stay-equivalent duration as std_hospital_los_days without true hospital admission/discharge semantics",
+      "dropping negative-duration or boundary-edge cases silently without a validity-status or exclusion policy"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_for_mimic_only",
+    "formal_output_rule": "Formal std_hospital_los_days outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_hospital_los_days outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_hospital_los_days/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_hospital_los_days/execution.py",
+    "public_card": "docs/std_variable_cards/std_hospital_los_days.md",
+    "class_readme": "docs/standard_system_mvp/variable_classes/baseline_summary_window_numeric/README.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  },
+  "current_scope_boundary": {
+    "approved_public_databases": [
+      "MIMIC-IV-3.1"
+    ],
+    "not_yet_approved_database_notes": [
+      "AmsterdamUMCdb-1.0.2 must be separately reviewed for true hospital-admission LOS semantics before it can share this same variable identity. ICU/MC-only duration should remain under a distinct ICU/stay-duration identity."
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:23:31Z",
+  "variable_id": "std_hemoglobin",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_hemoglobin/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_hemoglobin/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_hemoglobin/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hemoglobin/extract_code/Extract_Code_std_hemoglobin.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hemoglobin/extract_code/Extract_Code_std_hemoglobin.py"
+  ],
+  "process_batch_id": "20260503T092324Z_AmsterdamUMCdb-1.0.2_std_hemoglobin",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:23:24Z",
+  "finished_at": "2026-05-03T09:23:31Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "aba1a5119e44e1e2974420d4d8ac447b7698c6f15302157fd67cdf948ce674e1",
+    "mapping_spec_sha256": "75a1567b66c38e36e4b147b9f39366e56c6fa90fae79ff3c48b08a5be71e05e5"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_hemoglobin/std_hemoglobin_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hemoglobin/preview/std_hemoglobin_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hemoglobin/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hemoglobin/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_hemoglobin/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "0ecde90034069e490b1c615a1039769ec1b4fbfe22ca3064260cca13445794bf",
+      "size_bytes": 8623731
+    },
+    "preview_csv": {
+      "sha256": "a2f304392f23209266be606b75963d49d4216c575511577ce229262f6c6247a2",
+      "size_bytes": 89327
+    },
+    "asset_manifest": {
+      "sha256": "2792bf0d416c6a469d6ad0474fabde4ceeeb524fd7112e60bc547827333c5774",
+      "size_bytes": 4384
+    },
+    "knowledge_package": {
+      "sha256": "d20e708d594919d99585ee4222e2b501924a21be31bbdbe1499bc3001af99da5",
+      "size_bytes": 25881
+    },
+    "build_log": {
+      "sha256": "7b4e4e85d5f87d94509b54209da285fef86994859aeca202562a1a3085df2611",
+      "size_bytes": 719
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T092324Z_AmsterdamUMCdb-1.0.2_std_hemoglobin",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_hemoglobin/std_hemoglobin_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hemoglobin/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_hemoglobin/log_archive/20260503T092324Z_AmsterdamUMCdb-1.0.2_std_hemoglobin__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

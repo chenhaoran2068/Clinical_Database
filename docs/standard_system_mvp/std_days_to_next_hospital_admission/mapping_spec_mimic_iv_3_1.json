@@ -1,0 +1,136 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_2_next_small_mimic_candidate_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_days_to_next_hospital_admission/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_days_to_next_hospital_admission",
+    "variable_version": "v0_draft",
+    "semantic_intent": "post-discharge observed time-to-next-hospital-admission duration summary",
+    "category": "outcome",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "source_value_class": "post_discharge_observed_future_event_duration",
+    "summary_subclass": "duration_summary",
+    "target_entity_grain": "hospital admission encounter",
+    "anchor_family": "hospital discharge anchor",
+    "canonical_unit": "days",
+    "canonical_value_family": "duration_measurement",
+    "current_output_storage_type": "Float64",
+    "current_output_precision_digits": 3
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "direct_primary_source_table_with_subject_future_admission_search",
+    "source_package": "hosp",
+    "primary_source_tables": [
+      "admissions"
+    ],
+    "local_prepared_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_admissions.parquet"
+    ],
+    "source_code_system": "not_applicable_interval_source",
+    "source_codes": [],
+    "source_code_labels": {},
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "hadm_id"
+      ],
+      "anchor_start_field": "hosp_admissions.dischtime",
+      "anchor_end_field": "next_later_different_hospitalization.admittime",
+      "source_time_field": "hosp_admissions.dischtime",
+      "source_numeric_field": "computed_from_next_admittime_minus_current_dischtime",
+      "raw_unit_field": "",
+      "source_code_field": "",
+      "future_event_candidate_fields": [
+        "hosp_admissions.subject_id",
+        "hosp_admissions.hadm_id",
+        "hosp_admissions.admittime",
+        "hosp_admissions.dischtime"
+      ]
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier used to search future hospitalizations",
+      "hadm_id_role": "hospital-admission-level identifier and target retained key",
+      "stay_id_role": "not_applicable_for_hospital_admission_grain",
+      "stay_link_status": "not_applicable_hospital_encounter_target"
+    },
+    "source_grain": "one row per hospital admission in hosp_admissions",
+    "target_grain": "one row per standardized hospital-admission encounter with a nullable observed future-admission duration",
+    "join_dependencies": []
+  },
+  "summary_build_translation": {
+    "window_label": "post_discharge_observed_followup_to_next_hospital_admission",
+    "anchor_family": "hospital discharge anchor",
+    "window_start_translation": "start at hosp_admissions.dischtime for the current hospital admission",
+    "window_end_translation": "end at the admittime of the first later different hospitalization observed for the same subject_id",
+    "qualifying_row_translation": "every hosp_admissions row with subject_id, hadm_id, and dischtime is a candidate retained encounter row",
+    "selection_translation": "sort admissions by subject_id, admittime, and hadm_id; for each current admission, select the first later row for the same subject with a different hadm_id and admittime strictly greater than current dischtime",
+    "aggregation_translation": "compute (next_later_admittime - current_dischtime) in days and round half away from zero to 3 decimal places",
+    "tie_break_translation": "after enforcing strict post-discharge timing, use stable ordering by admittime then hadm_id for candidate future admissions",
+    "no_source_row_translation": "do not synthesize admissions outside hosp_admissions; retain the source admission row with null duration when no later different hospitalization is observed",
+    "partial_window_translation": "missing current dischtime is a contract failure for this MIMIC mapping; missing future admission means the retained value is null, not zero"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "days",
+    "source_unit_expectation": "timestamp interval converted to days",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "mimic_days_to_next_hospital_admission_from_dischtime_to_first_later_different_admittime_round_half_away_from_zero_3dp",
+    "output_rounding_rule": "round_half_away_from_zero_3dp",
+    "hard_valid_range_in_canonical_unit": [
+      0,
+      6000
+    ],
+    "plausible_range_in_canonical_unit": [
+      0,
+      3650
+    ],
+    "primary_output_value_field": "std_days_to_next_hospital_admission",
+    "anchor_output_field": "",
+    "window_start_output_field": "",
+    "window_end_output_field": ""
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id"
+    ],
+    "nullable_value_fields": [
+      "std_days_to_next_hospital_admission"
+    ],
+    "duplicate_key": [
+      "hadm_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_anchor_action": "fail_for_missing_current_dischtime",
+    "missing_window_bound_action": "retain_null_when_no_later_different_hospitalization_is_observed",
+    "no_source_row_policy_check": "hospital admissions are the target source rows; no additional null target rows are synthesized outside hosp_admissions",
+    "window_consistency_action": "exclude same-time, overlapping, self-match, or nonpositive-gap candidates from the retained next-hospitalization match",
+    "join_failure_action": "not_applicable_no_join_dependency",
+    "notes": [
+      "The retained target grain is hospital admission encounter, not ICU stay.",
+      "The retained duration is computed from current hosp_admissions.dischtime to the first later different hosp_admissions.admittime for the same subject.",
+      "The retained value may be null; null means no later different hospitalization was observed in the captured MIMIC source.",
+      "This variable is not std_hospital_readmission_30d and does not encode a binary readmission outcome."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_days_to_next_hospital_admission/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/extract_code/Extract_Code_std_days_to_next_hospital_admission.py",
+    "formal_output_rule": "The governed execution.py entrypoint reads this mapping spec and delegates to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_days_to_next_hospital_admission outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_days_to_next_hospital_admission.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/extract_code/Extract_Code_std_days_to_next_hospital_admission.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/outcomes/std_days_to_next_hospital_admission/std_days_to_next_hospital_admission_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/preview/std_days_to_next_hospital_admission_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_days_to_next_hospital_admission/query_summary"
+  }
+}

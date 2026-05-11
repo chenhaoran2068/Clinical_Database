@@ -1,0 +1,74 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-04T02:18:41Z",
+  "variable_id": "std_vasopressor_support_agent_episode",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_vasopressor_support_agent_episode/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/drugitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/extract_code/Extract_Code_std_vasopressor_support_agent_episode.py"
+  ],
+  "process_batch_id": "20260504T021828Z_AmsterdamUMCdb-1.0.2_std_vasopressor_support_agent_episode",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-04T02:18:27Z",
+  "finished_at": "2026-05-04T02:18:41Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "0a34ed86bd39e8a8062419d47e7d716f02c21f4b63d0cd85ad485a579920a733",
+    "mapping_spec_sha256": "d4044b4bd815617a8b21be740054f4136d3eba11a32a042a5fc696252c9923ae"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_vasopressor_support_agent_episode/std_vasopressor_support_agent_episode_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/preview/std_vasopressor_support_agent_episode_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_vasopressor_support_agent_episode/runtime/amsterdamumcdb_1_0_2_first_candidate_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "1110b42bd451e444fd5d3fef8a57080229391ff5ea50e13e2d05e80d15062ece",
+      "size_bytes": 8496999
+    },
+    "preview_csv": {
+      "sha256": "9e8fcb5a6a77bb1ad13a00434368f60bb3e283b6afdd79c4ee861d2048f8b0cd",
+      "size_bytes": 362733
+    },
+    "asset_manifest": {
+      "sha256": "b265b16a6e106bdc67a2d0859e1bf358685b9d5fc941bcaa42991dbe37f9aec8",
+      "size_bytes": 2238
+    },
+    "knowledge_package": {
+      "sha256": "ca1fedf85101f9c69710b3cf1a54924e9f89a44bf95b0472d0b2c69f4c54ff3f",
+      "size_bytes": 9163
+    },
+    "build_log": {
+      "sha256": "2c4c7caa28970e60dbbc37d66f3ab923c89bd8b5857b5c6220153a3ba846b0c0",
+      "size_bytes": 891
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260504T021828Z_AmsterdamUMCdb-1.0.2_std_vasopressor_support_agent_episode",
+    "status": "built_runtime_repro_pass_owner_approval_pending",
+    "row_count": 26616,
+    "unique_subject_id": 12394,
+    "unique_stay_id": 13487,
+    "source_row_count": 295488,
+    "valid_source_row_count": 295043,
+    "invalid_source_row_count": 445,
+    "unlinked_agent_episode_count": 0,
+    "layer3_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_vasopressor_support_agent_episode/std_vasopressor_support_agent_episode_long.parquet",
+    "preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/preview/std_vasopressor_support_agent_episode_preview.csv",
+    "asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/asset_manifest.md",
+    "knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_vasopressor_support_agent_episode/log_archive/20260504T021828Z_AmsterdamUMCdb-1.0.2_std_vasopressor_support_agent_episode__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "layer3_asset_sha256": "1110b42bd451e444fd5d3fef8a57080229391ff5ea50e13e2d05e80d15062ece"
+  }
+}

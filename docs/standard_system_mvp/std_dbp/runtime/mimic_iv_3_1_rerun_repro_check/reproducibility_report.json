@@ -1,0 +1,469 @@
+{
+  "artifact_type": "reproducibility_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-09T11:27:33Z",
+  "comparison_scope": "rerun_reproducibility_gate",
+  "overall_status": "pass",
+  "variable_id": "std_dbp",
+  "database_id": "MIMIC-IV-3.1",
+  "baseline_runtime_dir": "docs/standard_system_mvp/std_dbp/runtime/mimic_iv_3_1_first_real_execution",
+  "candidate_runtime_dir": "docs/standard_system_mvp/std_dbp/runtime/mimic_iv_3_1_rerun_repro_check",
+  "baseline_process_batch_id": "20260503T092941Z_MIMIC-IV-3.1_std_dbp",
+  "candidate_process_batch_id": "20260503T095826Z_MIMIC-IV-3.1_std_dbp",
+  "artifact_role_policy": {
+    "rerun_invariant_artifact_keys": [
+      "preview_csv",
+      "primary_output_asset"
+    ],
+    "latest_state_mutable_artifact_keys": [
+      "asset_manifest",
+      "knowledge_package"
+    ],
+    "run_scoped_append_only_artifact_keys": [
+      "build_log"
+    ]
+  },
+  "stable_build_summary_fields": [
+    "at_intime_rows",
+    "before_intime_rows",
+    "combined_rows",
+    "excluded_outlier_rows",
+    "invasive_rows",
+    "invasive_selected_rows",
+    "kept_mean",
+    "kept_rows",
+    "noninvasive_rows",
+    "noninvasive_selected_rows",
+    "normalized_max",
+    "normalized_min",
+    "origin__direct",
+    "p01",
+    "p50",
+    "p99",
+    "raw_gt_max_rows",
+    "raw_lt_min_rows",
+    "total_rows",
+    "unique_hadm_id",
+    "unique_stay_id",
+    "unique_subject_id",
+    "warning_true_outlier_rows",
+    "warning_true_rows"
+  ],
+  "checks": [
+    {
+      "check_id": "baseline_runtime_validation",
+      "status": "pass",
+      "message": "baseline runtime directory passes runtime validation: docs/standard_system_mvp/std_dbp/runtime/mimic_iv_3_1_first_real_execution"
+    },
+    {
+      "check_id": "candidate_runtime_validation",
+      "status": "pass",
+      "message": "candidate runtime directory passes runtime validation: docs/standard_system_mvp/std_dbp/runtime/mimic_iv_3_1_rerun_repro_check"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "database_id matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "variable_spec_path_match",
+      "status": "pass",
+      "message": "variable_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "mapping_spec_path_match",
+      "status": "pass",
+      "message": "mapping_spec_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "execution_entrypoint_path_match",
+      "status": "pass",
+      "message": "execution_entrypoint_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "reference_implementation_path_match",
+      "status": "pass",
+      "message": "reference_implementation_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "local_input_asset_path_match",
+      "status": "pass",
+      "message": "local_input_asset_path matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "command_match",
+      "status": "pass",
+      "message": "command matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "spec_hashes_match",
+      "status": "pass",
+      "message": "spec_hashes matches across baseline and candidate runtime evidence"
+    },
+    {
+      "check_id": "process_batch_id_distinct",
+      "status": "pass",
+      "message": "baseline and candidate process_batch_id are distinct as expected for a rerun"
+    },
+    {
+      "check_id": "output_artifact_keys_match",
+      "status": "pass",
+      "message": "baseline and candidate output artifact keys match"
+    },
+    {
+      "check_id": "asset_manifest_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "asset_manifest satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "build_log_run_scoped_append_only_comparison",
+      "status": "pass",
+      "message": "build_log satisfies the run_scoped_append_only comparison rule"
+    },
+    {
+      "check_id": "knowledge_package_latest_state_mutable_comparison",
+      "status": "pass",
+      "message": "knowledge_package satisfies the latest_state_mutable comparison rule"
+    },
+    {
+      "check_id": "preview_csv_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "preview_csv satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "primary_output_asset_rerun_invariant_comparison",
+      "status": "pass",
+      "message": "primary_output_asset satisfies the rerun_invariant comparison rule"
+    },
+    {
+      "check_id": "stable_build_summary_field_set_match",
+      "status": "pass",
+      "message": "stable build_summary field sets match"
+    },
+    {
+      "check_id": "build_summary_at_intime_rows_match",
+      "status": "pass",
+      "message": "build_summary field at_intime_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_before_intime_rows_match",
+      "status": "pass",
+      "message": "build_summary field before_intime_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_combined_rows_match",
+      "status": "pass",
+      "message": "build_summary field combined_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_excluded_outlier_rows_match",
+      "status": "pass",
+      "message": "build_summary field excluded_outlier_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_invasive_rows_match",
+      "status": "pass",
+      "message": "build_summary field invasive_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_invasive_selected_rows_match",
+      "status": "pass",
+      "message": "build_summary field invasive_selected_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_mean_match",
+      "status": "pass",
+      "message": "build_summary field kept_mean matches across reruns"
+    },
+    {
+      "check_id": "build_summary_kept_rows_match",
+      "status": "pass",
+      "message": "build_summary field kept_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_noninvasive_rows_match",
+      "status": "pass",
+      "message": "build_summary field noninvasive_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_noninvasive_selected_rows_match",
+      "status": "pass",
+      "message": "build_summary field noninvasive_selected_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_normalized_max_match",
+      "status": "pass",
+      "message": "build_summary field normalized_max matches across reruns"
+    },
+    {
+      "check_id": "build_summary_normalized_min_match",
+      "status": "pass",
+      "message": "build_summary field normalized_min matches across reruns"
+    },
+    {
+      "check_id": "build_summary_origin__direct_match",
+      "status": "pass",
+      "message": "build_summary field origin__direct matches across reruns"
+    },
+    {
+      "check_id": "build_summary_p01_match",
+      "status": "pass",
+      "message": "build_summary field p01 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_p50_match",
+      "status": "pass",
+      "message": "build_summary field p50 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_p99_match",
+      "status": "pass",
+      "message": "build_summary field p99 matches across reruns"
+    },
+    {
+      "check_id": "build_summary_raw_gt_max_rows_match",
+      "status": "pass",
+      "message": "build_summary field raw_gt_max_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_raw_lt_min_rows_match",
+      "status": "pass",
+      "message": "build_summary field raw_lt_min_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_total_rows_match",
+      "status": "pass",
+      "message": "build_summary field total_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_hadm_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_hadm_id matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_stay_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_stay_id matches across reruns"
+    },
+    {
+      "check_id": "build_summary_unique_subject_id_match",
+      "status": "pass",
+      "message": "build_summary field unique_subject_id matches across reruns"
+    },
+    {
+      "check_id": "build_summary_warning_true_outlier_rows_match",
+      "status": "pass",
+      "message": "build_summary field warning_true_outlier_rows matches across reruns"
+    },
+    {
+      "check_id": "build_summary_warning_true_rows_match",
+      "status": "pass",
+      "message": "build_summary field warning_true_rows matches across reruns"
+    }
+  ],
+  "artifact_comparisons": {
+    "asset_manifest": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_dbp/asset_manifest.md",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_dbp/asset_manifest.md",
+      "baseline_signature": {
+        "sha256": "ca989807e6c1aea9081873d72c86a533cc086c352756000d736115f7f02d98b4",
+        "size_bytes": 2236
+      },
+      "candidate_signature": {
+        "sha256": "ca989807e6c1aea9081873d72c86a533cc086c352756000d736115f7f02d98b4",
+        "size_bytes": 2236
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "build_log": {
+      "artifact_role": "run_scoped_append_only",
+      "status": "pass",
+      "baseline_path": "Github/Clinical_Database/docs/standard_system_mvp/std_dbp/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md",
+      "candidate_path": "Github/Clinical_Database/docs/standard_system_mvp/std_dbp/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md",
+      "baseline_signature": {
+        "sha256": "7b553d538215d89778245765e3cd6deb86ddd7240849e0e86bff51ffc66fe04d",
+        "size_bytes": 1421
+      },
+      "candidate_signature": {
+        "sha256": "eb3087e9fdaa035f50f35c818265231715f8c0d0d9c1401ce6082238f10255bb",
+        "size_bytes": 1421
+      },
+      "comparison_note": "run-scoped append-only artifact should usually differ by process_batch_id across reruns"
+    },
+    "knowledge_package": {
+      "artifact_role": "latest_state_mutable",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_dbp/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_dbp/Layer5_PerVariable_KnowledgePackage.xlsx",
+      "baseline_signature": {
+        "sha256": "b3f732c216d22bfb14be4d216e6a91b974c4aa0a6d2b22f95694955765ebe7c1",
+        "size_bytes": 28941
+      },
+      "candidate_signature": {
+        "sha256": "b3f732c216d22bfb14be4d216e6a91b974c4aa0a6d2b22f95694955765ebe7c1",
+        "size_bytes": 28941
+      },
+      "comparison_note": "latest-state mutable artifact may change content across reruns but should keep the same live path"
+    },
+    "preview_csv": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_dbp/preview/std_dbp_preview.csv",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_dbp/preview/std_dbp_preview.csv",
+      "baseline_signature": {
+        "sha256": "a216c36792863f9e96021b89e9d93b0559bdd3f6dbdd69eab256a343d6a5d624",
+        "size_bytes": 87759
+      },
+      "candidate_signature": {
+        "sha256": "a216c36792863f9e96021b89e9d93b0559bdd3f6dbdd69eab256a343d6a5d624",
+        "size_bytes": 87759
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    },
+    "primary_output_asset": {
+      "artifact_role": "rerun_invariant",
+      "status": "pass",
+      "baseline_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/vital_signs/std_dbp/std_dbp_long.parquet",
+      "candidate_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/vital_signs/std_dbp/std_dbp_long.parquet",
+      "baseline_signature": {
+        "sha256": "2f0e04432f889c6a1d2d3bf114e8a4f78ac7bd25cd4f7163bc90e21011e4cde9",
+        "size_bytes": 328403716
+      },
+      "candidate_signature": {
+        "sha256": "2f0e04432f889c6a1d2d3bf114e8a4f78ac7bd25cd4f7163bc90e21011e4cde9",
+        "size_bytes": 328403716
+      },
+      "comparison_note": "rerun-invariant artifact should keep the same path and signature across reruns"
+    }
+  },
+  "build_summary_comparisons": {
+    "at_intime_rows": {
+      "status": "pass",
+      "baseline_value": 1315,
+      "candidate_value": 1315
+    },
+    "before_intime_rows": {
+      "status": "pass",
+      "baseline_value": 55091,
+      "candidate_value": 55091
+    },
+    "combined_rows": {
+      "status": "pass",
+      "baseline_value": 8606940,
+      "candidate_value": 8606940
+    },
+    "excluded_outlier_rows": {
+      "status": "pass",
+      "baseline_value": 1413,
+      "candidate_value": 1413
+    },
+    "invasive_rows": {
+      "status": "pass",
+      "baseline_value": 3396117,
+      "candidate_value": 3396117
+    },
+    "invasive_selected_rows": {
+      "status": "pass",
+      "baseline_value": 6792234,
+      "candidate_value": 6792234
+    },
+    "kept_mean": {
+      "status": "pass",
+      "baseline_value": 62.97127145213226,
+      "candidate_value": 62.97127145213226
+    },
+    "kept_rows": {
+      "status": "pass",
+      "baseline_value": 17379333,
+      "candidate_value": 17379333
+    },
+    "noninvasive_rows": {
+      "status": "pass",
+      "baseline_value": 5377689,
+      "candidate_value": 5377689
+    },
+    "noninvasive_selected_rows": {
+      "status": "pass",
+      "baseline_value": 10588512,
+      "candidate_value": 10588512
+    },
+    "normalized_max": {
+      "status": "pass",
+      "baseline_value": 114109,
+      "candidate_value": 114109
+    },
+    "normalized_min": {
+      "status": "pass",
+      "baseline_value": -41,
+      "candidate_value": -41
+    },
+    "origin__direct": {
+      "status": "pass",
+      "baseline_value": 17380746,
+      "candidate_value": 17380746
+    },
+    "p01": {
+      "status": "pass",
+      "baseline_value": 34.0,
+      "candidate_value": 34.0
+    },
+    "p50": {
+      "status": "pass",
+      "baseline_value": 61.0,
+      "candidate_value": 61.0
+    },
+    "p99": {
+      "status": "pass",
+      "baseline_value": 107.0,
+      "candidate_value": 107.0
+    },
+    "raw_gt_max_rows": {
+      "status": "pass",
+      "baseline_value": 1064,
+      "candidate_value": 1064
+    },
+    "raw_lt_min_rows": {
+      "status": "pass",
+      "baseline_value": 349,
+      "candidate_value": 349
+    },
+    "total_rows": {
+      "status": "pass",
+      "baseline_value": 17380746,
+      "candidate_value": 17380746
+    },
+    "unique_hadm_id": {
+      "status": "pass",
+      "baseline_value": 85178,
+      "candidate_value": 85178
+    },
+    "unique_stay_id": {
+      "status": "pass",
+      "baseline_value": 94322,
+      "candidate_value": 94322
+    },
+    "unique_subject_id": {
+      "status": "pass",
+      "baseline_value": 65355,
+      "candidate_value": 65355
+    },
+    "warning_true_outlier_rows": {
+      "status": "pass",
+      "baseline_value": 22,
+      "candidate_value": 22
+    },
+    "warning_true_rows": {
+      "status": "pass",
+      "baseline_value": 123785,
+      "candidate_value": 123785
+    }
+  }
+}

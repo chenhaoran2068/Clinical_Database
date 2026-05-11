@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T08:03:46Z",
+  "variable_id": "std_tracheostomy_status_active",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_tracheostomy_status_active/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_tracheostomy_status_active/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_tracheostomy_status_active/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_tracheostomy_status_active/extract_code/Extract_Code_std_tracheostomy_status_active.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/ventilation.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_tracheostomy_status_active/extract_code/Extract_Code_std_tracheostomy_status_active.py"
+  ],
+  "process_batch_id": "20260502T080345Z_MIMIC-IV-3.1_std_tracheostomy_status_active",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T08:03:44Z",
+  "finished_at": "2026-05-02T08:03:46Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "125e55df4288f1932b17ce39613d249f5b0b4c81efa2792a7b1ffb4b297f8f3b",
+    "mapping_spec_sha256": "5829a4208501c8b4affa716db821c0b909cb6ef33feb18fd088ac6cefe5ca9c0"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_tracheostomy_status_active/std_tracheostomy_status_active_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_tracheostomy_status_active/preview/std_tracheostomy_status_active_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_tracheostomy_status_active/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_tracheostomy_status_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_tracheostomy_status_active/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "b198104b65a1280b52cbf34cdb20de4e80ffb97808a7896bce754f3ea1aa65f0",
+      "size_bytes": 293171
+    },
+    "preview_csv": {
+      "sha256": "e0b5b604d6ab6f438e236dbbe927b2eb3ff42495488b549e7182a1676b496f76",
+      "size_bytes": 86664
+    },
+    "asset_manifest": {
+      "sha256": "3c421721a57526fbeae95da8a76384e7f9f9f4ea21affc7c3b8db09a7f58796b",
+      "size_bytes": 2322
+    },
+    "knowledge_package": {
+      "sha256": "933cb08302b1029b15f7f84d6c162964c9b8deadcadca7020dacc0736469ef02",
+      "size_bytes": 27133
+    },
+    "build_log": {
+      "sha256": "2ee24f992042ec584e127e6598e42f83ffeaa1e892bb9c2870a4bead3478bb39",
+      "size_bytes": 1618
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T080345Z_MIMIC-IV-3.1_std_tracheostomy_status_active",
+    "prolonged_episode_ge_7d_count": 46,
+    "row_count": 5285,
+    "short_episode_le_60m_count": 42,
+    "unique_stay_id": 2505
+  }
+}

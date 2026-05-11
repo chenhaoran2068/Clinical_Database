@@ -1,0 +1,49 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "template",
+  "variable_class": {
+    "variable_class_id": "treatment_device_io_event_stream",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_TreatmentDeviceIOEventStream_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_example_treatment_device_io_event",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Example treatment device IO event",
+    "semantic_folder": "treatment_device_io",
+    "category": "treatment_device_io"
+  },
+  "immutable_core": {
+    "semantic_intent": "example source-recorded treatment/device/IO amount event",
+    "semantic_definition": "One time-stamped row per retained source-recorded treatment/device/IO amount event under the approved source-context rule.",
+    "semantic_grain": "time-stamped treatment/device/IO event",
+    "value_family": "numeric_event_with_context",
+    "source_value_class": "source_recorded_treatment_device_io_amount_event",
+    "same_name_cross_database_rule": "Same-name assets must preserve source-faithful event-level amount semantics, source context, unit meaning, and downstream aggregation boundary."
+  },
+  "event_stream_contract": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "event_time_rule": "retain source-faithful event time",
+    "event_value_meaning": "source-recorded amount value after approved unit normalization",
+    "unit_rule": "retain raw unit and standardize only when deterministic",
+    "context_role_rule": "retain source labels and context classes needed to interpret the amount",
+    "parent_link_rule": "optional mapping-specific parent treatment/support episode link",
+    "downstream_aggregation_rule": "summaries, smoothing, counter differencing, or episode redistribution are separate governed transformations",
+    "no_row_interpretation": "no retained event under the approved source rule"
+  },
+  "canonical_representation": {
+    "canonical_unit": "mL",
+    "value_type": "numeric_event_with_metadata",
+    "storage_type": "Float64_plus_context",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "standard_unit_field": "standard_unit",
+    "raw_unit_retention_required": true
+  }
+}

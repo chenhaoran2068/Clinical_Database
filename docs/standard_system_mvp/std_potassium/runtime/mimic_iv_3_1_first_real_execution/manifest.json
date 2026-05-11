@@ -1,0 +1,93 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-03T09:44:45Z",
+  "variable_id": "std_potassium",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_potassium/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_potassium/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_potassium/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_potassium/extract_code/Extract_Code_std_potassium.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/chemistry.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_potassium/extract_code/Extract_Code_std_potassium.py"
+  ],
+  "process_batch_id": "20260503T094314Z_MIMIC-IV-3.1_std_potassium",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-03T09:43:14Z",
+  "finished_at": "2026-05-03T09:44:45Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "0ba6b08abeba93bb5d644164751bb3397d393636fa79e97eadde55c2f4dfe39a",
+    "mapping_spec_sha256": "88ba18714ce4cdc3e6a47e386e9c99042cc178ac82968dd1caf80767d0fde994"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/laboratory/std_potassium/std_potassium_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_potassium/preview/std_potassium_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_potassium/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_potassium/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_potassium/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "ef8ed3d8847d67accf6f83a834242f975bc77e5b6a8197e004c2cc31a04c3ae5",
+      "size_bytes": 144728505
+    },
+    "preview_csv": {
+      "sha256": "a5f66b7f7be168a5cd10ae3355717a13bfcc05c12dde5e8f4251277aeeb85ca1",
+      "size_bytes": 67373
+    },
+    "asset_manifest": {
+      "sha256": "5a4767683af88320a62c7a0462c5efd7022f0490a6314233367341ed2b203387",
+      "size_bytes": 4409
+    },
+    "knowledge_package": {
+      "sha256": "2e7ab9c5ad4ed36599ba8190c169de235fbbf91cc0c99261e7e221d4ba3a3d73",
+      "size_bytes": 30112
+    },
+    "build_log": {
+      "sha256": "42811f7dac0378472e1d5dc91f74b0d2d88e572fed337eb416c13e0e8c16664c",
+      "size_bytes": 3810
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260503T094314Z_MIMIC-IV-3.1_std_potassium",
+    "total_rows": 4147219,
+    "unique_subject_id": 288115,
+    "unique_hadm_id": 420002,
+    "unique_stay_id": 90931,
+    "kept_rows": 4147189,
+    "excluded_outlier_rows": 30,
+    "source_abnormal_true_rows": 381272,
+    "source_abnormal_true_outlier_rows": 30,
+    "source_hadm_direct_rows": 2646744,
+    "source_hadm_null_rows": 1500475,
+    "hadm_recovered_rows": 23387,
+    "hadm_unresolved_rows": 1477088,
+    "inferred_unique_stay_rows": 612709,
+    "hospital_only_no_icu_overlap_rows": 2057422,
+    "ambiguous_multi_stay_rows": 8,
+    "insufficient_linkage_info_rows": 1477080,
+    "exact_event_key_duplicate_rows": 1728,
+    "raw_match_duplicate_resolved_rows": 0,
+    "normalized_min": 0.7,
+    "normalized_max": 26.5,
+    "raw_lt_0_rows": 0,
+    "raw_eq_0_rows": 0,
+    "raw_lt_cleaned_min_rows": 3,
+    "raw_gt_cleaned_max_rows": 27,
+    "relative_time_min": 0,
+    "relative_time_max": 323870,
+    "p01": 3.0,
+    "p50": 4.1,
+    "p99": 6.1,
+    "p999": 8.2,
+    "source_unit_counts": {
+      "mEq/L": 4147219
+    }
+  }
+}

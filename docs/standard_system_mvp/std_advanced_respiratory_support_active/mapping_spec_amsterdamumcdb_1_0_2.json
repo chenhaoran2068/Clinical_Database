@@ -1,0 +1,117 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_candidate",
+  "artifact_status": "candidate_mapping_pending_owner_review",
+  "approval_status": "not_owner_approved",
+  "mvp_phase": "class_3_amsterdam_q2_build_first_candidate_mvp",
+  "created_at": "2026-05-04",
+  "updated_at": "2026-05-04",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_advanced_respiratory_support_active/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_advanced_respiratory_support_active",
+    "variable_version": "v0_draft",
+    "semantic_intent": "advanced respiratory support active state",
+    "semantic_grain": "one row per positive state episode",
+    "source_value_class": "positive_state_episode",
+    "canonical_unit": "none",
+    "canonical_value_family": "binary_state"
+  },
+  "candidate_boundary_notice": {
+    "status": "built_candidate_hfnc_source_gap_owner_approval_pending",
+    "owner_approval_status": "not_owner_approved",
+    "reason": "The candidate output lacks a narrow Amsterdam HFNC source even though the public advanced-respiratory-support concept includes HFNC.",
+    "approval_gate": "candidate runtime evidence only until detailed review and owner approval close"
+  },
+  "database_mapping": {
+    "database_id": "AmsterdamUMCdb-1.0.2",
+    "source_locator_mode": "derived_union_from_governed_parent_state_episode_assets",
+    "source_package": "Amsterdam governed parent Layer3 assets",
+    "source_table": "std_invasive_mechanical_ventilation_active + std_noninvasive_ventilation_active",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_invasive_mechanical_ventilation_active/std_invasive_mechanical_ventilation_active_long.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_noninvasive_ventilation_active/std_noninvasive_ventilation_active_long.parquet"
+    ],
+    "source_status_field": "source_parent_variable_set",
+    "source_status_codes": [
+      "std_invasive_mechanical_ventilation_active",
+      "std_noninvasive_ventilation_active"
+    ],
+    "source_status_code_labels": {
+      "std_invasive_mechanical_ventilation_active": "approved Amsterdam invasive mechanical ventilation parent",
+      "std_noninvasive_ventilation_active": "approved Amsterdam NIV/CPAP parent"
+    },
+    "source_start_field": "support_starttime",
+    "source_end_field": "support_endtime",
+    "source_duration_field": "support_duration_minutes",
+    "source_grain": "one governed Amsterdam parent respiratory-support positive episode",
+    "target_grain": "one retained positive derived support-family episode after same-stay interval union",
+    "identifier_normalization": {
+      "subject_id_role": "patientid inherited from approved parent assets",
+      "hadm_id_role": "not separately available in the current Amsterdam opening mapping",
+      "stay_id_role": "admissionid inherited from approved parent assets and normalized to ICU/MC stay_id",
+      "stay_link_status": "icu_mcu_local_admission_via_admissionid"
+    }
+  },
+  "state_episode_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "positive_state_translation": "retain unioned IMV and NIV/CPAP parent episodes; HFNC is not sourced in Amsterdam current source surface",
+    "negative_state_translation": "do not emit false rows",
+    "episode_start_translation": "use the merged parent-support interval start",
+    "episode_end_translation": "use the merged parent-support interval end",
+    "continuity_translation": "merge overlapping or exactly contiguous included parent intervals within the same stay",
+    "no_row_translation": "absence of a row means no retained positive episode under this candidate source rule"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "amsterdam_approved_imv_niv_parent_union_to_advanced_respiratory_support_candidate_with_hfnc_gap_v1",
+    "primary_output_value_field": "std_advanced_respiratory_support_active",
+    "start_time_output_field": "support_starttime",
+    "end_time_output_field": "support_endtime",
+    "duration_output_field": "support_duration_minutes",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_start_output_field": "relative_start_time_value",
+    "relative_end_output_field": "relative_end_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "stay_id",
+      "support_episode_index",
+      "support_starttime",
+      "support_endtime",
+      "support_duration_minutes",
+      "std_advanced_respiratory_support_active"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "support_episode_index"
+    ],
+    "duplicate_action": "fail",
+    "positive_only_no_row_policy_check": "false rows are not emitted; absence of row is not universal negative proof",
+    "episode_time_order_action": "fail_when_end_not_after_start",
+    "notes": [
+      "Build-first candidate mapping; owner approval is explicitly pending.",
+      "The candidate output lacks a narrow Amsterdam HFNC source even though the public advanced-respiratory-support concept includes HFNC."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_advanced_respiratory_support_active/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_advanced_respiratory_support_active/extract_code/Extract_Code_std_advanced_respiratory_support_active.py",
+    "formal_output_rule": "Candidate output should be generated through the governed execution.py path and reviewed before approval.",
+    "non_bypassable_target_rule": "Approval-facing outputs should be produced only through the governed execution.py path."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_advanced_respiratory_support_active.md",
+    "candidate_evidence_review_path": "docs/standard_system_mvp/AMSTERDAM_Q2_DIRECT_BUILD_CANDIDATE_REVIEW.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_advanced_respiratory_support_active/extract_code/Extract_Code_std_advanced_respiratory_support_active.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_advanced_respiratory_support_active/std_advanced_respiratory_support_active_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_advanced_respiratory_support_active/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_advanced_respiratory_support_active/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_advanced_respiratory_support_active/preview/std_advanced_respiratory_support_active_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_advanced_respiratory_support_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_advanced_respiratory_support_active/query_summary"
+  }
+}

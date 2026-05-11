@@ -1,0 +1,64 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-07T22:56:42Z",
+  "variable_id": "std_total_cholesterol",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_total_cholesterol/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_total_cholesterol/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_total_cholesterol/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_cholesterol/extract_code/Extract_Code_std_total_cholesterol.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_cholesterol/extract_code/Extract_Code_std_total_cholesterol.py"
+  ],
+  "process_batch_id": "20260507T225637Z_AmsterdamUMCdb-1.0.2_std_total_cholesterol",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-07T22:56:36Z",
+  "finished_at": "2026-05-07T22:56:42Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "c729563867072d155fcbb16ac77ce943a4c8be4ec2b4fa8af8f08083571a6257",
+    "mapping_spec_sha256": "5aa9fe4f657c7538aef1fb168575cd54b5c7dca6823b925c7947b0890203966d"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_total_cholesterol/std_total_cholesterol_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_cholesterol/preview/std_total_cholesterol_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_cholesterol/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_cholesterol/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_total_cholesterol/runtime/amsterdamumcdb_1_0_2_q4_class1_wave1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "4bdf0da22ef35941f9c0027937048ac8907830ac1c73fbeb6fad7f898be8c256",
+      "size_bytes": 48343
+    },
+    "preview_csv": {
+      "sha256": "f8ccb6d368ce4c64c6389d3fcd1b0dc4f52f80b14fc5224d8a8a174c8d4aaff0",
+      "size_bytes": 96604
+    },
+    "asset_manifest": {
+      "sha256": "31fae4bedd8cdde875355c4e5897896553529327cf7586214fbe416e1241caca",
+      "size_bytes": 4203
+    },
+    "knowledge_package": {
+      "sha256": "bc5118fe30d17096326ae680f6c8d1e10022c5282ba19b91f85ffaad108c435a",
+      "size_bytes": 26252
+    },
+    "build_log": {
+      "sha256": "478d82fd536c779562dc5d759520a1d97de3f952142d8104da3291aef35c205a",
+      "size_bytes": 711
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260507T225637Z_AmsterdamUMCdb-1.0.2_std_total_cholesterol",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/laboratory/std_total_cholesterol/std_total_cholesterol_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_cholesterol/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_total_cholesterol/log_archive/20260507T225637Z_AmsterdamUMCdb-1.0.2_std_total_cholesterol__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "effective_status": "reviewed_approved"
+  }
+}

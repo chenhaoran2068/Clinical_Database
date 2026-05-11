@@ -1,0 +1,130 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "class_3_vasopressor_support_active_mimic_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_vasopressor_support_active/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_vasopressor_support_active",
+    "variable_version": "v0_draft",
+    "semantic_intent": "vasopressor support active state",
+    "semantic_grain": "one row per positive state episode",
+    "source_value_class": "positive_state_episode",
+    "canonical_unit": "none",
+    "canonical_value_family": "binary_state"
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_locator_mode": "derived_positive_state_episode_from_reviewed_infusion_course_union",
+    "source_package": "local_reviewed_layer3",
+    "source_table": "std_icu_vasoactive_medication_infusion_event",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/medication/std_icu_vasoactive_medication_infusion_event/std_icu_vasoactive_medication_infusion_event_long.parquet",
+    "supporting_input_assets": [
+      "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/id_mapping/std_id_map_subject_hadm_stay/std_id_map_subject_hadm_stay_long.parquet"
+    ],
+    "source_status_field": "vasoactive_support_role_class",
+    "source_status_codes": [
+      "vasopressor",
+      "mixed_pressor_inotrope"
+    ],
+    "source_start_field": "source_vasoactive_course_starttime",
+    "source_end_field": "source_vasoactive_course_endtime",
+    "source_grain": "one reviewed vasoactive parent course interval row before support-episode union",
+    "target_grain": "one retained positive vasopressor-support state episode row",
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier from reviewed vasoactive foundation and trusted stay map",
+      "hadm_id_role": "hospital-admission-level identifier from reviewed vasoactive foundation and trusted stay map",
+      "stay_id_role": "ICU-stay-level identifier from reviewed vasoactive foundation and trusted stay map",
+      "stay_link_status": "direct_stay"
+    },
+    "official_source_references": [
+      "References/MIMIC/2026-03-20_snapshot_v2/raw/mimic_code/mimic-iv/concepts/medication/vasoactive_agent.sql"
+    ],
+    "adjacent_status_boundary": {
+      "included_role_classes": [
+        "vasopressor",
+        "mixed_pressor_inotrope"
+      ],
+      "excluded_role_classes": [
+        "inotrope",
+        "inodilator"
+      ],
+      "excluded_same_family_outputs": [
+        "std_vasopressor_support_agent_episode",
+        "std_norepinephrine_equivalent_dose",
+        "std_icu_admission_28d_vasopressor_free_days",
+        "std_septic_shock_onset"
+      ],
+      "boundary_reason": "This same-name variable represents any vasopressor-capable support active, not agent-specific detail, equivalent-dose exposure, inotrope-only therapy, shock phenotype, or free-day outcome."
+    }
+  },
+  "state_episode_build_translation": {
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "positive_state_translation": "retain reviewed vasoactive parent course intervals with vasoactive_rate_analysis_eligible=true and role class in vasopressor or mixed_pressor_inotrope",
+    "negative_state_translation": "do not emit false rows",
+    "episode_start_translation": "use merged support_starttime after unioning eligible parent course intervals within stay",
+    "episode_end_translation": "use merged support_endtime after unioning eligible parent course intervals within stay",
+    "continuity_translation": "merge only overlapping or exactly contiguous eligible parent course intervals; any positive gap starts a new support episode",
+    "no_row_translation": "absence of a retained row means no positive vasopressor-support episode under this source-role rule"
+  },
+  "representation_and_normalization": {
+    "canonical_unit": "none",
+    "normalization_rule_id": "mimic_reviewed_vasoactive_course_union_to_vasopressor_support_true_episode",
+    "primary_output_value_field": "std_vasopressor_support_active",
+    "start_time_output_field": "support_starttime",
+    "end_time_output_field": "support_endtime",
+    "duration_output_field": "support_duration_minutes",
+    "relative_anchor_output_field": "anchor_type",
+    "relative_start_output_field": "relative_start_time_value",
+    "relative_end_output_field": "relative_end_time_value",
+    "relative_time_unit": "minutes"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "support_episode_index",
+      "support_starttime",
+      "support_endtime",
+      "support_duration_minutes",
+      "std_vasopressor_support_active"
+    ],
+    "duplicate_key": [
+      "stay_id",
+      "support_episode_index"
+    ],
+    "duplicate_action": "fail",
+    "positive_only_no_row_policy_check": "false rows are not emitted; absence of row is not universal proof of no vasopressor support or no shock",
+    "episode_time_order_action": "fail_when_end_not_after_start",
+    "duration_caution_rules": {
+      "short_episode_le_minutes": 15,
+      "prolonged_episode_ge_minutes": 10080
+    },
+    "notes": [
+      "The retained source is the reviewed local std_icu_vasoactive_medication_infusion_event foundation.",
+      "Opening v1 includes role classes vasopressor and mixed_pressor_inotrope.",
+      "Pure inotrope and pure inodilator rows are excluded from the default numerator.",
+      "The asset is support-state truth only and is not septic-shock truth by itself."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_vasopressor_support_active/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_active/extract_code/Extract_Code_std_vasopressor_support_active.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_vasopressor_support_active outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_vasopressor_support_active.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_active/extract_code/Extract_Code_std_vasopressor_support_active.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_vasopressor_support_active/std_vasopressor_support_active_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_active/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_active/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_active/preview/std_vasopressor_support_active_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_vasopressor_support_active/query_summary"
+  }
+}

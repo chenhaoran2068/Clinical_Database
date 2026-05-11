@@ -1,0 +1,67 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-28T12:45:11Z",
+  "variable_id": "std_hospital_los_days",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_hospital_los_days/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_hospital_los_days/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_hospital_los_days/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/extract_code/Extract_Code_std_hospital_los_days.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/hosp_admissions.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/extract_code/Extract_Code_std_hospital_los_days.py"
+  ],
+  "process_batch_id": "20260428T124504Z_MIMIC-IV-3.1_std_hospital_los_days",
+  "subprocess_return_code": 0,
+  "started_at": "2026-04-28T12:45:00Z",
+  "finished_at": "2026-04-28T12:45:11Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "eae80beb015316a5b9f21a2eec9c4d334d052c023c1b52c8eaabf9012aefca46",
+    "mapping_spec_sha256": "c77a3d77250ccd6664bc537fa06ea2494fc694f1fe24b7b8b9d649de37249098"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/outcomes/std_hospital_los_days/std_hospital_los_days_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/preview/std_hospital_los_days_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_hospital_los_days/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_hospital_los_days/runtime/mimic_iv_3_1_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "7820c70043e1ccdef01e2e3a62f4781a9285d6c46ebead5b6922ea5bdff8fec8",
+      "size_bytes": 6463757
+    },
+    "preview_csv": {
+      "sha256": "28d93cb3f893afdff9a72c9a079232d6149d3b3a6266cce64c23bbfde87b3f6b",
+      "size_bytes": 9270
+    },
+    "asset_manifest": {
+      "sha256": "a4fa549724360ee6c27495f2f78e04402ddc8c95493aefbf640c853ff03ade3a",
+      "size_bytes": 2971
+    },
+    "knowledge_package": {
+      "sha256": "2859b4c14daf4adfe2366715f3634a96e11bb728f9cdb1f51538d7b8bf19732f",
+      "size_bytes": 25793
+    },
+    "build_log": {
+      "sha256": "adc33cb96984ffc8c196684d3144490b3c5aee21dcca39cd67dbc4410c4a67cc",
+      "size_bytes": 1250
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260428T124504Z_MIMIC-IV-3.1_std_hospital_los_days",
+    "total_rows": 546028,
+    "unique_hadm_id": 546028,
+    "negative_duration_rows": 175,
+    "nonnegative_duration_rows": 545853,
+    "zero_duration_rows": 5,
+    "min_days_raw": -0.9451388888888889,
+    "max_days_raw": 515.5625
+  }
+}

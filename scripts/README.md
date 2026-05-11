@@ -26,7 +26,18 @@ Current public script files:
 - `export_public_metadata.py`
 - `prepare_public_release.py`
 - `scaffold_public_database.py`
+- `standard_system_mvp_engine.py`
+- `validate_layer3_layout_policy.py`
+- `validate_standard_system_reproducibility.py`
+- `validate_standard_system_runtime.py`
 - `generate_layer4_layer5_excel_templates.py`
+- `build_amsterdam_coverage_audit.py`
+- `build_class1_to_class9_execution_queue.py`
+- `build_amsterdam_q2_direct_candidate_artifacts.py`
+- `build_amsterdam_q4_class1_wave1_candidate_artifacts.py`
+- `prepare_amsterdam_q4_class1_wave1_owner_review_packet.py`
+- `apply_amsterdam_q4_class1_wave1_owner_approval.py`
+- `build_amsterdam_q4_and_q3_to_q7_registers.py`
 - `layer1/convert_amsterdam_raw_unpacked_to_parquet.py`
 - `layer1/convert_mimic_raw_unpacked_to_parquet.py`
 - `layer1/unpack_mimic_raw_original_to_raw_unpacked.py`
@@ -53,6 +64,11 @@ Recommended entrypoints:
 - `python scripts/public_workflow.py status --family-id MIMIC-IV`
 - `python scripts/public_workflow.py build-layer1 ...`
 - `python scripts/public_workflow.py validate-registry ...`
+- `python scripts/public_workflow.py run-standard-mvp --variable-id std_heart_rate --database-id MIMIC-IV-3.1 --validate-only`
+- `python scripts/public_workflow.py validate-layer3-layout`
+- `python scripts/standard_system_mvp_engine.py` is not normally called directly; it is the shared governed engine used by per-variable `docs/standard_system_mvp/<variable_id>/execution.py` wrappers
+- `python scripts/public_workflow.py validate-standard-runtime --runtime-dir "docs\\standard_system_mvp\\std_heart_rate\\runtime\\mimic_iv_3_1_first_real_execution"`
+- `python scripts/public_workflow.py check-standard-rerun --baseline-runtime-dir "docs\\standard_system_mvp\\std_heart_rate\\runtime\\amsterdamumcdb_1_0_2_first_real_execution" --candidate-runtime-dir "docs\\standard_system_mvp\\std_heart_rate\\runtime\\amsterdamumcdb_1_0_2_rerun_repro_check"`
 - `python scripts/public_workflow.py check-public-repository`
 - `python scripts/public_workflow.py check-local-id-semantics --database-id AmsterdamUMCdb-1.0.2`
 - `python scripts/public_workflow.py prepare-release --dry-run`
@@ -64,6 +80,13 @@ Recommended entrypoints:
 - `python scripts/public_workflow.py export-public-artifacts --artifact database-variable-coverage`
 - `python scripts/public_workflow.py export-public-artifacts --artifact family-variable-coverage`
 - `python scripts/public_workflow.py export-public-artifacts --artifact variable-coverage-summary`
+- `python scripts/build_amsterdam_coverage_audit.py`
+- `python scripts/build_class1_to_class9_execution_queue.py`
+- `python scripts/build_amsterdam_q2_direct_candidate_artifacts.py`
+- `python scripts/build_amsterdam_q4_class1_wave1_candidate_artifacts.py`
+- `python scripts/prepare_amsterdam_q4_class1_wave1_owner_review_packet.py`
+- `python scripts/apply_amsterdam_q4_class1_wave1_owner_approval.py`
+- `python scripts/build_amsterdam_q4_and_q3_to_q7_registers.py`
 
 Local production-only scripts are intentionally not stored here.
 Those now live under:

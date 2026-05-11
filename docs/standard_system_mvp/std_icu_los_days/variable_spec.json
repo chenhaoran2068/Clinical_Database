@@ -1,0 +1,139 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_2_first_variable_governed_mvp",
+  "created_at": "2026-04-25",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "baseline_summary_window_numeric",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_BaselineSummaryWindowNumeric_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_icu_los_days",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "ICU length of stay in days",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "outcomes",
+    "category": "outcome"
+  },
+  "immutable_core": {
+    "semantic_intent": "ICU length of stay duration summary",
+    "semantic_definition": "A one-row-per-ICU-stay or ICU-semantic stay-equivalent duration summary retaining ICU length of stay in days under an explicit ICU admission anchor and full-stay interval contract, rather than a raw event stream, hospital stay duration, or first-day partial summary.",
+    "semantic_grain": "one row per anchor-qualified summary target",
+    "value_family": "duration_measurement",
+    "source_value_class": "summary_from_interval_or_primary_duration_field",
+    "derived_values_allowed": true,
+    "aggregated_values_allowed": true,
+    "baseline_or_summary_interpretation_allowed": true,
+    "same_name_cross_database_rule": "Any database asset published as std_icu_los_days must preserve full ICU-stay duration meaning under the ICU admission anchor and must not silently widen to hospital length of stay or non-ICU-only scope."
+  },
+  "summary_contract": {
+    "summary_subclass": "duration_summary",
+    "target_entity_grain": "ICU stay",
+    "anchor_family": "ICU admission anchor",
+    "window_label": "full_icu_stay_interval",
+    "window_start_rule": "start at ICU admission or ICU-semantic stay entry",
+    "window_end_rule": "end at ICU discharge or ICU-semantic stay end",
+    "qualifying_row_rule": "one retained duration summary per ICU stay or ICU-semantic stay-equivalent row inside the approved same-name scope",
+    "selection_rule": "direct_primary_duration_field_or_raw_boundary_interval_per_target_row",
+    "aggregation_rule": "single_interval_duration_days_round_half_away_from_zero_3dp",
+    "tie_break_rule": "not_applicable_one_target_row_per_stay_expected",
+    "no_source_row_action": "retain_null_and_flag_when_required_primary_duration_boundaries_are_missing",
+    "partial_window_action": "not_applicable_full_stay_interval_or_explicit_null"
+  },
+  "canonical_representation": {
+    "canonical_unit": "days",
+    "canonical_ucum": "d",
+    "value_type": "duration_measurement",
+    "storage_type": "Float64",
+    "storage_precision_digits": 3,
+    "display_precision_digits": 3,
+    "anchor_timestamp_required": false,
+    "window_bounds_required": false,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "hard_valid_range_in_canonical_unit": [
+      0,
+      400
+    ],
+    "plausible_range_in_canonical_unit": [
+      0,
+      250
+    ],
+    "range_role_note": "These ranges are governance-time duration bounds for the current approved LOS assets, not a claim that every future ICU cohort or raw local field in every database must stay inside the plausible band."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but do not make them the backbone of the standard-variable system.",
+    "mapping_type": "derived",
+    "public_anchor_status": "no_single_exact_external_anchor_locked_for_this_duration_summary",
+    "preferred_anchor_families": [
+      "SNOMED CT"
+    ],
+    "note": "std_icu_los_days is a derived interval-duration summary whose current cross-database identity is governed primarily by anchor, grain, and boundary rules rather than one exact external code."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "summary_subclass",
+      "target_entity_grain",
+      "anchor_family",
+      "window_label",
+      "window_start_rule",
+      "window_end_rule",
+      "qualifying_row_rule",
+      "selection_rule",
+      "aggregation_rule",
+      "no_source_row_action",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "hard_valid_range_in_canonical_unit",
+      "plausible_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "changing std_icu_los_days from ICU stay duration to hospital length of stay",
+      "changing std_icu_los_days from full ICU-stay duration to first-day ICU duration or another partial-window summary"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a new reviewed database mapping while preserving the same ICU-stay duration meaning",
+      "tightening the duration range guidance or locking a later external semantic anchor without changing the interval meaning"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "raw interval fields used to define start and end boundaries",
+      "database-specific local structural keys and stay-equivalent identifiers",
+      "presence or absence of audit-only reported duration fields alongside the retained primary duration"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing hospital length of stay as std_icu_los_days",
+      "publishing MC-only Amsterdam admissions or other non-ICU-only scope as std_icu_los_days without explicit contract revision"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_icu_los_days outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record both spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_icu_los_days outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_icu_los_days/mapping_spec_mimic_iv_3_1.json",
+      "docs/standard_system_mvp/std_icu_los_days/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_icu_los_days/execution.py",
+    "public_card": "docs/std_variable_cards/std_icu_los_days.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  }
+}

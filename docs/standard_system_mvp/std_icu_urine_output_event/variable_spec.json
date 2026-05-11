@@ -1,0 +1,134 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "event_level_urine_output_governed_mvp",
+  "created_at": "2026-04-25",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "event_level_numeric_primary_source",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_EventLevelNumericPrimarySource_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_icu_urine_output_event",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "ICU urine output event",
+    "standardized_name_cn_publication_status": "existing_public_card_name_present_but_not_relocked_here",
+    "semantic_folder": "supportive_therapy",
+    "category": "supportive_therapy"
+  },
+  "immutable_core": {
+    "semantic_intent": "ICU urine-output measurement event",
+    "semantic_definition": "A time-stamped ICU urine-output measurement event in milliliters, preserving local urinary route provenance and excluding non-urine output, intake-output balance, and derived stay-level summaries.",
+    "semantic_grain": "time-stamped measurement event",
+    "value_family": "numeric_measurement",
+    "source_value_class": "raw_measured_or_source_recorded_output_volume",
+    "derived_values_allowed": false,
+    "aggregated_values_allowed": false,
+    "baseline_or_summary_interpretation_allowed": false,
+    "same_name_cross_database_rule": "Any database asset published as std_icu_urine_output_event must preserve event-level ICU urine-output volume semantics rather than first-day summaries, urine-output rate, total output, or intake-output balance."
+  },
+  "canonical_representation": {
+    "canonical_unit": "mL",
+    "canonical_ucum": "mL",
+    "value_type": "numeric_measurement",
+    "storage_type": "Float64",
+    "storage_precision_digits": 3,
+    "display_precision_digits": 1,
+    "timestamp_required": true,
+    "time_precision_requirement": "datetime_or_equivalent_event_time",
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "hard_valid_range_in_canonical_unit": [
+      0,
+      5000
+    ],
+    "plausible_range_in_canonical_unit": [
+      0,
+      1000
+    ],
+    "range_role_note": "The hard range is an opening single-event guardrail for approved standard values. Raw source volumes should be preserved separately when available."
+  },
+  "external_alignment": {
+    "alignment_policy": "Use external terminologies as semantic anchors when reliable, but keep source-route inclusion and cleaning governed by this internal standard-variable contract.",
+    "mapping_type": "broader",
+    "public_anchor_status": "urine-output observation concepts are used as anchors, but local route-specific source rows remain governed by database mapping specs",
+    "preferred_anchor_families": [
+      "LOINC",
+      "SNOMED CT"
+    ],
+    "candidate_external_refs": [
+      {
+        "system": "LOINC",
+        "code": "9187-6",
+        "mapping_type": "broader",
+        "note": "Used by multiple Amsterdam urine-output route rows."
+      },
+      {
+        "system": "LOINC",
+        "code": "79549-2",
+        "mapping_type": "broader",
+        "note": "Used by Amsterdam nephrostomy urine-output route rows."
+      }
+    ],
+    "note": "External anchors support semantic orientation but do not replace the internal cross-database source-route contract."
+  },
+  "versioning_contract": {
+    "immutable_fields": [
+      "variable_id",
+      "semantic_intent",
+      "semantic_definition",
+      "semantic_grain",
+      "value_family",
+      "source_value_class"
+    ],
+    "versionable_fields": [
+      "canonical_unit",
+      "storage_type",
+      "storage_precision_digits",
+      "display_precision_digits",
+      "hard_valid_range_in_canonical_unit",
+      "plausible_range_in_canonical_unit",
+      "external_alignment",
+      "database_mapping_specs"
+    ],
+    "new_variable_trigger_examples": [
+      "changing event-level urine output into first-day urine-output summary",
+      "changing urine output into urine-output rate per kg per hour",
+      "mixing total output, dialysis removal, drains, or intake-output balance into the same variable without a new identity"
+    ],
+    "version_bump_trigger_examples": [
+      "adding a reviewed database mapping while preserving event-level urine-output meaning",
+      "tightening hard-valid single-event range rules without changing the event-level urine-output concept"
+    ]
+  },
+  "cross_database_contract": {
+    "allowed_database_specific_variation": [
+      "local source code systems and source codes",
+      "local urinary route labels and route flags",
+      "local structural identifiers normalized into subject_id, hadm_id, and stay_id roles",
+      "database-specific availability of irrigant input/output rows"
+    ],
+    "disallowed_same_name_variation": [
+      "publishing first-day urine-output total as std_icu_urine_output_event",
+      "including non-urine drains or total output events without a specific child contract",
+      "silently allowing implausible single-event values into the approved standard value without raw retention and cleaning flags"
+    ]
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present_for_amsterdam_opening_mapping",
+    "formal_output_rule": "Formal std_icu_urine_output_event outputs should go through execution.py reading this variable_spec and an approved mapping_spec. Execute-mode runtime evidence should record spec hashes and formal output-file signatures.",
+    "future_non_bypassable_rule": "Formal std_icu_urine_output_event outputs should be generated only through the governed execution.py path reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_icu_urine_output_event/mapping_spec_amsterdamumcdb_1_0_2.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_icu_urine_output_event/execution.py",
+    "public_card": "docs/std_variable_cards/std_icu_urine_output_event.md",
+    "roadmap": "docs/STANDARD_SYSTEM_MATURITY_ROADMAP.md"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "artifact_type": "variable_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_variable_lock",
+  "mvp_phase": "class_6_nitrite_urinalysis_result_governed_mvp",
+  "created_at": "2026-05-02",
+  "public_scope": "github_safe",
+  "variable_class": {
+    "variable_class_id": "ordinal_text_semiquantitative_result",
+    "class_contract_ref": "Framework_Guideline/StandardVariableClass_OrdinalTextSemiquantitativeResult_Contract.md"
+  },
+  "variable_identity": {
+    "variable_id": "std_nitrite_urinalysis_result",
+    "variable_version": "v0_draft",
+    "standardized_name_en": "Urinalysis nitrite result event",
+    "semantic_folder": "laboratory",
+    "category": "laboratory"
+  },
+  "immutable_core": {
+    "semantic_intent": "source-recorded urinalysis nitrite ordinal result event",
+    "semantic_definition": "An event-level urinalysis nitrite result retaining a normalized binary ordinal result domain with raw source result provenance and best-available encounter/stay linkage.",
+    "semantic_grain": "one retained source-recorded urinalysis nitrite result event",
+    "value_family": "binary_ordinal_result",
+    "source_value_class": "source_recorded_ordinal_text_result",
+    "same_name_cross_database_rule": "Any database asset published as std_nitrite_urinalysis_result must preserve source-recorded urinalysis nitrite result semantics and must not collapse into numeric urine chemistry, microbiology culture evidence, urinary tract infection phenotype, or diagnosis code truth."
+  },
+  "ordinal_result_contract": {
+    "target_entity_grain": "laboratory result event with best-available admission and ICU-stay linkage",
+    "anchor_family": "laboratory charttime anchor",
+    "result_domain_rule": "retain only normalized `negative` and `positive` nitrite result states",
+    "raw_result_retention_rule": "retain raw value, itemid, label, specimen, unit, and abnormal flag provenance for audit",
+    "normalization_rule": "map approved negative text variants to negative and approved positive text variants to positive; exclude blank placeholders rather than treating them as negative",
+    "no_row_interpretation": "no retained interpretable nitrite result under the approved source rule; this does not prove nitrite negativity or absence of urinary infection"
+  },
+  "canonical_representation": {
+    "canonical_unit": "none",
+    "value_type": "ordinal_result_event",
+    "storage_type": "string_result_plus_context",
+    "timestamp_required": true,
+    "context_fields_required": true,
+    "identifier_roles": [
+      "subject_id",
+      "hadm_id",
+      "stay_id"
+    ],
+    "result_domain": [
+      "negative",
+      "positive"
+    ],
+    "time_anchor": "charttime"
+  },
+  "execution_governance": {
+    "current_status": "governed_execution_entrypoint_present",
+    "formal_output_rule": "Formal std_nitrite_urinalysis_result outputs should go through execution.py reading this variable_spec and an approved mapping_spec."
+  },
+  "current_public_mvp_links": {
+    "mapping_specs": [
+      "docs/standard_system_mvp/std_nitrite_urinalysis_result/mapping_spec_mimic_iv_3_1.json"
+    ],
+    "execution_entrypoint": "docs/standard_system_mvp/std_nitrite_urinalysis_result/execution.py",
+    "public_card": "docs/std_variable_cards/std_nitrite_urinalysis_result.md",
+    "class_contract": "Framework_Guideline/StandardVariableClass_OrdinalTextSemiquantitativeResult_Contract.md"
+  }
+}

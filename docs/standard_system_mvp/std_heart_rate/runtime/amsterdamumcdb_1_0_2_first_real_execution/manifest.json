@@ -1,0 +1,95 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-04-24T10:39:42Z",
+  "variable_id": "std_heart_rate",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_heart_rate/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_heart_rate/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_heart_rate/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/extract_code/Extract_Code_std_heart_rate.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/extract_code/Extract_Code_std_heart_rate.py"
+  ],
+  "process_batch_id": "20260424T103842Z_AmsterdamUMCdb-1.0.2_std_heart_rate",
+  "subprocess_return_code": 0,
+  "started_at": "2026-04-24T10:38:40Z",
+  "finished_at": "2026-04-24T10:39:41Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "0eb00398138df24856739084414df7a00d066e46b574c4e22734253e861140f4",
+    "mapping_spec_sha256": "46ebe56a8ba524baba0842cb0dccd14e9ad998364eb07fa8fd5522a660279fe7"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_heart_rate/std_heart_rate_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/preview/std_heart_rate_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_heart_rate/runtime/amsterdamumcdb_1_0_2_first_real_execution/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "adbc55dc69af531d4a881601183eaa4d7f3d3e7f4cdc80caef31d6088d37eb13",
+      "size_bytes": 211621262
+    },
+    "preview_csv": {
+      "sha256": "9ce27e97e2a5b51c2888a4c877afcf1a84d85758b40031208b5af1d84f4ecf33",
+      "size_bytes": 72228
+    },
+    "asset_manifest": {
+      "sha256": "66a8184ed0d0d16e73ead41a6f45c3abe6b1aa17a107f7d857c22d864250623f",
+      "size_bytes": 3539
+    },
+    "knowledge_package": {
+      "sha256": "f782f9c7eb57914c80198ed863c95286187aeb3f6d7fb77f2fe22b3299b60231",
+      "size_bytes": 25211
+    },
+    "build_log": {
+      "sha256": "45eb78fbfc313eaa3e57b3dfcd1d39aa21be0f18f6bff0592e6f629e6d4181e7",
+      "size_bytes": 593
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260424T103842Z_AmsterdamUMCdb-1.0.2_std_heart_rate",
+    "asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/vital_signs/std_heart_rate/std_heart_rate_long.parquet",
+    "manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/asset_manifest.md",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_heart_rate/log_archive/20260424T103842Z_AmsterdamUMCdb-1.0.2_std_heart_rate__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "registry_name": "PolicyRegistry_AmsterdamUMCdb-1.0.2_opening",
+    "effective_status": "reviewed_approved",
+    "total_rows": 37732398.0,
+    "unique_patients": 20109.0,
+    "unique_admissions": 23105.0,
+    "kept_rows": 37732286.0,
+    "excluded_outlier_rows": 112.0,
+    "zero_kept_rows": 6237.0,
+    "negative_raw_rows": 3.0,
+    "gt_cleaned_max_raw_rows": 109.0,
+    "pre_icu_rows": 420.0,
+    "post_icu_rows": 3340.0,
+    "raw_min": -23421.0,
+    "raw_p01": 49.0,
+    "raw_p50": 86.0,
+    "raw_p99": 135.0,
+    "raw_max": 96160.0,
+    "kept_min": 0.0,
+    "kept_mean": 87.07636799424239,
+    "kept_p01": 49.0,
+    "kept_p05": 59.0,
+    "kept_p50": 86.0,
+    "kept_p95": 120.0,
+    "kept_p99": 135.0,
+    "kept_max": 250.0,
+    "dictionary_count": 37732398,
+    "dictionary_count_validated": 2218626,
+    "dictionary_expected_min_value": 1.0,
+    "dictionary_expected_max_value": 250.0,
+    "dictionary_unit": "/min",
+    "dictionary_ucum_code": "/min",
+    "source_row_count_matches_dictionary_count": true
+  }
+}

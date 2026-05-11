@@ -1,0 +1,182 @@
+{
+  "artifact_type": "mapping_spec",
+  "artifact_version": "v0_draft",
+  "artifact_status": "draft_public_mapping_lock",
+  "mvp_phase": "single_variable_standard_system_mvp",
+  "created_at": "2026-04-24",
+  "public_scope": "github_safe",
+  "variable_spec_ref": "docs/standard_system_mvp/std_temp/variable_spec.json",
+  "standard_variable": {
+    "variable_id": "std_temp",
+    "variable_version": "v0_draft",
+    "semantic_intent": "body temperature observation",
+    "category": "vital_sign",
+    "semantic_grain": "time-stamped measurement event",
+    "source_value_class": "raw_measured_only",
+    "aggregation_status": "not_aggregated",
+    "canonical_unit": "degrees_celsius",
+    "canonical_value_family": "numeric_measurement",
+    "current_output_storage_type": "Float64",
+    "current_output_precision_digits": 1
+  },
+  "database_mapping": {
+    "database_id": "MIMIC-IV-3.1",
+    "source_package": "icu",
+    "source_table": "chartevents",
+    "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables",
+    "source_code_system": "itemid",
+    "source_codes": [
+      223761,
+      223762
+    ],
+    "source_code_labels": {
+      "223761": "Temperature Fahrenheit",
+      "223762": "Temperature Celsius"
+    },
+    "auxiliary_context_source_codes": [
+      {
+        "source_code_system": "itemid",
+        "source_codes": [
+          224642
+        ],
+        "label": "Temperature Site",
+        "role": "exact-key optional context only"
+      }
+    ],
+    "source_fields": {
+      "identifier_fields": [
+        "subject_id",
+        "hadm_id",
+        "stay_id"
+      ],
+      "time_field": "charttime",
+      "raw_value_text_field": "value",
+      "raw_value_numeric_field": "valuenum",
+      "raw_unit_field": "valueuom",
+      "warning_flag_field": "warning",
+      "source_code_field": "itemid",
+      "caregiver_field": "caregiver_id",
+      "optional_exact_key_context_field": "source_temperature_site_raw"
+    },
+    "identifier_normalization": {
+      "subject_id_role": "patient-level identifier",
+      "hadm_id_role": "hospital-admission-level identifier",
+      "stay_id_role": "ICU-stay-level identifier",
+      "stay_link_status": "direct_stay"
+    },
+    "source_grain": "one row per charted ICU body-temperature event after exact-key Celsius-priority duplicate resolution",
+    "target_grain": "one row per normalized standard body-temperature event",
+    "join_dependencies": [
+      {
+        "join_table": "icu.icustays",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_icustays.parquet",
+        "join_keys": [
+          "subject_id",
+          "hadm_id",
+          "stay_id"
+        ],
+        "join_cardinality": "many_to_one",
+        "required_fields": [
+          "intime",
+          "outtime"
+        ],
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "icu.d_items",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/icu_d_items.parquet",
+        "join_key": "itemid",
+        "required_fields": [
+          "label",
+          "linksto",
+          "category",
+          "unitname",
+          "param_type"
+        ],
+        "dictionary_lock": {
+          "itemids": [
+            223761,
+            223762,
+            224642
+          ],
+          "linksto": "chartevents"
+        },
+        "failure_action": "fail"
+      },
+      {
+        "join_table": "icu.chartevents_temperature_site_exact_key_context",
+        "local_prepared_input_asset": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/split_cleaned/icu_chartevents_itemid_tables/chartevents_itemid_224642_temperature_site",
+        "join_keys": [
+          "subject_id",
+          "hadm_id",
+          "stay_id",
+          "charttime"
+        ],
+        "join_cardinality": "one_to_one_optional_exact_key_context",
+        "required_fields": [
+          "value"
+        ],
+        "failure_action": "allow_missing_optional_context"
+      }
+    ]
+  },
+  "representation_and_normalization": {
+    "anchor_type": "icu_intime",
+    "relative_time_unit": "minutes",
+    "measurement_time_precision": "datetime",
+    "canonical_unit": "degrees_celsius",
+    "source_unit_expectation": "degrees_fahrenheit_or_degrees_celsius",
+    "non_canonical_unit_action": "fail_until_explicit_conversion_rule_is_added",
+    "normalization_rule_id": "icu_body_temperature_fahrenheit_or_celsius_to_degrees_celsius_round_half_away_from_zero_1dp",
+    "rounding_rule": "nearest_0_1_half_away_from_zero",
+    "duplicate_resolution_rule": "exact_key_prefers_source_celsius_over_converted_fahrenheit",
+    "cleaned_range_in_canonical_unit": [
+      25.0,
+      45.0
+    ],
+    "outlier_action": "retain_normalized_value_mark_is_outlier_and_null_cleaned_value",
+    "cleaned_value_field": "std_temp_degrees_celsius_cleaned",
+    "normalized_value_field": "std_temp_degrees_celsius_normalized",
+    "outlier_flag_field": "is_outlier_by_contract",
+    "cleaning_status_field": "cleaning_status"
+  },
+  "validation_contract": {
+    "required_non_null_fields": [
+      "subject_id",
+      "hadm_id",
+      "stay_id",
+      "measurement_time",
+      "source_value_numeric_raw",
+      "source_itemid_raw"
+    ],
+    "source_code_lock_rule": "all retained measurement rows must originate from itemid 223761 or 223762; itemid 224642 is exact-key optional context only",
+    "duplicate_key": [
+      "source_measurement_id"
+    ],
+    "duplicate_action": "fail",
+    "missing_timestamp_action": "fail",
+    "missing_numeric_value_action": "fail",
+    "join_failure_action": "fail",
+    "notes": [
+      "Exact-key duplicate-resolution prefers Celsius-source rows over converted Fahrenheit rows when both appear for the same event key.",
+      "Temperature Site context is retained only when an exact-key itemid 224642 row is available.",
+      "Outlier rows remain in the event asset for audit, but the cleaned body-temperature column is set null."
+    ]
+  },
+  "execution_contract": {
+    "governed_execution_entrypoint": "docs/standard_system_mvp/std_temp/execution.py",
+    "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_temp/extract_code/Extract_Code_std_temp.py",
+    "formal_output_rule": "The governed execution.py entrypoint should read this mapping spec and delegate to the current local reviewed implementation until a more fully spec-native runner replaces it.",
+    "non_bypassable_target_rule": "Formal std_temp outputs for MIMIC-IV-3.1 should be produced only through the governed execution.py path rather than side SQL or ad hoc rebuilds."
+  },
+  "evidence_refs": {
+    "public_card_path": "docs/std_variable_cards/std_temp.md",
+    "local_extract_code_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_temp/extract_code/Extract_Code_std_temp.py",
+    "local_output_asset_path": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/vital_signs/std_temp/std_temp_long.parquet",
+    "local_asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_temp/asset_manifest.md",
+    "local_log_archive_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_temp/log_archive",
+    "local_preview_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_temp/preview/std_temp_preview.csv",
+    "local_knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_temp/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "local_query_summary_dir": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_temp/query_summary"
+  }
+}

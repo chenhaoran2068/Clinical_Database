@@ -1,0 +1,72 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-04T02:19:25Z",
+  "variable_id": "std_mechanical_ventilation_imv_niv_active",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_mechanical_ventilation_imv_niv_active/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_mechanical_ventilation_imv_niv_active/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_mechanical_ventilation_imv_niv_active/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/extract_code/Extract_Code_std_mechanical_ventilation_imv_niv_active.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_invasive_mechanical_ventilation_active/std_invasive_mechanical_ventilation_active_long.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/extract_code/Extract_Code_std_mechanical_ventilation_imv_niv_active.py"
+  ],
+  "process_batch_id": "20260504T021920Z_AmsterdamUMCdb-1.0.2_std_mechanical_ventilation_imv_niv_active",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-04T02:19:20Z",
+  "finished_at": "2026-05-04T02:19:25Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "3c705962c4db515e6eaad36be879ff7040ce0e9de5bff4dbc6d7c9b6074c17ee",
+    "mapping_spec_sha256": "a073ef01e8f078feb3314b5782341081ce6b6ba7355aaec3364a9a193c50ddff"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_mechanical_ventilation_imv_niv_active/std_mechanical_ventilation_imv_niv_active_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/preview/std_mechanical_ventilation_imv_niv_active_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_mechanical_ventilation_imv_niv_active/runtime/amsterdamumcdb_1_0_2_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "e151b6c03de8d25a9a5015287de065c7fc757cad7dc9f464f5386a6c2fe8325f",
+      "size_bytes": 1571268
+    },
+    "preview_csv": {
+      "sha256": "bdfe7fdaa05e3e4a99b047a6744fb4262314a572e301d82a05b042f4f8c96219",
+      "size_bytes": 162470
+    },
+    "asset_manifest": {
+      "sha256": "9d1d61c6bd76e19f737b2f225ca87d05021829ca82ad79170f79b1d43ab19dd5",
+      "size_bytes": 2177
+    },
+    "knowledge_package": {
+      "sha256": "135b65c74f5a6f18c8a08d274f79150fd21c36768fff2deb9e77824ee320e35e",
+      "size_bytes": 8889
+    },
+    "build_log": {
+      "sha256": "9c51ad4c78b44c36c3be18dd3adcc1c4fe443ab8bab0914c76027eb21c4afdb1",
+      "size_bytes": 798
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260504T021920Z_AmsterdamUMCdb-1.0.2_std_mechanical_ventilation_imv_niv_active",
+    "status": "built_runtime_repro_pass_owner_approval_pending",
+    "row_count": 22630,
+    "unique_subject_id": 15103,
+    "unique_stay_id": 16428,
+    "parent_row_count": 22825,
+    "hfnc_source_coverage_gap_flag": "False",
+    "layer3_asset_path": "Methods/Clinical_Database/local_work/Layer 3/AmsterdamUMCdb-1.0.2/treatment_state/std_mechanical_ventilation_imv_niv_active/std_mechanical_ventilation_imv_niv_active_long.parquet",
+    "preview_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/preview/std_mechanical_ventilation_imv_niv_active_preview.csv",
+    "asset_manifest_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/asset_manifest.md",
+    "knowledge_package_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log_path": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_mechanical_ventilation_imv_niv_active/log_archive/20260504T021920Z_AmsterdamUMCdb-1.0.2_std_mechanical_ventilation_imv_niv_active__AmsterdamUMCdb-1.0.2__build_log__Codex.md",
+    "layer3_asset_sha256": "e151b6c03de8d25a9a5015287de065c7fc757cad7dc9f464f5386a6c2fe8325f"
+  }
+}

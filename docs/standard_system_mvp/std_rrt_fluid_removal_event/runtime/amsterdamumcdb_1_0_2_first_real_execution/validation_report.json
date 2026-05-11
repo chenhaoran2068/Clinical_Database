@@ -1,0 +1,309 @@
+{
+  "artifact_type": "validation_report",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T13:15:04Z",
+  "validation_scope": "pre_execution_spec_and_environment_checks",
+  "overall_status": "pass",
+  "variable_id": "std_rrt_fluid_removal_event",
+  "database_id": "AmsterdamUMCdb-1.0.2",
+  "variable_spec_path": "docs/standard_system_mvp/std_rrt_fluid_removal_event/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_rrt_fluid_removal_event/mapping_spec_amsterdamumcdb_1_0_2.json",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "spec_hashes": {
+    "variable_spec_sha256": "cbb9067d82744d47406c0a70c0d7efd60c0dda4d92714dd5126b250f76e1abad",
+    "mapping_spec_sha256": "4f61b10fdd2efac19646ac0912611a5856a77cd04bca757dfa54f5d3b75210fa"
+  },
+  "checks": [
+    {
+      "check_id": "variable_spec_artifact_type",
+      "status": "pass",
+      "message": "variable_spec artifact_type is variable_spec"
+    },
+    {
+      "check_id": "mapping_spec_artifact_type",
+      "status": "pass",
+      "message": "mapping_spec artifact_type is mapping_spec"
+    },
+    {
+      "check_id": "variable_id_match",
+      "status": "pass",
+      "message": "variable_id is consistently locked to std_rrt_fluid_removal_event"
+    },
+    {
+      "check_id": "variable_version_match",
+      "status": "pass",
+      "message": "variable_version matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "database_id_match",
+      "status": "pass",
+      "message": "mapping_spec database_id matches requested database_id AmsterdamUMCdb-1.0.2"
+    },
+    {
+      "check_id": "variable_spec_ref_match",
+      "status": "pass",
+      "message": "mapping_spec variable_spec_ref points to the chosen variable_spec.json"
+    },
+    {
+      "check_id": "semantic_grain_match",
+      "status": "pass",
+      "message": "semantic_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "source_value_class_match",
+      "status": "pass",
+      "message": "source_value_class matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "canonical_value_family_match",
+      "status": "pass",
+      "message": "value family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "representation_unit_match",
+      "status": "pass",
+      "message": "canonical_unit matches across variable_spec and representation_and_normalization"
+    },
+    {
+      "check_id": "treatment_device_io_event_stream_class_lock",
+      "status": "pass",
+      "message": "variable is compatible with the treatment/device/IO event-stream class for std_rrt_fluid_removal_event"
+    },
+    {
+      "check_id": "variable_directory_alignment",
+      "status": "pass",
+      "message": "variable directory name matches variable_id std_rrt_fluid_removal_event"
+    },
+    {
+      "check_id": "event_stream_value_family_lock",
+      "status": "pass",
+      "message": "value family is numeric_event_with_context and representation is numeric_event_with_metadata"
+    },
+    {
+      "check_id": "event_stream_source_class_lock",
+      "status": "pass",
+      "message": "source_value_class is locked to source-recorded treatment/device/IO amount events"
+    },
+    {
+      "check_id": "timestamp_required_lock",
+      "status": "pass",
+      "message": "timestamp_required is locked to true for the event-stream class"
+    },
+    {
+      "check_id": "context_field_required_lock",
+      "status": "pass",
+      "message": "context_fields_required is locked to true for the event-stream class"
+    },
+    {
+      "check_id": "event_stream_contract_target_entity_grain_present",
+      "status": "pass",
+      "message": "event_stream_contract.target_entity_grain is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_contract_anchor_family_present",
+      "status": "pass",
+      "message": "event_stream_contract.anchor_family is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_contract_event_time_rule_present",
+      "status": "pass",
+      "message": "event_stream_contract.event_time_rule is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_contract_event_value_meaning_present",
+      "status": "pass",
+      "message": "event_stream_contract.event_value_meaning is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_contract_unit_rule_present",
+      "status": "pass",
+      "message": "event_stream_contract.unit_rule is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_contract_context_role_rule_present",
+      "status": "pass",
+      "message": "event_stream_contract.context_role_rule is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_contract_parent_link_rule_present",
+      "status": "pass",
+      "message": "event_stream_contract.parent_link_rule is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_contract_downstream_aggregation_rule_present",
+      "status": "pass",
+      "message": "event_stream_contract.downstream_aggregation_rule is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_contract_no_row_interpretation_present",
+      "status": "pass",
+      "message": "event_stream_contract.no_row_interpretation is explicitly locked"
+    },
+    {
+      "check_id": "source_locator_mode_present",
+      "status": "pass",
+      "message": "mapping_spec declares source_locator_mode"
+    },
+    {
+      "check_id": "source_table_present",
+      "status": "pass",
+      "message": "mapping_spec declares a concrete source_table or source-family expression"
+    },
+    {
+      "check_id": "source_itemids_present",
+      "status": "pass",
+      "message": "mapping_spec locks at least one source itemid or source code"
+    },
+    {
+      "check_id": "database_mapping_source_time_field_present",
+      "status": "pass",
+      "message": "database_mapping.source_time_field is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_value_field_present",
+      "status": "pass",
+      "message": "database_mapping.source_value_field is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_unit_field_present",
+      "status": "pass",
+      "message": "database_mapping.source_unit_field is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_source_grain_present",
+      "status": "pass",
+      "message": "database_mapping.source_grain is explicitly locked"
+    },
+    {
+      "check_id": "database_mapping_target_grain_present",
+      "status": "pass",
+      "message": "database_mapping.target_grain is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_target_entity_grain_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.target_entity_grain is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_anchor_family_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.anchor_family is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_event_time_translation_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.event_time_translation is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_event_value_translation_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.event_value_translation is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_unit_translation_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.unit_translation is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_context_translation_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.context_translation is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_parent_link_translation_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.parent_link_translation is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_downstream_aggregation_translation_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.downstream_aggregation_translation is explicitly locked"
+    },
+    {
+      "check_id": "event_stream_translation_no_row_translation_present",
+      "status": "pass",
+      "message": "event_stream_build_translation.no_row_translation is explicitly locked"
+    },
+    {
+      "check_id": "target_entity_grain_match",
+      "status": "pass",
+      "message": "target_entity_grain matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "anchor_family_match",
+      "status": "pass",
+      "message": "anchor_family matches across variable_spec and mapping_spec"
+    },
+    {
+      "check_id": "mapping_semantic_grain_match",
+      "status": "pass",
+      "message": "mapping_spec standard_variable.semantic_grain matches variable_spec immutable_core.semantic_grain"
+    },
+    {
+      "check_id": "normalization_rule_present",
+      "status": "pass",
+      "message": "mapping_spec declares a normalization_rule_id"
+    },
+    {
+      "check_id": "representation_primary_output_value_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.primary_output_value_field is explicitly locked"
+    },
+    {
+      "check_id": "representation_event_time_output_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.event_time_output_field is explicitly locked"
+    },
+    {
+      "check_id": "representation_standard_unit_output_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.standard_unit_output_field is explicitly locked"
+    },
+    {
+      "check_id": "representation_source_context_output_field_present",
+      "status": "pass",
+      "message": "representation_and_normalization.source_context_output_field is explicitly locked"
+    },
+    {
+      "check_id": "required_non_null_fields_present",
+      "status": "pass",
+      "message": "mapping_spec declares required_non_null_fields for validation"
+    },
+    {
+      "check_id": "no_row_policy_present",
+      "status": "pass",
+      "message": "mapping_spec explicitly locks a no-row policy check"
+    },
+    {
+      "check_id": "governed_execution_entrypoint_declared",
+      "status": "pass",
+      "message": "mapping_spec governed_execution_entrypoint points to this execution.py"
+    },
+    {
+      "check_id": "reference_implementation_declared",
+      "status": "pass",
+      "message": "mapping_spec declares current_reference_implementation"
+    },
+    {
+      "check_id": "reference_implementation_exists",
+      "status": "pass",
+      "message": "current reference implementation exists: Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_rrt_fluid_removal_event/extract_code/Extract_Code_std_rrt_fluid_removal_event.py"
+    },
+    {
+      "check_id": "local_input_asset_declared",
+      "status": "pass",
+      "message": "mapping_spec declares a primary local prepared input asset"
+    },
+    {
+      "check_id": "local_input_asset_exists",
+      "status": "pass",
+      "message": "local prepared input asset exists: Methods/Clinical_Database/local_work/Layer 2/AmsterdamUMCdb-1.0.2/reviewed_unsplit/numericitems_event.parquet"
+    }
+  ]
+}

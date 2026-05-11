@@ -1,0 +1,62 @@
+{
+  "artifact_type": "execution_manifest",
+  "artifact_version": "v0_draft",
+  "contract_ref": "Framework_Guideline/StandardSystem_RuntimeEvidence_Contract.md",
+  "generated_at": "2026-05-02T11:48:49Z",
+  "variable_id": "std_rrt_modality_episode",
+  "database_id": "MIMIC-IV-3.1",
+  "execution_mode": "execute",
+  "validation_status": "pass",
+  "variable_spec_path": "docs/standard_system_mvp/std_rrt_modality_episode/variable_spec.json",
+  "mapping_spec_path": "docs/standard_system_mvp/std_rrt_modality_episode/mapping_spec_mimic_iv_3_1.json",
+  "execution_entrypoint_path": "docs/standard_system_mvp/std_rrt_modality_episode/execution.py",
+  "workspace_layout": "workspace root containing Github/ and Methods/ as sibling directories",
+  "reference_implementation_path": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_modality_episode/extract_code/Extract_Code_std_rrt_modality_episode.py",
+  "local_input_asset_path": "Methods/Clinical_Database/local_work/Layer 2/MIMIC-IV-3.1/reviewed_unsplit/source_supplied_derived/rrt.parquet",
+  "command": [
+    "python",
+    "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_modality_episode/extract_code/Extract_Code_std_rrt_modality_episode.py"
+  ],
+  "process_batch_id": "20260502T114848Z_MIMIC-IV-3.1_std_rrt_modality_episode",
+  "subprocess_return_code": 0,
+  "started_at": "2026-05-02T11:45:54Z",
+  "finished_at": "2026-05-02T11:48:49Z",
+  "spec_hashes": {
+    "variable_spec_sha256": "550045554ea35646c2949d60c5c2b3495f82dcdbcd3757309efcd17e345a731a",
+    "mapping_spec_sha256": "c105c527ead1c3b1245f381afc0976d30489a8645e44fe67f031d71e3e23df09"
+  },
+  "output_artifacts": {
+    "primary_output_asset": "Methods/Clinical_Database/local_work/Layer 3/MIMIC-IV-3.1/treatment_state/std_rrt_modality_episode/std_rrt_modality_episode_long.parquet",
+    "preview_csv": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_modality_episode/preview/std_rrt_modality_episode_preview.csv",
+    "asset_manifest": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_modality_episode/asset_manifest.md",
+    "knowledge_package": "Methods/Clinical_Database/local_work/Layer 5/MIMIC-IV-3.1/std_rrt_modality_episode/Layer5_PerVariable_KnowledgePackage.xlsx",
+    "build_log": "Github/Clinical_Database/docs/standard_system_mvp/std_rrt_modality_episode/runtime/mimic_iv_3_1_rerun_repro_check/captured_build_log.md"
+  },
+  "output_signatures": {
+    "primary_output_asset": {
+      "sha256": "b59f326195afbe49641271cdb2f3a3c03c86d8cd2051aa3581350840c5704f3a",
+      "size_bytes": 2681972
+    },
+    "preview_csv": {
+      "sha256": "6fe1ecab817045bac418c6866aabe19ea930bcbf9b4f29803afe265935405bae",
+      "size_bytes": 143950
+    },
+    "asset_manifest": {
+      "sha256": "359d2d0cd5d6cf68e4bea805997107b39081b0242cc219c395f7066ad19aa629",
+      "size_bytes": 2708
+    },
+    "knowledge_package": {
+      "sha256": "126a9f48c845ab81494e22264cce10c1035290464b8c75603bafeea8b834b9f3",
+      "size_bytes": 26957
+    },
+    "build_log": {
+      "sha256": "801cb98234a305016ca88a213ba5071e047339e275fdde1db106e41555aa630d",
+      "size_bytes": 1474
+    }
+  },
+  "build_summary": {
+    "process_batch_id": "20260502T114848Z_MIMIC-IV-3.1_std_rrt_modality_episode",
+    "row_count": 56004,
+    "unique_stay_id": 5819
+  }
+}
