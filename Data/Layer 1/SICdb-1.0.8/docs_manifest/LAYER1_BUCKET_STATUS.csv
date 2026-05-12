@@ -1,0 +1,6 @@
+﻿database_id,bucket,purpose,status
+SICdb-1.0.8,raw_original,restricted source CSV delivery,local_only_populated_public_skeleton_empty
+SICdb-1.0.8,raw_unpacked,unpacked/readable source staging,not_duplicated_csv_delivery_is_already_readable
+SICdb-1.0.8,source_supplied_derived,source supplied derived/helper tables,not_yet_populated
+SICdb-1.0.8,local_converted_parquet,local performance parquet copies,not_yet_generated
+SICdb-1.0.8,docs_manifest,public-safe skeleton docs,populated

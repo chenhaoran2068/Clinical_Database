@@ -1,4 +1,4 @@
-# Public Inventory
+﻿# Public Inventory
 
 ## What this file is
 
@@ -34,7 +34,7 @@ The machine-readable counterpart is [`docs/release_safe_manifest.json`](release_
 | --- | --- | --- | --- | --- | --- |
 | `MIMIC-IV` | MIMIC-IV family | `MIMIC-IV-3.1`, `MIMIC-IV-ECHO-1.0` | `docs/onboarding/families/MIMIC-IV.md` | `463` | `0` |
 | `AmsterdamUMCdb` | AmsterdamUMCdb family | `AmsterdamUMCdb-1.0.2` | `docs/onboarding/families/AmsterdamUMCdb.md` | `58` | `58` |
-| `SICdb` | SICdb family | `SICdb-1.0.5` | `docs/onboarding/families/SICdb.md` | `0` | `0` |
+| `SICdb` | SICdb family | `SICdb-1.0.8` | `docs/onboarding/families/SICdb.md` | `0` | `0` |
 | `NWICU` | NWICU family | `NWICU-0.1.0` | `docs/onboarding/families/NWICU.md` | `0` | `0` |
 | `eICU-CRD` | eICU-CRD family | `eICU-CRD-2.0` | `docs/onboarding/families/eICU-CRD.md` | `0` | `0` |
 | `Zigong` | Zigong family | `Zigong-1.1` | `docs/onboarding/families/Zigong.md` | `0` | `0` |
@@ -46,7 +46,7 @@ The machine-readable counterpart is [`docs/release_safe_manifest.json`](release_
 | `MIMIC-IV-3.1` | `MIMIC-IV` | core_database | `3.1` | published_skeleton_and_public_scripts | public MIMIC source-package boundary contract published; local Layer 4 opening registry built pending owner review | broad reviewed-approved local assets exist and public std-variable cards are published | `463` | `docs/onboarding/MIMIC-IV-3.1.md` |
 | `MIMIC-IV-ECHO-1.0` | `MIMIC-IV` | sibling_module | `1.0` | published_skeleton_and_public_scripts | local Layer 4 opening registry built pending owner review; ECHO-specific public opening policy not yet published | database-level local notes exist, but no reviewed-approved retained-variable family has been published yet | `0` | `docs/onboarding/MIMIC-IV-ECHO-1.0.md` |
 | `AmsterdamUMCdb-1.0.2` | `AmsterdamUMCdb` | core_database | `1.0.2` | published_skeleton_and_public_scripts | database opening policy registry contract and validator path are published | pilot reviewed-approved local assets exist and public std-variable cards are published for shared variables | `58` | `docs/onboarding/AmsterdamUMCdb-1.0.2.md` |
-| `SICdb-1.0.5` | `SICdb` | core_database | `1.0.5` | published_skeleton_initial_intake_only | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved SICdb retained-variable assets yet | `0` | `docs/onboarding/SICdb-1.0.5.md` |
+| `SICdb-1.0.8` | `SICdb` | core_database | `1.0.8` | published_skeleton_initial_intake_only | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved SICdb retained-variable assets yet | `0` | `docs/onboarding/SICdb-1.0.8.md` |
 | `NWICU-0.1.0` | `NWICU` | core_database | `0.1.0` | published_skeleton_initial_intake_only | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved NWICU retained-variable assets yet | `0` | `docs/onboarding/NWICU-0.1.0.md` |
 | `eICU-CRD-2.0` | `eICU-CRD` | core_database | `2.0` | published_skeleton_initial_intake_only | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved eICU-CRD retained-variable assets yet | `0` | `docs/onboarding/eICU-CRD-2.0.md` |
 | `Zigong-1.1` | `Zigong` | core_database | `1.1` | published_skeleton_initial_intake_only | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved Zigong retained-variable assets yet | `0` | `docs/onboarding/Zigong-1.1.md` |

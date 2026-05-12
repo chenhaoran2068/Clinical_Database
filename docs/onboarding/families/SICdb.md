@@ -1,10 +1,10 @@
-# SICdb Family Onboarding
+﻿# SICdb Family Onboarding
 
 SICdb is governed as a standalone ICU database family.
 
 Current database IDs:
 
-- `SICdb-1.0.5`
+- `SICdb-1.0.8`
 
 ## Family Rules
 
@@ -23,6 +23,6 @@ Current database IDs:
 
 ## Current Status
 
-`SICdb-1.0.5` has a local Layer 1 raw-original copy, Layer 2 opening outputs, Stage C source-access indexes, Stage C.1 problem adjudication, Stage C.2 semantic guardrails, and a Layer 4 opening registry built pending owner review. No reviewed-approved Layer 5 variables exist yet.
+`SICdb-1.0.8` has a local Layer 1 raw-original copy, Layer 2 opening outputs, Stage C source-access indexes, Stage C.1 problem adjudication, Stage C.2 semantic guardrails, and a Layer 4 opening registry built pending owner review. No reviewed-approved Layer 5 variables exist yet.
 
 The active local semantic guardrails restrict downstream use to cases-linked rows unless a future owner review accepts broader source populations.

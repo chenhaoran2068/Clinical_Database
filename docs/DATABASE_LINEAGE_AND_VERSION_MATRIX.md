@@ -22,7 +22,7 @@ AmsterdamUMCdb family
 `- AmsterdamUMCdb-1.0.2
 
 SICdb family
-`- SICdb-1.0.5
+`- SICdb-1.0.8
 
 NWICU family
 `- NWICU-0.1.0
@@ -47,7 +47,7 @@ Interpretation rule:
 | `MIMIC-IV-3.1` | `MIMIC-IV` | core database | `3.1` | skeleton and Layer 1 scripts published | unpack, convert, note fallback, public workflow | [`MIMICIV_SourcePackageAndModuleBoundary_Contract.md`](../Framework_Guideline/MIMICIV_SourcePackageAndModuleBoundary_Contract.md); local Layer 4 opening registry built pending owner review | broad public-card coverage from reviewed-approved local assets |
 | `MIMIC-IV-ECHO-1.0` | `MIMIC-IV` | sibling module | `1.0` | skeleton and Layer 1 scripts published | ECHO unpack, ECHO convert, public workflow | local Layer 4 opening registry built pending owner review; public ECHO-specific policy not yet published | no reviewed-approved retained-variable family published yet |
 | `AmsterdamUMCdb-1.0.2` | `AmsterdamUMCdb` | core database | `1.0.2` | skeleton and Layer 1 scripts published | convert, registry validation, public workflow | [`AmsterdamUMCdb_TimeSemantics_Contract.md`](../Framework_Guideline/AmsterdamUMCdb_TimeSemantics_Contract.md) | pilot reviewed-approved assets exist and public cards are already available for shared variables |
-| `SICdb-1.0.5` | `SICdb` | core database | `1.0.5` | skeleton published; local Layer 2 opening and Stage C.2 complete | public workflow only for now | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved SICdb retained-variable assets yet |
+| `SICdb-1.0.8` | `SICdb` | core database | `1.0.8` | skeleton published; local Layer 2 opening and Stage C.2 complete | public workflow only for now | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved SICdb retained-variable assets yet |
 | `NWICU-0.1.0` | `NWICU` | core database | `0.1.0` | skeleton published; local Layer 2 opening and Stage C.2 complete | public workflow only for now | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved NWICU retained-variable assets yet |
 | `eICU-CRD-2.0` | `eICU-CRD` | core database | `2.0` | skeleton published; local Layer 2 opening and Stage C.2 complete | public workflow only for now | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved eICU-CRD retained-variable assets yet |
 | `Zigong-1.1` | `Zigong` | core database | `1.1` | skeleton published; local Layer 2 opening and Stage C.2 complete | public workflow only for now | local Layer 4 opening registry built pending owner review; public opening policy not yet published | no reviewed-approved Zigong retained-variable assets yet |
@@ -75,9 +75,9 @@ Interpretation rule:
 - public interpretation must honor relative-time semantics and cross-admission overlap warnings
 - current Layer 5 state is a pilot-approved subset, not full database completion
 
-### SICdb-1.0.5
+### SICdb-1.0.8
 
-- local Layer 1 raw-original staging has begun from the SICdb 1.0.5 CSV delivery
+- local Layer 1 raw-original staging has begun from the SICdb 1.0.8 CSV delivery
 - public Layer 1 skeleton is intentionally data-free and documents where restricted CSV files belong
 - ID and time interpretation are provisional until Layer 2 opening review confirms `CaseID`, `PatientID`, offset fields, and dictionary joins
 - no SICdb variable should be treated as reviewed-approved until a database-specific mapping and review packet exists

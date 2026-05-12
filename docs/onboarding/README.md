@@ -25,7 +25,7 @@ Current playbooks:
 - [`MIMIC-IV-3.1.md`](MIMIC-IV-3.1.md)
 - [`MIMIC-IV-ECHO-1.0.md`](MIMIC-IV-ECHO-1.0.md)
 - [`AmsterdamUMCdb-1.0.2.md`](AmsterdamUMCdb-1.0.2.md)
-- [`SICdb-1.0.5.md`](SICdb-1.0.5.md)
+- [`SICdb-1.0.8.md`](SICdb-1.0.8.md)
 - [`NWICU-0.1.0.md`](NWICU-0.1.0.md)
 - [`eICU-CRD-2.0.md`](eICU-CRD-2.0.md)
 - [`Zigong-1.1.md`](Zigong-1.1.md)

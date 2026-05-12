@@ -31,7 +31,7 @@
       "description": "Standalone ICU database family staged from the SICdb CSV delivery with case-level identifiers, offset-time fields, and source reference dictionaries.",
       "public_family_playbook": "docs/onboarding/families/SICdb.md",
       "current_database_ids": [
-        "SICdb-1.0.5"
+        "SICdb-1.0.8"
       ],
       "future_member_rule": "Add future SICdb versions as new versioned database_id rows. Re-review ID, offset-time, and source dictionary assumptions for each version.",
       "alignment_rule": "Cross-version or cross-database alignment must use standardized IDs and documented offset-time interpretation, not raw field-name similarity."
@@ -148,14 +148,14 @@
       ]
     },
     {
-      "database_id": "SICdb-1.0.5",
-      "display_name": "SICdb v1.0.5",
+      "database_id": "SICdb-1.0.8",
+      "display_name": "SICdb v1.0.8",
       "family_id": "SICdb",
       "module_role": "core_database",
       "version": "1.0.5",
       "relationship_note": "Standalone SICdb CSV delivery staged as a new Layer 1 database line. Local intake copied source CSVs into raw_original; Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C.2 semantic guardrail policy, and Layer 4 opening registry build have completed locally.",
-      "public_layer1_skeleton_path": "Data/Layer 1/SICdb-1.0.5",
-      "public_onboarding_playbook": "docs/onboarding/SICdb-1.0.5.md",
+      "public_layer1_skeleton_path": "Data/Layer 1/SICdb-1.0.8",
+      "public_onboarding_playbook": "docs/onboarding/SICdb-1.0.8.md",
       "public_script_entrypoints": [
         "scripts/public_workflow.py"
       ],

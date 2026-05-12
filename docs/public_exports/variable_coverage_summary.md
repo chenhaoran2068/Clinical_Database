@@ -1,4 +1,4 @@
-# Public Variable Coverage Summary
+﻿# Public Variable Coverage Summary
 
 This file is the human-readable coverage summary derived from the current public variable-card layer.
 
@@ -15,7 +15,7 @@ This file is the human-readable coverage summary derived from the current public
 | `MIMIC-IV-3.1` | `MIMIC-IV` | core_database | `463` | `std_aado2`, `std_aado2_calc`, `std_advanced_respiratory_support_active`, `std_age`, `std_aki_kdigo`, `std_albumin`, `std_albumin_ascites`, `std_albumin_creatinine_ratio_urine`, `std_albumin_other_body_fluid`, `std_albumin_pleural`, `std_albumin_urine`, `std_alp`, `std_alt`, `std_amylase`, `std_amylase_ascites` |
 | `MIMIC-IV-ECHO-1.0` | `MIMIC-IV` | sibling_module | `0` |  |
 | `AmsterdamUMCdb-1.0.2` | `AmsterdamUMCdb` | core_database | `58` | `std_albumin`, `std_amylase`, `std_anion_gap`, `std_aptt`, `std_bicarbonate_bg`, `std_bun`, `std_carbon_dioxide_partial_pressure_bg_allspecimen`, `std_chloride`, `std_creatinine`, `std_crrt_family_active`, `std_days_to_next_icu_admission`, `std_days_to_next_icu_mcu_admission`, `std_dbp`, `std_ferritin`, `std_first_day_urine_output_summary` |
-| `SICdb-1.0.5` | `SICdb` | core_database | `0` |  |
+| `SICdb-1.0.8` | `SICdb` | core_database | `0` |  |
 | `NWICU-0.1.0` | `NWICU` | core_database | `0` |  |
 | `eICU-CRD-2.0` | `eICU-CRD` | core_database | `0` |  |
 | `Zigong-1.1` | `Zigong` | core_database | `0` |  |

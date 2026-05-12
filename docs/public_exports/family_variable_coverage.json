@@ -663,7 +663,7 @@
       "family_id": "SICdb",
       "display_name": "SICdb family",
       "member_database_ids": [
-        "SICdb-1.0.5"
+        "SICdb-1.0.8"
       ],
       "family_union_public_card_count": 0,
       "family_shared_public_card_count": 0,

@@ -1,4 +1,4 @@
-# Layer 3 Directory Contract
+﻿# Layer 3 Directory Contract
 
 Last updated: `2026-05-09`
 
@@ -65,7 +65,7 @@ For every new database and every newly generated retained asset, the output path
 Allowed:
 
 ```text
-Methods/Clinical_Database/local_work/Layer 3/SICdb-1.0.5/vital_signs/std_heart_rate/std_heart_rate_long.parquet
+Methods/Clinical_Database/local_work/Layer 3/SICdb-1.0.8/vital_signs/std_heart_rate/std_heart_rate_long.parquet
 ```
 
 Not allowed:

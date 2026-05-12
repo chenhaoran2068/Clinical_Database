@@ -644,7 +644,7 @@
       ]
     },
     {
-      "database_id": "SICdb-1.0.5",
+      "database_id": "SICdb-1.0.8",
       "family_id": "SICdb",
       "module_role": "core_database",
       "version": "1.0.5",

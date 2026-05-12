@@ -1,8 +1,8 @@
-# SICdb-1.0.5 Onboarding
+﻿# SICdb-1.0.8 Onboarding
 
 ## Database Identity
 
-- `database_id`: `SICdb-1.0.5`
+- `database_id`: `SICdb-1.0.8`
 - family: `SICdb`
 - role: `core_database`
 - current local stage: Layer 2 opening, Stage C cleaning, Stage C.1 adjudication, Stage C.2 semantic guardrails, and Layer 4 opening registry build complete locally; no reviewed-approved variables yet
@@ -11,11 +11,11 @@
 
 Restricted raw files belong under:
 
-- `Methods/Clinical_Database/local_work/Layer 1/SICdb-1.0.5/raw_original`
+- `Methods/Clinical_Database/local_work/Layer 1/SICdb-1.0.8/raw_original`
 
 The public skeleton is:
 
-- `Data/Layer 1/SICdb-1.0.5`
+- `Data/Layer 1/SICdb-1.0.8`
 
 Expected Layer 1 buckets:
 
@@ -27,7 +27,7 @@ Expected Layer 1 buckets:
 
 ## Current Source Delivery
 
-The current local intake used the SICdb 1.0.5 CSV delivery.
+The current local intake used the SICdb 1.0.8 CSV delivery.
 
 Observed source files:
 
@@ -53,8 +53,8 @@ SICdb Layer 2 opening, Stage C cleaning, Stage C.1 problem adjudication, Stage C
 
 Layer 4 local status:
 
-- `PolicyRegistry_SICdb-1.0.5_opening.json`: built pending owner review
-- `Layer4_SourceRegistry_SICdb-1.0.5.xlsx`: built locally
+- `PolicyRegistry_SICdb-1.0.8_opening.json`: built pending owner review
+- `Layer4_SourceRegistry_SICdb-1.0.8.xlsx`: built locally
 
 Current guardrails:
 

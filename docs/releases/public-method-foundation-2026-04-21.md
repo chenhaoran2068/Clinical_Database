@@ -1,4 +1,4 @@
-# Public Release Note: public-method-foundation-2026-04-21
+﻿# Public Release Note: public-method-foundation-2026-04-21
 
 - release version: `0.1.0-dev`
 - release tag: `public-method-foundation-2026-04-21`
@@ -72,7 +72,7 @@
 | `MIMIC-IV-3.1` | core_database | `463` |
 | `MIMIC-IV-ECHO-1.0` | sibling_module | `0` |
 | `AmsterdamUMCdb-1.0.2` | core_database | `58` |
-| `SICdb-1.0.5` | core_database | `0` |
+| `SICdb-1.0.8` | core_database | `0` |
 | `NWICU-0.1.0` | core_database | `0` |
 | `eICU-CRD-2.0` | core_database | `0` |
 | `Zigong-1.1` | core_database | `0` |

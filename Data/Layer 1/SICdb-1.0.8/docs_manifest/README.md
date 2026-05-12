@@ -1,4 +1,4 @@
-# SICdb-1.0.5 Layer 1 Manifest
+﻿# SICdb-1.0.8 Layer 1 Manifest
 
 This database skeleton follows the shared Layer 1 contract:
 
@@ -8,7 +8,7 @@ This database skeleton follows the shared Layer 1 contract:
 - `local_converted_parquet`
 - `docs_manifest`
 
-The current local intake stages the SICdb 1.0.5 CSV delivery under `raw_original`.
+The current local intake stages the SICdb 1.0.8 CSV delivery under `raw_original`.
 
 Restricted raw CSV files must remain outside this public repository. Public files here are only the data-free skeleton and documentation.
 
