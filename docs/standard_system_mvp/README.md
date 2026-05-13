@@ -71,6 +71,8 @@ Current phase interpretation:
 - class 3 now also has renal-support active-state closure through `std_rrt_active`, with governed MIMIC and Amsterdam same-name approval while keeping CRRT-only, non-CRRT-only, exact modality, access-line, fluid-removal, summary, and phenotype semantics separate
 - the MIMIC and Amsterdam RRT child layers are now split and governed: `std_crrt_family_active` and `std_non_crrt_rrt_active` are Class 3 family active flags, while `std_rrt_modality_episode` opens the Class 5 `episode_interval_bridge` skeleton for exact modality episodes with parent links; Amsterdam non-CRRT approval is source-bounded to Hemodialyse active intervals
 - class 4 is now opened through `treatment_device_io_event_stream`, with governed MIMIC approval of `std_rrt_fluid_removal_event` as a source-faithful RRT fluid-removal event stream; Amsterdam has a reproducible bounded candidate execution for explicit `CVVH Onttrokken` and `Hemodialyse onttrekken` volume rows, but remains not approved because rate settings, cumulative counters, access lines, active flags, modality episodes, and parent-link gaps must stay outside same-name approval
+- common encounter/outcome death-time evidence now has a public-safe approval summary for `std_allcause_death_time_after_icu_admission`, covering MIMIC-IV-3.1, AmsterdamUMCdb-1.0.2, eICU-CRD-2.0, SICdb-1.0.8, and NWICU-0.1.0 with database-specific censoring and restricted-partial-use caveats
+- the local common encounter/outcome block has a public-safe Layer 3/4/5 closure note recording that the current approved/blocked/restricted statuses are internally consistent across local assets, policies, and researcher-use indexes
 
 ## Closed Governed MVP Instances
 
