@@ -73,6 +73,7 @@ Current phase interpretation:
 - class 4 is now opened through `treatment_device_io_event_stream`, with governed MIMIC approval of `std_rrt_fluid_removal_event` as a source-faithful RRT fluid-removal event stream; Amsterdam has a reproducible bounded candidate execution for explicit `CVVH Onttrokken` and `Hemodialyse onttrekken` volume rows, but remains not approved because rate settings, cumulative counters, access lines, active flags, modality episodes, and parent-link gaps must stay outside same-name approval
 - common encounter/outcome death-time evidence now has a public-safe approval summary for `std_allcause_death_time_after_icu_admission`, covering MIMIC-IV-3.1, AmsterdamUMCdb-1.0.2, eICU-CRD-2.0, SICdb-1.0.8, and NWICU-0.1.0 with database-specific censoring and restricted-partial-use caveats
 - the local common encounter/outcome block has a public-safe Layer 3/4/5 closure note recording that the current approved/blocked/restricted statuses are internally consistent across local assets, policies, and researcher-use indexes
+- anthropometrics now has a five-database local build summary for `std_height`, `std_height_interval`, `std_weight_icu_admission_baseline`, `std_weight_icu_admission_baseline_interval`, `std_bmi_icu_admission_baseline`, and `std_weight_event`; these outputs are built locally and pending owner review, not public-approved variables yet
 
 ## Closed Governed MVP Instances
 
