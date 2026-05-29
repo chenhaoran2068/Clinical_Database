@@ -32,14 +32,21 @@ Standardized alveolar-arterial oxygen difference event. Value type: numeric meas
 
 ## Cross-Database Status
 
-- Currently approved in MIMIC-IV-3.1 only.
-- current publication basis: reviewed-approved `MIMIC-IV-3.1` knowledge package
+- MIMIC-IV-3.1 is approved as the direct arterial A-aDO2 analyzer source.
+- SICdb-1.0.8 is owner-approved unavailable. A direct-looking `pO2 (A-a) (T) (BGA)` source exists but is a 5-row structural sparse artifact and is blocked from the core feature matrix.
+- AmsterdamUMCdb-1.0.2, eICU-CRD-2.0, and NWICU-0.1.0 have no approved direct `std_aado2` source under the current reviewed surface.
+- current publication basis: reviewed-approved MIMIC package plus SICdb sparse-source firewall review
 
 ## Current Approved Database Assets
 
 | database_id | current_status | latest_version | latest_review_date |
 | --- | --- | --- | --- |
 | MIMIC-IV-3.1 | reviewed_approved | v1 | 2026-03-25 |
+| SICdb-1.0.8 | reviewed_approved_unavailable | blocked sparse audit stub | 2026-05-29 |
+
+## Public Use Warning
+
+For SICdb, direct `std_aado2` must be treated as unavailable. Downstream work requiring SICdb A-aDO2 must use a separately approved calculated asset (`std_aado2_calc`) with explicit PaO2, PaCO2, FiO2, and physiologic-assumption rules. Do not substitute PaO2/FiO2 ratio or PaO2 for A-aDO2.
 
 ## Publication Rule
 
