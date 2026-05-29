@@ -10,6 +10,7 @@ They are the public machine-readable layer that begins to lock variable identity
 - files here are governed MVP drafts, not the final universal standard schema
 - sibling local-work evidence paths are written as workspace-relative paths such as `Methods/Clinical_Database/local_work/...`
 - formal patient-level outputs should not be treated as standard-system outputs until a governed execution path, runtime evidence, and rerun gate also exist
+- owner-facing variable review reports must follow `VARIABLE_REVIEW_REPORTING_STANDARD.md`; build success, reproducibility pass, technical recommendation, and Codex review are not owner approval
 
 ## Reusable Class Skeleton
 

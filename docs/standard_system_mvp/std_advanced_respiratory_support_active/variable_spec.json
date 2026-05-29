@@ -1,7 +1,7 @@
 {
   "artifact_type": "variable_spec",
-  "artifact_version": "v0_draft",
-  "artifact_status": "draft_public_variable_lock",
+  "artifact_version": "v1_owner_reviewed",
+  "artifact_status": "owner_approved_with_cross_database_restrictions",
   "mvp_phase": "class_3_amsterdam_q2_build_first_candidate_mvp",
   "created_at": "2026-05-04",
   "public_scope": "github_safe",
@@ -11,7 +11,7 @@
   },
   "variable_identity": {
     "variable_id": "std_advanced_respiratory_support_active",
-    "variable_version": "v0_draft",
+    "variable_version": "v1_owner_reviewed",
     "standardized_name_en": "Advanced respiratory support active",
     "semantic_folder": "treatment_state",
     "category": "treatment_state"
@@ -22,7 +22,7 @@
     "semantic_grain": "one row per positive state episode",
     "value_family": "binary_state",
     "source_value_class": "positive_state_episode",
-    "same_name_cross_database_rule": "Same-name mappings must preserve the intended advanced respiratory support family. If a database cannot source HFNC while the public concept expects it, the gap must remain visible and owner approval must not be implied."
+    "same_name_cross_database_rule": "Same-name mappings must preserve the intended advanced respiratory support family. If a database cannot source HFNC while the public concept expects it, the gap must remain visible. Owner approval may be granted only as a restricted partial asset rather than complete IMV/NIV/HFNC coverage."
   },
   "state_episode_contract": {
     "target_entity_grain": "ICU stay",
@@ -34,7 +34,7 @@
     "continuity_rule": "merge overlapping or exactly contiguous source intervals within the same stay under the locked included support family",
     "allowed_true_value": true,
     "allowed_false_rows": false,
-    "no_row_interpretation": "no retained positive episode under the approved or candidate source rule"
+    "no_row_interpretation": "no retained positive episode under the approved source rule; not universal proof of no respiratory support"
   },
   "canonical_representation": {
     "canonical_unit": "none",
@@ -55,7 +55,7 @@
     "time_anchor": "icu_intime"
   },
   "execution_governance": {
-    "current_status": "governed_execution_entrypoint_present_candidate_mapping_pending_owner_review",
+    "current_status": "owner_approved_with_restricted_partial_cross_database_coverage",
     "formal_output_rule": "Formal outputs should go through execution.py reading this variable_spec and a database mapping_spec."
   },
   "current_public_mvp_links": {
@@ -65,6 +65,7 @@
     "execution_entrypoint": "docs/standard_system_mvp/std_advanced_respiratory_support_active/execution.py",
     "public_card": "docs/std_variable_cards/std_advanced_respiratory_support_active.md",
     "class_contract": "Framework_Guideline/StandardVariableClass_BinaryStateEpisode_Contract.md",
-    "build_first_note": "Amsterdam candidate is built from approved IMV and NIV parent assets but carries an explicit HFNC source-coverage gap."
+    "build_first_note": "Amsterdam asset is owner-approved only as restricted partial IMV/NIV evidence and carries an explicit HFNC source-coverage gap.",
+    "owner_review_note": "Owner-approved on 2026-05-29 after explicit owner confirmation: MIMIC partial official IMV/NIV/HFNC active evidence; Amsterdam restricted partial IMV/NIV-only evidence with HFNC gap; eICU, SICdb, and NWICU unavailable until state-machine reconstruction."
   }
 }

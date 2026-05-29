@@ -1,16 +1,16 @@
 {
   "artifact_type": "mapping_spec",
-  "artifact_version": "v0_candidate",
-  "artifact_status": "candidate_mapping_pending_owner_review",
-  "approval_status": "not_owner_approved",
+  "artifact_version": "v1_owner_reviewed_restricted_partial",
+  "artifact_status": "owner_approved_restricted_partial_mapping",
+  "approval_status": "reviewed_approved_restricted_partial_imv_niv_only_hfnc_gap",
   "mvp_phase": "class_3_amsterdam_q2_build_first_candidate_mvp",
   "created_at": "2026-05-04",
-  "updated_at": "2026-05-04",
+  "updated_at": "2026-05-29",
   "public_scope": "github_safe",
   "variable_spec_ref": "docs/standard_system_mvp/std_advanced_respiratory_support_active/variable_spec.json",
   "standard_variable": {
     "variable_id": "std_advanced_respiratory_support_active",
-    "variable_version": "v0_draft",
+    "variable_version": "v1_owner_reviewed",
     "semantic_intent": "advanced respiratory support active state",
     "semantic_grain": "one row per positive state episode",
     "source_value_class": "positive_state_episode",
@@ -18,10 +18,10 @@
     "canonical_value_family": "binary_state"
   },
   "candidate_boundary_notice": {
-    "status": "built_candidate_hfnc_source_gap_owner_approval_pending",
-    "owner_approval_status": "not_owner_approved",
+    "status": "owner_approved_restricted_partial_hfnc_source_gap",
+    "owner_approval_status": "reviewed_approved_restricted_partial_imv_niv_only_hfnc_gap",
     "reason": "The candidate output lacks a narrow Amsterdam HFNC source even though the public advanced-respiratory-support concept includes HFNC.",
-    "approval_gate": "candidate runtime evidence only until detailed review and owner approval close"
+    "approval_gate": "closed on 2026-05-29 as restricted partial IMV/NIV-only evidence; do not represent as complete IMV/NIV/HFNC coverage"
   },
   "database_mapping": {
     "database_id": "AmsterdamUMCdb-1.0.2",
@@ -93,14 +93,15 @@
     "positive_only_no_row_policy_check": "false rows are not emitted; absence of row is not universal negative proof",
     "episode_time_order_action": "fail_when_end_not_after_start",
     "notes": [
-      "Build-first candidate mapping; owner approval is explicitly pending.",
-      "The candidate output lacks a narrow Amsterdam HFNC source even though the public advanced-respiratory-support concept includes HFNC."
+      "Owner-approved on 2026-05-29 as restricted partial Amsterdam IMV/NIV-only active evidence.",
+      "The output lacks a narrow Amsterdam HFNC source even though the public advanced-respiratory-support concept includes HFNC.",
+      "The NIV/CPAP parent evidence retains chronic/OSA or home-CPAP-like long-tail contamination risk unless restricted by study window."
     ]
   },
   "execution_contract": {
     "governed_execution_entrypoint": "docs/standard_system_mvp/std_advanced_respiratory_support_active/execution.py",
     "current_reference_implementation": "Methods/Clinical_Database/local_work/Layer 5/AmsterdamUMCdb-1.0.2/std_advanced_respiratory_support_active/extract_code/Extract_Code_std_advanced_respiratory_support_active.py",
-    "formal_output_rule": "Candidate output should be generated through the governed execution.py path and reviewed before approval.",
+    "formal_output_rule": "Approved restricted-partial output should be generated through the governed execution.py path and interpreted under the HFNC-gap owner-review contract.",
     "non_bypassable_target_rule": "Approval-facing outputs should be produced only through the governed execution.py path."
   },
   "evidence_refs": {

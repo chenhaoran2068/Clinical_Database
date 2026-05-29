@@ -1,8 +1,8 @@
 # Amsterdam Q2 Direct Build Candidate Review
 
-Last updated: 2026-05-04
+Last updated: 2026-05-29
 
-Status: build-first evidence packet; owner approval is not implied
+Status: build-first evidence packet with later owner-review addendum. `std_advanced_respiratory_support_active` was owner-approved on 2026-05-29 only as restricted partial Amsterdam IMV/NIV evidence with an explicit HFNC source-coverage gap.
 
 ## Scope
 
@@ -37,7 +37,7 @@ References:
 | `std_mechanical_ventilation_imv_niv_active` | built + rerun pass | approval-review ready | high Amsterdam support prevalence needs clinical review, but source identity is clean IMV/NIV |
 | `std_vasopressor_support_agent_episode` | built + rerun pass | approval-review ready with label caveat | Amsterdam has `terlipressin`, not MIMIC `vasopressin`; retained as a true local agent label |
 | `std_icu_entry_source` | built + rerun pass | approval-review ready with missingness caveat | `origin` is non-null for only 9,031/23,106 admissions |
-| `std_advanced_respiratory_support_active` | built + rerun pass | hold as same-name approval candidate | Amsterdam lacks governed HFNC source, while public concept includes HFNC |
+| `std_advanced_respiratory_support_active` | built + rerun pass | owner-approved restricted partial | Amsterdam lacks governed HFNC source, so approved use is IMV/NIV-only with explicit HFNC gap |
 | `std_discharge_disposition` | built + rerun pass | hold/candidate pending dictionary | 20,598/22,886 retained rows are numeric local `destination` codes |
 | `std_icu_exit_destination` | built + rerun pass | hold/candidate pending dictionary | same numeric `destination` code issue as discharge disposition |
 
@@ -80,9 +80,11 @@ The public card defines advanced respiratory support as IMV + NIV + HFNC. Amster
 
 Amsterdam support coverage is `16,428/23,106` stays (`71.1%`) for IMV/NIV-derived advanced support. This is source-driven and reproducible, but broader than MIMIC's public advanced-support stay coverage because the databases, case mix, and source construction differ. The missing HFNC component is the dominant approval blocker.
 
-### Technical Posture
+### Owner-Review Posture
 
-Build evidence is complete, but same-name approval should be held until HFNC absence is explicitly accepted, a valid HFNC source is added, or the variable is split into an Amsterdam IMV/NIV-only proxy.
+Owner-approved on 2026-05-29 as `reviewed_approved_restricted_partial_imv_niv_only_hfnc_gap`.
+
+This closes the prior hold only by accepting restricted partial semantics: the Amsterdam asset is usable as IMV/NIV active evidence, not as complete IMV/NIV/HFNC advanced respiratory support. HFNC remains a visible source-coverage gap. The NIV/CPAP parent surface also retains the long-tail chronic/OSA or home-CPAP-like contamination warning, so acute ICU analyses must restrict by the prespecified study window.
 
 ## `std_mechanical_ventilation_imv_niv_active`
 
@@ -331,4 +333,3 @@ Hold/candidate pending official or governed local destination-code dictionary. D
 | `std_discharge_disposition` | `docs/standard_system_mvp/std_discharge_disposition/runtime/amsterdamumcdb_1_0_2_first_candidate_execution` | `docs/standard_system_mvp/std_discharge_disposition/runtime/amsterdamumcdb_1_0_2_rerun_repro_check` |
 | `std_icu_entry_source` | `docs/standard_system_mvp/std_icu_entry_source/runtime/amsterdamumcdb_1_0_2_first_candidate_execution` | `docs/standard_system_mvp/std_icu_entry_source/runtime/amsterdamumcdb_1_0_2_rerun_repro_check` |
 | `std_icu_exit_destination` | `docs/standard_system_mvp/std_icu_exit_destination/runtime/amsterdamumcdb_1_0_2_first_candidate_execution` | `docs/standard_system_mvp/std_icu_exit_destination/runtime/amsterdamumcdb_1_0_2_rerun_repro_check` |
-
